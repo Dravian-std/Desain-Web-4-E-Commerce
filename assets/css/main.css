@@ -1,0 +1,207 @@
+
+        body {
+            background-color: #F9F5EC;
+            color: #171412;
+            overflow-x: hidden;
+        }
+
+        /* Liquid Ambient Warm Wood Orbs for Authentic Glassmorphism Refraction */
+        .ambient-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            background: #F9F5EC;
+        }
+        .ambient-orb {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(70px);
+            opacity: 0.55;
+            will-change: transform;
+            animation: liquidDrift 22s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+        }
+        .ambient-orb-1 {
+            width: 46vw;
+            height: 46vw;
+            top: -12%;
+            left: -8%;
+            background: radial-gradient(circle, rgba(216, 184, 146, 0.55), transparent 70%);
+        }
+        .ambient-orb-2 {
+            width: 42vw;
+            height: 42vw;
+            top: 18%;
+            right: -10%;
+            background: radial-gradient(circle, rgba(196, 154, 108, 0.42), transparent 70%);
+            animation-delay: -7s;
+            animation-duration: 26s;
+        }
+        .ambient-orb-3 {
+            width: 50vw;
+            height: 50vw;
+            bottom: -18%;
+            left: 22%;
+            background: radial-gradient(circle, rgba(230, 207, 175, 0.52), transparent 70%);
+            animation-delay: -13s;
+            animation-duration: 30s;
+        }
+
+        @keyframes liquidDrift {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(4%, 5%, 0) scale(1.08); }
+            100% { transform: translate3d(-3%, -4%, 0) scale(0.95); }
+        }
+
+        /* Fluid Water-Like Spring Transitions */
+        :root {
+            --fluid-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --water-spring: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Warm Frosted Glassmorphism System */
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.74);
+            backdrop-filter: blur(24px) saturate(170%);
+            -webkit-backdrop-filter: blur(24px) saturate(170%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.78);
+            box-shadow: 0 4px 30px rgba(82, 55, 31, 0.05);
+            transition: all 0.45s var(--fluid-ease);
+        }
+
+        .glass-card {
+            background: rgba(255, 252, 247, 0.66);
+            backdrop-filter: blur(22px) saturate(155%);
+            -webkit-backdrop-filter: blur(22px) saturate(155%);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 18px 40px -12px rgba(72, 50, 28, 0.08),
+                        inset 0 1px 0 0 rgba(255, 255, 255, 0.92);
+            transition: transform 0.55s var(--fluid-ease),
+                        box-shadow 0.55s var(--fluid-ease),
+                        background 0.4s var(--fluid-ease),
+                        border-color 0.4s var(--fluid-ease);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 253, 250, 0.82);
+            transform: translateY(-5px);
+            box-shadow: 0 28px 56px -14px rgba(72, 50, 28, 0.14),
+                        inset 0 1px 0 0 rgba(255, 255, 255, 1);
+        }
+
+        /* Disable hover lift on static modal panels */
+        .modal-panel:hover {
+            transform: none;
+        }
+
+        .glass-pill {
+            background: rgba(255, 252, 247, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            box-shadow: 0 8px 24px rgba(56, 37, 21, 0.06);
+            transition: all 0.4s var(--fluid-ease);
+        }
+
+        .glass-pill:hover {
+            transform: translateY(-1.5px);
+            box-shadow: 0 12px 28px rgba(56, 37, 21, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(23, 20, 18, 0.78);
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+            border: 1px solid rgba(255, 248, 238, 0.16);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+            transition: all 0.45s var(--fluid-ease);
+        }
+
+        /* Apple-style Showcase Hover Zoom */
+        .apple-tile:hover .apple-tile-img {
+            transform: scale(1.05);
+        }
+        .apple-tile-img {
+            transition: transform 0.85s var(--water-spring);
+            will-change: transform;
+        }
+
+        /* Fluid Button Micro-interaction & Sheen */
+        .btn-fluid {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s var(--fluid-ease),
+                        background-color 0.35s var(--fluid-ease),
+                        box-shadow 0.4s var(--fluid-ease);
+        }
+        .btn-fluid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -6px rgba(23, 20, 18, 0.24);
+        }
+        .btn-fluid:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        /* Staggered Fluid Reveal Animation (Scroll & Page Switch) */
+        .fluid-reveal {
+            opacity: 0;
+            transform: translate3d(0, 28px, 0) scale(0.985);
+            transition: opacity 0.8s var(--water-spring),
+                        transform 0.8s var(--water-spring);
+            will-change: opacity, transform;
+        }
+        .fluid-reveal.is-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        /* Page Transition Animation */
+        .page-enter {
+            animation: pageWaveIn 0.65s var(--water-spring) forwards;
+        }
+        @keyframes pageWaveIn {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 22px, 0) scale(0.992);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+        }
+
+        /* Smooth Modal & Drawer Transitions */
+        .modal-backdrop-anim {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.38s var(--fluid-ease);
+        }
+        .modal-backdrop-anim.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-card-anim {
+            transform: translate3d(0, 24px, 0) scale(0.95);
+            opacity: 0;
+            transition: transform 0.48s var(--water-spring),
+                        opacity 0.38s var(--fluid-ease);
+        }
+        .modal-backdrop-anim.is-open .modal-card-anim {
+            transform: translate3d(0, 0, 0) scale(1);
+            opacity: 1;
+        }
+
+        .drawer-panel-anim {
+            transform: translate3d(100%, 0, 0);
+            transition: transform 0.52s var(--water-spring);
+        }
+        .modal-backdrop-anim.is-open .drawer-panel-anim {
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: #F1E9DA; }
+        ::-webkit-scrollbar-thumb { background: #C49A6C; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8C6239; }
