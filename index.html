@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livora — Home</title>
+    <!-- Bootstrap 5.3: komponen grid, form, tombol, dan utilitas -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/project.css">
+    <!-- Tailwind CSS (dipertahankan agar desain awal tidak rusak) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FDFBF7',
+                            100: '#F9F5EC',
+                            200: '#F1E9DA',
+                            300: '#E5D8C1',
+                        },
+                        oak: {
+                            100: '#F4E8D6',
+                            200: '#E6CFAF',
+                            300: '#D8B892',
+                            400: '#C49A6C',
+                            500: '#A97B4B',
+                            600: '#8C6239',
+                            700: '#6E4B2A',
+                            800: '#52371F',
+                            900: '#382515',
+                        },
+                        charcoal: {
+                            800: '#26211D',
+                            900: '#171412',
+                        },
+                        sage: {
+                            50: '#F2F6F3',
+                            100: '#E1ECE4',
+                            600: '#3D6B4E',
+                            700: '#2E523B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body class="font-sans antialiased selection:bg-oak-300 selection:text-charcoal-900">
+
+    <!-- Liquid Ambient Warm Wood Gradients for Glassmorphism Depth -->
+    <div class="ambient-bg">
+        <div class="ambient-orb ambient-orb-1"></div>
+        <div class="ambient-orb ambient-orb-2"></div>
+        <div class="ambient-orb ambient-orb-3"></div>
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- A. TOP NAVIGATION (APPLE-STYLE FROSTED GLASS HEADER)                    -->
+    <!-- ======================================================================= -->
+    <header class="sticky top-0 z-40 w-full glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-18 gap-3 lg:gap-6">
+                
+                <!-- Kiri: Logo "Livora" + Ikon Simpel Kayu -->
+                <button type="button" onclick="switchPage('home')" class="flex items-center gap-2.5 group shrink-0 focus:outline-none text-left">
+                    <div class="w-9 h-9 rounded-xl bg-charcoal-900 text-cream-50 flex items-center justify-center shadow-xs group-hover:bg-oak-700 transition-colors">
+                        <svg class="w-5 h-5 text-oak-200" viewBox="0 0 28 28" fill="none">
+                            <rect x="3" y="8" width="22" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <line x1="10" y1="8" x2="10" y2="18" stroke="currentColor" stroke-width="1.6"/>
+                            <line x1="18" y1="8" x2="18" y2="18" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M6 18L4.5 23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M22 18L23.5 23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-tight text-charcoal-900">Livora</span>
+                </button>
+
+                <!-- Tengah: Menu Navigasi Minimalis + Search Kapsul Glass -->
+                <div class="flex-1 max-w-2xl flex items-center justify-center gap-2 lg:gap-6">
+                    <!-- Menu Tabs -->
+                    <nav class="hidden md:flex items-center gap-1 p-1 rounded-full glass-pill">
+                        <button type="button" onclick="switchPage('home')" id="nav-home" class="nav-tab-btn px-4 py-1.5 rounded-full bg-charcoal-900 text-cream-50 text-xs font-semibold transition-all">
+                            Beranda
+                        </button>
+                        <button type="button" onclick="switchPage('katalog')" id="nav-katalog" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all flex items-center gap-1.5">
+                            <span>Katalog</span>
+                            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-oak-200/70 text-oak-900">16</span>
+                        </button>
+                        <button type="button" onclick="switchPage('inspirasi')" id="nav-inspirasi" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all">
+                            Inspirasi Ruang
+                        </button>
+                        <button type="button" onclick="switchPage('riwayat')" id="nav-riwayat" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all flex items-center gap-1.5">Riwayat</button>
+                        <button type="button" onclick="switchPage('ongkir')" id="nav-ongkir" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all">
+                            Cek Ongkir
+                        </button>
+                    </nav>
+
+                    <!-- Search Bar Kapsul Frosted Glass -->
+                    <div class="relative flex-1 max-w-xs">
+                        <div class="relative flex items-center">
+                            <i class="fa-solid fa-magnifying-glass text-oak-600 text-xs absolute left-3.5 pointer-events-none"></i>
+                            <input 
+                                id="global-search-input"
+                                type="text" 
+                                placeholder="Cari credenza, meja, sofa..." 
+                                class="w-full pl-9 pr-7 py-1.5 glass-pill focus:bg-white/90 text-xs text-charcoal-900 rounded-full focus:outline-none focus:ring-2 focus:ring-oak-400 transition-all placeholder:text-oak-700/65"
+                            >
+                            <button id="clear-search-btn" type="button" class="hidden absolute right-2.5 text-xs text-oak-600 hover:text-charcoal-900">✕</button>
+                        </div>
+
+                        <!-- Dropdown Live Search Glassmorphism -->
+                        <div id="search-suggestions" class="hidden absolute left-0 right-0 mt-2 glass-card bg-cream-50/95 rounded-2xl p-2.5 z-50">
+                            <div class="flex items-center justify-between px-2 pb-1.5 mb-1 border-b border-oak-200/60">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-oak-600">Pencarian Cepat</span>
+                                <button type="button" onclick="switchPage('katalog')" class="text-[11px] font-bold text-oak-700 hover:underline">Semua (16) ›</button>
+                            </div>
+                            <div id="search-suggestions-list" class="space-y-1 max-h-60 overflow-y-auto"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanan: Kode Pos, Keranjang, Akun -->
+                <div class="flex items-center gap-2 shrink-0">
+                    <button 
+                        type="button"
+                        onclick="switchPage('ongkir')"
+                        class="glass-pill hover:bg-white/80 px-3 py-1.5 rounded-full text-xs font-semibold text-charcoal-800 flex items-center gap-1.5 transition-all"
+                        title="Cek Ongkir Kargo"
+                    >
+                        <i class="fa-solid fa-location-dot text-oak-600 text-[11px]"></i>
+                        <span id="header-postal-display" class="font-mono text-[11px] font-bold hidden sm:inline">50275 • Semarang</span>
+                        <span id="header-postal-mobile" class="font-mono text-[11px] font-bold sm:hidden">50275</span>
+                    </button>
+
+                    <button 
+                        id="cart-open-btn"
+                        type="button" 
+                        class="relative w-9 h-9 rounded-full glass-pill hover:bg-white/80 flex items-center justify-center text-charcoal-900 transition-all"
+                        aria-label="Keranjang"
+                    >
+                        <i class="fa-solid fa-bag-shopping text-xs"></i>
+                        <span id="cart-count-badge" class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-charcoal-900 text-cream-50 font-mono text-[10px] font-bold flex items-center justify-center">
+                            1
+                        </span>
+                    </button>
+
+                    <!-- Tombol Akun / Member (Awalnya Kosong, Klik untuk Daftar Nama & Email) -->
+                    <button 
+                        id="profile-btn"
+                        type="button"
+                        onclick="openMemberModal()"
+                        class="relative h-9 px-3 rounded-full glass-pill hover:bg-white/85 flex items-center justify-center gap-1.5 text-xs font-bold text-charcoal-900 transition-all"
+                        title="Daftar / Akun Member"
+                    >
+                        <span id="profile-avatar-icon" class="flex items-center justify-center">
+                            <i class="fa-regular fa-user text-xs text-oak-700"></i>
+                        </span>
+                        <span id="profile-label-text" class="hidden sm:inline text-[11px] font-semibold text-charcoal-800">Daftar</span>
+                        <span id="profile-online-dot" class="hidden absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-cream-50"></span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Mobile Navigation Pills -->
+            <div class="flex md:hidden items-center justify-center gap-1.5 py-2 border-t border-white/50 text-xs overflow-x-auto">
+                <button type="button" onclick="switchPage('home')" id="mob-nav-home" class="px-3.5 py-1 rounded-full bg-charcoal-900 text-cream-50 font-semibold whitespace-nowrap">Beranda</button>
+                <button type="button" onclick="switchPage('katalog')" id="mob-nav-katalog" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Katalog (16)</button>
+                <button type="button" onclick="switchPage('inspirasi')" id="mob-nav-inspirasi" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Inspirasi</button>
+                <button type="button" onclick="switchPage('riwayat')" id="mob-nav-riwayat" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Riwayat</button>
+                <button type="button" onclick="switchPage('ongkir')" id="mob-nav-ongkir" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Cek Ongkir</button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ======================================================================= -->
+    <!-- HALAMAN 1: BERANDA MINIMALIS (APPLE-INSPIRED CENTERED LAYOUT + GLASS)   -->
+    <!-- ======================================================================= -->
+    <main id="page-home" class="page-section block">
+
+        <!-- B. HERO SECTION (CENTER-ALIGNED APPLE MACBOOK PRO STYLE) -->
+        <section class="relative pt-10 pb-12 sm:pt-14 sm:pb-16 overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                
+                <!-- Badge Kecil Frosted Glass -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-pill text-[11px] font-bold uppercase tracking-[0.2em] text-oak-700 mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-oak-600"></span>
+                    <span>Koleksi Flagship Japandi</span>
+                </div>
+
+                <!-- Headline Besar & Tegas ala Apple -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-charcoal-900 tracking-tight leading-[1.04]">
+                    Aoki Birch Credenza
+                </h1>
+
+                <!-- Sub-headline Singkat 1 Baris -->
+                <p class="mt-3 text-lg sm:text-2xl font-medium text-oak-700 tracking-tight">
+                    Scandinavian Solid Birch. <span class="text-charcoal-900 font-semibold">Presisi di setiap sudut.</span>
+                </p>
+
+                <!-- Info Ukuran Presisi & Harga Singkat -->
+                <p class="mt-2 font-mono text-xs sm:text-sm text-oak-600">
+                    180 × 45 × 75 cm &bull; Rp 18.450.000
+                </p>
+
+                <!-- Tombol CTA Pil ala Apple -->
+                <div class="mt-6 flex items-center justify-center gap-3 sm:gap-4 fluid-reveal">
+                    <button 
+                        type="button"
+                        onclick="openProductModal('aoki-credenza')"
+                        class="btn-fluid px-7 py-3 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs sm:text-sm font-semibold shadow-lg"
+                    >
+                        Selengkapnya
+                    </button>
+                    <button 
+                        type="button"
+                        onclick="switchPage('katalog')"
+                        class="btn-fluid px-6 py-3 rounded-full glass-pill hover:bg-white text-charcoal-900 text-xs sm:text-sm font-semibold flex items-center gap-1.5"
+                    >
+                        <span>Lihat Katalog</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Hero Product Showcase Image + Floating Glassmorphism Badges -->
+                <div class="relative mt-9 sm:mt-11 max-w-5xl mx-auto fluid-reveal">
+                    <div 
+                        onclick="openProductModal('aoki-credenza')"
+                        class="apple-tile relative rounded-[32px] overflow-hidden glass-card p-2 sm:p-3 cursor-pointer group"
+                    >
+                        <div class="relative h-[300px] sm:h-[440px] lg:h-[500px] w-full rounded-[24px] overflow-hidden bg-cream-200">
+                            <img 
+                                src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1600&q=85" 
+                                alt="Aoki Birch Credenza" 
+                                class="apple-tile-img w-full h-full object-cover object-center"
+                            >
+                            <!-- Subtle Gradient Vignette -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900/45 via-transparent to-transparent"></div>
+
+                            <!-- Floating Glass Badge Kiri Atas: 3D Ready di Katalog -->
+                            <div class="absolute top-4 left-4 sm:top-6 sm:left-6 glass-pill px-3.5 py-2 rounded-2xl flex items-center gap-2 text-left">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span class="text-xs font-bold text-charcoal-900">Interactive 3D Tersedia di Katalog</span>
+                            </div>
+
+                            <!-- Floating Glass Badge Kanan Atas: Verified Rating -->
+                            <div class="absolute top-4 right-4 sm:top-6 sm:right-6 glass-pill px-3.5 py-2 rounded-2xl flex items-center gap-1.5">
+                                <span class="text-amber-500 text-xs font-bold">★ 4.9/5</span>
+                                <span class="text-[11px] font-semibold text-charcoal-800 hidden sm:inline">Verified</span>
+                            </div>
+
+                            <!-- Floating Glass Bar Bawah: Dimensi Presisi & Tombol Keranjang Cepat -->
+                            <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 glass-card rounded-2xl px-4 py-3 sm:px-6 sm:py-3.5 flex flex-wrap items-center justify-between gap-3">
+                                <div class="flex items-center gap-4 text-left">
+                                    <div>
+                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-oak-700">Dimensi Presisi</span>
+                                        <span class="font-mono text-xs sm:text-sm font-extrabold text-charcoal-900">P 180 × L 45 × T 75 cm</span>
+                                    </div>
+                                    <div class="hidden sm:block h-7 w-px bg-oak-300/60"></div>
+                                    <div class="hidden sm:block">
+                                        <span class="block text-[10px] font-bold uppercase tracking-wider text-oak-700">Material Utama</span>
+                                        <span class="text-xs font-bold text-charcoal-900">Solid Birch 22mm &bull; Miter 45&deg;</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2" onclick="event.stopPropagation();">
+                                    <button 
+                                        type="button" 
+                                        onclick="addToCart('aoki-credenza')"
+                                        class="btn-fluid px-4 py-2 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs font-semibold"
+                                    >
+                                        + Keranjang
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strip Bawah Hero: Minimalist Frosted Glass Trust Bar -->
+                <div class="mt-6 max-w-4xl mx-auto glass-card rounded-full px-6 py-3 fluid-reveal">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-xs font-semibold text-charcoal-800 divide-y sm:divide-y-0 sm:divide-x divide-oak-300/50">
+                        <button type="button" onclick="switchPage('ongkir')" class="flex items-center justify-center gap-2 pt-1 sm:pt-0 hover:text-oak-700 transition-colors">
+                            <i class="fa-solid fa-truck-fast text-oak-600"></i>
+                            <span>Ongkir Kargo Transparan ›</span>
+                        </button>
+                        <div class="flex items-center justify-center gap-2 pt-2 sm:pt-0">
+                            <i class="fa-solid fa-shield-halved text-oak-600"></i>
+                            <span>Garansi Barang Aman 100%</span>
+                        </div>
+                        <div class="flex items-center justify-center gap-2 pt-2 sm:pt-0">
+                            <i class="fa-solid fa-screwdriver-wrench text-oak-600"></i>
+                            <span>Add-on Jasa Perakitan</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- C. PREVIEW KATALOG MINIMALIS ALA APPLE PROMO GRID (MEMANCING KLIK KE TAB KATALOG) -->
+        <section class="py-12 sm:py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header Minimalis Terpusat -->
+                <div class="text-center max-w-2xl mx-auto mb-10 fluid-reveal">
+                    <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-oak-600 block mb-2">
+                        Dirancang Untuk Segala Usia
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-charcoal-900 tracking-tight">
+                        Eksplorasi Koleksi Pilihan.
+                    </h2>
+                </div>
+
+                <!-- 2x2 Apple-Style Minimalist Bento Grid (4 Segmen Usia) -->
+                <div id="home-minimal-showcase" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Di-render otomatis via JS dari 4 produk unggulan -->
+                </div>
+
+                <!-- Floating Glassmorphism Teaser Banner -> Memancing User Membuka Tab Katalog Lengkap -->
+                <div class="mt-10 glass-card rounded-[28px] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 fluid-reveal">
+                    <div class="text-center md:text-left">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-oak-200/70 text-oak-900 text-[11px] font-bold uppercase tracking-wider mb-2">
+                            ✨ 16 Koleksi Lengkap + Fitur 3D Studio
+                        </span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-charcoal-900 tracking-tight">
+                            Lihat seluruh 16 produk & tampilan 3D interaktif di halaman Katalog.
+                        </h3>
+                    </div>
+
+                    <button 
+                        type="button" 
+                        onclick="switchPage('katalog')"
+                        class="btn-fluid px-7 py-3.5 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs sm:text-sm font-bold shadow-lg flex items-center gap-2.5 shrink-0"
+                    >
+                        <span>Buka Katalog Lengkap (16)</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- D. ULASAN REAL PEMBELI (MINIMALIS DENGAN OVERLAY KACA BURAM) -->
+        <section class="py-12 sm:py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3 fluid-reveal">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-oak-600 block mb-1">
+                            100% Foto Ruangan Asli
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-charcoal-900 tracking-tight">
+                            Ulasan Real Pembeli.
+                        </h2>
+                    </div>
+                    <button type="button" onclick="switchPage('inspirasi')" class="text-xs font-bold text-oak-700 hover:text-charcoal-900 transition-colors">
+                        Lihat Galeri Inspirasi ›
+                    </button>
+                </div>
+
+                <div id="home-testimonials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Invoice preview -->
+    <div id="invoice-modal" class="modal-backdrop-anim fixed inset-0 bg-charcoal-900/50 z-[70] hidden flex items-center justify-center p-3">
+      <div class="modal-card-anim glass-card bg-white rounded-4 p-4 p-md-5 w-100" style="max-width:680px;max-height:90vh;overflow:auto">
+        <div class="d-flex justify-content-between align-items-center mb-3"><h2 class="h4 fw-bold mb-0">Invoice pesanan</h2><button class="btn-close" onclick="closeInvoice()"></button></div>
+        <div id="invoice-content"></div>
+        <div class="d-flex flex-wrap gap-2 mt-4 no-print"><button class="btn btn-dark" onclick="window.print()">Cetak / Simpan PDF</button><button class="btn btn-outline-dark" onclick="copyInvoice()">Salin detail</button><button class="btn btn-outline-secondary" onclick="closeInvoice()">Tutup</button></div>
+      </div>
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- E. FOOTER MINIMALIS                                                     -->
+    <!-- ======================================================================= -->
+    <footer class="mt-12 border-t border-oak-200/70 py-10 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Newsletter Glass Card -->
+            <div class="glass-card rounded-[28px] p-6 sm:p-8 mb-10 flex flex-col lg:flex-row items-center justify-between gap-6 fluid-reveal">
+                <div>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-charcoal-900 tracking-tight">
+                        Dapatkan diskon promo & inspirasi penataan ruang.
+                    </h3>
+                    <p class="text-xs text-oak-700 mt-0.5">
+                        Klaim voucher ongkir kargo <strong>Rp 50.000</strong> untuk pesanan pertama.
+                    </p>
+                </div>
+                <form id="newsletter-form" class="flex w-full lg:w-auto gap-2">
+                    <input 
+                        id="newsletter-email"
+                        type="email" 
+                        required
+                        placeholder="Alamat email Anda..." 
+                        class="flex-1 sm:w-64 px-4 py-2.5 rounded-full bg-white/85 border border-oak-300 text-xs text-charcoal-900 focus:outline-none"
+                    >
+                    <button type="submit" class="btn-fluid px-6 py-2.5 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs font-bold shrink-0">
+                        Klaim
+                    </button>
+                </form>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-oak-700">
+                <div class="flex items-center gap-2">
+                    <span class="font-extrabold text-charcoal-900">Livora Indonesia</span>
+                    <span>&bull;</span>
+                    <span>Light Wood Minimalist Marketplace</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 font-semibold">
+                    <button type="button" onclick="switchPage('katalog')" class="hover:text-charcoal-900">Katalog (16)</button>
+                    <button type="button" onclick="switchPage('ongkir')" class="hover:text-charcoal-900">Cek Ongkir</button>
+                    <span class="font-mono text-[11px] px-2 py-0.5 rounded glass-pill">QRIS &bull; Virtual Account &bull; Eco Cargo</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ======================================================================= -->
+    <!-- MODAL PRODUK & PELUNCUR FILE 3D INTERAKTIF TERPISAH (FIXED NO-CLIP)     -->
+    <!-- ======================================================================= -->
+    <div 
+        id="product-detail-modal" 
+        onclick="if(event.target === this) closeProductModal()"
+        class="modal-backdrop-anim fixed inset-0 bg-charcoal-900/50 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
+    >
+        <div class="modal-card-anim modal-panel glass-card bg-cream-50/95 rounded-[26px] sm:rounded-[32px] max-w-xl w-full max-h-[90vh] sm:max-h-[86vh] flex flex-col overflow-hidden shadow-2xl border border-white my-auto">
+            
+            <!-- Modal Header (Fixed / Tidak Terpotong) -->
+            <div class="shrink-0 px-5 sm:px-6 py-3.5 border-b border-oak-200/70 flex items-center justify-between bg-cream-50/80">
+                <div class="flex items-center gap-2">
+                    <span id="modal-prod-age" class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-oak-200/80 text-charcoal-900">Dewasa & Keluarga</span>
+                    <span id="modal-prod-cat" class="text-xs font-medium text-oak-700">Flagship Japandi</span>
+                </div>
+                <button 
+                    type="button" 
+                    onclick="closeProductModal()" 
+                    class="w-8 h-8 rounded-full glass-pill hover:bg-white flex items-center justify-center text-charcoal-900 text-xs font-bold"
+                    aria-label="Tutup Modal"
+                >
+                    ✕
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable Internal Area & Compact Image so nothing clips) -->
+            <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5">
+                <div class="relative h-44 sm:h-52 w-full rounded-2xl overflow-hidden bg-cream-200">
+                    <img id="modal-prod-img" src="" alt="" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900/70 via-charcoal-900/15 to-transparent flex flex-col justify-end p-4 sm:p-5">
+                        <h3 id="modal-prod-title" class="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-tight">Aoki Birch Credenza</h3>
+                        <p id="modal-material" class="text-xs text-cream-100 mt-0.5">Solid Scandinavian Birch 22mm</p>
+                    </div>
+                </div>
+
+                <!-- Dimensi Presisi Bar -->
+                <div class="grid grid-cols-4 gap-2 text-center">
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Panjang</span>
+                        <span id="modal-dim-p" class="font-mono text-xs sm:text-sm font-extrabold text-charcoal-900">180 cm</span>
+                    </div>
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Lebar</span>
+                        <span id="modal-dim-l" class="font-mono text-xs sm:text-sm font-extrabold text-charcoal-900">45 cm</span>
+                    </div>
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Tinggi</span>
+                        <span id="modal-dim-t" class="font-mono text-xs sm:text-sm font-extrabold text-charcoal-900">75 cm</span>
+                    </div>
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Berat</span>
+                        <span id="modal-weight" class="font-mono text-xs sm:text-sm font-extrabold text-sage-700">46 kg</span>
+                    </div>
+                </div>
+
+                <!-- Box Peluncur File 3D Terpisah -->
+                <div class="glass-dark text-cream-50 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-oak-400/20 border border-oak-300/40 flex items-center justify-center text-oak-200 shrink-0">
+                            <i class="fa-solid fa-cube text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-1.5">
+                                <span class="text-xs font-bold text-white">Interactive 3D Studio</span>
+                                <span id="modal-3d-filename" class="font-mono text-[10px] px-2 py-0.5 rounded bg-white/10 text-oak-200">aoki-credenza-3d.html</span>
+                            </div>
+                            <p class="text-[11px] text-cream-200/80 mt-0.5">Putar 360°, buka pintu/laci & ubah warna kayu di halaman 3D khusus.</p>
+                        </div>
+                    </div>
+                    <button 
+                        id="modal-launch-3d-btn"
+                        type="button"
+                        class="btn-fluid w-full sm:w-auto px-4 py-2 rounded-full bg-oak-300 hover:bg-oak-200 text-charcoal-900 text-xs font-extrabold shrink-0 flex items-center justify-center gap-1.5"
+                    >
+                        <span>Buka 3D Studio</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Footer (Fixed / Selalu Terlihat Utuh) -->
+            <div class="shrink-0 px-5 sm:px-6 py-3.5 bg-white/85 border-t border-oak-200/70 flex items-center justify-between gap-3">
+                <div>
+                    <span class="block text-[10px] uppercase text-oak-700 font-semibold">Harga</span>
+                    <span id="modal-prod-price" class="font-mono text-lg sm:text-xl font-extrabold text-charcoal-900">Rp 18.450.000</span>
+                </div>
+                <button id="modal-add-cart-btn" type="button" class="btn-fluid px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs font-bold">
+                    + Tambah ke Keranjang
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ======================================================================= -->
+    <!-- MODAL AKUN / PENDAFTARAN MEMBER LIVORA (AWALNYA KOSONG)                 -->
+    <!-- ======================================================================= -->
+    <div 
+        id="member-modal" 
+        onclick="if(event.target === this) closeMemberModal()"
+        class="modal-backdrop-anim fixed inset-0 bg-charcoal-900/45 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto"
+    >
+        <div class="modal-card-anim modal-panel glass-card bg-cream-50/95 rounded-[28px] max-w-md w-full overflow-hidden shadow-2xl border border-white p-6 space-y-5">
+            
+            <div class="flex items-center justify-between border-b border-oak-200/60 pb-3.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-charcoal-900 text-oak-200 flex items-center justify-center text-xs">
+                        <i class="fa-regular fa-id-badge"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-extrabold text-charcoal-900 leading-tight">Keanggotaan Livora</h3>
+                        <p id="member-modal-subtitle" class="text-[11px] text-oak-700">Belum terdaftar • Masukkan nama & email</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeMemberModal()" class="w-8 h-8 rounded-full glass-pill hover:bg-white flex items-center justify-center text-charcoal-900 text-xs font-bold">✕</button>
+            </div>
+
+            <!-- View 1: Form Pendaftaran Member (Tampil Saat Kosong) -->
+            <form id="member-register-form" class="space-y-4">
+                <div>
+                    <label for="member-name-input" class="block text-[11px] font-bold uppercase tracking-wider text-oak-700 mb-1.5">
+                        Nama Lengkap
+                    </label>
+                    <input 
+                        id="member-name-input"
+                        type="text" 
+                        required
+                        placeholder="Contoh: Nadia Putri"
+                        class="w-full px-4 py-2.5 rounded-2xl bg-white/90 border border-oak-300 text-xs font-semibold text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-oak-400 transition-all"
+                    >
+                </div>
+
+                <div>
+                    <label for="member-email-input" class="block text-[11px] font-bold uppercase tracking-wider text-oak-700 mb-1.5">
+                        Alamat Email
+                    </label>
+                    <input 
+                        id="member-email-input"
+                        type="email" 
+                        required
+                        placeholder="nama@email.com"
+                        class="w-full px-4 py-2.5 rounded-2xl bg-white/90 border border-oak-300 text-xs font-semibold text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-oak-400 transition-all"
+                    >
+                </div>
+
+                <div class="p-3 rounded-2xl bg-oak-100/70 border border-oak-200/80 text-[11px] text-oak-800 flex items-center gap-2.5">
+                    <i class="fa-solid fa-gift text-oak-600 text-sm shrink-0"></i>
+                    <span>Daftar gratis & dapatkan akses kustomisasi 3D serta voucher ongkir kargo <strong>Rp 50.000</strong>.</span>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="btn-fluid w-full py-3 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs font-extrabold shadow-lg"
+                >
+                    Daftar Jadi Member
+                </button>
+            </form>
+
+            <!-- View 2: Kartu Member Aktif (Tampil Setelah Terdaftar) -->
+            <div id="member-active-card" class="hidden space-y-4">
+                <div class="glass-dark text-cream-50 rounded-2xl p-5 space-y-4 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-oak-200">Livora Wood Club</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-bold">
+                            ● Member Aktif
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <div id="member-card-initials" class="w-12 h-12 rounded-2xl bg-oak-300 text-charcoal-900 font-extrabold text-base flex items-center justify-center shadow-inner">
+                            NP
+                        </div>
+                        <div class="min-w-0">
+                            <h4 id="member-card-name" class="text-base font-extrabold text-white truncate">Nadia Putri</h4>
+                            <p id="member-card-email" class="text-xs text-oak-200 truncate">nadia@email.com</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[11px]">
+                        <div>
+                            <span class="text-oak-300 block text-[9px] uppercase">ID Member</span>
+                            <span id="member-card-id" class="font-mono font-bold text-cream-100">LVR-2026-8841</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-oak-300 block text-[9px] uppercase">Voucher Kargo</span>
+                            <span class="font-mono font-bold text-emerald-300">LIVORAKARGO50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between gap-2 pt-1">
+                    <button 
+                        type="button" 
+                        onclick="editMemberProfile()"
+                        class="flex-1 py-2.5 rounded-full glass-pill hover:bg-white text-charcoal-900 text-xs font-bold"
+                    >
+                        Ubah Data
+                    </button>
+                    <button 
+                        type="button" 
+                        onclick="logoutMemberProfile()"
+                        class="flex-1 py-2.5 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-700 text-xs font-bold transition-colors"
+                    >
+                        Keluar (Kosongkan)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ======================================================================= -->
+    <!-- SLIDE-OVER CART DRAWER (FROSTED GLASSMORPHISM + FLUID SLIDE)            -->
+    <!-- ======================================================================= -->
+    <div 
+        id="cart-drawer-backdrop" 
+        onclick="if(event.target === this) closeCartDrawer()"
+        class="modal-backdrop-anim fixed inset-0 bg-charcoal-900/40 backdrop-blur-sm z-50 hidden"
+    >
+        <div class="drawer-panel-anim fixed inset-y-0 right-0 max-w-md w-full glass-card modal-panel bg-cream-50/95 shadow-2xl flex flex-col justify-between">
+            <div class="p-5 border-b border-oak-200/70 flex items-center justify-between">
+                <div>
+                    <h3 class="text-base font-extrabold text-charcoal-900">Keranjang Belanja</h3>
+                    <p id="cart-drawer-postal" class="text-xs text-oak-700">Tujuan: <strong>50275 (Semarang)</strong></p>
+                </div>
+                <button id="cart-close-btn" type="button" class="w-8 h-8 rounded-full glass-pill text-charcoal-900 font-bold text-xs">✕</button>
+            </div>
+
+            <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
+
+            <div class="p-5 bg-white/60 border-t border-oak-200/70 space-y-3">
+                <div class="space-y-1 text-xs">
+                    <div class="flex justify-between text-oak-800">
+                        <span>Subtotal Produk</span>
+                        <span id="cart-subtotal" class="font-mono font-semibold">Rp 18.450.000</span>
+                    </div>
+                    <div class="flex justify-between text-oak-800">
+                        <span>Estimasi Ongkir Kargo</span>
+                        <span id="cart-shipping" class="font-mono font-semibold text-sage-700">Rp 105.000</span>
+                    </div>
+                    <div class="flex justify-between text-sm font-extrabold text-charcoal-900 pt-2 border-t border-oak-200">
+                        <span>Total</span>
+                        <span id="cart-grand-total" class="font-mono">Rp 18.555.000</span>
+                    </div>
+                </div>
+                <button id="checkout-btn" type="button" class="w-full py-3.5 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 font-bold text-xs sm:text-sm transition-colors shadow-lg">
+                    Checkout Sekarang →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Glass -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden px-5 py-3 rounded-full glass-dark text-cream-50 text-xs font-semibold shadow-2xl flex items-center gap-2.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span id="toast-message">Berhasil diperbarui</span>
+    </div>
+
+
+    <!-- ======================================================================= -->
+    <!-- JAVASCRIPT: 16 PRODUK LINTAS USIA, APPLE SHOWCASE & SPA NAVIGATION      -->
+    <!-- ======================================================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+</body>
+</html>
