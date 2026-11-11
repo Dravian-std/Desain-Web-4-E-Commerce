@@ -1,0 +1,16 @@
+
+/* Bootstrap dipakai untuk komponen form, grid, alert, badge, dan tombol baru.
+   Palet dan glassmorphism mengikuti identitas visual Livora. */
+:root { --bs-body-font-family: "Plus Jakarta Sans", sans-serif; --bs-primary:#8c6239; --bs-dark:#26211d; --bs-border-radius:1rem; }
+.form-control,.form-select { border-radius: .85rem; padding:.75rem .9rem; border-color:#d8b892; font-size:.9rem; }
+.form-control:focus,.form-select:focus { border-color:#a97b4b; box-shadow:0 0 0 .2rem rgba(169,123,75,.15); }
+.btn-dark { background:#26211d; border-color:#26211d; }
+.btn-dark:hover { background:#6e4b2a; border-color:#6e4b2a; }
+.page-section .container { max-width:1140px; }
+@media print {
+  body * { visibility:hidden !important; }
+  #invoice-modal,#invoice-modal * { visibility:visible !important; }
+  #invoice-modal { position:absolute!important; inset:0!important; background:white!important; display:block!important; opacity:1!important; }
+  #invoice-modal .modal-card-anim { transform:none!important; opacity:1!important; max-height:none!important; box-shadow:none!important; }
+  .no-print { display:none!important; }
+}
