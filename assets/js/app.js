@@ -1,3 +1,7 @@
+        // Lokasi root situs, dihitung dari lokasi app.js (assets/js/app.js -> naik 2 folder).
+        // Jadi link antar-halaman tetap benar di localhost maupun GitHub Pages (subfolder repo).
+        const SITE_ROOT = new URL('../../', (document.currentScript && document.currentScript.src) || window.location.href).href;
+
         const PRODUCTS = [
             // 1. ANAK-ANAK (4 Produk)
             {
@@ -270,7 +274,7 @@
          * 1. SPA PAGE SWITCHER WITH FLUID WAVE TRANSITION
          * ---------------------------------------------------------------------- */
         function switchPage(pageKey) {
-            const pageFiles = { home: '/index.html', katalog: '/pages/katalog.html', ongkir: '/pages/ongkir.html', inspirasi: '/pages/inspirasi.html', checkout: '/pages/checkout.html', riwayat: '/pages/riwayat.html' };
+            const pageFiles = { home: SITE_ROOT + 'index.html', katalog: SITE_ROOT + 'pages/katalog.html', ongkir: SITE_ROOT + 'pages/ongkir.html', inspirasi: SITE_ROOT + 'pages/inspirasi.html', checkout: SITE_ROOT + 'pages/checkout.html', riwayat: SITE_ROOT + 'pages/riwayat.html' };
             const target = pageFiles[pageKey];
             if (target) { window.location.href = target; return; }
             currentPage = pageKey;
@@ -858,7 +862,7 @@
             const order={id:'LVR-'+Date.now().toString().slice(-9),createdAt:new Date().toISOString(),status:'Menunggu konfirmasi manual',customer:{name:data.name,email:data.email,phone:data.phone,postal:data.postal,address:data.address},payment:data.payment,courier:data.courier,items:cart.map(item=>{const p=PRODUCTS.find(x=>x.id===item.productId);return {productId:p.id,name:p.name,price:p.price,qty:item.qty};}),subtotal:t.subtotal,shipping:t.shipping,total:t.total};
             const orders=getOrderStore();orders.push(order);saveOrderStore(orders);
             cart=[];localStorage.setItem('livora_cart','[]');
-            window.location.href = `/pages/riwayat.html?invoice=${encodeURIComponent(order.id)}`;
+            window.location.href = `${SITE_ROOT}pages/riwayat.html?invoice=${encodeURIComponent(order.id)}`;
         });
 
         /* ----------------------------------------------------------------------
@@ -953,7 +957,7 @@
             if (checkoutBtn) checkoutBtn.addEventListener('click', () => {
                 if (!cart.length) { showToast('Keranjang masih kosong'); return; }
                 closeCartDrawer();
-                window.location.href = '/pages/checkout.html';
+                window.location.href = SITE_ROOT + 'pages/checkout.html';
             });
 
             // Form Pendaftaran Member (Awalnya Kosong -> Isi Nama & Email)
