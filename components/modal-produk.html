@@ -1,0 +1,85 @@
+<div 
+        id="product-detail-modal" 
+        onclick="if(event.target === this) closeProductModal()"
+        class="modal-backdrop-anim fixed inset-0 bg-charcoal-900/50 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
+    >
+        <div class="modal-card-anim modal-panel glass-card bg-cream-50/95 rounded-[26px] sm:rounded-[32px] max-w-xl w-full max-h-[90vh] sm:max-h-[86vh] flex flex-col overflow-hidden shadow-2xl border border-white my-auto">
+            
+            <div class="shrink-0 px-5 sm:px-6 py-3.5 border-b border-oak-200/70 flex items-center justify-between bg-cream-50/80">
+                <div class="flex items-center gap-2">
+                    <span id="modal-prod-age" class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-oak-200/80 text-charcoal-900">Dewasa & Keluarga</span>
+                    <span id="modal-prod-cat" class="text-xs font-medium text-oak-700">Flagship Japandi</span>
+                </div>
+                <button 
+                    type="button" 
+                    onclick="closeProductModal()" 
+                    class="w-8 h-8 rounded-full glass-pill hover:bg-white flex items-center justify-center text-charcoal-900 text-xs font-bold"
+                    aria-label="Tutup Modal"
+                >
+                    ✕
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5">
+                <div class="relative h-44 sm:h-52 w-full rounded-2xl overflow-hidden bg-cream-200">
+                    <img id="modal-prod-img" src="" alt="" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900/70 via-charcoal-900/15 to-transparent flex flex-col justify-end p-4 sm:p-5">
+                        <h3 id="modal-prod-title" class="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-tight">Aoki Birch Credenza</h3>
+                        <p id="modal-material" class="text-xs text-cream-100 mt-0.5">Solid Scandinavian Birch 22mm</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-4 gap-2 text-center">
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Panjang</span>
+                        <span id="modal-dim-p" class="font-mono text-xs sm:text-sm font-extrabold text-charcoal-900">180 cm</span>
+                    </div>
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Lebar</span>
+                        <span id="modal-dim-l" class="font-mono text-xs sm:text-sm font-extrabold text-charcoal-900">45 cm</span>
+                    </div>
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Tinggi</span>
+                        <span id="modal-dim-t" class="font-mono text-xs sm:text-sm font-extrabold text-charcoal-900">75 cm</span>
+                    </div>
+                    <div class="glass-pill py-2 px-1.5 rounded-2xl">
+                        <span class="block text-[9px] sm:text-[10px] text-oak-600 uppercase font-semibold">Berat</span>
+                        <span id="modal-weight" class="font-mono text-xs sm:text-sm font-extrabold text-sage-700">46 kg</span>
+                    </div>
+                </div>
+
+                <div class="glass-dark text-cream-50 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-oak-400/20 border border-oak-300/40 flex items-center justify-center text-oak-200 shrink-0">
+                            <i class="fa-solid fa-cube text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-1.5">
+                                <span class="text-xs font-bold text-white">Interactive 3D Studio</span>
+                                <span id="modal-3d-filename" class="font-mono text-[10px] px-2 py-0.5 rounded bg-white/10 text-oak-200">aoki-credenza-3d.html</span>
+                            </div>
+                            <p class="text-[11px] text-cream-200/80 mt-0.5">Putar 360°, buka pintu/laci & ubah warna kayu di halaman 3D khusus.</p>
+                        </div>
+                    </div>
+                    <button 
+                        id="modal-launch-3d-btn"
+                        type="button"
+                        class="btn-fluid w-full sm:w-auto px-4 py-2 rounded-full bg-oak-300 hover:bg-oak-200 text-charcoal-900 text-xs font-extrabold shrink-0 flex items-center justify-center gap-1.5"
+                    >
+                        <span>Buka 3D Studio</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="shrink-0 px-5 sm:px-6 py-3.5 bg-white/85 border-t border-oak-200/70 flex items-center justify-between gap-3">
+                <div>
+                    <span class="block text-[10px] uppercase text-oak-700 font-semibold">Harga</span>
+                    <span id="modal-prod-price" class="font-mono text-lg sm:text-xl font-extrabold text-charcoal-900">Rp 18.450.000</span>
+                </div>
+                <button id="modal-add-cart-btn" type="button" class="btn-fluid px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs font-bold">
+                    + Tambah ke Keranjang
+                </button>
+            </div>
+        </div>
+    </div>
