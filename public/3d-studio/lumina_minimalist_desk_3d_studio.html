@@ -1,0 +1,2911 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Livora 3D Studio — Lumina Minimalist Desk (120 × 60 × 75 cm)</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6.5.1 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Three.js r128 & OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        oak: {
+                            50: '#FAF7F2',
+                            100: '#F4E8D6',
+                            200: '#E6CFAF',
+                            300: '#D8B892',
+                            400: '#C49A6C',
+                            500: '#A97B4B',
+                            600: '#8C6239',
+                            700: '#6E4B2A',
+                            800: '#52371F',
+                        },
+                        charcoal: {
+                            800: '#26211D',
+                            900: '#171412',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* =====================================================================
+           DUAL-THEME FROSTED GLASSMORPHISM SYSTEM
+           Dark Studio Tokens (Studio Hangat, Senja, Malam LED)
+           + body.light-studio (DEFAULT: Gallery Terang matching Livora #F9F5EC)
+           ===================================================================== */
+        :root {
+            --fluid-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --water-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+            --bg-body: #171615;
+            --panel-bg: rgba(20, 19, 18, 0.78);
+            --panel-border: rgba(213, 186, 148, 0.22);
+            --panel-shadow: 0 22px 50px -12px rgba(0, 0, 0, 0.48), inset 0 1px 0 0 rgba(255, 248, 235, 0.10);
+            --pill-bg: rgba(34, 31, 28, 0.78);
+            --pill-hover-bg: rgba(54, 48, 42, 0.94);
+            --pill-border: rgba(255, 248, 235, 0.14);
+            --pill-active-bg: linear-gradient(135deg, rgba(213, 186, 148, 0.34), rgba(180, 131, 78, 0.24));
+            --pill-active-border: #D5BA94;
+            --pill-active-text: #FAF7F2;
+            --text-primary: #F3ECE0;
+            --text-secondary: #D4C5B2;
+            --text-muted: #A29484;
+            --accent-text: #D5BA94;
+            --accent-icon: #D5BA94;
+            --divider: rgba(255, 248, 235, 0.12);
+            --badge-bg: rgba(213, 186, 148, 0.16);
+            --badge-border: rgba(213, 186, 148, 0.32);
+            --badge-text: #E6CFAF;
+            --fps-bg: rgba(16, 185, 129, 0.15);
+            --fps-border: rgba(52, 211, 153, 0.35);
+            --fps-text: #6EE7B7;
+            --slider-track: rgba(255, 255, 255, 0.16);
+            --slider-thumb: #D5BA94;
+            --slider-thumb-ring: #171615;
+            --swatch-idle-border: rgba(255, 255, 255, 0.14);
+            --swatch-active-bg: rgba(213, 186, 148, 0.18);
+            --swatch-active-border: #D5BA94;
+            --cta-bg: linear-gradient(135deg, #E6CFAF, #C49A6C);
+            --cta-text: #171412;
+            --scroll-thumb: rgba(213, 186, 148, 0.38);
+            --pin-bg: rgba(20, 18, 16, 0.92);
+            --pin-text: #E6CFAF;
+            --pin-border: #D5BA94;
+            --dim-bg: rgba(16, 15, 14, 0.92);
+            --dim-text: #F3ECE0;
+            --dim-border: rgba(213, 186, 148, 0.58);
+        }
+
+        body.light-studio {
+            --bg-body: #F5EFE6;
+            --panel-bg: rgba(255, 252, 247, 0.78);
+            --panel-border: rgba(255, 255, 255, 0.82);
+            --panel-shadow: 0 18px 42px -12px rgba(72, 50, 28, 0.14), inset 0 1px 0 0 rgba(255, 255, 255, 0.96);
+            --pill-bg: rgba(246, 239, 228, 0.84);
+            --pill-hover-bg: rgba(255, 253, 250, 0.98);
+            --pill-border: rgba(140, 98, 57, 0.22);
+            --pill-active-bg: linear-gradient(135deg, #171412, #382B20);
+            --pill-active-border: #171412;
+            --pill-active-text: #FDFBF7;
+            --text-primary: #171412;
+            --text-secondary: #4D3D2F;
+            --text-muted: #7B6957;
+            --accent-text: #8C6239;
+            --accent-icon: #A97B4B;
+            --divider: rgba(140, 98, 57, 0.18);
+            --badge-bg: rgba(169, 123, 75, 0.13);
+            --badge-border: rgba(140, 98, 57, 0.28);
+            --badge-text: #6E4B2A;
+            --fps-bg: rgba(32, 99, 63, 0.12);
+            --fps-border: rgba(32, 99, 63, 0.30);
+            --fps-text: #1E613D;
+            --slider-track: rgba(140, 98, 57, 0.22);
+            --slider-thumb: #8C6239;
+            --slider-thumb-ring: #FDFBF7;
+            --swatch-idle-border: rgba(140, 98, 57, 0.24);
+            --swatch-active-bg: rgba(196, 154, 108, 0.22);
+            --swatch-active-border: #171412;
+            --cta-bg: linear-gradient(135deg, #171412, #3C2D20);
+            --cta-text: #FDFBF7;
+            --scroll-thumb: rgba(140, 98, 57, 0.36);
+            --pin-bg: rgba(23, 20, 18, 0.92);
+            --pin-text: #FAF7F2;
+            --pin-border: #D8B892;
+            --dim-bg: rgba(23, 20, 18, 0.90);
+            --dim-text: #FAF7F2;
+            --dim-border: rgba(216, 184, 146, 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.4s var(--fluid-ease), color 0.35s var(--fluid-ease);
+        }
+
+        #canvas-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            outline: none;
+        }
+
+        #overlay-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px) saturate(165%);
+            -webkit-backdrop-filter: blur(20px) saturate(165%);
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--panel-shadow);
+            color: var(--text-primary);
+            transition: background 0.38s var(--fluid-ease),
+                        border-color 0.32s var(--fluid-ease),
+                        box-shadow 0.38s var(--fluid-ease),
+                        opacity 0.35s var(--fluid-ease),
+                        transform 0.4s var(--water-spring);
+        }
+
+        .glass-pill {
+            background: var(--pill-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--pill-border);
+            color: var(--text-secondary);
+            transition: all 0.25s var(--water-spring);
+        }
+        .glass-pill:hover {
+            background: var(--pill-hover-bg);
+            border-color: var(--accent-icon);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .glass-pill:active {
+            transform: translateY(0) scale(0.97);
+        }
+        .glass-pill.active {
+            background: var(--pill-active-bg);
+            border-color: var(--pill-active-border);
+            color: var(--pill-active-text);
+            box-shadow: 0 8px 20px -6px rgba(23, 20, 18, 0.26);
+        }
+        .glass-pill.active .accent-icon {
+            color: #E6CFAF !important;
+        }
+
+        .t-primary { color: var(--text-primary); }
+        .t-secondary { color: var(--text-secondary); }
+        .t-muted { color: var(--text-muted); }
+        .t-accent { color: var(--accent-text); }
+        .accent-icon { color: var(--accent-icon); }
+        .t-divider { border-color: var(--divider); }
+
+        .theme-badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+        }
+
+        .fps-pill {
+            background: var(--fps-bg);
+            border: 1px solid var(--fps-border);
+            color: var(--fps-text);
+        }
+
+        .swatch-btn {
+            border: 1.5px solid var(--swatch-idle-border);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.22s var(--water-spring);
+        }
+        .swatch-btn:hover {
+            border-color: var(--accent-icon);
+            transform: translateY(-1px);
+        }
+        .swatch-btn.active {
+            border-color: var(--swatch-active-border);
+            background: var(--swatch-active-bg);
+            color: var(--text-primary);
+        }
+
+        .cta-btn {
+            background: var(--cta-bg);
+            color: var(--cta-text);
+            transition: transform 0.25s var(--water-spring), filter 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cta-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+        .cta-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Custom Thin Scrollbars */
+        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: var(--scroll-thumb);
+            border-radius: 9999px;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Range Slider */
+        input[type=range].birch-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            background: var(--slider-track);
+            height: 5px;
+            border-radius: 999px;
+            outline: none;
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background: var(--slider-thumb);
+            border: 2px solid var(--slider-thumb-ring);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.18s var(--water-spring);
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* 3D Projected Hotspot Pins */
+        .hotspot-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: auto;
+            cursor: pointer;
+            background: var(--pin-bg);
+            color: var(--pin-text);
+            border: 1.5px solid var(--pin-border);
+            transition: transform 0.25s var(--water-spring), opacity 0.25s ease;
+        }
+        .hotspot-pin:hover {
+            transform: translate(-50%, -50%) scale(1.22);
+            z-index: 30;
+        }
+        .hotspot-pulse {
+            position: absolute;
+            inset: -6px;
+            border-radius: 9999px;
+            border: 1.5px solid #C49A6C;
+            animation: pingSlow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes pingSlow {
+            0% { transform: scale(0.95); opacity: 0.85; }
+            75%, 100% { transform: scale(1.85); opacity: 0; }
+        }
+
+        /* 3D Projected Dimension Labels */
+        .dim-label {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            background: var(--dim-bg);
+            border: 1px solid var(--dim-border);
+            color: var(--dim-text);
+            padding: 3.5px 9px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+            transition: opacity 0.22s ease;
+        }
+
+        /* Floating Raycast Hover Tooltip */
+        #raycast-tooltip {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            transform: translate(16px, -50%);
+            transition: opacity 0.15s ease;
+        }
+
+        /* Clean UI Hide State */
+        .hud-hidden-panel {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: scale(0.98);
+        }
+        .hud-hidden-panel * {
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body class="light-studio antialiased selection:bg-oak-300 selection:text-charcoal-900">
+
+    <!-- WebGL 3D Viewport -->
+    <div id="canvas-container"></div>
+
+    <!-- 2D Projected 3D Markers & Dimension Labels -->
+    <div id="overlay-layer"></div>
+
+    <!-- Floating Raycast Hover Tooltip -->
+    <div id="raycast-tooltip" class="opacity-0 glass-panel px-3 py-1.5 rounded-xl text-xs font-semibold t-primary flex items-center gap-2 shadow-xl">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span id="raycast-tooltip-text">Klik untuk inspeksi</span>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ANTI-OVERLAP 3-ROW FULL-VIEWPORT FLEXBOX HUD SHELL (#hud-shell)           -->
+    <!-- ========================================================================= -->
+    <div id="hud-shell" class="fixed inset-0 z-20 flex flex-col justify-between p-3 sm:p-4 pointer-events-none gap-2.5 overflow-hidden">
+
+        <!-- ==================== ROW 1: TOP HEADER (SHRINK-0) ==================== -->
+        <header class="shrink-0 flex flex-wrap items-center justify-between gap-2">
+
+            <!-- Left Group: Smart Back Link + Brand Badge + Product Identity -->
+            <div class="pointer-events-auto flex items-center gap-2 min-w-0">
+                <a
+                    id="back-to-katalog-link"
+                    href="../pages/katalog.html"
+                    onclick="playTactileSound('click')"
+                    class="glass-panel rounded-2xl px-3.5 py-2.5 flex items-center gap-2 text-xs font-bold t-primary hover:scale-[1.02] active:scale-95 shrink-0 cursor-pointer group"
+                    title="Kembali ke Katalog Livora"
+                >
+                    <i class="fa-solid fa-arrow-left accent-icon group-hover:-translate-x-0.5 transition-transform"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Kembali ke Katalog</span>
+                </a>
+
+                <div class="glass-panel rounded-2xl px-3.5 py-2 flex items-center gap-3 min-w-0">
+                    <!-- "L" Wood Emblem Badge -->
+                    <div class="w-9 h-9 rounded-xl bg-charcoal-900 text-oak-200 flex items-center justify-center shadow-inner shrink-0 font-serif font-bold text-xl">
+                        L
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="theme-badge px-1.5 py-0.2 text-[9px] font-mono font-bold uppercase rounded">Remaja &amp; Kos &bull; Scandinavian Compact</span>
+                        </div>
+                        <h1 class="font-serif text-base sm:text-xl font-bold tracking-wide t-primary leading-tight truncate">
+                            Lumina Minimalist Desk
+                        </h1>
+                        <p class="text-[10px] font-mono t-muted hidden sm:block leading-tight">
+                            Solid White Oak &bull; 2 Laci Soft-Close &bull; 120 × 60 × 75 cm
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Group: 4 Studio Environments + Quick Utility Tools -->
+            <div class="pointer-events-auto flex items-center gap-1.5 flex-wrap">
+                <div class="glass-panel rounded-2xl p-1 flex items-center gap-1 overflow-x-auto max-w-full no-scrollbar">
+                    <button type="button" onclick="setStudioEnv('gallery')" id="env-gallery" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Gallery Terang Minimalis Livora">
+                        <i class="fa-solid fa-sun text-amber-400"></i>
+                        <span class="hidden lg:inline">Gallery Terang</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('studio')" id="env-studio" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Studio Hangat Kontras">
+                        <i class="fa-solid fa-circle-half-stroke accent-icon"></i>
+                        <span class="hidden lg:inline">Studio Hangat</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('sunset')" id="env-sunset" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Nuansa Senja Hangat">
+                        <i class="fa-solid fa-cloud-sun text-orange-400"></i>
+                        <span class="hidden lg:inline">Senja</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('night')" id="env-night" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Belajar Malam & Lampu LED">
+                        <i class="fa-solid fa-moon text-indigo-400"></i>
+                        <span class="hidden lg:inline">Malam LED</span>
+                    </button>
+                    <button type="button" onclick="toggleWireframeMode()" id="btn-wireframe" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Rangka Teknis Wireframe">
+                        <i class="fa-solid fa-cube text-emerald-500"></i>
+                        <span class="hidden xl:inline">Wireframe</span>
+                    </button>
+                </div>
+
+                <!-- Sound Toggle -->
+                <button type="button" onclick="toggleSound()" id="btn-sound" class="glass-panel w-9 h-9 rounded-xl text-xs flex items-center justify-center shrink-0 cursor-pointer" title="Efek Suara Interaktif">
+                    <i id="sound-icon" class="fa-solid fa-volume-high accent-icon"></i>
+                </button>
+
+                <!-- Spesifikasi Teknis Modal Button -->
+                <button type="button" onclick="toggleSpecsModal(true)" class="glass-panel px-3 h-9 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5 shrink-0 cursor-pointer" title="Spesifikasi Teknis Meja">
+                    <i class="fa-solid fa-compass-drafting accent-icon"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Spesifikasi Teknis</span>
+                </button>
+
+                <!-- Clean Viewport Toggle -->
+                <button type="button" onclick="toggleCleanViewport()" id="btn-clean-ui" class="glass-panel w-9 h-9 rounded-xl text-xs t-primary flex items-center justify-center shrink-0 cursor-pointer" title="Sembunyikan/Tampilkan Panel UI">
+                    <i id="clean-ui-icon" class="fa-solid fa-expand accent-icon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ==================== ROW 2: MIDDLE FLEX ROW (ZERO OVERLAP) ==================== -->
+        <div class="flex-1 min-h-0 flex items-start justify-between gap-3 overflow-hidden relative">
+
+            <!-- Mobile Drawer Triggers (Visible only on small screens < md) -->
+            <button
+                id="mob-toggle-left"
+                type="button"
+                onclick="toggleMobileDrawer('left')"
+                class="md:hidden pointer-events-auto absolute top-0 left-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-sliders accent-icon"></i>
+                <span>Inspeksi</span>
+            </button>
+
+            <button
+                id="mob-toggle-right"
+                type="button"
+                onclick="toggleMobileDrawer('right')"
+                class="md:hidden pointer-events-auto absolute top-0 right-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-palette accent-icon"></i>
+                <span>Material</span>
+            </button>
+
+            <!-- LEFT HUD COLUMN (Scrolls cleanly inside Row 2, includes #hotspot-card) -->
+            <aside id="left-hud" class="w-[270px] sm:w-[290px] max-h-full overflow-y-auto pointer-events-auto flex-col gap-2.5 pr-1 shrink-0 hidden md:flex custom-scroll">
+
+                <!-- Interactive Inspection Panel -->
+                <div class="shrink-0 glass-panel rounded-2xl p-3.5 space-y-3">
+                    <div class="flex items-center justify-between border-b t-divider pb-2">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider t-accent flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders accent-icon"></i> Inspeksi Interaktif
+                        </span>
+                        <div class="flex items-center gap-1.5">
+                            <span id="fps-badge" class="fps-pill text-[10px] font-mono font-bold px-1.5 py-0.5 rounded">
+                                60 FPS
+                            </span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 5 Interactive Parts + Master Toggle -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">Bagian Interaktif</span>
+                            <button type="button" onclick="toggleAllParts()" id="btn-toggle-all" class="text-[11px] font-bold t-accent hover:underline underline-offset-4 cursor-pointer">
+                                Buka Semua
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button type="button" onclick="togglePart('drawerLeft')" id="part-drawerLeft" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Buka/Tutup Laci Kiri">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-book accent-icon text-[9px]"></i>Laci Kiri</span>
+                                <span id="dot-drawerLeft" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('drawerRight')" id="part-drawerRight" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Buka/Tutup Laci Kanan">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-calculator accent-icon text-[9px]"></i>Laci Kanan</span>
+                                <span id="dot-drawerRight" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('cableHatch')" id="part-cableHatch" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Buka/Tutup Hatch Kabel Belakang">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-plug accent-icon text-[9px]"></i>Tutup Kabel</span>
+                                <span id="dot-cableHatch" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('studyChair')" id="part-studyChair" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Tarik Keluar / Masukkan Kursi Belajar">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-chair accent-icon text-[9px]"></i>Kursi</span>
+                                <span id="dot-studyChair" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('deskLamp')" id="part-deskLamp" class="glass-pill active col-span-2 px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Nyalakan/Matikan Lampu Meja & LED Bias Belakang">
+                                <span class="flex items-center gap-1.5"><i class="fa-regular fa-lightbulb accent-icon"></i>Lampu LED &amp; Ambient Belakang</span>
+                                <span id="dot-deskLamp" class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#fbbf24] shrink-0"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exploded View Anatomy Slider (0% - 100%) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-layer-group accent-icon text-[10px]"></i>
+                                Anatomi Konstruksi (Exploded)
+                            </span>
+                            <span id="explode-val" class="font-mono text-[11px] font-bold t-accent">0%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="0" id="explode-slider" oninput="setExplodeFactor(this.value)" class="birch-slider">
+                    </div>
+
+                    <!-- Utility Toggle Buttons -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button type="button" onclick="toggleDimensions()" id="btn-dimensions" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-ruler-combined accent-icon text-[10px]"></i>
+                                <span>Garis Ukuran</span>
+                            </button>
+                            <button type="button" onclick="toggleHotspots()" id="btn-hotspots" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-location-dot accent-icon text-[10px]"></i>
+                                <span>Titik Info (5)</span>
+                            </button>
+                            <button type="button" onclick="toggleDecor()" id="btn-decor" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-laptop accent-icon text-[10px]"></i>
+                                <span>Dekorasi Setup</span>
+                            </button>
+                            <button type="button" onclick="toggleKosRoom()" id="btn-kosroom" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-border-all accent-icon text-[10px]"></i>
+                                <span>Ruang Kos 3×3m</span>
+                            </button>
+                        </div>
+
+                        <button type="button" onclick="toggleAutoRotate()" id="btn-autorotate" class="glass-pill w-full px-3 py-1.5 rounded-xl text-[11px] font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-rotate accent-icon text-[10px]"></i>
+                            <span>Putar 360&deg; Otomatis</span>
+                        </button>
+                    </div>
+
+                    <!-- Subtle Gesture Hint -->
+                    <div class="pt-1.5 border-t t-divider flex items-center justify-between text-[10px] t-muted">
+                        <span><i class="fa-solid fa-computer-mouse mr-1 accent-icon"></i>Drag: Putar &bull; Scroll: Zoom</span>
+                        <span>Klik 3D: Uji</span>
+                    </div>
+                </div>
+
+                <!-- Active Hotspot Detail Card (INSIDE #left-hud so it NEVER overlaps #bottom-hud!) -->
+                <div id="hotspot-card" class="shrink-0 glass-panel rounded-2xl p-3.5 border-l-4 border-l-oak-500 hidden">
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <span id="hs-number" class="w-5 h-5 rounded-full bg-oak-600 text-white font-mono text-[11px] font-bold flex items-center justify-center shrink-0">1</span>
+                            <h3 id="hs-title" class="text-xs font-extrabold t-primary leading-snug">Top Solid White Oak 26mm</h3>
+                        </div>
+                        <button type="button" onclick="closeHotspotCard()" class="t-muted hover:t-primary text-xs p-0.5 shrink-0 cursor-pointer" aria-label="Tutup Info">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <p id="hs-desc" class="text-[11px] t-secondary mt-2 leading-relaxed"></p>
+                    <div id="hs-tag" class="theme-badge mt-2 inline-block px-2 py-0.5 rounded font-mono text-[10px] font-semibold"></div>
+                </div>
+            </aside>
+
+            <!-- RIGHT HUD COLUMN: Material & Setup Customizer (Scrolls cleanly inside Row 2) -->
+            <aside id="right-hud" class="w-[270px] sm:w-[300px] max-h-full overflow-y-auto pointer-events-auto pl-1 shrink-0 hidden md:flex flex-col gap-2.5 custom-scroll">
+
+                <div class="shrink-0 glass-panel rounded-2xl p-3.5 sm:p-4 space-y-3.5">
+                    <div class="flex items-center justify-between border-b t-divider pb-2.5">
+                        <div>
+                            <h2 class="text-[11px] font-extrabold uppercase tracking-wider t-accent">Kustomisasi &amp; Setup</h2>
+                            <p class="text-[10px] t-muted">Solid White Oak &bull; 28 kg</p>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="theme-badge font-mono text-[10px] font-bold px-2 py-0.5 rounded">PBR 4K</span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 1. Finishing Kayu (4 Finishes) -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">1. Finishing Kayu Solid</span>
+                            <span id="label-wood" class="t-accent font-bold truncate ml-2">Natural White Oak</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setWoodFinish('whiteoak')" id="wood-whiteoak" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #f1e1c8, #c7a67b);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">White Oak</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('ashhoney')" id="wood-ashhoney" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #e4b578, #ad7439);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Ash Honey</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('walnut')" id="wood-walnut" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #9c6e4b, #5e3b22);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Walnut</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('espresso')" id="wood-espresso" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #4b3d34, #201a16);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Espresso</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Gaya Handle Laci (3 Options) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">2. Gaya Handle Laci</span>
+                            <span id="label-handle" class="t-accent font-bold">Smile-Cutout</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="setHandleStyle('cutout')" id="handle-cutout" class="glass-pill active p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-minus accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Smile-Cutout</span>
+                                <span class="text-[9px] opacity-75">Tanpa Handle</span>
+                            </button>
+                            <button type="button" onclick="setHandleStyle('brass')" id="handle-brass" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <span class="w-3.5 h-3.5 rounded-full border border-white/30" style="background: linear-gradient(135deg, #f5d77f, #aa8232);"></span>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Brushed Brass</span>
+                                <span class="text-[9px] opacity-75">Slim Bar Pull</span>
+                            </button>
+                            <button type="button" onclick="setHandleStyle('black')" id="handle-black" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <span class="w-3.5 h-3.5 rounded-full border border-white/30" style="background: linear-gradient(135deg, #3c3c3c, #111111);"></span>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Matte Black</span>
+                                <span class="text-[9px] opacity-75">Slim Bar Pull</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Mode Setup Meja (3 Modes) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">3. Mode Setup Meja</span>
+                            <span id="label-setup" class="t-accent font-bold">Mahasiswa / WFH</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="setSetupMode('full')" id="setup-full" class="glass-pill active p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-desktop accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Mahasiswa/WFH</span>
+                                <span class="text-[9px] opacity-75">Riser + Caddy</span>
+                            </button>
+                            <button type="button" onclick="setSetupMode('riser')" id="setup-riser" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-layer-group accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Riser Saja</span>
+                                <span class="text-[9px] opacity-75">Minimal Clean</span>
+                            </button>
+                            <button type="button" onclick="setSetupMode('minimal')" id="setup-minimal" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-regular fa-square accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Meja Polos</span>
+                                <span class="text-[9px] opacity-75">Tanpa Riser</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 4. Warna Felt Desk Mat & Bantalan Kursi (4 Swatches) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">4. Felt Mat &amp; Bantalan</span>
+                            <span id="label-felt" class="t-accent font-bold">Warm Oat Felt</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setFeltColor('oat')" id="felt-oat" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: #d8cfc2;"></span>
+                                <span class="text-[10px] font-semibold">Oat</span>
+                            </button>
+                            <button type="button" onclick="setFeltColor('sage')" id="felt-sage" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: #7d967c;"></span>
+                                <span class="text-[10px] font-semibold">Sage</span>
+                            </button>
+                            <button type="button" onclick="setFeltColor('slate')" id="felt-slate" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: #3a3c40;"></span>
+                                <span class="text-[10px] font-semibold">Slate</span>
+                            </button>
+                            <button type="button" onclick="setFeltColor('terracotta')" id="felt-terracotta" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: #b86f54;"></span>
+                                <span class="text-[10px] font-semibold">Clay</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Price Footer + Unduh Foto PNG -->
+                    <div class="pt-3 border-t t-divider flex items-center justify-between gap-2">
+                        <div class="min-w-0">
+                            <span class="text-[9px] uppercase font-bold tracking-wider t-muted block">Estimasi Investasi</span>
+                            <span id="price-display" class="font-mono text-base sm:text-lg font-extrabold t-primary block truncate">Rp 1.850.000</span>
+                        </div>
+                        <button
+                            type="button"
+                            onclick="downloadSnapshot()"
+                            class="cta-btn px-3.5 py-2.5 rounded-xl font-bold text-xs shadow-lg flex items-center gap-1.5 shrink-0 cursor-pointer"
+                            title="Unduh tangkapan layar 3D (PNG)"
+                        >
+                            <i class="fa-solid fa-camera"></i>
+                            <span>Unduh Foto</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- ==================== ROW 3: BOTTOM CAMERA DOCK (NO OVERLAP) ==================== -->
+        <nav id="bottom-hud" class="shrink-0 flex justify-center w-full">
+            <div class="pointer-events-auto glass-panel rounded-2xl p-1.5 flex items-center gap-2 max-w-full w-fit">
+                <!-- Fixed Left Label (shrink-0 border-r, NEVER covered) -->
+                <div class="hidden xl:flex items-center gap-1.5 pl-2.5 pr-3 py-1 border-r t-divider shrink-0 whitespace-nowrap">
+                    <i class="fa-solid fa-video accent-icon text-xs"></i>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider t-primary">SUDUT PANDANG</span>
+                </div>
+
+                <!-- Horizontally Scrollable Preset Buttons: STRICT justify-start -->
+                <div class="flex items-center gap-1.5 overflow-x-auto justify-start min-w-0 flex-1 no-scrollbar">
+                    <button type="button" onclick="flyToCamera('hero')" id="cam-hero" class="glass-pill active px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-star accent-icon text-[10px]"></i>
+                        <span>Sudut Utama (3/4)</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('front')" id="cam-front" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-regular fa-square accent-icon text-[10px]"></i>
+                        <span>Tampak Depan</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('side')" id="cam-side" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-align-left accent-icon text-[10px]"></i>
+                        <span>Tampak Samping</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('top')" id="cam-top" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-arrows-to-dot accent-icon text-[10px]"></i>
+                        <span>Tampak Atas</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('back')" id="cam-back" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-plug accent-icon text-[10px]"></i>
+                        <span>Belakang &amp; Kabel</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('legs')" id="cam-legs" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-chevron-up accent-icon text-[10px]"></i>
+                        <span>Ruang Kaki</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('drawers')" id="cam-drawers" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-box-open accent-icon text-[10px]"></i>
+                        <span>Inspeksi Laci</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ==================== ARCHITECTURAL SPECIFICATIONS MODAL ==================== -->
+    <div id="specs-modal" onclick="if(event.target === this) toggleSpecsModal(false)" class="fixed inset-0 z-50 bg-black/55 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-7 space-y-5 max-h-[90vh] overflow-y-auto custom-scroll">
+            <div class="flex items-start justify-between border-b t-divider pb-4">
+                <div>
+                    <span class="text-[10px] font-mono font-bold uppercase tracking-[0.22em] t-accent">Lembar Data Arsitektural Livora</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold t-primary mt-0.5">Lumina Minimalist Desk</h2>
+                </div>
+                <button type="button" onclick="toggleSpecsModal(false)" class="glass-pill w-8 h-8 rounded-full flex items-center justify-center text-xs cursor-pointer" aria-label="Tutup">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Dimensi Presisi (P × L × T)</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Panjang Total (Width)</span><span class="font-mono font-bold t-primary">120.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Lebar / Kedalaman (Depth)</span><span class="font-mono font-bold t-primary">60.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Tinggi Total (Height)</span><span class="font-mono font-bold t-primary">75.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Ruang Kaki Bawah</span><span class="font-mono font-bold t-primary">61.5 cm</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Rekomendasi Luas Ruang</span><span class="font-mono font-bold text-emerald-600">Min 2.5×2.5 m (Ideal Kos 3×3 m)</span></div>
+                </div>
+
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Material &amp; Fitur Kerja</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Kayu Utama</span><span class="font-semibold t-primary">Solid White Oak 26 mm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Penyimpanan</span><span class="font-semibold t-primary">2 Laci Soft-Close Metal Rail</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Manajemen Kabel</span><span class="font-semibold t-primary">Hatch Lipat + Tray Metal Perforasi</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Pencahayaan</span><span class="font-semibold t-primary">Rear Bias LED Strip 2700K</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Berat Kargo</span><span class="font-mono font-bold t-primary">28.0 kg</span></div>
+                </div>
+            </div>
+
+            <p class="text-xs t-secondary leading-relaxed">
+                Dirancang khusus untuk kebutuhan belajar mahasiswa, kamar kos <strong>3×3 m</strong>, hingga ruang kerja minimalis (WFH), <strong>Lumina Minimalist Desk</strong> memadukan daun meja Solid White Oak tebal 26 mm bertepi bevel halus dengan sistem manajemen kabel tersembunyi (*flip-open cable hatch* &amp; tray metal bawah meja) agar permukaan kerja senantiasa bersih dan produktif.
+            </p>
+
+            <div class="flex justify-end pt-1">
+                <button type="button" onclick="toggleSpecsModal(false)" class="cta-btn px-5 py-2.5 rounded-xl font-bold text-xs cursor-pointer">
+                    Kembali ke Studio 3D
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FLOATING TOAST NOTIFICATION ==================== -->
+    <div id="toast-msg" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 glass-panel px-4 py-2 rounded-xl text-xs font-semibold t-primary shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-circle-check text-emerald-500"></i>
+        <span id="toast-text">Konfigurasi diperbarui</span>
+    </div>
+
+    <script>
+        // ============================================================================
+        // 0. SMART BACK LINK RESOLUTION (FILE:// vs VITE / GITHUB PAGES)
+        // ============================================================================
+        (function initSmartBackLink() {
+            const backLink = document.getElementById('back-to-katalog-link');
+            if (backLink) {
+                backLink.href = window.location.protocol === 'file:'
+                    ? '../../pages/katalog.html'
+                    : '../pages/katalog.html';
+            }
+        })();
+
+        // ============================================================================
+        // 1. PROCEDURAL WEBAUDIO SOUND SYNTHESIZER (DRAWER, HATCH, CHAIR, LAMP, CLICK)
+        // ============================================================================
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function ensureAudio() {
+            try {
+                if (!audioCtx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) audioCtx = new AudioContextClass();
+                }
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch (err) {}
+        }
+
+        function playTactileSound(type = 'click') {
+            if (!soundEnabled) return;
+            try {
+                ensureAudio();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                if (type === 'drawer') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(195, now);
+                    osc.frequency.exponentialRampToValueAtTime(84, now + 0.18);
+                    gain.gain.setValueAtTime(0.11, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.19);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.20);
+                } else if (type === 'hatch') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(280, now);
+                    osc.frequency.exponentialRampToValueAtTime(115, now + 0.11);
+                    gain.gain.setValueAtTime(0.11, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.13);
+                } else if (type === 'chair') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(138, now);
+                    osc.frequency.exponentialRampToValueAtTime(66, now + 0.20);
+                    gain.gain.setValueAtTime(0.11, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.21);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.22);
+                } else if (type === 'lamp') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(760, now);
+                    osc.frequency.exponentialRampToValueAtTime(320, now + 0.032);
+                    gain.gain.setValueAtTime(0.045, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.038);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.042);
+                } else {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(550, now);
+                    osc.frequency.exponentialRampToValueAtTime(240, now + 0.045);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.055);
+                }
+            } catch (err) {}
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            icon.className = soundEnabled
+                ? 'fa-solid fa-volume-high accent-icon'
+                : 'fa-solid fa-volume-xmark t-muted';
+            showToast(soundEnabled ? 'Efek suara interaktif diaktifkan' : 'Efek suara dinonaktifkan');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-msg');
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100', 'translate-y-1');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-1');
+                toast.classList.add('opacity-0');
+            }, 2400);
+        }
+
+        // ============================================================================
+        // 2. PROCEDURAL PBR CANVAS TEXTURES (WOODS, FELT, LAPTOP UI, KOS WALL ART, RUG)
+        // ============================================================================
+        const WOOD_PALETTES = {
+            whiteoak: {
+                name: 'Natural White Oak',
+                base: [232, 211, 180],
+                grainDark: [192, 160, 118],
+                roughness: 0.35,
+                price: 'Rp 1.850.000'
+            },
+            ashhoney: {
+                name: 'Warm Ash Honey',
+                base: [216, 168, 112],
+                grainDark: [164, 112, 58],
+                roughness: 0.34,
+                price: 'Rp 1.890.000'
+            },
+            walnut: {
+                name: 'Smoked Walnut',
+                base: [138, 94, 62],
+                grainDark: [84, 52, 30],
+                roughness: 0.38,
+                price: 'Rp 1.980.000'
+            },
+            espresso: {
+                name: 'Matte Espresso Oak',
+                base: [58, 46, 38],
+                grainDark: [28, 22, 18],
+                roughness: 0.44,
+                price: 'Rp 2.050.000'
+            }
+        };
+
+        const FELT_PALETTES = {
+            oat: { name: 'Warm Oat Felt', hex: 0xd8cfc2 },
+            sage: { name: 'Matcha Sage', hex: 0x7d967c },
+            slate: { name: 'Slate Charcoal', hex: 0x3a3c40 },
+            terracotta: { name: 'Clay Terracotta', hex: 0xb86f54 }
+        };
+
+        const woodTexCache = {};
+        let sharedWoodBump = null;
+        let sharedFeltBump = null;
+        let sharedPerforatedTex = null;
+        let sharedLaptopScreenTex = null;
+        let sharedKosRugTex = null;
+        let sharedKosArtTex = null;
+
+        function getWoodTexture(paletteKey, verticalGrain = false) {
+            const key = `${paletteKey}_${verticalGrain ? 'v' : 'h'}`;
+            if (woodTexCache[key]) return woodTexCache[key];
+
+            const pal = WOOD_PALETTES[paletteKey] || WOOD_PALETTES.whiteoak;
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 1024;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(1024, 1024);
+            const data = imgData.data;
+
+            for (let y = 0; y < 1024; y++) {
+                for (let x = 0; x < 1024; x++) {
+                    const u = verticalGrain ? y / 1024 : x / 1024;
+                    const v = verticalGrain ? x / 1024 : y / 1024;
+
+                    const wave1 = Math.sin(v * 25.0 + Math.sin(u * 6.0) * 2.4);
+                    const wave2 = Math.sin(v * 66.0 + u * 4.4 + Math.cos(u * 11.0) * 1.1) * 0.44;
+                    const fineFiber = Math.sin(v * 330.0 + Math.sin(u * 32.0) * 2.8) * 0.14;
+                    const pore = ((Math.sin(u * 912.0 + v * 517.0) * 43758.5453) % 1) * 0.05;
+                    const gFactor = (wave1 + wave2 + fineFiber) * 0.5 + 0.5;
+
+                    const idx = (y * 1024 + x) * 4;
+                    data[idx] = Math.min(255, Math.max(0, pal.base[0] * (1 - gFactor * 0.27) + pal.grainDark[0] * (gFactor * 0.27) + pore * 14));
+                    data[idx + 1] = Math.min(255, Math.max(0, pal.base[1] * (1 - gFactor * 0.27) + pal.grainDark[1] * (gFactor * 0.27) + pore * 12));
+                    data[idx + 2] = Math.min(255, Math.max(0, pal.base[2] * (1 - gFactor * 0.27) + pal.grainDark[2] * (gFactor * 0.27) + pore * 10));
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+
+            const tex = new THREE.CanvasTexture(canvas);
+            tex.wrapS = THREE.RepeatWrapping;
+            tex.wrapT = THREE.RepeatWrapping;
+            tex.anisotropy = 8;
+            woodTexCache[key] = tex;
+            return tex;
+        }
+
+        function getWoodBumpTexture() {
+            if (sharedWoodBump) return sharedWoodBump;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(512, 512);
+            const data = imgData.data;
+
+            for (let y = 0; y < 512; y++) {
+                for (let x = 0; x < 512; x++) {
+                    const u = x / 512;
+                    const v = y / 512;
+                    const fiber = Math.sin(v * 270.0 + Math.sin(u * 24.0) * 2.0) * 0.5 + 0.5;
+                    const val = 112 + fiber * 46;
+                    const idx = (y * 512 + x) * 4;
+                    data[idx] = data[idx + 1] = data[idx + 2] = val;
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+            sharedWoodBump = new THREE.CanvasTexture(canvas);
+            sharedWoodBump.wrapS = THREE.RepeatWrapping;
+            sharedWoodBump.wrapT = THREE.RepeatWrapping;
+            return sharedWoodBump;
+        }
+
+        function getFeltBumpTexture() {
+            if (sharedFeltBump) return sharedFeltBump;
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(256, 256);
+            const data = imgData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                const v = 105 + Math.floor(Math.random() * 52);
+                data[i] = data[i + 1] = data[i + 2] = v;
+                data[i + 3] = 255;
+            }
+            ctx.putImageData(imgData, 0, 0);
+            sharedFeltBump = new THREE.CanvasTexture(canvas);
+            sharedFeltBump.wrapS = THREE.RepeatWrapping;
+            sharedFeltBump.wrapT = THREE.RepeatWrapping;
+            sharedFeltBump.repeat.set(6, 4);
+            return sharedFeltBump;
+        }
+
+        function getPerforatedMetalTexture() {
+            if (sharedPerforatedTex) return sharedPerforatedTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#242528';
+            ctx.fillRect(0, 0, 512, 128);
+
+            // Ventilation slots & cable pass holes
+            ctx.fillStyle = '#0c0d0f';
+            for (let x = 22; x < 490; x += 28) {
+                for (let y = 24; y < 104; y += 26) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, 6.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            sharedPerforatedTex = new THREE.CanvasTexture(canvas);
+            sharedPerforatedTex.wrapS = THREE.RepeatWrapping;
+            sharedPerforatedTex.wrapT = THREE.RepeatWrapping;
+            return sharedPerforatedTex;
+        }
+
+        function getLaptopScreenTexture() {
+            if (sharedLaptopScreenTex) return sharedLaptopScreenTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 320;
+            const ctx = canvas.getContext('2d');
+
+            // Warm Japandi minimalist desktop wallpaper + study notes workspace
+            const bgGrad = ctx.createLinearGradient(0, 0, 512, 320);
+            bgGrad.addColorStop(0, '#f5eee4');
+            bgGrad.addColorStop(1, '#e5d5bf');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, 512, 320);
+
+            // Top macOS-like menu bar
+            ctx.fillStyle = 'rgba(255,255,255,0.68)';
+            ctx.fillRect(0, 0, 512, 18);
+
+            // Minimalist floating Notion/design window
+            ctx.fillStyle = 'rgba(255,253,249,0.92)';
+            ctx.fillRect(46, 36, 420, 232);
+            ctx.fillStyle = '#e8dfd1';
+            ctx.fillRect(46, 36, 108, 232);
+
+            // Window dots
+            ['#e07a5f', '#e8be6b', '#81b29a'].forEach((col, i) => {
+                ctx.fillStyle = col;
+                ctx.beginPath();
+                ctx.arc(62 + i * 14, 50, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Heading & clean content lines
+            ctx.fillStyle = '#26211d';
+            ctx.fillRect(176, 58, 175, 14);
+            ctx.fillStyle = '#a97b4b';
+            ctx.fillRect(176, 84, 96, 8);
+            ctx.fillStyle = '#c9bca8';
+            for (let row = 0; row < 5; row++) {
+                ctx.fillRect(176, 110 + row * 18, 240 - (row % 2) * 45, 7);
+            }
+
+            // Mini chart / wireframe preview card inside workspace
+            ctx.fillStyle = '#f1e7d8';
+            ctx.fillRect(176, 204, 116, 48);
+            ctx.fillStyle = '#8fa68e';
+            ctx.fillRect(306, 204, 116, 48);
+
+            // Dock at bottom
+            ctx.fillStyle = 'rgba(255,255,255,0.75)';
+            ctx.fillRect(156, 286, 200, 22);
+
+            sharedLaptopScreenTex = new THREE.CanvasTexture(canvas);
+            return sharedLaptopScreenTex;
+        }
+
+        function getKosRugTexture() {
+            if (sharedKosRugTex) return sharedKosRugTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#EDE6DA';
+            ctx.fillRect(0, 0, 512, 512);
+
+            for (let y = 0; y < 512; y += 6) {
+                ctx.fillStyle = y % 12 === 0 ? 'rgba(182, 165, 142, 0.22)' : 'rgba(255, 252, 247, 0.30)';
+                ctx.fillRect(0, y, 512, 3);
+            }
+            ctx.strokeStyle = '#CFC1AC';
+            ctx.lineWidth = 10;
+            ctx.strokeRect(24, 24, 464, 464);
+
+            sharedKosRugTex = new THREE.CanvasTexture(canvas);
+            sharedKosRugTex.anisotropy = 8;
+            return sharedKosRugTex;
+        }
+
+        function getKosWallArtTexture() {
+            if (sharedKosArtTex) return sharedKosArtTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 640;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FAF5EC';
+            ctx.fillRect(0, 0, 512, 640);
+
+            // Bauhaus / Japandi minimalist geometric arches
+            ctx.fillStyle = '#D5BA94';
+            ctx.beginPath();
+            ctx.arc(256, 250, 128, Math.PI, 0);
+            ctx.lineTo(384, 520);
+            ctx.lineTo(128, 520);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = '#2A2521';
+            ctx.beginPath();
+            ctx.arc(210, 290, 56, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#7D967C';
+            ctx.fillRect(256, 360, 148, 160);
+
+            sharedKosArtTex = new THREE.CanvasTexture(canvas);
+            return sharedKosArtTex;
+        }
+
+        // ============================================================================
+        // 3. THREE.JS SCENE, CAMERA, RENDERER & DEFAULT GALLERY TERANG STUDIO
+        // ============================================================================
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xF5EFE6);
+        scene.fog = new THREE.FogExp2(0xF5EFE6, 0.048);
+
+        const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.05, 50);
+        camera.position.set(1.62, 1.18, 1.92);
+
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                powerPreference: 'high-performance',
+                preserveDrawingBuffer: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.07;
+            container.appendChild(renderer.domElement);
+        } catch (err) {
+            container.innerHTML = `<div class="h-full w-full flex items-center justify-center p-6 text-center text-sm font-semibold">Browser Anda tidak mendukung WebGL untuk Studio 3D.</div>`;
+            throw err;
+        }
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 0.56, 0.04);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.055;
+        controls.minDistance = 0.60;
+        controls.maxDistance = 5.4;
+        controls.maxPolarAngle = Math.PI / 2 - 0.015;
+        controls.update();
+
+        // Studio Lights (Default: Gallery Terang)
+        const ambientLight = new THREE.HemisphereLight(0xFFFDF8, 0xA89680, 0.90);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xFFF7EA, 1.32);
+        keyLight.position.set(2.8, 3.9, 3.0);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 2048;
+        keyLight.shadow.mapSize.height = 2048;
+        keyLight.shadow.camera.near = 0.4;
+        keyLight.shadow.camera.far = 12;
+        const shadowExtent = 1.75;
+        keyLight.shadow.camera.left = -shadowExtent;
+        keyLight.shadow.camera.right = shadowExtent;
+        keyLight.shadow.camera.top = shadowExtent;
+        keyLight.shadow.camera.bottom = -shadowExtent;
+        keyLight.shadow.bias = -0.00045;
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0xEEF5FF, 0.55);
+        fillLight.position.set(-3.0, 2.2, 2.0);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xFFE7C7, 0.44);
+        rimLight.position.set(0.0, 2.4, -2.8);
+        scene.add(rimLight);
+
+        // Warm Gallery Floor
+        const floorMat = new THREE.MeshStandardMaterial({
+            color: 0xECE5D8,
+            roughness: 0.88,
+            metalness: 0.02
+        });
+        const floorMesh = new THREE.Mesh(new THREE.CircleGeometry(10, 64), floorMat);
+        floorMesh.rotation.x = -Math.PI / 2;
+        floorMesh.receiveShadow = true;
+        scene.add(floorMesh);
+
+        // Soft Contact Shadow Plinth
+        const shadowCanvas = document.createElement('canvas');
+        shadowCanvas.width = 256;
+        shadowCanvas.height = 256;
+        const sCtx = shadowCanvas.getContext('2d');
+        const grad = sCtx.createRadialGradient(128, 128, 18, 128, 128, 122);
+        grad.addColorStop(0, 'rgba(38, 28, 18, 0.36)');
+        grad.addColorStop(0.65, 'rgba(38, 28, 18, 0.14)');
+        grad.addColorStop(1, 'rgba(38, 28, 18, 0)');
+        sCtx.fillStyle = grad;
+        sCtx.fillRect(0, 0, 256, 256);
+        const contactShadowMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(1.85, 1.55),
+            new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false })
+        );
+        contactShadowMesh.rotation.x = -Math.PI / 2;
+        contactShadowMesh.position.set(0, 0.002, 0.10);
+        scene.add(contactShadowMesh);
+
+        const polarGrid = new THREE.PolarGridHelper(2.8, 16, 6, 64, 0xC9BCA6, 0xD8CEBC);
+        polarGrid.position.y = 0.001;
+        polarGrid.material.transparent = true;
+        polarGrid.material.opacity = 0.40;
+        scene.add(polarGrid);
+
+        // ============================================================================
+        // 4. SHARED PBR MATERIALS
+        // ============================================================================
+        const woodBump = getWoodBumpTexture();
+        const feltBump = getFeltBumpTexture();
+
+        const woodMatHoriz = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('whiteoak', false),
+            bumpMap: woodBump,
+            bumpScale: 0.0024,
+            roughness: 0.35,
+            metalness: 0.03
+        });
+
+        const woodMatVert = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('whiteoak', true),
+            bumpMap: woodBump,
+            bumpScale: 0.0024,
+            roughness: 0.35,
+            metalness: 0.03
+        });
+
+        const feltAccentMat = new THREE.MeshStandardMaterial({
+            color: FELT_PALETTES.oat.hex,
+            bumpMap: feltBump,
+            bumpScale: 0.006,
+            roughness: 0.92,
+            metalness: 0.0
+        });
+
+        const brassMat = new THREE.MeshStandardMaterial({
+            color: 0xD8B262,
+            roughness: 0.25,
+            metalness: 0.88
+        });
+
+        const matteBlackMat = new THREE.MeshStandardMaterial({
+            color: 0x222326,
+            roughness: 0.48,
+            metalness: 0.58
+        });
+
+        const perforatedMetalMat = new THREE.MeshStandardMaterial({
+            map: getPerforatedMetalTexture(),
+            roughness: 0.52,
+            metalness: 0.65
+        });
+
+        const brushedAluminumMat = new THREE.MeshStandardMaterial({
+            color: 0xD1D5DB,
+            roughness: 0.28,
+            metalness: 0.86
+        });
+
+        const railSteelMat = new THREE.MeshStandardMaterial({
+            color: 0xA6AEB8,
+            roughness: 0.30,
+            metalness: 0.85
+        });
+
+        const darkRecessMat = new THREE.MeshStandardMaterial({
+            color: 0x1E1B18,
+            roughness: 0.72,
+            metalness: 0.05
+        });
+
+        const ceramicMat = new THREE.MeshStandardMaterial({
+            color: 0xF5EFE6,
+            roughness: 0.32,
+            metalness: 0.04
+        });
+
+        const biasLedStripMat = new THREE.MeshBasicMaterial({ color: 0xFFD99B });
+
+        const allDeskMeshes = [];
+        const interactivePickables = [];
+
+        function createMesh(geo, mat, castShadow = true, receiveShadow = true) {
+            const m = new THREE.Mesh(geo, mat);
+            m.castShadow = castShadow;
+            m.receiveShadow = receiveShadow;
+            allDeskMeshes.push(m);
+            return m;
+        }
+
+        function registerInteractive(group, partId, label) {
+            group.traverse(child => {
+                if (child.isMesh) {
+                    child.userData.partId = partId;
+                    child.userData.label = label;
+                    interactivePickables.push(child);
+                }
+            });
+        }
+
+        // ============================================================================
+        // 5. CONSTRUCTING LUMINA MINIMALIST DESK (1.20m W × 0.60m D × 0.75m H)
+        // ============================================================================
+        const deskRoot = new THREE.Group();
+        scene.add(deskRoot);
+
+        const explodedGroups = {
+            legsFrame: new THREE.Group(),
+            apronCarcass: new THREE.Group(),
+            cableTrayGroup: new THREE.Group(),
+            tabletopGroup: new THREE.Group(),
+            cableHatchAnchor: new THREE.Group(),
+            drawerLeft: new THREE.Group(),
+            drawerRight: new THREE.Group(),
+            monitorRiserGroup: new THREE.Group(),
+            organizerCaddyGroup: new THREE.Group(),
+            setupPropsGroup: new THREE.Group(),
+            deskLampGroup: new THREE.Group(),
+            studyChairGroup: new THREE.Group(),
+            kosRoomGroup: new THREE.Group()
+        };
+
+        Object.values(explodedGroups).forEach(g => deskRoot.add(g));
+
+        // -------------------- 5A. SPLAYED SCANDINAVIAN TAPERED LEGS (y = 0.00 to 0.625m, Clearance 61.5 cm) --------------------
+        const legSpecs = [
+            { x: -0.515, z: 0.215, sx: -1, sz: 1 },
+            { x: 0.515, z: 0.215, sx: 1, sz: 1 },
+            { x: -0.515, z: -0.215, sx: -1, sz: -1 },
+            { x: 0.515, z: -0.215, sx: 1, sz: -1 }
+        ];
+
+        legSpecs.forEach(ls => {
+            const legHolder = new THREE.Group();
+            legHolder.position.set(ls.x, 0.3125, ls.z);
+            // Gentle Scandinavian outward splay
+            legHolder.rotation.z = ls.sx * 0.068;
+            legHolder.rotation.x = -ls.sz * 0.048;
+
+            // Solid White Oak tapered cylinder leg (y = 0.01 to 0.625m -> height 0.615m)
+            const legWood = createMesh(new THREE.CylinderGeometry(0.023, 0.0145, 0.615, 24), woodMatVert);
+            legWood.position.y = 0.005;
+
+            // Angled brushed-metal mounting plate bracket at top of leg
+            const topBracket = createMesh(new THREE.BoxGeometry(0.068, 0.010, 0.068), matteBlackMat);
+            topBracket.position.y = 0.304;
+
+            // Brushed brass/metal collar + protective felt floor glide
+            const glideCollar = createMesh(new THREE.CylinderGeometry(0.0148, 0.0138, 0.026, 20), brassMat);
+            glideCollar.position.y = -0.292;
+            const feltGlide = createMesh(new THREE.CylinderGeometry(0.014, 0.014, 0.006, 16), darkRecessMat);
+            feltGlide.position.y = -0.308;
+
+            legHolder.add(legWood, topBracket, glideCollar, feltGlide);
+            explodedGroups.legsFrame.add(legHolder);
+        });
+
+        // Rear Stabilizing Cross-Stretcher Bar + Side Tie Bars (Leaves front leg space 100% unobstructed)
+        const rearStretcher = createMesh(new THREE.CylinderGeometry(0.012, 0.012, 1.07, 18), woodMatHoriz);
+        rearStretcher.rotation.z = Math.PI / 2;
+        rearStretcher.position.set(0, 0.165, -0.228);
+
+        [-0.532, 0.532].forEach(sx => {
+            const sideBrace = createMesh(new THREE.CylinderGeometry(0.010, 0.010, 0.45, 16), woodMatHoriz);
+            sideBrace.rotation.x = Math.PI / 2;
+            sideBrace.position.set(sx, 0.165, 0);
+            explodedGroups.legsFrame.add(sideBrace);
+        });
+        explodedGroups.legsFrame.add(rearStretcher);
+
+        // -------------------- 5B. STRUCTURAL APRON CARCASS (y = 0.615m to 0.724m) --------------------
+        // Exact leg clearance = 61.5 cm from floor to underside of apron bottom panel!
+        const carcassBottom = createMesh(new THREE.BoxGeometry(1.14, 0.016, 0.45), woodMatHoriz);
+        carcassBottom.position.set(0, 0.623, 0.045); // Leaves rear strip open for cable pass-through to trough!
+
+        const carcassLeft = createMesh(new THREE.BoxGeometry(0.022, 0.109, 0.54), woodMatVert);
+        carcassLeft.position.set(-0.559, 0.6695, 0);
+
+        const carcassRight = createMesh(new THREE.BoxGeometry(0.022, 0.109, 0.54), woodMatVert);
+        carcassRight.position.set(0.559, 0.6695, 0);
+
+        const centerDivider = createMesh(new THREE.BoxGeometry(0.018, 0.094, 0.43), woodMatVert);
+        centerDivider.position.set(0, 0.676, 0.045);
+
+        const carcassBackApron = createMesh(new THREE.BoxGeometry(1.10, 0.088, 0.016), woodMatHoriz);
+        carcassBackApron.position.set(0, 0.680, -0.262);
+
+        // Internal rear backing behind drawers (z = -0.175m) creating the hidden cable cavity (-0.18 to -0.26m)
+        const drawerBackStop = createMesh(new THREE.BoxGeometry(1.10, 0.092, 0.012), woodMatHoriz);
+        drawerBackStop.position.set(0, 0.677, -0.175);
+
+        // Rear Ambient 2700K LED Bias Light Strip mounted along back underside edge (z = -0.275, y = 0.715)
+        const biasLedMesh = new THREE.Mesh(new THREE.BoxGeometry(1.02, 0.006, 0.010), biasLedStripMat);
+        biasLedMesh.position.set(0, 0.718, -0.274);
+
+        const rearBiasLight = new THREE.PointLight(0xFFB866, 0.35, 1.85, 2);
+        rearBiasLight.position.set(0, 0.71, -0.34);
+
+        explodedGroups.apronCarcass.add(
+            carcassBottom, carcassLeft, carcassRight, centerDivider,
+            carcassBackApron, drawerBackStop, biasLedMesh, rearBiasLight
+        );
+
+        // -------------------- 5C. PERFORATED METAL CABLE TROUGH + POWER STRIP + COILED CABLE --------------------
+        const troughG = explodedGroups.cableTrayGroup;
+        troughG.position.set(0, 0.565, -0.215);
+
+        const trayFloor = createMesh(new THREE.BoxGeometry(0.68, 0.008, 0.115), perforatedMetalMat);
+        trayFloor.position.y = -0.025;
+        const trayBackWall = createMesh(new THREE.BoxGeometry(0.68, 0.068, 0.006), perforatedMetalMat);
+        trayBackWall.position.set(0, 0.006, -0.056);
+        const trayFrontLip = createMesh(new THREE.BoxGeometry(0.68, 0.036, 0.006), matteBlackMat);
+        trayFrontLip.position.set(0, -0.008, 0.056);
+
+        // 2 L-Shaped Mounting Brackets connecting trough up to underside of desk
+        [-0.28, 0.28].forEach(bx => {
+            const brk = createMesh(new THREE.BoxGeometry(0.018, 0.072, 0.010), matteBlackMat);
+            brk.position.set(bx, 0.035, 0.042);
+            troughG.add(brk);
+        });
+
+        // Matte Black 4-Outlet Power Strip nestled inside the cable tray
+        const powerStrip = createMesh(new THREE.BoxGeometry(0.28, 0.024, 0.056), matteBlackMat);
+        powerStrip.position.set(-0.08, -0.008, 0);
+        // 4 Socket recesses + tiny glowing power indicator LED
+        [-0.08, -0.025, 0.03, 0.085].forEach(sx => {
+            const sock = createMesh(new THREE.CylinderGeometry(0.015, 0.015, 0.005, 16), darkRecessMat, false);
+            sock.position.set(-0.08 + sx, 0.005, 0);
+            troughG.add(sock);
+        });
+        const powerLed = createMesh(
+            new THREE.BoxGeometry(0.014, 0.006, 0.010),
+            new THREE.MeshBasicMaterial({ color: 0x34D399 }),
+            false
+        );
+        powerLed.position.set(-0.195, 0.005, 0);
+
+        // Laptop Power Brick + Coiled Matte Charger Cable inside trough
+        const chargerBrick = createMesh(new THREE.BoxGeometry(0.095, 0.024, 0.052), ceramicMat);
+        chargerBrick.position.set(0.16, -0.008, 0.005);
+
+        const coilCurve1 = new THREE.TorusGeometry(0.034, 0.0045, 10, 26);
+        const coiledCable1 = createMesh(coilCurve1, matteBlackMat, false);
+        coiledCable1.rotation.x = Math.PI / 2;
+        coiledCable1.position.set(0.24, -0.014, -0.005);
+
+        const coiledCable2 = createMesh(new THREE.TorusGeometry(0.028, 0.004, 10, 24), matteBlackMat, false);
+        coiledCable2.rotation.x = Math.PI / 2;
+        coiledCable2.position.set(0.24, -0.007, -0.002);
+
+        // Brushed Metal Cable Grommet Liner visible directly under the open Cable Hatch
+        const grommetLiner = createMesh(new THREE.BoxGeometry(0.218, 0.022, 0.078), matteBlackMat, false);
+        grommetLiner.position.set(0, 0.148, -0.015);
+        const grommetBrushSlot = createMesh(new THREE.BoxGeometry(0.19, 0.004, 0.022), brushedAluminumMat, false);
+        grommetBrushSlot.position.set(0, 0.156, -0.015);
+
+        troughG.add(trayFloor, trayBackWall, trayFrontLip, powerStrip, powerLed, chargerBrick, coiledCable1, coiledCable2, grommetLiner, grommetBrushSlot);
+
+        // -------------------- 5D. SOLID WHITE OAK TABLETOP (1.20 × 0.60 × 0.026m) WITH FLUSH HATCH CAVITY --------------------
+        const topY = 0.737; // 0.724 to 0.750m
+        const topT = 0.026;
+
+        // 4 Seamless Flush Tabletop Segments forming the real 0.22m × 0.08m Rear-Center Cable Cavity (z: -0.27 to -0.19)
+        const slabFront = createMesh(new THREE.BoxGeometry(1.186, topT, 0.483), woodMatHoriz);
+        slabFront.position.set(0, topY, 0.0515); // z: -0.190 to +0.293
+
+        const slabRearEdge = createMesh(new THREE.BoxGeometry(1.186, topT, 0.023), woodMatHoriz);
+        slabRearEdge.position.set(0, topY, -0.2815); // z: -0.293 to -0.270
+
+        const slabRearLeft = createMesh(new THREE.BoxGeometry(0.483, topT, 0.080), woodMatHoriz);
+        slabRearLeft.position.set(-0.3515, topY, -0.230); // x: -0.593 to -0.110
+
+        const slabRearRight = createMesh(new THREE.BoxGeometry(0.483, topT, 0.080), woodMatHoriz);
+        slabRearRight.position.set(0.3515, topY, -0.230); // x: +0.110 to +0.593
+
+        // Sleek Ergonomic Beveled Perimeter Bullnose Trim (Exact 1.20m × 0.60m outer envelope)
+        const edgeFront = createMesh(new THREE.CylinderGeometry(0.0085, 0.012, 1.186, 16), woodMatHoriz);
+        edgeFront.rotation.z = Math.PI / 2;
+        edgeFront.position.set(0, topY + 0.001, 0.293);
+
+        const edgeRear = createMesh(new THREE.CylinderGeometry(0.0085, 0.012, 1.186, 16), woodMatHoriz);
+        edgeRear.rotation.z = Math.PI / 2;
+        edgeRear.position.set(0, topY + 0.001, -0.293);
+
+        const edgeLeft = createMesh(new THREE.CylinderGeometry(0.0085, 0.012, 0.586, 16), woodMatHoriz);
+        edgeLeft.rotation.x = Math.PI / 2;
+        edgeLeft.position.set(-0.593, topY + 0.001, 0);
+
+        const edgeRight = createMesh(new THREE.CylinderGeometry(0.0085, 0.012, 0.586, 16), woodMatHoriz);
+        edgeRight.rotation.x = Math.PI / 2;
+        edgeRight.position.set(0.593, topY + 0.001, 0);
+
+        [[-0.593, 0.293], [0.593, 0.293], [-0.593, -0.293], [0.593, -0.293]].forEach(([cx, cz]) => {
+            const cCap = createMesh(new THREE.SphereGeometry(0.0105, 14, 14), woodMatHoriz);
+            cCap.position.set(cx, topY + 0.001, cz);
+            explodedGroups.tabletopGroup.add(cCap);
+        });
+
+        // Subtle cavity framing lip around the 0.22 × 0.08m hatch opening
+        const cavityRim = createMesh(new THREE.BoxGeometry(0.226, 0.004, 0.086), matteBlackMat, false);
+        cavityRim.position.set(0, 0.725, -0.230);
+
+        explodedGroups.tabletopGroup.add(
+            slabFront, slabRearEdge, slabRearLeft, slabRearRight,
+            edgeFront, edgeRear, edgeLeft, edgeRight, cavityRim
+        );
+
+        // -------------------- 5E. INTERACTIVE HINGED CABLE GROMMET HATCH (0° to 78°) --------------------
+        const cableHatchPivot = new THREE.Group();
+        cableHatchPivot.position.set(0, 0.749, -0.269); // Hinged along rear edge of cavity
+        explodedGroups.cableHatchAnchor.add(cableHatchPivot);
+
+        const hatchLid = createMesh(new THREE.BoxGeometry(0.214, 0.018, 0.074), woodMatHoriz);
+        hatchLid.position.set(0, -0.009, 0.039);
+
+        // Subtle front finger notch & brushed metal trim on hatch lid
+        const hatchNotch = createMesh(new THREE.BoxGeometry(0.052, 0.005, 0.010), matteBlackMat, false);
+        hatchNotch.position.set(0, 0.0005, 0.070);
+
+        // Twin concealed brass hinge pins on rear seam
+        [-0.075, 0.075].forEach(hx => {
+            const hPin = createMesh(new THREE.CylinderGeometry(0.0032, 0.0032, 0.022, 10), brassMat, false);
+            hPin.rotation.z = Math.PI / 2;
+            hPin.position.set(hx, -0.002, 0.002);
+            cableHatchPivot.add(hPin);
+        });
+
+        cableHatchPivot.add(hatchLid, hatchNotch);
+        registerInteractive(cableHatchPivot, 'cableHatch', 'Tutup Kabel (Cable Hatch)');
+
+        // -------------------- 5F. TWO INTERACTIVE SOFT-CLOSE DRAWERS (3 SWITCHABLE HANDLE STYLES) --------------------
+        const drawerHandleSubgroups = {
+            left: { cutout: new THREE.Group(), brass: new THREE.Group(), black: new THREE.Group() },
+            right: { cutout: new THREE.Group(), brass: new THREE.Group(), black: new THREE.Group() }
+        };
+
+        function buildDeskDrawer(side) {
+            const isLeft = side === 'left';
+            const dGroup = isLeft ? explodedGroups.drawerLeft : explodedGroups.drawerRight;
+            const cx = isLeft ? -0.280 : 0.280;
+            dGroup.position.set(cx, 0.675, 0);
+
+            const frontW = 0.532;
+            const frontH = 0.088;
+            const frontD = 0.018;
+            const frontZ = 0.264;
+
+            // --- STYLE 1: MINIMALIST RECESSED SMILE-CUTOUT (DEFAULT) ---
+            const cutG = drawerHandleSubgroups[side].cutout;
+            const cutLower = createMesh(new THREE.BoxGeometry(frontW, frontH - 0.020, frontD), woodMatHoriz);
+            cutLower.position.set(0, -0.010, frontZ);
+            const wingW = (frontW - 0.135) / 2;
+            const wingL = createMesh(new THREE.BoxGeometry(wingW, 0.020, frontD), woodMatHoriz);
+            wingL.position.set(-frontW / 2 + wingW / 2, frontH / 2 - 0.010, frontZ);
+            const wingR = createMesh(new THREE.BoxGeometry(wingW, 0.020, frontD), woodMatHoriz);
+            wingR.position.set(frontW / 2 - wingW / 2, frontH / 2 - 0.010, frontZ);
+            const cutShadow = createMesh(new THREE.BoxGeometry(0.136, 0.020, 0.005), darkRecessMat, false);
+            cutShadow.position.set(0, frontH / 2 - 0.010, frontZ - 0.009);
+            cutG.add(cutLower, wingL, wingR, cutShadow);
+            dGroup.add(cutG);
+
+            // Helper for Flush Front + Slim Bar Pull (Brass / Matte Black)
+            function buildBarFront(mat, targetGroup) {
+                const fullFace = createMesh(new THREE.BoxGeometry(frontW, frontH, frontD), woodMatHoriz);
+                fullFace.position.set(0, 0, frontZ);
+                const pullBar = createMesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.155, 16), mat);
+                pullBar.rotation.z = Math.PI / 2;
+                pullBar.position.set(0, 0.008, frontZ + 0.024);
+                [-0.056, 0.056].forEach(px => {
+                    const post = createMesh(new THREE.CylinderGeometry(0.0038, 0.0038, 0.016, 12), mat);
+                    post.rotation.x = Math.PI / 2;
+                    post.position.set(px, 0.008, frontZ + 0.015);
+                    targetGroup.add(post);
+                });
+                targetGroup.add(fullFace, pullBar);
+                targetGroup.visible = false;
+                dGroup.add(targetGroup);
+            }
+
+            buildBarFront(brassMat, drawerHandleSubgroups[side].brass);
+            buildBarFront(matteBlackMat, drawerHandleSubgroups[side].black);
+
+            // Complete Solid Oak Drawer Box + Metallic Side Soft-Close Slide Rails
+            const boxW = 0.500, boxH = 0.068, boxD = 0.41, sT = 0.013;
+            const boxZCenter = frontZ - frontD / 2 - boxD / 2;
+
+            const bLeft = createMesh(new THREE.BoxGeometry(sT, boxH, boxD), woodMatHoriz);
+            bLeft.position.set(-(boxW - sT) / 2, -0.005, boxZCenter);
+            const bRight = createMesh(new THREE.BoxGeometry(sT, boxH, boxD), woodMatHoriz);
+            bRight.position.set((boxW - sT) / 2, -0.005, boxZCenter);
+            const bBack = createMesh(new THREE.BoxGeometry(boxW - sT * 2, boxH, sT), woodMatHoriz);
+            bBack.position.set(0, -0.005, boxZCenter - boxD / 2 + sT / 2);
+            const bBottom = createMesh(new THREE.BoxGeometry(boxW - 0.008, 0.008, boxD - 0.008), woodMatHoriz);
+            bBottom.position.set(0, -boxH / 2, boxZCenter);
+
+            // Side Metallic Soft-Close Slide Rails
+            const railL = createMesh(new THREE.BoxGeometry(0.006, 0.024, boxD * 0.90), railSteelMat, false);
+            railL.position.set(-boxW / 2 - 0.004, -0.006, boxZCenter);
+            const railR = createMesh(new THREE.BoxGeometry(0.006, 0.024, boxD * 0.90), railSteelMat, false);
+            railR.position.set(boxW / 2 + 0.004, -0.006, boxZCenter);
+            dGroup.add(bLeft, bRight, bBack, bBottom, railL, railR);
+
+            // --- DETAILED INTERIOR PROPS ---
+            const floorY = -boxH / 2 + 0.006;
+
+            if (isLeft) {
+                // 1. Hardcover Study Notebook
+                const nbCover = createMesh(new THREE.BoxGeometry(0.155, 0.018, 0.215), new THREE.MeshStandardMaterial({ color: 0x3A4F5A, roughness: 0.65 }), false);
+                nbCover.position.set(-0.14, floorY + 0.009, boxZCenter + 0.055);
+                const nbBand = createMesh(new THREE.BoxGeometry(0.012, 0.020, 0.218), matteBlackMat, false);
+                nbBand.position.set(-0.085, floorY + 0.009, boxZCenter + 0.055);
+
+                // 2. Silver Mechanical Pencil
+                const mechPencil = createMesh(new THREE.CylinderGeometry(0.0038, 0.0038, 0.155, 12), brushedAluminumMat, false);
+                mechPencil.rotation.x = Math.PI / 2;
+                mechPencil.rotation.z = 0.08;
+                mechPencil.position.set(-0.035, floorY + 0.005, boxZCenter + 0.06);
+
+                // 3. Sleek Space-Gray Tablet
+                const tabletBody = createMesh(new THREE.BoxGeometry(0.185, 0.009, 0.255), brushedAluminumMat, false);
+                tabletBody.position.set(0.115, floorY + 0.005, boxZCenter + 0.035);
+                const tabletScreen = createMesh(new THREE.BoxGeometry(0.172, 0.002, 0.240), matteBlackMat, false);
+                tabletScreen.position.set(0.115, floorY + 0.010, boxZCenter + 0.035);
+
+                // 4. Pastel Sticky-Notes Stack
+                const sticky1 = createMesh(new THREE.BoxGeometry(0.072, 0.012, 0.072), new THREE.MeshStandardMaterial({ color: 0xF3D98B, roughness: 0.8 }), false);
+                sticky1.position.set(-0.14, floorY + 0.006, boxZCenter - 0.11);
+                sticky1.rotation.y = 0.12;
+                const sticky2 = createMesh(new THREE.BoxGeometry(0.070, 0.010, 0.070), new THREE.MeshStandardMaterial({ color: 0xB8CEB6, roughness: 0.8 }), false);
+                sticky2.position.set(-0.05, floorY + 0.005, boxZCenter - 0.115);
+                sticky2.rotation.y = -0.10;
+
+                // 5. Tan Leather Cable Pouch
+                const pouch = createMesh(new THREE.BoxGeometry(0.14, 0.028, 0.085), new THREE.MeshStandardMaterial({ color: 0x9C6B46, roughness: 0.65 }), false);
+                pouch.position.set(0.115, floorY + 0.014, boxZCenter - 0.135);
+                const zipper = createMesh(new THREE.BoxGeometry(0.135, 0.004, 0.006), brassMat, false);
+                zipper.position.set(0.115, floorY + 0.029, boxZCenter - 0.135);
+
+                dGroup.add(nbCover, nbBand, mechPencil, tabletBody, tabletScreen, sticky1, sticky2, pouch, zipper);
+                registerInteractive(dGroup, 'drawerLeft', 'Laci Kiri (Notebook & Tablet)');
+            } else {
+                // 1. Modular Wooden Organizer Divider Tray
+                const divV = createMesh(new THREE.BoxGeometry(0.008, 0.034, boxD - 0.024), woodMatVert, false);
+                divV.position.set(-0.04, floorY + 0.017, boxZCenter);
+                const divH = createMesh(new THREE.BoxGeometry(0.27, 0.034, 0.008), woodMatHoriz, false);
+                divH.position.set(0.10, floorY + 0.017, boxZCenter + 0.02);
+
+                // 2. Matte Wireless Earbuds Case
+                const budsCase = createMesh(new THREE.BoxGeometry(0.054, 0.024, 0.044), ceramicMat, false);
+                budsCase.position.set(-0.145, floorY + 0.012, boxZCenter + 0.11);
+                const budsSeam = createMesh(new THREE.BoxGeometry(0.055, 0.002, 0.045), railSteelMat, false);
+                budsSeam.position.set(-0.145, floorY + 0.017, boxZCenter + 0.11);
+
+                // 3. Wooden Architectural Ruler
+                const ruler = createMesh(new THREE.BoxGeometry(0.028, 0.005, 0.25), woodMatHoriz, false);
+                ruler.position.set(-0.085, floorY + 0.004, boxZCenter - 0.03);
+                ruler.rotation.y = 0.05;
+
+                // 4. Sleek Minimalist Calculator
+                const calcBody = createMesh(new THREE.BoxGeometry(0.095, 0.012, 0.145), matteBlackMat, false);
+                calcBody.position.set(0.095, floorY + 0.006, boxZCenter + 0.11);
+                const calcScreen = createMesh(new THREE.BoxGeometry(0.075, 0.003, 0.028), new THREE.MeshStandardMaterial({ color: 0x8BA08E, roughness: 0.4 }), false);
+                calcScreen.position.set(0.095, floorY + 0.013, boxZCenter + 0.062);
+
+                // 5. Brushed Aluminum USB Flash Drive
+                const usbBody = createMesh(new THREE.BoxGeometry(0.018, 0.008, 0.052), brushedAluminumMat, false);
+                usbBody.position.set(0.06, floorY + 0.005, boxZCenter - 0.07);
+                usbBody.rotation.y = -0.35;
+                const usbTip = createMesh(new THREE.BoxGeometry(0.012, 0.006, 0.014), brassMat, false);
+                usbTip.position.set(0.05, floorY + 0.005, boxZCenter - 0.098);
+                usbTip.rotation.y = -0.35;
+
+                dGroup.add(divV, divH, budsCase, budsSeam, ruler, calcBody, calcScreen, usbBody, usbTip);
+                registerInteractive(dGroup, 'drawerRight', 'Laci Kanan (Organizer & Alat)');
+            }
+        }
+
+        buildDeskDrawer('left');
+        buildDeskDrawer('right');
+
+        // -------------------- 5G. SWITCHABLE MONITOR RISER & DESKTOP ORGANIZER CADDY --------------------
+        // Solid Oak Monitor Riser (0.54m W × 0.20m D × 0.09m H), positioned at z = -0.075 so rear Cable Hatch (-0.27..-0.19) opens cleanly!
+        const riserG = explodedGroups.monitorRiserGroup;
+        riserG.position.set(0.02, 0.750, -0.075);
+
+        const riserTop = createMesh(new THREE.BoxGeometry(0.54, 0.018, 0.20), woodMatHoriz);
+        riserTop.position.y = 0.081;
+        const riserLegL = createMesh(new THREE.BoxGeometry(0.018, 0.074, 0.195), woodMatVert);
+        riserLegL.position.set(-0.261, 0.037, 0);
+        const riserLegR = createMesh(new THREE.BoxGeometry(0.018, 0.074, 0.195), woodMatVert);
+        riserLegR.position.set(0.261, 0.037, 0);
+        // Subtle recessed lower keyboard-tuck tray bar
+        const riserBackBrace = createMesh(new THREE.BoxGeometry(0.504, 0.024, 0.012), woodMatHoriz);
+        riserBackBrace.position.set(0, 0.062, -0.088);
+
+        // Compact Mechanical Keyboard tucked neatly under the Monitor Riser
+        const kbBase = createMesh(new THREE.BoxGeometry(0.31, 0.014, 0.115), brushedAluminumMat);
+        kbBase.position.set(0, 0.009, 0.015);
+        const kbKeys = createMesh(new THREE.BoxGeometry(0.292, 0.008, 0.098), ceramicMat);
+        kbKeys.position.set(0, 0.019, 0.015);
+
+        riserG.add(riserTop, riserLegL, riserLegR, riserBackBrace, kbBase, kbKeys);
+
+        // Sleek Desktop Organizer Caddy (Right corner, shown in 'full' Setup Mahasiswa/WFH mode)
+        const caddyG = explodedGroups.organizerCaddyGroup;
+        caddyG.position.set(0.455, 0.750, -0.105);
+
+        const cadBase = createMesh(new THREE.BoxGeometry(0.175, 0.012, 0.135), woodMatHoriz);
+        cadBase.position.y = 0.006;
+        const cadBack = createMesh(new THREE.BoxGeometry(0.175, 0.095, 0.012), woodMatHoriz);
+        cadBack.position.set(0, 0.052, -0.062);
+        const cadSideL = createMesh(new THREE.BoxGeometry(0.012, 0.065, 0.135), woodMatVert);
+        cadSideL.position.set(-0.082, 0.036, 0);
+        const cadSideR = createMesh(new THREE.BoxGeometry(0.012, 0.065, 0.135), woodMatVert);
+        cadSideR.position.set(0.082, 0.036, 0);
+        const cadFront = createMesh(new THREE.BoxGeometry(0.175, 0.042, 0.012), woodMatHoriz);
+        cadFront.position.set(0, 0.025, 0.062);
+        const cadMidDiv = createMesh(new THREE.BoxGeometry(0.010, 0.062, 0.12), woodMatVert);
+        cadMidDiv.position.set(0.005, 0.036, 0);
+
+        // Pens & Vertical Notepad tucked inside Organizer Caddy
+        [0x222326, 0xD8B262, 0x7D967C].forEach((hex, idx) => {
+            const p = createMesh(new THREE.CylinderGeometry(0.004, 0.004, 0.135, 10), new THREE.MeshStandardMaterial({ color: hex, roughness: 0.4 }), false);
+            p.position.set(-0.052 + idx * 0.014, 0.072, -0.015);
+            p.rotation.z = (idx - 1) * 0.12;
+            caddyG.add(p);
+        });
+        const cadCard = createMesh(new THREE.BoxGeometry(0.062, 0.095, 0.006), ceramicMat);
+        cadCard.position.set(0.044, 0.058, -0.025);
+        cadCard.rotation.x = -0.14;
+
+        caddyG.add(cadBase, cadBack, cadSideL, cadSideR, cadFront, cadMidDiv, cadCard);
+
+        // -------------------- 5H. INTERACTIVE SETUP PROPS (LAPTOP, FELT MAT, MOUSE, MUG, SUCCULENT, BOOKS) --------------------
+        const propsG = explodedGroups.setupPropsGroup;
+
+        // Large Felt Desk Mat on tabletop surface (0.64m × 0.30m)
+        const deskMatMesh = createMesh(new THREE.BoxGeometry(0.64, 0.004, 0.30), feltAccentMat);
+        deskMatMesh.position.set(0.02, 0.752, 0.115);
+        propsG.add(deskMatMesh);
+
+        // Sleek Silver Minimalist Laptop (Dynamically rests on Riser in 'full'/'riser' mode, or on Desk Mat in 'minimal' mode!)
+        const laptopGroup = new THREE.Group();
+        laptopGroup.position.set(0.02, 0.840, -0.070);
+
+        const lapBase = createMesh(new THREE.BoxGeometry(0.315, 0.011, 0.215), brushedAluminumMat);
+        lapBase.position.y = 0.0055;
+        const lapKeyboard = createMesh(new THREE.BoxGeometry(0.275, 0.002, 0.105), matteBlackMat, false);
+        lapKeyboard.position.set(0, 0.0115, -0.022);
+        const lapTrackpad = createMesh(new THREE.BoxGeometry(0.095, 0.0015, 0.062), railSteelMat, false);
+        lapTrackpad.position.set(0, 0.0113, 0.064);
+
+        const lapScreenPivot = new THREE.Group();
+        lapScreenPivot.position.set(0, 0.011, -0.105);
+        lapScreenPivot.rotation.x = -0.22; // Opened ergonomically ~103 degrees
+
+        const lapLidBack = createMesh(new THREE.BoxGeometry(0.315, 0.205, 0.006), brushedAluminumMat);
+        lapLidBack.position.set(0, 0.1025, 0);
+        const lapBezel = createMesh(new THREE.BoxGeometry(0.308, 0.198, 0.003), matteBlackMat, false);
+        lapBezel.position.set(0, 0.1025, 0.003);
+        const lapScreenMat = new THREE.MeshStandardMaterial({
+            map: getLaptopScreenTexture(),
+            emissive: 0xFFF2DE,
+            emissiveMap: getLaptopScreenTexture(),
+            emissiveIntensity: 0.35,
+            roughness: 0.25
+        });
+        const lapScreen = createMesh(new THREE.PlaneGeometry(0.294, 0.184), lapScreenMat, false);
+        lapScreen.position.set(0, 0.104, 0.0052);
+        lapScreenPivot.add(lapLidBack, lapBezel, lapScreen);
+        laptopGroup.add(lapBase, lapKeyboard, lapTrackpad, lapScreenPivot);
+        propsG.add(laptopGroup);
+
+        // Wireless Ergonomic Mouse on right side of Felt Desk Mat
+        const mouseBody = createMesh(new THREE.SphereGeometry(0.042, 20, 16), ceramicMat);
+        mouseBody.scale.set(0.75, 0.48, 1.32);
+        mouseBody.position.set(0.25, 0.764, 0.14);
+        propsG.add(mouseBody);
+
+        // Ceramic Coffee Mug + Coaster (Right front)
+        const coaster = createMesh(new THREE.CylinderGeometry(0.044, 0.044, 0.004, 24), feltAccentMat);
+        coaster.position.set(0.455, 0.752, 0.13);
+        const mugBody = createMesh(new THREE.CylinderGeometry(0.036, 0.032, 0.088, 24), ceramicMat);
+        mugBody.position.set(0.455, 0.798, 0.13);
+        const coffeeTop = createMesh(new THREE.CylinderGeometry(0.031, 0.031, 0.003, 20), new THREE.MeshStandardMaterial({ color: 0x3D2618, roughness: 0.25 }), false);
+        coffeeTop.position.set(0.455, 0.834, 0.13);
+        const mugHandle = createMesh(new THREE.TorusGeometry(0.022, 0.0055, 10, 20, Math.PI), ceramicMat);
+        mugHandle.rotation.z = -Math.PI / 2;
+        mugHandle.position.set(0.489, 0.798, 0.13);
+        propsG.add(coaster, mugBody, coffeeTop, mugHandle);
+
+        // Ribbed Ceramic Succulent Planter (Back-left corner)
+        const potG = new THREE.Group();
+        potG.position.set(-0.34, 0.750, -0.105);
+        const potLathePts = [
+            new THREE.Vector2(0, 0),
+            new THREE.Vector2(0.036, 0),
+            new THREE.Vector2(0.044, 0.035),
+            new THREE.Vector2(0.042, 0.068),
+            new THREE.Vector2(0.046, 0.082),
+            new THREE.Vector2(0.038, 0.082)
+        ];
+        const potMesh = createMesh(new THREE.LatheGeometry(potLathePts, 24), ceramicMat);
+        const soilMesh = createMesh(new THREE.CylinderGeometry(0.038, 0.038, 0.008, 18), new THREE.MeshStandardMaterial({ color: 0x4A3A2E, roughness: 0.95 }), false);
+        soilMesh.position.y = 0.074;
+        potG.add(potMesh, soilMesh);
+
+        // Rosette Succulent Leaves
+        const leafMat = new THREE.MeshStandardMaterial({ color: 0x6F8E70, roughness: 0.58 });
+        for (let ring = 0; ring < 2; ring++) {
+            const count = ring === 0 ? 7 : 5;
+            for (let i = 0; i < count; i++) {
+                const ang = (i / count) * Math.PI * 2 + ring * 0.4;
+                const leaf = createMesh(new THREE.SphereGeometry(0.018 - ring * 0.004, 12, 10), leafMat);
+                leaf.scale.set(0.75, 0.35, 1.55);
+                const rad = ring === 0 ? 0.022 : 0.011;
+                leaf.position.set(Math.cos(ang) * rad, 0.084 + ring * 0.011, Math.sin(ang) * rad);
+                leaf.rotation.y = -ang + Math.PI / 2;
+                leaf.rotation.x = ring === 0 ? -0.42 : -0.72;
+                potG.add(leaf);
+            }
+        }
+        propsG.add(potG);
+
+        // 2 Stacked Study Textbooks (Front-left area)
+        const book1 = createMesh(new THREE.BoxGeometry(0.165, 0.024, 0.225), new THREE.MeshStandardMaterial({ color: 0x3F4F5A, roughness: 0.65 }));
+        book1.position.set(-0.445, 0.762, 0.115);
+        book1.rotation.y = 0.06;
+        const book2 = createMesh(new THREE.BoxGeometry(0.150, 0.020, 0.205), new THREE.MeshStandardMaterial({ color: 0xD6C7B2, roughness: 0.68 }));
+        book2.position.set(-0.445, 0.784, 0.115);
+        book2.rotation.y = -0.05;
+        propsG.add(book1, book2);
+
+        // -------------------- 5I. CLICKABLE ARCHITECT LED DESK LAMP (LEFT CORNER) --------------------
+        const lampG = explodedGroups.deskLampGroup;
+        lampG.position.set(-0.475, 0.750, -0.135);
+
+        const lampBase = createMesh(new THREE.CylinderGeometry(0.064, 0.068, 0.018, 28), matteBlackMat);
+        lampBase.position.y = 0.009;
+        const lampSwitch = createMesh(new THREE.CylinderGeometry(0.008, 0.008, 0.008, 14), brassMat);
+        lampSwitch.position.set(0.028, 0.020, 0.028);
+
+        const lowerArm = createMesh(new THREE.CylinderGeometry(0.007, 0.008, 0.27, 16), woodMatVert);
+        lowerArm.position.set(-0.028, 0.145, -0.022);
+        lowerArm.rotation.z = 0.20;
+        lowerArm.rotation.x = -0.14;
+
+        const elbowJoint = createMesh(new THREE.SphereGeometry(0.013, 16, 16), brassMat);
+        elbowJoint.position.set(-0.056, 0.275, -0.042);
+
+        const upperArm = createMesh(new THREE.CylinderGeometry(0.006, 0.007, 0.24, 16), woodMatVert);
+        upperArm.position.set(0.025, 0.355, 0.018);
+        upperArm.rotation.z = -0.78;
+        upperArm.rotation.x = 0.44;
+
+        const lampHeadHolder = new THREE.Group();
+        lampHeadHolder.position.set(0.112, 0.422, 0.072);
+        lampHeadHolder.rotation.z = -0.36;
+        lampHeadHolder.rotation.x = 0.18;
+
+        const lampShadeMat = matteBlackMat.clone();
+        lampShadeMat.side = THREE.DoubleSide;
+        const lampShade = createMesh(new THREE.ConeGeometry(0.074, 0.105, 28, 1, true), lampShadeMat);
+        const lampCap = createMesh(new THREE.CylinderGeometry(0.018, 0.028, 0.026, 20), brassMat);
+        lampCap.position.y = 0.055;
+
+        const lampBulbMat = new THREE.MeshStandardMaterial({
+            color: 0xFFF9EA,
+            emissive: 0xFFC266,
+            emissiveIntensity: 1.6,
+            roughness: 0.2
+        });
+        const lampBulb = createMesh(new THREE.SphereGeometry(0.024, 18, 16), lampBulbMat, false);
+        lampBulb.position.y = -0.015;
+
+        const deskLampLight = new THREE.PointLight(0xFFC16B, 0.72, 1.85, 2);
+        deskLampLight.position.set(0.04, -0.08, 0.04);
+
+        lampHeadHolder.add(lampShade, lampCap, lampBulb, deskLampLight);
+        lampG.add(lampBase, lampSwitch, lowerArm, elbowJoint, upperArm, lampHeadHolder);
+        registerInteractive(lampG, 'deskLamp', 'Lampu Meja LED Arsitek');
+
+        // -------------------- 5J. CLICKABLE SCANDINAVIAN CURVED-WOOD STUDY CHAIR --------------------
+        const chairG = explodedGroups.studyChairGroup;
+        chairG.position.set(0.02, 0, 0.38);
+
+        const chairSeatH = 0.45;
+        // 4 Splayed Tapered Oak Chair Legs
+        [
+            { x: -0.185, z: 0.175, sx: -1, sz: 1 },
+            { x: 0.185, z: 0.175, sx: 1, sz: 1 },
+            { x: -0.185, z: -0.175, sx: -1, sz: -1 },
+            { x: 0.185, z: -0.175, sx: 1, sz: -1 }
+        ].forEach(cl => {
+            const lg = new THREE.Group();
+            lg.position.set(cl.x, chairSeatH / 2, cl.z);
+            lg.rotation.z = cl.sx * 0.078;
+            lg.rotation.x = -cl.sz * 0.068;
+
+            const cLeg = createMesh(new THREE.CylinderGeometry(0.016, 0.0115, chairSeatH, 20), woodMatVert);
+            const cGlide = createMesh(new THREE.CylinderGeometry(0.012, 0.012, 0.005, 14), darkRecessMat);
+            cGlide.position.y = -chairSeatH / 2 + 0.002;
+            lg.add(cLeg, cGlide);
+            chairG.add(lg);
+        });
+
+        // Under-seat H-stretcher
+        const chStrL = createMesh(new THREE.CylinderGeometry(0.009, 0.009, 0.36, 14), woodMatHoriz);
+        chStrL.rotation.x = Math.PI / 2; chStrL.position.set(-0.195, 0.15, 0);
+        const chStrR = createMesh(new THREE.CylinderGeometry(0.009, 0.009, 0.36, 14), woodMatHoriz);
+        chStrR.rotation.x = Math.PI / 2; chStrR.position.set(0.195, 0.15, 0);
+        const chStrCross = createMesh(new THREE.CylinderGeometry(0.009, 0.009, 0.38, 14), woodMatHoriz);
+        chStrCross.rotation.z = Math.PI / 2; chStrCross.position.set(0, 0.15, 0);
+        chairG.add(chStrL, chStrR, chStrCross);
+
+        // Curved Oak Seat Base + Matching Felt Seat Cushion
+        const seatShell = createMesh(new THREE.BoxGeometry(0.42, 0.022, 0.40), woodMatHoriz);
+        seatShell.position.set(0, chairSeatH - 0.011, 0);
+        const seatCushion = createMesh(new THREE.BoxGeometry(0.39, 0.032, 0.37), feltAccentMat);
+        seatCushion.position.set(0, chairSeatH + 0.014, 0);
+        const seatFrontRoll = createMesh(new THREE.CylinderGeometry(0.016, 0.016, 0.39, 16), feltAccentMat);
+        seatFrontRoll.rotation.z = Math.PI / 2;
+        seatFrontRoll.position.set(0, chairSeatH + 0.014, -0.185);
+        chairG.add(seatShell, seatCushion, seatFrontRoll);
+
+        // Curved Steam-Bent Rear Posts + Wrap-Around Oak Backrest
+        [-0.17, 0.17].forEach(bx => {
+            const bPost = createMesh(new THREE.CylinderGeometry(0.014, 0.015, 0.35, 16), woodMatVert);
+            bPost.position.set(bx, chairSeatH + 0.165, 0.195);
+            bPost.rotation.x = 0.13;
+            const bCap = createMesh(new THREE.SphereGeometry(0.014, 14, 14), woodMatVert);
+            bCap.position.set(bx, chairSeatH + 0.338, 0.218);
+            chairG.add(bPost, bCap);
+        });
+
+        const backRestWood = createMesh(new THREE.BoxGeometry(0.40, 0.135, 0.020), woodMatHoriz);
+        backRestWood.position.set(0, chairSeatH + 0.255, 0.214);
+        backRestWood.rotation.x = 0.13;
+
+        const backRestPad = createMesh(new THREE.BoxGeometry(0.36, 0.105, 0.024), feltAccentMat);
+        backRestPad.position.set(0, chairSeatH + 0.255, 0.198);
+        backRestPad.rotation.x = 0.13;
+
+        chairG.add(backRestWood, backRestPad);
+        registerInteractive(chairG, 'studyChair', 'Kursi Belajar Skandinavia');
+
+        // -------------------- 5K. TOGGLEABLE "SIMULASI KAMAR KOS (3×3m)" ENVIRONMENT (DEFAULT OFF) --------------------
+        const kosGroup = explodedGroups.kosRoomGroup;
+        kosGroup.visible = false;
+
+        const kosWallMat = new THREE.MeshStandardMaterial({ color: 0xF4EFE6, roughness: 0.92 });
+        // L-corner walls sized to exact 3.0m × 3.0m room footprint
+        const backKosWall = new THREE.Mesh(new THREE.BoxGeometry(3.0, 2.45, 0.04), kosWallMat);
+        backKosWall.position.set(0.32, 1.225, -0.44);
+        backKosWall.receiveShadow = true;
+
+        const leftKosWall = new THREE.Mesh(new THREE.BoxGeometry(0.04, 2.45, 3.0), kosWallMat);
+        leftKosWall.position.set(-1.18, 1.225, 1.04);
+        leftKosWall.receiveShadow = true;
+
+        // Warm Wooden Baseboards
+        const baseBoardB = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.08, 0.018), woodMatHoriz);
+        baseBoardB.position.set(0.32, 0.04, -0.412);
+        const baseBoardL = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.08, 3.0), woodMatHoriz);
+        baseBoardL.position.set(-1.152, 0.04, 1.04);
+
+        // Woven Light Floor Rug under desk
+        const kosRug = new THREE.Mesh(
+            new THREE.BoxGeometry(1.90, 0.007, 1.55),
+            new THREE.MeshStandardMaterial({ map: getKosRugTexture(), roughness: 0.95 })
+        );
+        kosRug.position.set(0.04, 0.0035, 0.24);
+        kosRug.receiveShadow = true;
+
+        // Minimalist Framed Art Print on Rear Wall (Left of center)
+        const kosArtFrame = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.58, 0.020), woodMatHoriz);
+        kosArtFrame.position.set(-0.34, 1.48, -0.412);
+        const kosArtPrint = new THREE.Mesh(
+            new THREE.BoxGeometry(0.41, 0.53, 0.024),
+            new THREE.MeshStandardMaterial({ map: getKosWallArtTexture(), roughness: 0.84 })
+        );
+        kosArtPrint.position.set(-0.34, 1.48, -0.409);
+
+        // Wooden Memo Rail / Mini Pegboard on Rear Wall (Right of center)
+        const memoBoard = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.36, 0.014), woodMatHoriz);
+        memoBoard.position.set(0.28, 1.42, -0.413);
+        const memoLedge = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.016, 0.068), woodMatHoriz);
+        memoLedge.position.set(0.28, 1.24, -0.382);
+        const memoNote1 = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.14, 0.004), ceramicMat);
+        memoNote1.position.set(0.14, 1.44, -0.402); memoNote1.rotation.z = 0.06;
+        const memoNote2 = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.11, 0.004), feltAccentMat);
+        memoNote2.position.set(0.32, 1.42, -0.402); memoNote2.rotation.z = -0.05;
+
+        // Subtle 3×3m Floor Tape Perimeter Guide
+        const kosFloorMat = new THREE.LineBasicMaterial({ color: 0xA97B4B, transparent: true, opacity: 0.55 });
+        const kosPts = [
+            new THREE.Vector3(-1.16, 0.005, -0.42),
+            new THREE.Vector3(1.84, 0.005, -0.42),
+            new THREE.Vector3(1.84, 0.005, 2.58),
+            new THREE.Vector3(-1.16, 0.005, 2.58),
+            new THREE.Vector3(-1.16, 0.005, -0.42)
+        ];
+        const kosBoundaryLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(kosPts), kosFloorMat);
+
+        kosGroup.add(
+            backKosWall, leftKosWall, baseBoardB, baseBoardL, kosRug,
+            kosArtFrame, kosArtPrint, memoBoard, memoLedge, memoNote1, memoNote2, kosBoundaryLine
+        );
+
+        // ============================================================================
+        // 6. 3D PRECISION DIMENSION LINES & 5 INTERACTIVE 3D HOTSPOTS
+        // ============================================================================
+        const dimensionGroup = new THREE.Group();
+        dimensionGroup.visible = false;
+        scene.add(dimensionGroup);
+
+        const dimLineMat = new THREE.LineBasicMaterial({ color: 0x8C6239, transparent: true, opacity: 0.92 });
+
+        function addDimensionLine(p1, p2, ext1, ext2) {
+            dimensionGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([p1, p2]), dimLineMat));
+            if (ext1 && ext2) {
+                dimensionGroup.add(
+                    new THREE.Line(new THREE.BufferGeometry().setFromPoints([ext1, p1]), dimLineMat),
+                    new THREE.Line(new THREE.BufferGeometry().setFromPoints([ext2, p2]), dimLineMat)
+                );
+            }
+        }
+
+        // 1. Panjang: 120.0 cm (Rear floor line so chair never obscures it)
+        addDimensionLine(
+            new THREE.Vector3(-0.60, 0.015, -0.42),
+            new THREE.Vector3(0.60, 0.015, -0.42),
+            new THREE.Vector3(-0.60, 0.015, -0.31),
+            new THREE.Vector3(0.60, 0.015, -0.31)
+        );
+        // 2. Lebar: 60.0 cm (Right floor line)
+        addDimensionLine(
+            new THREE.Vector3(0.73, 0.015, -0.30),
+            new THREE.Vector3(0.73, 0.015, 0.30),
+            new THREE.Vector3(0.62, 0.015, -0.30),
+            new THREE.Vector3(0.62, 0.015, 0.30)
+        );
+        // 3. Tinggi Total: 75.0 cm (Left vertical line)
+        addDimensionLine(
+            new THREE.Vector3(-0.73, 0.0, 0.30),
+            new THREE.Vector3(-0.73, 0.75, 0.30),
+            new THREE.Vector3(-0.62, 0.0, 0.30),
+            new THREE.Vector3(-0.62, 0.75, 0.30)
+        );
+        // 4. Ruang Kaki: 61.5 cm (Right vertical clearance line)
+        addDimensionLine(
+            new THREE.Vector3(0.73, 0.0, 0.30),
+            new THREE.Vector3(0.73, 0.615, 0.30),
+            new THREE.Vector3(0.62, 0.615, 0.30),
+            new THREE.Vector3(0.73, 0.615, 0.30)
+        );
+
+        const dimensionLabelsData = [
+            { text: 'Panjang: 120.0 cm', pos: new THREE.Vector3(0, 0.03, -0.45) },
+            { text: 'Lebar: 60.0 cm', pos: new THREE.Vector3(0.80, 0.03, 0) },
+            { text: 'Tinggi: 75.0 cm', pos: new THREE.Vector3(-0.80, 0.38, 0.30) },
+            { text: 'Ruang Kaki: 61.5 cm', pos: new THREE.Vector3(0.82, 0.31, 0.30) }
+        ];
+
+        const hotspotsData = [
+            {
+                id: 1,
+                title: 'Top Solid White Oak 26mm & Bevel Ergonomis',
+                desc: 'Permukaan meja Solid White Oak tebal 26 mm dengan tepi bevel halus agar pergelangan tangan tetap nyaman saat mengetik berjam-jam, ukuran ringkas 120×60 cm ideal untuk kamar kos.',
+                tag: 'Solid White Oak 26 mm • Bevel Edge',
+                worldPos: new THREE.Vector3(-0.56, 0.75, 0.26),
+                camPos: new THREE.Vector3(-1.15, 1.04, 1.05),
+                camTarget: new THREE.Vector3(-0.36, 0.72, 0.14)
+            },
+            {
+                id: 2,
+                title: '2 Laci Soft-Close & Organizer Belajar',
+                desc: 'Dua laci lebar dengan rel metal soft-close yang halus. Laci kiri memuat tablet & buku catatan, laci kanan dilengkapi sekat organizer untuk kalkulator, earbuds, dan alat tulis.',
+                tag: '2 Soft-Close Drawers • 3 Gaya Handle',
+                worldPos: new THREE.Vector3(0.28, 0.68, 0.28),
+                camPos: new THREE.Vector3(0.55, 0.94, 1.28),
+                camTarget: new THREE.Vector3(0.08, 0.66, 0.24)
+            },
+            {
+                id: 3,
+                title: 'Hatch & Tray Manajemen Kabel Tersembunyi',
+                desc: 'Tutup kabel kayu rata permukaan yang dapat dibuka hingga 78° menuju tray metal perforasi di kolong belakang untuk menyembunyikan stopkontak dan adaptor laptop dengan rapi.',
+                tag: 'Flip-Open Cable Hatch • Metal Tray',
+                worldPos: new THREE.Vector3(0.0, 0.75, -0.23),
+                camPos: new THREE.Vector3(0.72, 1.02, -1.08),
+                camTarget: new THREE.Vector3(0.0, 0.68, -0.22)
+            },
+            {
+                id: 4,
+                title: 'Kaki Miring Skandinavia (Ruang Kaki 61.5 cm)',
+                desc: 'Empat kaki kayu solid meruncing miring dengan braket sudut baja dan palang belakang penstabil, menyisakan ruang kaki lega setinggi 61.5 cm agar kursi kerja masuk sempurna.',
+                tag: 'Leg Clearance 61.5 cm • Brass Glides',
+                worldPos: new THREE.Vector3(0.52, 0.26, 0.22),
+                camPos: new THREE.Vector3(1.18, 0.36, 1.06),
+                camTarget: new THREE.Vector3(0.32, 0.28, 0.12)
+            },
+            {
+                id: 5,
+                title: 'Monitor Riser & Lampu LED Kerja 2700K',
+                desc: 'Rak riser kayu oak 54×20 cm menaikkan layar sejajar pandangan mata sekaligus menyimpan keyboard di bawahnya, dipadukan lampu meja arsitek & LED bias hangat 2700K.',
+                tag: 'Oak Monitor Riser • Warm 2700K LED',
+                worldPos: new THREE.Vector3(-0.36, 1.12, -0.06),
+                camPos: new THREE.Vector3(-0.98, 1.26, 1.12),
+                camTarget: new THREE.Vector3(-0.18, 0.90, -0.06)
+            }
+        ];
+
+        const overlayLayer = document.getElementById('overlay-layer');
+        const domHotspots = [];
+        const domDimLabels = [];
+        let hotspotsVisible = true;
+        let dimensionsVisible = false;
+
+        hotspotsData.forEach(hs => {
+            const el = document.createElement('div');
+            el.className = 'hotspot-pin flex items-center justify-center w-7 h-7 rounded-full font-mono text-xs font-bold shadow-lg';
+            el.innerHTML = `<span class="hotspot-pulse"></span><span>${hs.id}</span>`;
+            el.title = hs.title;
+            el.onclick = (e) => {
+                e.stopPropagation();
+                selectHotspot(hs);
+            };
+            overlayLayer.appendChild(el);
+            domHotspots.push({ el, data: hs });
+        });
+
+        dimensionLabelsData.forEach(dl => {
+            const el = document.createElement('div');
+            el.className = 'dim-label opacity-0';
+            el.textContent = dl.text;
+            overlayLayer.appendChild(el);
+            domDimLabels.push({ el, pos: dl.pos });
+        });
+
+        function selectHotspot(hs) {
+            playTactileSound('click');
+            const card = document.getElementById('hotspot-card');
+            card.classList.remove('hidden');
+            document.getElementById('hs-number').textContent = hs.id;
+            document.getElementById('hs-title').textContent = hs.title;
+            document.getElementById('hs-desc').textContent = hs.desc;
+            document.getElementById('hs-tag').textContent = hs.tag;
+
+            if (window.innerWidth < 768) {
+                toggleMobileDrawer('left', true);
+            }
+
+            const leftHud = document.getElementById('left-hud');
+            setTimeout(() => {
+                leftHud.scrollTo({ top: leftHud.scrollHeight, behavior: 'smooth' });
+            }, 55);
+
+            // Auto-demonstrate related mechanisms
+            if (hs.id === 2) {
+                if (partState.studyChair.target < 0.5) togglePart('studyChair');
+                if (partState.drawerRight.target < 0.5) togglePart('drawerRight');
+            }
+            if (hs.id === 3) {
+                if (kosGroup.visible) {
+                    kosGroup.visible = false;
+                    document.getElementById('btn-kosroom').classList.remove('active');
+                }
+                if (partState.cableHatch.target < 0.5) togglePart('cableHatch');
+            }
+
+            animateCameraTo(hs.camPos, hs.camTarget);
+        }
+
+        function closeHotspotCard() {
+            document.getElementById('hotspot-card').classList.add('hidden');
+        }
+
+        // ============================================================================
+        // 7. MECHANISM STATE, EXPLODED VIEW & 7 CAMERA PRESETS
+        // ============================================================================
+        const partState = {
+            drawerLeft: { current: 0, target: 0 },   // Slides +0.25m Z
+            drawerRight: { current: 0, target: 0 },  // Slides +0.25m Z
+            cableHatch: { current: 0, target: 0 },   // Flips open 78° (-1.36 rad X)
+            studyChair: { current: 0, target: 0 },   // Slides out +0.26m Z & turns
+            deskLamp: { current: 1, target: 1 }      // 1 = ON default
+        };
+
+        let explodeState = { current: 0, target: 0 };
+        let laptopTargetPos = new THREE.Vector3(0.02, 0.840, -0.070);
+
+        function syncPartButtonUI(partId) {
+            const isOn = partState[partId].target > 0.5;
+            const btn = document.getElementById('part-' + partId);
+            const dot = document.getElementById('dot-' + partId);
+            if (btn) btn.classList.toggle('active', isOn);
+            if (dot) {
+                if (partId === 'deskLamp') {
+                    dot.className = isOn
+                        ? 'w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#fbbf24] shrink-0'
+                        : 'w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0';
+                } else {
+                    dot.className = isOn
+                        ? 'w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0'
+                        : 'w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0';
+                }
+            }
+        }
+
+        function togglePart(partId) {
+            if (!partState[partId]) return;
+            const willOpen = partState[partId].target < 0.5;
+            partState[partId].target = willOpen ? 1 : 0;
+
+            if (partId === 'drawerLeft' || partId === 'drawerRight') playTactileSound('drawer');
+            else if (partId === 'cableHatch') playTactileSound('hatch');
+            else if (partId === 'studyChair') playTactileSound('chair');
+            else playTactileSound('lamp');
+
+            syncPartButtonUI(partId);
+            updateToggleAllLabel();
+        }
+
+        function toggleAllParts() {
+            const keys = ['drawerLeft', 'drawerRight', 'cableHatch', 'studyChair', 'deskLamp'];
+            const anyOff = keys.some(k => partState[k].target < 0.5);
+            const nextVal = anyOff ? 1 : 0;
+            playTactileSound(nextVal ? 'drawer' : 'hatch');
+
+            keys.forEach(k => {
+                partState[k].target = nextVal;
+                syncPartButtonUI(k);
+            });
+            updateToggleAllLabel();
+        }
+
+        function updateToggleAllLabel() {
+            const keys = ['drawerLeft', 'drawerRight', 'cableHatch', 'studyChair', 'deskLamp'];
+            const allOn = keys.every(k => partState[k].target > 0.5);
+            document.getElementById('btn-toggle-all').textContent = allOn ? 'Tutup Semua' : 'Buka Semua';
+        }
+
+        function setExplodeFactor(val) {
+            explodeState.target = parseFloat(val) / 100;
+            document.getElementById('explode-val').textContent = Math.round(val) + '%';
+        }
+
+        // 7 Camera Presets
+        const CAMERA_PRESETS = {
+            hero: { pos: new THREE.Vector3(1.62, 1.18, 1.92), target: new THREE.Vector3(0, 0.56, 0.04) },
+            front: { pos: new THREE.Vector3(0.0, 0.80, 2.32), target: new THREE.Vector3(0, 0.58, 0.04) },
+            side: { pos: new THREE.Vector3(2.15, 0.78, 0.06), target: new THREE.Vector3(0, 0.56, 0.04) },
+            top: { pos: new THREE.Vector3(0.0, 2.55, 0.42), target: new THREE.Vector3(0, 0.65, 0.02) },
+            back: { pos: new THREE.Vector3(0.88, 1.02, -1.62), target: new THREE.Vector3(0, 0.62, -0.18) },
+            legs: { pos: new THREE.Vector3(1.25, 0.36, 1.24), target: new THREE.Vector3(0.18, 0.32, 0.08) },
+            drawers: { pos: new THREE.Vector3(0.32, 1.06, 1.38), target: new THREE.Vector3(0.0, 0.66, 0.24) }
+        };
+
+        let camFlight = {
+            active: false,
+            startPos: new THREE.Vector3(),
+            endPos: new THREE.Vector3(),
+            startTarget: new THREE.Vector3(),
+            endTarget: new THREE.Vector3(),
+            progress: 0
+        };
+
+        function animateCameraTo(pos, target) {
+            camFlight.active = true;
+            camFlight.progress = 0;
+            camFlight.startPos.copy(camera.position);
+            camFlight.endPos.copy(pos);
+            camFlight.startTarget.copy(controls.target);
+            camFlight.endTarget.copy(target);
+        }
+
+        function flyToCamera(presetKey) {
+            playTactileSound('click');
+            const preset = CAMERA_PRESETS[presetKey];
+            if (!preset) return;
+
+            document.querySelectorAll('[id^="cam-"]').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('cam-' + presetKey);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (presetKey === 'back') {
+                if (kosGroup.visible) {
+                    kosGroup.visible = false;
+                    document.getElementById('btn-kosroom').classList.remove('active');
+                    showToast('Dinding kos disembunyikan agar tray kabel belakang terlihat');
+                }
+                if (partState.cableHatch.target < 0.5) togglePart('cableHatch');
+            }
+
+            if (presetKey === 'drawers') {
+                if (partState.studyChair.target < 0.5) togglePart('studyChair');
+                if (partState.drawerLeft.target < 0.5) togglePart('drawerLeft');
+                if (partState.drawerRight.target < 0.5) togglePart('drawerRight');
+            }
+
+            animateCameraTo(preset.pos, preset.target);
+        }
+
+        controls.addEventListener('start', () => {
+            camFlight.active = false;
+        });
+
+        // ============================================================================
+        // 8. DIRECT 3D RAYCASTING (HOVER TOOLTIP & CLICK-TO-INTERACT)
+        // ============================================================================
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const tooltipEl = document.getElementById('raycast-tooltip');
+        const tooltipTextEl = document.getElementById('raycast-tooltip-text');
+        let pointerDownPos = { x: 0, y: 0 };
+
+        function findVisiblePickable(hits) {
+            return hits.find(h => {
+                let obj = h.object;
+                while (obj) {
+                    if (!obj.visible) return false;
+                    obj = obj.parent;
+                }
+                return Boolean(h.object.userData.partId);
+            });
+        }
+
+        renderer.domElement.addEventListener('pointermove', (e) => {
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisiblePickable(hits);
+
+            if (validHit) {
+                const { partId, label } = validHit.object.userData;
+                renderer.domElement.style.cursor = 'pointer';
+                const isOn = partState[partId].target > 0.5;
+                let verb = isOn ? 'Tutup' : 'Buka';
+                if (partId === 'studyChair') verb = isOn ? 'Masukkan' : 'Tarik Keluar';
+                else if (partId === 'deskLamp') verb = isOn ? 'Matikan' : 'Nyalakan';
+                tooltipTextEl.textContent = `Klik: ${verb} ${label}`;
+                tooltipEl.style.left = `${e.clientX}px`;
+                tooltipEl.style.top = `${e.clientY}px`;
+                tooltipEl.classList.remove('opacity-0');
+                return;
+            }
+            renderer.domElement.style.cursor = 'grab';
+            tooltipEl.classList.add('opacity-0');
+        });
+
+        renderer.domElement.addEventListener('pointerdown', (e) => {
+            pointerDownPos.x = e.clientX;
+            pointerDownPos.y = e.clientY;
+        });
+
+        renderer.domElement.addEventListener('pointerup', (e) => {
+            const dist = Math.hypot(e.clientX - pointerDownPos.x, e.clientY - pointerDownPos.y);
+            if (dist > 6) return;
+
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisiblePickable(hits);
+
+            if (validHit) {
+                const { partId, label } = validHit.object.userData;
+                togglePart(partId);
+                const nowOn = partState[partId].target > 0.5;
+                if (partId === 'deskLamp') showToast(nowOn ? 'Lampu Meja & LED Belakang dinyalakan' : 'Lampu Meja & LED Belakang dimatikan');
+                else if (partId === 'studyChair') showToast(nowOn ? 'Kursi belajar ditarik keluar' : 'Kursi belajar dimasukkan');
+                else showToast(`${label} ${nowOn ? 'dibuka' : 'ditutup'}`);
+            }
+        });
+
+        // ============================================================================
+        // 9. MATERIAL, HANDLE STYLE, SETUP MODE, FELT ACCENT, LIGHTING & UI CONTROLS
+        // ============================================================================
+        function setWoodFinish(finishKey) {
+            playTactileSound('click');
+            const pal = WOOD_PALETTES[finishKey];
+            if (!pal) return;
+
+            woodMatHoriz.map = getWoodTexture(finishKey, false);
+            woodMatHoriz.roughness = pal.roughness;
+            woodMatHoriz.needsUpdate = true;
+
+            woodMatVert.map = getWoodTexture(finishKey, true);
+            woodMatVert.roughness = pal.roughness;
+            woodMatVert.needsUpdate = true;
+
+            document.getElementById('label-wood').textContent = pal.name;
+            document.getElementById('price-display').textContent = pal.price;
+
+            ['whiteoak', 'ashhoney', 'walnut', 'espresso'].forEach(k => {
+                document.getElementById('wood-' + k).classList.toggle('active', k === finishKey);
+            });
+
+            showToast(`Finishing kayu diubah ke ${pal.name}`);
+        }
+
+        function setHandleStyle(styleKey) {
+            playTactileSound('click');
+            const labels = {
+                cutout: 'Smile-Cutout',
+                brass: 'Brushed Brass',
+                black: 'Matte Black'
+            };
+            document.getElementById('label-handle').textContent = labels[styleKey] || '';
+
+            ['left', 'right'].forEach(side => {
+                ['cutout', 'brass', 'black'].forEach(st => {
+                    drawerHandleSubgroups[side][st].visible = (st === styleKey);
+                });
+            });
+
+            ['cutout', 'brass', 'black'].forEach(st => {
+                document.getElementById('handle-' + st).classList.toggle('active', st === styleKey);
+            });
+
+            showToast(`Gaya handle laci: ${labels[styleKey]}`);
+        }
+
+        function setSetupMode(modeKey) {
+            playTactileSound('click');
+            const labels = {
+                full: 'Mahasiswa / WFH',
+                riser: 'Riser Saja',
+                minimal: 'Meja Polos'
+            };
+            document.getElementById('label-setup').textContent = labels[modeKey] || '';
+
+            if (modeKey === 'full') {
+                riserG.visible = true;
+                caddyG.visible = true;
+                laptopTargetPos.set(0.02, 0.840, -0.070);
+            } else if (modeKey === 'riser') {
+                riserG.visible = true;
+                caddyG.visible = false;
+                laptopTargetPos.set(0.02, 0.840, -0.070);
+            } else {
+                riserG.visible = false;
+                caddyG.visible = false;
+                laptopTargetPos.set(0.02, 0.754, 0.060); // Lowers cleanly onto felt desk mat!
+            }
+
+            ['full', 'riser', 'minimal'].forEach(k => {
+                document.getElementById('setup-' + k).classList.toggle('active', k === modeKey);
+            });
+
+            showToast(`Mode setup meja: ${labels[modeKey]}`);
+        }
+
+        function setFeltColor(colorKey) {
+            playTactileSound('click');
+            const pal = FELT_PALETTES[colorKey];
+            if (!pal) return;
+
+            feltAccentMat.color.setHex(pal.hex);
+            document.getElementById('label-felt').textContent = pal.name;
+
+            ['oat', 'sage', 'slate', 'terracotta'].forEach(k => {
+                document.getElementById('felt-' + k).classList.toggle('active', k === colorKey);
+            });
+
+            showToast(`Warna felt & bantalan diubah ke ${pal.name}`);
+        }
+
+        let currentStudioEnv = 'gallery';
+        function setStudioEnv(envKey) {
+            playTactileSound('click');
+            currentStudioEnv = envKey;
+
+            ['gallery', 'studio', 'sunset', 'night'].forEach(k => {
+                document.getElementById('env-' + k).classList.toggle('active', k === envKey);
+            });
+
+            const isLight = (envKey === 'gallery');
+            document.body.classList.toggle('light-studio', isLight);
+
+            if (envKey === 'gallery') {
+                scene.background.setHex(0xF5EFE6);
+                scene.fog.color.setHex(0xF5EFE6);
+                floorMat.color.setHex(0xECE5D8);
+                kosWallMat.color.setHex(0xF4EFE6);
+                dimLineMat.color.setHex(0x8C6239);
+                polarGrid.material.opacity = 0.40;
+                ambientLight.intensity = 0.90;
+                keyLight.color.setHex(0xFFF7EA);
+                keyLight.intensity = 1.32;
+                fillLight.intensity = 0.55;
+            } else if (envKey === 'studio') {
+                scene.background.setHex(0x181715);
+                scene.fog.color.setHex(0x181715);
+                floorMat.color.setHex(0x1E1C1A);
+                kosWallMat.color.setHex(0x282522);
+                dimLineMat.color.setHex(0xD5BA94);
+                polarGrid.material.opacity = 0.24;
+                ambientLight.intensity = 0.66;
+                keyLight.color.setHex(0xFFF5E4);
+                keyLight.intensity = 1.35;
+                fillLight.intensity = 0.46;
+            } else if (envKey === 'sunset') {
+                scene.background.setHex(0x201612);
+                scene.fog.color.setHex(0x201612);
+                floorMat.color.setHex(0x271B16);
+                kosWallMat.color.setHex(0x36261F);
+                dimLineMat.color.setHex(0xE6C391);
+                polarGrid.material.opacity = 0.20;
+                ambientLight.intensity = 0.48;
+                keyLight.color.setHex(0xFFA963);
+                keyLight.intensity = 1.52;
+                fillLight.intensity = 0.30;
+            } else if (envKey === 'night') {
+                scene.background.setHex(0x0C0D11);
+                scene.fog.color.setHex(0x0C0D11);
+                floorMat.color.setHex(0x111318);
+                kosWallMat.color.setHex(0x181B22);
+                dimLineMat.color.setHex(0xD5BA94);
+                polarGrid.material.opacity = 0.16;
+                ambientLight.intensity = 0.20;
+                keyLight.color.setHex(0x9BB5FF);
+                keyLight.intensity = 0.34;
+                fillLight.intensity = 0.16;
+
+                if (partState.deskLamp.target < 0.5) togglePart('deskLamp');
+            }
+        }
+
+        let wireframeActive = false;
+        function toggleWireframeMode() {
+            playTactileSound('click');
+            wireframeActive = !wireframeActive;
+            document.getElementById('btn-wireframe').classList.toggle('active', wireframeActive);
+            allDeskMeshes.forEach(m => {
+                if (m.material) m.material.wireframe = wireframeActive;
+            });
+            showToast(wireframeActive ? 'Mode Teknis Wireframe aktif' : 'Mode Render PBR aktif');
+        }
+
+        function toggleDimensions() {
+            playTactileSound('click');
+            dimensionsVisible = !dimensionsVisible;
+            dimensionGroup.visible = dimensionsVisible;
+            document.getElementById('btn-dimensions').classList.toggle('active', dimensionsVisible);
+            domDimLabels.forEach(d => {
+                d.el.style.opacity = dimensionsVisible ? '1' : '0';
+            });
+        }
+
+        function toggleHotspots() {
+            playTactileSound('click');
+            hotspotsVisible = !hotspotsVisible;
+            document.getElementById('btn-hotspots').classList.toggle('active', hotspotsVisible);
+            if (!hotspotsVisible) closeHotspotCard();
+            domHotspots.forEach(h => {
+                h.el.style.opacity = hotspotsVisible ? '1' : '0';
+                h.el.style.pointerEvents = hotspotsVisible ? 'auto' : 'none';
+            });
+        }
+
+        function toggleDecor() {
+            playTactileSound('click');
+            const nextVis = !explodedGroups.setupPropsGroup.visible;
+            explodedGroups.setupPropsGroup.visible = nextVis;
+            explodedGroups.deskLampGroup.visible = nextVis;
+            explodedGroups.studyChairGroup.visible = nextVis;
+            document.getElementById('btn-decor').classList.toggle('active', nextVis);
+            showToast(nextVis ? 'Dekorasi setup & kursi ditampilkan' : 'Dekorasi setup disembunyikan');
+        }
+
+        function toggleKosRoom() {
+            playTactileSound('click');
+            const nextVis = !kosGroup.visible;
+            kosGroup.visible = nextVis;
+            document.getElementById('btn-kosroom').classList.toggle('active', nextVis);
+            showToast(nextVis ? 'Simulasi Kamar Kos 3×3m aktif' : 'Simulasi Kamar Kos disembunyikan');
+        }
+
+        function toggleAutoRotate() {
+            playTactileSound('click');
+            controls.autoRotate = !controls.autoRotate;
+            controls.autoRotateSpeed = 1.45;
+            document.getElementById('btn-autorotate').classList.toggle('active', controls.autoRotate);
+        }
+
+        // Responsive Mobile Drawer Controller
+        let activeMobileDrawer = null;
+        function toggleMobileDrawer(side, forceOpen = false) {
+            const leftEl = document.getElementById('left-hud');
+            const rightEl = document.getElementById('right-hud');
+            const mobLeftBtn = document.getElementById('mob-toggle-left');
+            const mobRightBtn = document.getElementById('mob-toggle-right');
+            const mobileClasses = ['!flex', 'absolute', 'top-0', 'bottom-0', 'z-30'];
+
+            leftEl.classList.remove(...mobileClasses, 'left-0');
+            rightEl.classList.remove(...mobileClasses, 'right-0');
+
+            if (side === 'close' || (activeMobileDrawer === side && !forceOpen)) {
+                activeMobileDrawer = null;
+                mobLeftBtn.classList.remove('hidden');
+                mobRightBtn.classList.remove('hidden');
+                return;
+            }
+
+            activeMobileDrawer = side;
+            if (side === 'left') {
+                leftEl.classList.add(...mobileClasses, 'left-0');
+                mobLeftBtn.classList.add('hidden');
+                mobRightBtn.classList.remove('hidden');
+            } else if (side === 'right') {
+                rightEl.classList.add(...mobileClasses, 'right-0');
+                mobRightBtn.classList.add('hidden');
+                mobLeftBtn.classList.remove('hidden');
+            }
+        }
+
+        let uiHidden = false;
+        function toggleCleanViewport() {
+            playTactileSound('click');
+            uiHidden = !uiHidden;
+            ['left-hud', 'right-hud', 'bottom-hud', 'mob-toggle-left', 'mob-toggle-right'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.toggle('hud-hidden-panel', uiHidden);
+            });
+            document.getElementById('clean-ui-icon').className = uiHidden
+                ? 'fa-solid fa-compress accent-icon'
+                : 'fa-solid fa-expand accent-icon';
+            showToast(uiHidden ? 'Mode layar bersih aktif' : 'Panel kontrol ditampilkan');
+        }
+
+        function toggleSpecsModal(show) {
+            playTactileSound('click');
+            const modal = document.getElementById('specs-modal');
+            modal.classList.toggle('hidden', !show);
+            modal.classList.toggle('flex', show);
+        }
+
+        function downloadSnapshot() {
+            playTactileSound('click');
+            try {
+                renderer.render(scene, camera);
+                const dataURL = renderer.domElement.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'lumina-minimalist-desk-livora.png';
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Foto 3D disimpan: lumina-minimalist-desk-livora.png');
+            } catch (err) {
+                showToast('Gagal menyimpan tangkapan layar');
+            }
+        }
+
+        // ============================================================================
+        // 10. MAIN RENDER LOOP, FLUID INTERPOLATION & 2D OVERLAY PROJECTIONS
+        // ============================================================================
+        const tempProjVec = new THREE.Vector3();
+        let frameCount = 0;
+        let lastFpsTime = performance.now();
+
+        function updateAnimations() {
+            const lerp = 0.095;
+            Object.keys(partState).forEach(k => {
+                partState[k].current += (partState[k].target - partState[k].current) * lerp;
+            });
+
+            explodeState.current += (explodeState.target - explodeState.current) * 0.085;
+            const ex = explodeState.current;
+
+            // 1. Cable Grommet Hatch flips smoothly open 0° to 78° (-1.36 rad around X)
+            cableHatchPivot.rotation.x = -partState.cableHatch.current * (78 * Math.PI / 180);
+
+            // 2. Left & Right Soft-Close Drawers slide forward (+0.25m Z) + Exploded Offset
+            explodedGroups.drawerLeft.position.set(-0.280 - ex * 0.14, 0.675, partState.drawerLeft.current * 0.25 + ex * 0.30);
+            explodedGroups.drawerRight.position.set(0.280 + ex * 0.14, 0.675, partState.drawerRight.current * 0.25 + ex * 0.30);
+
+            // 3. Scandinavian Study Chair slides smoothly out (+0.26m Z) & rotates gracefully
+            const chT = partState.studyChair.current;
+            explodedGroups.studyChairGroup.position.set(0.02 - chT * 0.05, 0, 0.38 + chT * 0.26 + ex * 0.34);
+            explodedGroups.studyChairGroup.rotation.y = chT * 0.24;
+
+            // 4. Laptop smoothly transitions between Monitor Riser & Felt Desk Mat
+            laptopGroup.position.lerp(laptopTargetPos, 0.12);
+
+            // 5. Exploded View Structural Anatomy Offsets
+            explodedGroups.legsFrame.position.y = -ex * 0.18;
+            explodedGroups.apronCarcass.position.y = 0;
+            explodedGroups.cableTrayGroup.position.set(0, 0.565 - ex * 0.12, -0.215 - ex * 0.24);
+            explodedGroups.tabletopGroup.position.y = ex * 0.18;
+            explodedGroups.cableHatchAnchor.position.set(0, ex * 0.28, -ex * 0.12);
+            explodedGroups.monitorRiserGroup.position.set(0.02, 0.750 + ex * 0.32, -0.075);
+            explodedGroups.organizerCaddyGroup.position.set(0.455 + ex * 0.10, 0.750 + ex * 0.32, -0.105);
+            explodedGroups.setupPropsGroup.position.y = ex * 0.44;
+            explodedGroups.deskLampGroup.position.set(-0.475 - ex * 0.10, 0.750 + ex * 0.38, -0.135);
+
+            // 6. Architect Desk Lamp + Rear Ambient 2700K LED Bias Strip Intensity
+            const lampOn = partState.deskLamp.current;
+            const deskBoost = currentStudioEnv === 'night' ? 1.95 : (currentStudioEnv === 'sunset' ? 1.35 : 0.72);
+            const biasBoost = currentStudioEnv === 'night' ? 1.65 : (currentStudioEnv === 'sunset' ? 1.15 : 0.30);
+
+            deskLampLight.intensity = lampOn * deskBoost;
+            lampBulbMat.emissiveIntensity = lampOn * (currentStudioEnv === 'night' ? 2.5 : 1.5);
+            rearBiasLight.intensity = lampOn * biasBoost;
+            biasLedStripMat.color.setHex(lampOn > 0.2 ? 0xFFD99B : 0x4A443C);
+            lapScreenMat.emissiveIntensity = currentStudioEnv === 'night' ? 0.75 : 0.32;
+
+            // 7. Smooth Ease-Out-Cubic Camera Flight
+            if (camFlight.active) {
+                camFlight.progress += 0.032;
+                if (camFlight.progress >= 1) {
+                    camFlight.progress = 1;
+                    camFlight.active = false;
+                }
+                const t = 1 - Math.pow(1 - camFlight.progress, 3);
+                camera.position.lerpVectors(camFlight.startPos, camFlight.endPos, t);
+                controls.target.lerpVectors(camFlight.startTarget, camFlight.endTarget, t);
+            }
+        }
+
+        function updateOverlayProjections() {
+            const halfW = window.innerWidth / 2;
+            const halfH = window.innerHeight / 2;
+
+            if (hotspotsVisible) {
+                domHotspots.forEach(item => {
+                    tempProjVec.copy(item.data.worldPos);
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'flex';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+
+            if (dimensionsVisible) {
+                domDimLabels.forEach(item => {
+                    tempProjVec.copy(item.pos);
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'block';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+        }
+
+        function animateLoop() {
+            requestAnimationFrame(animateLoop);
+            updateAnimations();
+            controls.update();
+            renderer.render(scene, camera);
+            updateOverlayProjections();
+
+            frameCount++;
+            const now = performance.now();
+            if (now - lastFpsTime >= 1000) {
+                const fps = Math.min(60, Math.round((frameCount * 1000) / (now - lastFpsTime)));
+                document.getElementById('fps-badge').textContent = `${fps} FPS`;
+                frameCount = 0;
+                lastFpsTime = now;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            if (window.innerWidth >= 768 && activeMobileDrawer) {
+                toggleMobileDrawer('close');
+            }
+        });
+
+        window.onload = function () {
+            animateLoop();
+        };
+    </script>
+</body>
+</html>
