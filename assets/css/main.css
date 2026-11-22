@@ -205,3 +205,34 @@
         ::-webkit-scrollbar-track { background: #F1E9DA; }
         ::-webkit-scrollbar-thumb { background: #C49A6C; border-radius: 9999px; }
         ::-webkit-scrollbar-thumb:hover { background: #8C6239; }
+
+
+/* =====================================================================
+   OPTIMASI PERFORMA (anti patah-patah)
+   - orb latar tidak lagi dianimasi (blur besar + animasi = repaint tiap frame)
+   - blur kaca dikecilkan, dan dimatikan untuk glass di dalam glass
+   - di layar kecil / HP: tanpa backdrop-filter sama sekali
+   ===================================================================== */
+.ambient-orb { filter: blur(48px); animation: none !important; will-change: auto; }
+.glass-nav  { backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); transition: background .3s, box-shadow .3s; }
+.glass-card { backdrop-filter: blur(10px) saturate(130%); -webkit-backdrop-filter: blur(10px) saturate(130%); }
+.glass-pill { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .25s, transform .25s, box-shadow .25s; }
+.glass-dark { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.glass-card .glass-pill, .glass-card .glass-dark, .modal-panel .glass-pill, .modal-panel .glass-dark {
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.fluid-reveal { will-change: auto; }
+.apple-tile-img { will-change: auto; }
+
+@media (max-width: 1024px) {
+    .glass-nav, .glass-card, .glass-pill, .glass-dark,
+    .modal-backdrop-anim { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+    .glass-nav  { background: rgba(253, 251, 247, 0.96); }
+    .glass-card { background: rgba(255, 252, 247, 0.94); }
+    .glass-pill { background: rgba(255, 252, 247, 0.92); }
+    .ambient-orb { filter: none; opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
