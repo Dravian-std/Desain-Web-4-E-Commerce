@@ -574,7 +574,6 @@
             document.getElementById('modal-launch-3d-btn').onclick = () => {
             window.open(`${SITE_ROOT}3d-studio/${p.file3D}`, '_blank');
                 };
-            };
 
             document.getElementById('modal-add-cart-btn').onclick = () => {
                 addToCart(p.id);
