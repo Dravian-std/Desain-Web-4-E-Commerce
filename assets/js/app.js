@@ -15,7 +15,7 @@
                 price: 2950000, oldPrice: 3400000,
                 weightKg: 26, featuredOnHome: true,
                 file3D: 'kiko_montessori_bed_3d.html',
-                image: 'https://images.unsplash.com/photo-1540518614846-7ede433c457?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'mori-kids-desk',
@@ -28,7 +28,7 @@
                 price: 1450000, oldPrice: 1750000,
                 weightKg: 16, featuredOnHome: false,
                 file3D: 'mori_kids_desk_3d.html',
-                image: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'pino-toy-organizer',
@@ -41,7 +41,7 @@
                 price: 1190000, oldPrice: 1400000,
                 weightKg: 14, featuredOnHome: false,
                 file3D: 'pino_toy_shelf_3d.html',
-                image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'sora-bunk-bed',
@@ -54,7 +54,7 @@
                 price: 5450000, oldPrice: 6200000,
                 weightKg: 58, featuredOnHome: false,
                 file3D: 'sora_bunk_bed_3d.html',
-                image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=72'
             },
 
             // 2. REMAJA & MAHASISWA / KOS (4 Produk)
@@ -69,7 +69,7 @@
                 price: 1850000, oldPrice: 2250000,
                 weightKg: 28, featuredOnHome: true,
                 file3D: 'lumina_desk_3d.html',
-                image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'vela-study-chair',
@@ -82,7 +82,7 @@
                 price: 1350000, oldPrice: 1600000,
                 weightKg: 12, featuredOnHome: false,
                 file3D: 'vela_study_chair_3d.html',
-                image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'nara-slim-wardrobe',
@@ -95,7 +95,7 @@
                 price: 3450000, oldPrice: 3950000,
                 weightKg: 48, featuredOnHome: false,
                 file3D: 'nara_slim_wardrobe_3d.html',
-                image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'kanso-bookshelf',
@@ -108,7 +108,7 @@
                 price: 1250000, oldPrice: 1490000,
                 weightKg: 22, featuredOnHome: false,
                 file3D: 'kanso_bookshelf_3d.html',
-                image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=700&q=72'
             },
 
             // 3. DEWASA & KELUARGA (4 Produk)
@@ -123,7 +123,7 @@
                 price: 18450000, oldPrice: 21200000,
                 weightKg: 46, featuredOnHome: false,
                 file3D: 'aoki_birch_credenza_3d_configurator.html',
-                image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'hana-japandi-sofa',
@@ -136,7 +136,7 @@
                 price: 6850000, oldPrice: 7900000,
                 weightKg: 54, featuredOnHome: true,
                 file3D: 'hana_japandi_sofa_3d.html',
-                image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'tori-dining-table',
@@ -149,7 +149,7 @@
                 price: 5250000, oldPrice: 6100000,
                 weightKg: 49, featuredOnHome: false,
                 file3D: 'tori_dining_table_3d.html',
-                image: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'kaia-queen-bed',
@@ -162,7 +162,7 @@
                 price: 6400000, oldPrice: 7350000,
                 weightKg: 62, featuredOnHome: false,
                 file3D: 'kaia_queen_bed_3d.html',
-                image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=700&q=72'
             },
 
             // 4. LANSIA / ORANG TUA (4 Produk)
@@ -177,7 +177,7 @@
                 price: 3250000, oldPrice: 3750000,
                 weightKg: 21, featuredOnHome: true,
                 file3D: 'senja_senior_armchair_3d.html',
-                image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'raku-senior-recliner',
@@ -190,7 +190,7 @@
                 price: 4150000, oldPrice: 4800000,
                 weightKg: 25, featuredOnHome: false,
                 file3D: 'raku_senior_recliner_3d.html',
-                image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'yumi-bedside-nightstand',
@@ -203,7 +203,7 @@
                 price: 1290000, oldPrice: 1550000,
                 weightKg: 13, featuredOnHome: false,
                 file3D: 'yumi_nightstand_3d.html',
-                image: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=700&q=72'
             },
             {
                 id: 'oka-mobility-bench',
@@ -216,7 +216,7 @@
                 price: 1650000, oldPrice: 1950000,
                 weightKg: 17, featuredOnHome: false,
                 file3D: 'oka_mobility_bench_3d.html',
-                image: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80'
+                image: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=700&q=72'
             }
         ];
 
@@ -227,7 +227,7 @@
                 roomTag: 'Ruang Tamu 4 × 5 m',
                 productName: 'Aoki Birch Credenza (180×45×75 cm)',
                 rating: '5.0',
-                photo: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=900&q=80'
+                photo: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=700&q=72'
             },
             {
                 buyer: 'Dimas Aditya',
@@ -235,7 +235,7 @@
                 roomTag: 'Kamar Kos 3 × 3 m',
                 productName: 'Lumina Minimalist Desk (120×60×75 cm)',
                 rating: '4.9',
-                photo: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80'
+                photo: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=700&q=72'
             },
             {
                 buyer: 'Ibu Ratna (64 Thn)',
@@ -243,7 +243,7 @@
                 roomTag: 'Ruang Baca Keluarga',
                 productName: 'Senja Easy-Rise Armchair (78×82×96 cm)',
                 rating: '5.0',
-                photo: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80'
+                photo: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=72'
             }
         ];
 
@@ -416,7 +416,7 @@
                 >
                     <div>
                         <div class="relative h-48 w-full rounded-2xl overflow-hidden bg-cream-200 mb-4">
-                            <img src="${p.image}" alt="${p.name}" loading="lazy" class="apple-tile-img w-full h-full object-cover">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="apple-tile-img w-full h-full object-cover">
                             <span class="absolute top-2.5 left-2.5 glass-pill px-2.5 py-0.5 rounded-full text-[10px] font-bold text-charcoal-900">
                                 ${p.ageGroup}
                             </span>
@@ -467,7 +467,7 @@
                 >
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
                         <div class="lg:col-span-3 h-36 rounded-2xl overflow-hidden bg-cream-200 relative">
-                            <img src="${p.image}" alt="${p.name}" loading="lazy" class="apple-tile-img w-full h-full object-cover">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="apple-tile-img w-full h-full object-cover">
                             <span class="absolute bottom-2 right-2 glass-dark text-cream-50 px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
                                 <i class="fa-solid fa-cube text-oak-300 mr-1"></i>3D Interaktif
                             </span>
@@ -596,7 +596,7 @@
             const html = BUYER_REVIEWS.map((r, idx) => `
                 <div style="transition-delay: ${idx * 90}ms" class="fluid-reveal apple-tile relative h-80 rounded-[28px] overflow-hidden glass-card p-2 group">
                     <div class="relative w-full h-full rounded-[22px] overflow-hidden">
-                        <img src="${r.photo}" alt="${r.productName}" loading="lazy" class="apple-tile-img w-full h-full object-cover">
+                        <img src="${r.photo}" alt="${r.productName}" loading="lazy" decoding="async" class="apple-tile-img w-full h-full object-cover">
                         <span class="absolute top-3 left-3 glass-pill px-3 py-1 rounded-full font-mono text-[10px] font-bold text-charcoal-900">
                             ${r.roomTag}
                         </span>
@@ -983,7 +983,7 @@
                 return `
                     <div class="p-3 rounded-2xl glass-pill">
                         <div class="flex items-center justify-between gap-3">
-                            <img src="${p.image}" alt="${p.name}" class="w-12 h-12 rounded-xl object-cover shrink-0">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="w-12 h-12 rounded-xl object-cover shrink-0">
                             <div class="flex-1 min-w-0">
                                 <h4 class="text-xs font-extrabold text-charcoal-900 truncate">${p.name}</h4>
                                 <span class="block font-mono text-[10px] text-oak-700">${p.dimP}×${p.dimL}×${p.dimT} cm</span>
@@ -1149,7 +1149,7 @@
                 suggestionsList.innerHTML = matches.slice(0, 5).map(p => `
                     <div onclick="openProductModal('${p.id}'); document.getElementById('search-suggestions').classList.add('hidden');" class="flex items-center justify-between p-2 rounded-xl hover:bg-oak-200/50 cursor-pointer">
                         <div class="flex items-center gap-2.5">
-                            <img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-lg object-cover">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="w-8 h-8 rounded-lg object-cover">
                             <div>
                                 <span class="text-xs font-bold text-charcoal-900 block">${p.name}</span>
                                 <span class="text-[10px] font-mono text-oak-700">${p.dimP}×${p.dimL}×${p.dimT} cm</span>
