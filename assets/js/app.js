@@ -572,7 +572,8 @@
             document.getElementById('modal-3d-filename').textContent = p.file3D;
 
             document.getElementById('modal-launch-3d-btn').onclick = () => {
-                showToast(`Membuka modul 3D terpisah: ${p.file3D}`);
+            window.open(`${SITE_ROOT}3d-studio/${p.file3D}`, '_blank');
+                };
             };
 
             document.getElementById('modal-add-cart-btn').onclick = () => {
