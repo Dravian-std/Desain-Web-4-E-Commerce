@@ -1,0 +1,111 @@
+<div 
+        id="member-modal" 
+        onclick="if(event.target === this) closeMemberModal()"
+        class="modal-backdrop-anim fixed inset-0 bg-charcoal-900/45 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto"
+    >
+        <div class="modal-card-anim modal-panel glass-card bg-cream-50/95 rounded-[28px] max-w-md w-full overflow-hidden shadow-2xl border border-white p-6 space-y-5">
+            
+            <div class="flex items-center justify-between border-b border-oak-200/60 pb-3.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-charcoal-900 text-oak-200 flex items-center justify-center text-xs">
+                        <i class="fa-regular fa-id-badge"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-extrabold text-charcoal-900 leading-tight">Keanggotaan Livora</h3>
+                        <p id="member-modal-subtitle" class="text-[11px] text-oak-700">Belum terdaftar • Masukkan nama & email</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeMemberModal()" class="w-8 h-8 rounded-full glass-pill hover:bg-white flex items-center justify-center text-charcoal-900 text-xs font-bold">✕</button>
+            </div>
+
+            <form id="member-register-form" class="space-y-4">
+                <div>
+                    <label for="member-name-input" class="block text-[11px] font-bold uppercase tracking-wider text-oak-700 mb-1.5">
+                        Nama Lengkap
+                    </label>
+                    <input 
+                        id="member-name-input"
+                        type="text" 
+                        required
+                        placeholder="Contoh: Nadia Putri"
+                        class="w-full px-4 py-2.5 rounded-2xl bg-white/90 border border-oak-300 text-xs font-semibold text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-oak-400 transition-all"
+                    >
+                </div>
+
+                <div>
+                    <label for="member-email-input" class="block text-[11px] font-bold uppercase tracking-wider text-oak-700 mb-1.5">
+                        Alamat Email
+                    </label>
+                    <input 
+                        id="member-email-input"
+                        type="email" 
+                        required
+                        placeholder="nama@email.com"
+                        class="w-full px-4 py-2.5 rounded-2xl bg-white/90 border border-oak-300 text-xs font-semibold text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-oak-400 transition-all"
+                    >
+                </div>
+
+                <div class="p-3 rounded-2xl bg-oak-100/70 border border-oak-200/80 text-[11px] text-oak-800 flex items-center gap-2.5">
+                    <i class="fa-solid fa-gift text-oak-600 text-sm shrink-0"></i>
+                    <span>Daftar gratis & dapatkan akses kustomisasi 3D serta voucher ongkir kargo <strong>Rp 50.000</strong>.</span>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="btn-fluid w-full py-3 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs font-extrabold shadow-lg"
+                >
+                    Daftar Jadi Member
+                </button>
+            </form>
+
+            <div id="member-active-card" class="hidden space-y-4">
+                <div class="glass-dark text-cream-50 rounded-2xl p-5 space-y-4 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-oak-200">Livora Wood Club</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-bold">
+                            ● Member Aktif
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <div id="member-card-initials" class="w-12 h-12 rounded-2xl bg-oak-300 text-charcoal-900 font-extrabold text-base flex items-center justify-center shadow-inner">
+                            NP
+                        </div>
+                        <div class="min-w-0">
+                            <h4 id="member-card-name" class="text-base font-extrabold text-white truncate">Nadia Putri</h4>
+                            <p id="member-card-email" class="text-xs text-oak-200 truncate">nadia@email.com</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[11px]">
+                        <div>
+                            <span class="text-oak-300 block text-[9px] uppercase">ID Member</span>
+                            <span id="member-card-id" class="font-mono font-bold text-cream-100">LVR-2026-8841</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-oak-300 block text-[9px] uppercase">Voucher Kargo</span>
+                            <span class="font-mono font-bold text-emerald-300">LIVORAKARGO50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between gap-2 pt-1">
+                    <button 
+                        type="button" 
+                        onclick="editMemberProfile()"
+                        class="flex-1 py-2.5 rounded-full glass-pill hover:bg-white text-charcoal-900 text-xs font-bold"
+                    >
+                        Ubah Data
+                    </button>
+                    <button 
+                        type="button" 
+                        onclick="logoutMemberProfile()"
+                        class="flex-1 py-2.5 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-700 text-xs font-bold transition-colors"
+                    >
+                        Keluar (Kosongkan)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>

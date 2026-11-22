@@ -48,6 +48,49 @@
                     </div>
                 </div>
 
+                <div class="glass-pill rounded-2xl p-3">
+                    <span class="block text-[10px] uppercase font-semibold text-oak-600 mb-1">Diagram Dimensi (P × L × T)</span>
+                    <div id="modal-dim-diagram" class="flex justify-center"></div>
+                    <p id="modal-dim-hint" class="text-[11px] text-oak-700 text-center mt-1"></p>
+                </div>
+
+                <div class="glass-pill rounded-2xl p-3 space-y-2">
+                    <span class="block text-[10px] uppercase font-semibold text-oak-600">Layanan Tambahan</span>
+                    <label class="flex items-center justify-between gap-3 text-xs cursor-pointer">
+                        <span class="flex items-center gap-2"><input id="modal-addon-assembly" type="checkbox" onchange="updateModalPrice()"> Jasa perakitan di lokasi</span>
+                        <span id="modal-addon-assembly-fee" class="font-mono text-[11px] text-oak-700"></span>
+                    </label>
+                    <label class="flex items-center justify-between gap-3 text-xs cursor-pointer">
+                        <span class="flex items-center gap-2"><input id="modal-addon-woodpack" type="checkbox" onchange="updateModalPrice()"> Packing kayu (proteksi ekstra)</span>
+                        <span id="modal-addon-woodpack-fee" class="font-mono text-[11px] text-oak-700"></span>
+                    </label>
+                </div>
+
+                <div class="glass-pill rounded-2xl p-3">
+                    <span class="block text-[10px] uppercase font-semibold text-oak-600">Estimasi Ongkir (1 unit)</span>
+                    <input id="modal-postal-input" type="text" oninput="updateModalShipping()" placeholder="Kode pos / kota tujuan" aria-label="Kode pos atau kota tujuan" class="mt-1.5 w-full px-3 py-2 rounded-full bg-white/80 border border-oak-200 text-xs">
+                    <div class="flex justify-between items-baseline gap-2 mt-2">
+                        <span id="modal-ship-dest" class="text-[11px] text-oak-700 min-w-0 break-words"></span>
+                        <span id="modal-ship-price" class="font-mono text-sm font-extrabold text-charcoal-900 shrink-0"></span>
+                    </div>
+                    <span id="modal-ship-eta" class="block text-[11px] text-oak-700"></span>
+                </div>
+
+                <details class="glass-pill rounded-2xl p-3 text-xs">
+                    <summary class="font-bold text-charcoal-900 cursor-pointer">Garansi Pengiriman &amp; Klaim Retur</summary>
+                    <ul class="mt-2 space-y-1 text-[11px] text-oak-800 list-disc pl-4">
+                        <li>Barang rusak/cacat saat tiba: ajukan klaim maksimal 3×24 jam setelah diterima.</li>
+                        <li>Sertakan foto/video unboxing sebagai bukti.</li>
+                        <li>Pilih Packing Kayu untuk perlindungan ekstra selama pengiriman kargo.</li>
+                    </ul>
+                </details>
+
+                <div class="glass-pill rounded-2xl p-3">
+                    <span class="block text-[10px] uppercase font-semibold text-oak-600 mb-1">Ulasan Pembeli</span>
+                    <div id="modal-reviews"></div>
+                    <div id="modal-review-form"></div>
+                </div>
+
                 <div class="glass-dark text-cream-50 rounded-2xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div class="flex items-center gap-3">
                         <div class="w-9 h-9 rounded-xl bg-oak-400/20 border border-oak-300/40 flex items-center justify-center text-oak-200 shrink-0">
@@ -76,6 +119,7 @@
                 <div>
                     <span class="block text-[10px] uppercase text-oak-700 font-semibold">Harga</span>
                     <span id="modal-prod-price" class="font-mono text-lg sm:text-xl font-extrabold text-charcoal-900">Rp 18.450.000</span>
+                    <span id="modal-price-note" class="block text-[10px] text-oak-700"></span>
                 </div>
                 <button id="modal-add-cart-btn" type="button" class="btn-fluid px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-charcoal-900 hover:bg-oak-700 text-cream-50 text-xs font-bold">
                     + Tambah ke Keranjang
