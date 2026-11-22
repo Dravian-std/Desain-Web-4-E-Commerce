@@ -1,6 +1,6 @@
 <header class="sticky top-0 z-40 w-full glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-18 gap-3 lg:gap-6">
+            <div class="flex items-center justify-between h-16 gap-3 lg:gap-4">
                 
                 <button type="button" onclick="switchPage('home')" class="flex items-center gap-2.5 group shrink-0 focus:outline-none text-left">
                     <div class="w-9 h-9 rounded-xl bg-charcoal-900 text-cream-50 flex items-center justify-center shadow-xs group-hover:bg-oak-700 transition-colors">
@@ -15,42 +15,44 @@
                     <span class="text-xl font-extrabold tracking-tight text-charcoal-900">Livora</span>
                 </button>
 
-                <div class="flex-1 max-w-2xl flex items-center justify-center gap-2 lg:gap-6">
-                    <nav class="hidden md:flex items-center gap-1 p-1 rounded-full glass-pill">
-                        <button type="button" onclick="switchPage('home')" id="nav-home" class="nav-tab-btn px-4 py-1.5 rounded-full bg-charcoal-900 text-cream-50 text-xs font-semibold transition-all">
+                <div class="flex-1 flex items-center justify-center gap-2 lg:gap-3 min-w-0">
+                    <nav class="hidden md:flex items-center gap-0.5 p-1 rounded-full glass-pill shrink-0">
+                        <button type="button" onclick="switchPage('home')" id="nav-home" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all whitespace-nowrap">
                             Beranda
                         </button>
-                        <button type="button" onclick="switchPage('katalog')" id="nav-katalog" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all flex items-center gap-1.5">
+                        <button type="button" onclick="switchPage('katalog')" id="nav-katalog" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap">
                             <span>Katalog</span>
-                            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-oak-200/70 text-oak-900">16</span>
+                            <span class="nav-count-badge text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-oak-200/70 text-oak-900">16</span>
                         </button>
-                        <button type="button" onclick="switchPage('inspirasi')" id="nav-inspirasi" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all">
-                            Inspirasi Ruang
+                        <button type="button" onclick="switchPage('inspirasi')" id="nav-inspirasi" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all whitespace-nowrap">
+                            <span>Inspirasi<span class="hidden xl:inline"> Ruang</span></span>
                         </button>
-                        <button type="button" onclick="switchPage('riwayat')" id="nav-riwayat" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all flex items-center gap-1.5">Riwayat</button>
-                        <button type="button" onclick="switchPage('ongkir')" id="nav-ongkir" class="nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all">
+                        <button type="button" onclick="switchPage('riwayat')" id="nav-riwayat" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all whitespace-nowrap">
+                            Riwayat
+                        </button>
+                        <button type="button" onclick="switchPage('ongkir')" id="nav-ongkir" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all whitespace-nowrap">
                             Cek Ongkir
                         </button>
                     </nav>
 
-                    <div class="relative flex-1 max-w-xs">
+                    <div class="relative flex-1 min-w-[140px] max-w-[260px]">
                         <div class="relative flex items-center">
                             <i class="fa-solid fa-magnifying-glass text-oak-600 text-xs absolute left-3.5 pointer-events-none"></i>
                             <input 
                                 id="global-search-input"
                                 type="text" 
-                                placeholder="Cari credenza, meja, sofa..." 
+                                placeholder="Cari produk..." 
                                 class="w-full pl-9 pr-7 py-1.5 glass-pill focus:bg-white/90 text-xs text-charcoal-900 rounded-full focus:outline-none focus:ring-2 focus:ring-oak-400 transition-all placeholder:text-oak-700/65"
                             >
                             <button id="clear-search-btn" type="button" class="hidden absolute right-2.5 text-xs text-oak-600 hover:text-charcoal-900">✕</button>
                         </div>
 
-                        <div id="search-suggestions" class="hidden absolute left-0 right-0 mt-2 glass-card bg-cream-50/95 rounded-2xl p-2.5 z-50">
+                        <div id="search-suggestions" class="hidden absolute right-0 mt-2 w-[320px] sm:w-[360px] max-w-[calc(100vw-2rem)] glass-card bg-cream-50/95 rounded-2xl p-2.5 z-50 shadow-xl border border-oak-200/70">
                             <div class="flex items-center justify-between px-2 pb-1.5 mb-1 border-b border-oak-200/60">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-oak-600">Pencarian Cepat</span>
                                 <button type="button" onclick="switchPage('katalog')" class="text-[11px] font-bold text-oak-700 hover:underline">Semua (16) ›</button>
                             </div>
-                            <div id="search-suggestions-list" class="space-y-1 max-h-60 overflow-y-auto"></div>
+                            <div id="search-suggestions-list" class="space-y-1 max-h-64 overflow-y-auto"></div>
                         </div>
                     </div>
                 </div>
@@ -63,8 +65,8 @@
                         title="Cek Ongkir Kargo"
                     >
                         <i class="fa-solid fa-location-dot text-oak-600 text-[11px]"></i>
-                        <span id="header-postal-display" class="font-mono text-[11px] font-bold hidden sm:inline">50275 • Semarang</span>
-                        <span id="header-postal-mobile" class="font-mono text-[11px] font-bold sm:hidden">50275</span>
+                        <span id="header-postal-display" class="font-mono text-[11px] font-bold hidden xl:inline">50275 • Semarang</span>
+                        <span id="header-postal-mobile" class="font-mono text-[11px] font-bold xl:hidden">50275</span>
                     </button>
 
                     <button 
@@ -75,7 +77,7 @@
                     >
                         <i class="fa-solid fa-bag-shopping text-xs"></i>
                         <span id="cart-count-badge" class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-charcoal-900 text-cream-50 font-mono text-[10px] font-bold flex items-center justify-center">
-                            1
+                            0
                         </span>
                     </button>
 
@@ -97,7 +99,7 @@
             </div>
 
             <div class="flex md:hidden items-center justify-center gap-1.5 py-2 border-t border-white/50 text-xs overflow-x-auto">
-                <button type="button" onclick="switchPage('home')" id="mob-nav-home" class="px-3.5 py-1 rounded-full bg-charcoal-900 text-cream-50 font-semibold whitespace-nowrap">Beranda</button>
+                <button type="button" onclick="switchPage('home')" id="mob-nav-home" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Beranda</button>
                 <button type="button" onclick="switchPage('katalog')" id="mob-nav-katalog" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Katalog (16)</button>
                 <button type="button" onclick="switchPage('inspirasi')" id="mob-nav-inspirasi" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Inspirasi</button>
                 <button type="button" onclick="switchPage('riwayat')" id="mob-nav-riwayat" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap">Riwayat</button>
