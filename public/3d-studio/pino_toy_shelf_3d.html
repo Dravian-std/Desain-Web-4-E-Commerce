@@ -815,7 +815,7 @@
         // ============================================================================
         function navigateBackToKatalog() {
             playTactileSound('tap');
-            const targetUrl = window.location.protocol === 'file:'
+            const targetUrl = (window.location.protocol === 'file:' || window.location.pathname.includes('/public/'))
                 ? '../../pages/katalog.html'
                 : '../pages/katalog.html';
             window.location.href = targetUrl;

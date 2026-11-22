@@ -834,7 +834,7 @@
         (function initSmartBackLink() {
             const link = document.getElementById('btn-back-katalog');
             if (link) {
-                link.href = window.location.protocol === 'file:'
+                link.href = (window.location.protocol === 'file:' || window.location.pathname.includes('/public/'))
                     ? '../../pages/katalog.html'
                     : '../pages/katalog.html';
             }

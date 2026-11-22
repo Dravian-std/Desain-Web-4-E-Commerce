@@ -863,7 +863,7 @@
         (function initSmartBackLink() {
             const backLink = document.getElementById('btn-back-katalog');
             if (backLink) {
-                backLink.href = window.location.protocol === 'file:'
+                backLink.href = (window.location.protocol === 'file:' || window.location.pathname.includes('/public/'))
                     ? '../../pages/katalog.html'
                     : '../pages/katalog.html';
             }

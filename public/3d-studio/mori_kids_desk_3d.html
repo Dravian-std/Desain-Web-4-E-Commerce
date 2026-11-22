@@ -803,7 +803,7 @@
         // ============================================================================
         function navigateBackToKatalog() {
             playSound('click');
-            const isLocalFile = window.location.protocol === 'file:';
+            const isLocalFile = (window.location.protocol === 'file:' || window.location.pathname.includes('/public/'));
             const targetUrl = isLocalFile
                 ? '../../pages/katalog.html'
                 : '../pages/katalog.html';

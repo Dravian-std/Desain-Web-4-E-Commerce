@@ -692,7 +692,7 @@
         function navigateBackToKatalog() {
             playWoodSound('click');
             const isLocalPublicFile =
-                window.location.protocol === 'file:' &&
+                (window.location.protocol === 'file:' || window.location.pathname.includes('/public/')) &&
                 window.location.pathname.toLowerCase().includes('/public/3d-studio/');
 
             const targetUrl = isLocalPublicFile
