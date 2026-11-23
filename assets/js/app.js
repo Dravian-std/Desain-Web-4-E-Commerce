@@ -114,7 +114,7 @@
                 price: 18450000, oldPrice: 21200000,
                 weightKg: 46, featuredOnHome: false,
                 file3D: 'aoki_birch_credenza_3d_configurator.html',
-                image: `${SITE_ROOT}public/images/aoki-credenza.webp`,
+                image: `${SITE_ROOT}public/images/aoki-birch-credenza.webp`,
             },
             {
                 id: 'hana-japandi-sofa',
