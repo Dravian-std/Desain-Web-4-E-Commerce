@@ -244,3 +244,13 @@
 .glass-nav  { background: rgba(253, 251, 247, 0.96); }
 .glass-card { background: rgba(255, 252, 247, 0.92); }
 .glass-pill { background: rgba(255, 252, 247, 0.92); }
+
+/* ===== v4: ringankan layer saat scroll di PC ===== */
+/* orb sudah berupa radial-gradient yang lembut, jadi blur-nya tidak perlu */
+.ambient-orb { filter: none !important; }
+.ambient-bg  { contain: strict; transform: translateZ(0); }
+/* bayangan lebih tipis = biaya gambar per kartu lebih kecil */
+.glass-card { box-shadow: 0 8px 20px -12px rgba(72, 50, 28, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.92); }
+.glass-card:hover { box-shadow: 0 14px 28px -14px rgba(72, 50, 28, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.92); }
+.glass-pill { box-shadow: 0 4px 12px rgba(56, 37, 21, 0.06); }
+.glass-nav  { box-shadow: 0 2px 12px rgba(82, 55, 31, 0.06); }
