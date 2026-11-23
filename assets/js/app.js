@@ -1,6 +1,13 @@
 // Lokasi root situs, dihitung dari lokasi app.js (assets/js/app.js -> naik 2 folder).
-        // Jadi link antar-halaman tetap benar di localhost maupun GitHub Pages (subfolder repo).
         const SITE_ROOT = new URL('../../', (document.currentScript && document.currentScript.src) || window.location.href).href;
+
+        // Helper jalur gambar lokal (otomatis jalan di GitHub Pages maupun Vite lokal)
+        function imgAsset(filename) {
+            const folder = window.location.hostname.includes('github.io')
+                ? `${SITE_ROOT}public/images/`
+                : `${SITE_ROOT}images/`;
+            return `${folder}${filename}`;
+        }
 
         const PRODUCTS = [
             // 1. ANAK-ANAK (4 Produk)
@@ -14,7 +21,7 @@
                 price: 2950000, oldPrice: 3400000,
                 weightKg: 26, featuredOnHome: true,
                 file3D: 'kiko_montessori_low_bed_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('kiko-montessori-low-bed.webp')
             },
             {
                 id: 'mori-kids-desk',
@@ -26,7 +33,7 @@
                 price: 1450000, oldPrice: 1750000,
                 weightKg: 16, featuredOnHome: false,
                 file3D: 'mori_kids_study_desk_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('mori-kids.webp')
             },
             {
                 id: 'pino-toy-organizer',
@@ -38,7 +45,7 @@
                 price: 1190000, oldPrice: 1400000,
                 weightKg: 14, featuredOnHome: false,
                 file3D: 'pino_montessori_toy_shelf_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('pino-montessori-toy-shelf.webp')
             },
             {
                 id: 'sora-bunk-bed',
@@ -50,7 +57,7 @@
                 price: 5450000, oldPrice: 6200000,
                 weightKg: 58, featuredOnHome: false,
                 file3D: 'sora_twin_bunk_bed_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('sora-twin-bunk-bed.webp')
             },
 
             // 2. REMAJA & MAHASISWA / KOS (4 Produk)
@@ -64,7 +71,7 @@
                 price: 1850000, oldPrice: 2250000,
                 weightKg: 28, featuredOnHome: true,
                 file3D: 'lumina_minimalist_desk_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('lumina-minimalist-desk.webp')
             },
             {
                 id: 'vela-study-chair',
@@ -76,7 +83,7 @@
                 price: 1350000, oldPrice: 1600000,
                 weightKg: 12, featuredOnHome: false,
                 file3D: 'vela_timber_study_chair_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('vela-timber-study-chair.webp')
             },
             {
                 id: 'nara-slim-wardrobe',
@@ -88,7 +95,7 @@
                 price: 3450000, oldPrice: 3950000,
                 weightKg: 48, featuredOnHome: false,
                 file3D: 'nara_slim_kos_wardrobe_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('nara-slim-kos-wardrobe.webp')
             },
             {
                 id: 'kanso-bookshelf',
@@ -100,7 +107,7 @@
                 price: 1250000, oldPrice: 1490000,
                 weightKg: 22, featuredOnHome: false,
                 file3D: 'kanso_modular_bookshelf_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('kanso-modular-bookshelf.webp')
             },
 
             // 3. DEWASA & KELUARGA (4 Produk)
@@ -114,7 +121,7 @@
                 price: 18450000, oldPrice: 21200000,
                 weightKg: 46, featuredOnHome: false,
                 file3D: 'aoki_birch_credenza_3d_configurator.html',
-                image: `${SITE_ROOT}public/images/aoki-birch-credenza.webp`,
+                image: imgAsset('aoki-birch-credenza.webp')
             },
             {
                 id: 'hana-japandi-sofa',
@@ -126,7 +133,7 @@
                 price: 6850000, oldPrice: 7900000,
                 weightKg: 54, featuredOnHome: true,
                 file3D: 'hana_japandi_3_seater_sofa_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('hana-japandi-sofa.webp')
             },
             {
                 id: 'tori-dining-table',
@@ -138,7 +145,7 @@
                 price: 5250000, oldPrice: 6100000,
                 weightKg: 49, featuredOnHome: false,
                 file3D: 'tori_solid_oak_dining_table_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('tori-solid-oak-dining-table-livora.webp')
             },
             {
                 id: 'kaia-queen-bed',
@@ -150,7 +157,7 @@
                 price: 6400000, oldPrice: 7350000,
                 weightKg: 62, featuredOnHome: false,
                 file3D: 'kaia_queen_floating_bed_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('kaia-queen-floating-bed.webp')
             },
 
             // 4. LANSIA / ORANG TUA (4 Produk)
@@ -164,7 +171,7 @@
                 price: 3250000, oldPrice: 3750000,
                 weightKg: 21, featuredOnHome: true,
                 file3D: 'senja_easy_rise_armchair_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('senja-easy-rise-armchair.webp')
             },
             {
                 id: 'raku-senior-recliner',
@@ -176,7 +183,7 @@
                 price: 4150000, oldPrice: 4800000,
                 weightKg: 25, featuredOnHome: false,
                 file3D: 'raku_senior_wood_recliner_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('raku-senior-wood-recliner.webp')
             },
             {
                 id: 'yumi-bedside-nightstand',
@@ -188,7 +195,7 @@
                 price: 1290000, oldPrice: 1550000,
                 weightKg: 13, featuredOnHome: false,
                 file3D: 'yumi_sensor_led_nightstand_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('yumi-sensor-led-nightstand.webp')
             },
             {
                 id: 'oka-mobility-bench',
@@ -200,7 +207,7 @@
                 price: 1650000, oldPrice: 1950000,
                 weightKg: 17, featuredOnHome: false,
                 file3D: 'oka_grab_handle_bench_3d_studio.html',
-                image: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80'
+                image: imgAsset('oka-grab-handle-bench.webp')
             }
         ];
 
@@ -211,7 +218,7 @@
                 roomTag: 'Ruang Tamu 4 × 5 m',
                 productName: 'Aoki Birch Credenza (180×45×75 cm)',
                 rating: '5.0',
-                photo: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=900&q=80'
+                photo: imgAsset('aoki-birch-credenza.webp')
             },
             {
                 buyer: 'Dimas Aditya',
@@ -219,7 +226,7 @@
                 roomTag: 'Kamar Kos 3 × 3 m',
                 productName: 'Lumina Minimalist Desk (120×60×75 cm)',
                 rating: '4.9',
-                photo: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80'
+                photo: imgAsset('lumina-minimalist-desk.webp')
             },
             {
                 buyer: 'Ibu Ratna (64 Thn)',
@@ -227,7 +234,7 @@
                 roomTag: 'Ruang Baca Keluarga',
                 productName: 'Senja Easy-Rise Armchair (78×82×96 cm)',
                 rating: '5.0',
-                photo: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80'
+                photo: imgAsset('senja-easy-rise-armchair.webp')
             }
         ];
 
