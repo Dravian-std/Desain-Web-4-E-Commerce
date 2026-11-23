@@ -3,54 +3,54 @@ html {
 }
 
 body {
-  background-color: #F3EFE8;
+  background-color: #F9F5EC;
   color: #171412;
   overflow-x: clip;
 }
 
-/* Balanced Japandi Ambient Orbs (Warm Sand + Botanical Sage + Cool Stone) */
+/* Liquid Ambient Warm Wood Orbs for Authentic Glassmorphism Refraction */
 .ambient-bg {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -1;
   overflow: hidden;
-  background: linear-gradient(180deg, #F5F2EC 0%, #EFEAE1 100%);
+  background: #F9F5EC;
 }
 
 .ambient-orb {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.6;
+  filter: blur(70px);
+  opacity: 0.55;
   will-change: transform;
   animation: liquidDrift 22s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
 }
 
 .ambient-orb-1 {
-  width: 44vw;
-  height: 44vw;
+  width: 46vw;
+  height: 46vw;
   top: -12%;
   left: -8%;
-  background: radial-gradient(circle, rgba(61, 107, 78, 0.16), transparent 70%);
+  background: radial-gradient(circle, rgba(216, 184, 146, 0.55), transparent 70%);
 }
 
 .ambient-orb-2 {
-  width: 40vw;
-  height: 40vw;
+  width: 42vw;
+  height: 42vw;
   top: 18%;
   right: -10%;
-  background: radial-gradient(circle, rgba(196, 154, 108, 0.24), transparent 70%);
+  background: radial-gradient(circle, rgba(196, 154, 108, 0.42), transparent 70%);
   animation-delay: -7s;
   animation-duration: 26s;
 }
 
 .ambient-orb-3 {
-  width: 48vw;
-  height: 48vw;
+  width: 50vw;
+  height: 50vw;
   bottom: -18%;
   left: 22%;
-  background: radial-gradient(circle, rgba(120, 134, 148, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(230, 207, 175, 0.52), transparent 70%);
   animation-delay: -13s;
   animation-duration: 30s;
 }
@@ -67,35 +67,33 @@ body {
   --water-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Crisp High-Contrast Frosted Glassmorphism System */
+/* Warm Frosted Glassmorphism System (Original Crisp Readability) */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border-bottom: 1px solid rgba(56, 37, 21, 0.08);
-  box-shadow: 0 6px 28px rgba(23, 20, 18, 0.06);
+  background: rgba(253, 251, 247, 0.74);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 0 4px 30px rgba(82, 55, 31, 0.05);
   transition: all 0.45s var(--fluid-ease);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid rgba(56, 37, 21, 0.09);
-  box-shadow: 0 16px 36px -12px rgba(23, 20, 18, 0.1),
-              0 2px 6px -1px rgba(23, 20, 18, 0.04),
-              inset 0 1px 0 0 rgba(255, 255, 255, 0.96);
-  transition: transform 0.5s var(--fluid-ease),
-              box-shadow 0.5s var(--fluid-ease),
-              background 0.35s var(--fluid-ease),
-              border-color 0.35s var(--fluid-ease);
+  background: rgba(255, 252, 247, 0.72);
+  backdrop-filter: blur(22px) saturate(155%);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 40px -12px rgba(72, 50, 28, 0.08),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.94);
+  transition: transform 0.55s var(--fluid-ease),
+              box-shadow 0.55s var(--fluid-ease),
+              background 0.4s var(--fluid-ease),
+              border-color 0.4s var(--fluid-ease);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.96);
-  border-color: rgba(140, 98, 57, 0.22);
-  transform: translateY(-4px);
-  box-shadow: 0 26px 50px -14px rgba(23, 20, 18, 0.16),
+  background: rgba(255, 253, 250, 0.86);
+  transform: translateY(-5px);
+  box-shadow: 0 28px 56px -14px rgba(72, 50, 28, 0.14),
               inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
@@ -113,34 +111,41 @@ body {
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 252, 247, 0.76);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 37, 21, 0.1);
-  box-shadow: 0 6px 18px rgba(23, 20, 18, 0.06);
-  transition: all 0.35s var(--fluid-ease);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px rgba(56, 37, 21, 0.06);
+  transition: all 0.4s var(--fluid-ease);
 }
 
 .glass-pill:hover {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(140, 98, 57, 0.24);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(23, 20, 18, 0.1);
+  transform: translateY(-1.5px);
+  box-shadow: 0 12px 28px rgba(56, 37, 21, 0.1);
 }
 
 .glass-dark {
-  background: rgba(23, 20, 18, 0.88);
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
-  border: 1px solid rgba(255, 248, 238, 0.14);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+  background: rgba(23, 20, 18, 0.78);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255, 248, 238, 0.16);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
   transition: all 0.45s var(--fluid-ease);
 }
 
-/* Punchier Product Image Rendering (Anti-Flat) */
+/* Navbar Mobile Wrap (Anti-Bentrok dengan Bootstrap .order-*) */
+@media (max-width: 767.98px) {
+  .nav-center-wrap {
+    order: 3;
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
+
+/* Punchier Product Image Rendering (Pertahankan Kontras Katalog) */
 .apple-tile-img {
   filter: contrast(1.06) saturate(1.06);
-  transition: transform 0.8s var(--water-spring), filter 0.4s var(--fluid-ease);
+  transition: transform 0.85s var(--water-spring), filter 0.4s var(--fluid-ease);
   will-change: transform;
 }
 
@@ -153,14 +158,14 @@ body {
 .btn-fluid {
   position: relative;
   overflow: hidden;
-  transition: transform 0.35s var(--fluid-ease),
-              background-color 0.3s var(--fluid-ease),
-              box-shadow 0.35s var(--fluid-ease);
+  transition: transform 0.4s var(--fluid-ease),
+              background-color 0.35s var(--fluid-ease),
+              box-shadow 0.4s var(--fluid-ease);
 }
 
 .btn-fluid:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px -6px rgba(23, 20, 18, 0.26);
+  box-shadow: 0 14px 28px -6px rgba(23, 20, 18, 0.24);
 }
 
 .btn-fluid:active {
@@ -170,7 +175,7 @@ body {
 /* Staggered Fluid Reveal Animation */
 .fluid-reveal {
   opacity: 0;
-  transform: translate3d(0, 20px, 0) scale(0.99);
+  transform: translate3d(0, 22px, 0) scale(0.99);
   transition: opacity 0.55s var(--water-spring),
               transform 0.55s var(--water-spring);
   will-change: opacity, transform;
@@ -201,7 +206,7 @@ body {
 .modal-backdrop-anim {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s var(--fluid-ease);
+  transition: opacity 0.38s var(--fluid-ease);
 }
 
 .modal-backdrop-anim.is-open {
@@ -210,10 +215,10 @@ body {
 }
 
 .modal-card-anim {
-  transform: translate3d(0, 22px, 0) scale(0.96);
+  transform: translate3d(0, 24px, 0) scale(0.95);
   opacity: 0;
-  transition: transform 0.42s var(--water-spring),
-              opacity 0.32s var(--fluid-ease);
+  transition: transform 0.48s var(--water-spring),
+              opacity 0.38s var(--fluid-ease);
 }
 
 .modal-backdrop-anim.is-open .modal-card-anim {
@@ -223,7 +228,7 @@ body {
 
 .drawer-panel-anim {
   transform: translate3d(100%, 0, 0);
-  transition: transform 0.46s var(--water-spring);
+  transition: transform 0.52s var(--water-spring);
 }
 
 .modal-backdrop-anim.is-open .drawer-panel-anim {
@@ -241,6 +246,6 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 7px; height: 7px; }
-::-webkit-scrollbar-track { background: #EBE5DA; }
-::-webkit-scrollbar-thumb { background: #A97B4B; border-radius: 9999px; }
-::-webkit-scrollbar-thumb:hover { background: #6E4B2A; }
+::-webkit-scrollbar-track { background: #F1E9DA; }
+::-webkit-scrollbar-thumb { background: #C49A6C; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #8C6239; }
