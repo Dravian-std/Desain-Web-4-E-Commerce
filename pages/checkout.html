@@ -50,7 +50,7 @@
                 </button>
 
                 <!-- Tengah: Menu Navigasi Minimalis + Search Kapsul Glass -->
-                <div class="flex-1 max-w-2xl flex items-center justify-center gap-2 lg:gap-6">
+                <div class="flex-1 max-w-3xl flex items-center justify-center gap-2 lg:gap-5 min-w-0">
                     <!-- Menu Tabs -->
                     <nav class="hidden md:flex items-center gap-1 p-1 rounded-full glass-pill">
                         <button type="button" onclick="switchPage('home')" id="nav-home" class="nav-tab-btn px-4 py-1.5 rounded-full bg-charcoal-900 text-cream-50 text-xs font-semibold transition-all">
@@ -70,20 +70,20 @@
                     </nav>
 
                     <!-- Search Bar Kapsul Frosted Glass -->
-                    <div class="relative flex-1 max-w-xs">
+                    <div class="md:relative flex-1 min-w-[150px] max-w-xs">
                         <div class="relative flex items-center">
                             <i class="fa-solid fa-magnifying-glass text-oak-600 text-xs absolute left-3.5 pointer-events-none"></i>
                             <input 
                                 id="global-search-input"
                                 type="text" 
-                                placeholder="Cari credenza, meja, sofa..." 
+                                placeholder="Cari meja, kasur, sofa..." 
                                 class="w-full pl-9 pr-7 py-1.5 glass-pill focus:bg-white/90 text-xs text-charcoal-900 rounded-full focus:outline-none focus:ring-2 focus:ring-oak-400 transition-all placeholder:text-oak-700/65"
                             >
                             <button id="clear-search-btn" type="button" class="hidden absolute right-2.5 text-xs text-oak-600 hover:text-charcoal-900">✕</button>
                         </div>
 
                         <!-- Dropdown Live Search Glassmorphism -->
-                        <div id="search-suggestions" class="hidden absolute left-0 right-0 mt-2 glass-card bg-cream-50/95 rounded-2xl p-2.5 z-50">
+                        <div id="search-suggestions" class="hidden absolute left-3 right-3 top-full mt-1 md:left-auto md:right-0 md:w-[360px] md:mt-2 glass-card bg-cream-50/95 rounded-2xl p-2.5 z-50">
                             <div class="flex items-center justify-between px-2 pb-1.5 mb-1 border-b border-oak-200/60">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-oak-600">Pencarian Cepat</span>
                                 <button type="button" onclick="switchPage('katalog')" class="text-[11px] font-bold text-oak-700 hover:underline">Semua (16) ›</button>

@@ -309,6 +309,44 @@
         /* ----------------------------------------------------------------------
          * 1. SPA PAGE SWITCHER WITH FLUID WAVE TRANSITION
          * ---------------------------------------------------------------------- */
+        // Teks pencarian per produk: nama, kategori, gaya, warna, + padanan kata Indonesia
+        const SEARCH_SYNONYMS = {
+            bed: 'kasur ranjang tempat tidur dipan', bunk: 'tingkat susun', desk: 'meja belajar meja kerja',
+            chair: 'kursi', armchair: 'kursi sofa single', recliner: 'kursi santai sandaran', wardrobe: 'lemari pakaian baju',
+            bookshelf: 'rak buku lemari buku', shelf: 'rak lemari', credenza: 'buffet sideboard lemari rak tv', sofa: 'sofa sofa',
+            table: 'meja', dining: 'makan', nightstand: 'nakas meja samping tempat tidur', bench: 'bangku', toy: 'mainan',
+            organizer: 'penyimpanan', kids: 'anak', study: 'belajar'
+        };
+        function searchHaystack(p) {
+            const extra = p.name.toLowerCase().split(/\s+/).map(w => SEARCH_SYNONYMS[w] || '').join(' ');
+            return [p.name, p.ageGroup, p.category, p.style, p.color, extra].join(' ').toLowerCase();
+        }
+
+        // Tandai menu yang aktif sesuai halaman yang sedang dibuka
+        // (HTML tiap halaman selalu menandai "Beranda", jadi harus diatur ulang saat dimuat)
+        function detectCurrentPage() {
+            const m = window.location.pathname.toLowerCase().match(/\/pages\/([a-z0-9-]+)\.html$/);
+            return m ? m[1] : 'home';
+        }
+        function highlightActiveNav() {
+            const page = detectCurrentPage();
+            currentPage = page;
+            ['home', 'katalog', 'ongkir', 'inspirasi', 'checkout', 'riwayat'].forEach(p => {
+                const navBtn = document.getElementById('nav-' + p);
+                if (navBtn) {
+                    navBtn.className = p === page
+                        ? 'nav-tab-btn px-4 py-1.5 rounded-full bg-charcoal-900 text-cream-50 text-xs font-semibold transition-all flex items-center gap-1.5'
+                        : 'nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all flex items-center gap-1.5';
+                }
+                const mobBtn = document.getElementById('mob-nav-' + p);
+                if (mobBtn) {
+                    mobBtn.className = p === page
+                        ? 'px-3.5 py-1 rounded-full bg-charcoal-900 text-cream-50 font-semibold whitespace-nowrap transition-all'
+                        : 'px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap transition-all';
+                }
+            });
+        }
+
         function switchPage(pageKey) {
             const pageFiles = { home: SITE_ROOT + 'index.html', katalog: SITE_ROOT + 'pages/katalog.html', ongkir: SITE_ROOT + 'pages/ongkir.html', inspirasi: SITE_ROOT + 'pages/inspirasi.html', checkout: SITE_ROOT + 'pages/checkout.html', riwayat: SITE_ROOT + 'pages/riwayat.html' };
             const target = pageFiles[pageKey];
@@ -503,11 +541,7 @@
                 const matchPrice = !maxPriceFilter || p.price <= maxPriceFilter;
                 const matchLength = !maxLengthFilter || p.dimP <= maxLengthFilter;
                 const matchSearch = !q ||
-                    p.name.toLowerCase().includes(q) ||
-                    p.ageGroup.toLowerCase().includes(q) ||
-                    p.category.toLowerCase().includes(q) ||
-                    p.style.toLowerCase().includes(q) ||
-                    p.color.toLowerCase().includes(q) ||
+                    searchHaystack(p).includes(q) ||
                     `${p.dimP}x${p.dimL}x${p.dimT}`.includes(q.replace(/\s+/g, ''));
                 return matchAge && matchCat && matchStyle && matchColor && matchPrice && matchLength && matchSearch;
             });
@@ -1119,6 +1153,7 @@
         }, true);
 
         window.onload = function () {
+            highlightActiveNav();
             renderHomeMinimalShowcase();
             initCatalogFilters();
             renderFullCatalogPage();
@@ -1142,22 +1177,21 @@
                 const q = query.toLowerCase().trim();
                 const matches = PRODUCTS.filter(p =>
                     !q ||
-                    p.name.toLowerCase().includes(q) ||
-                    p.ageGroup.toLowerCase().includes(q) ||
-                    `${p.dimP}x${p.dimL}x${p.dimT}`.includes(q)
+                    searchHaystack(p).includes(q) ||
+                    `${p.dimP}x${p.dimL}x${p.dimT}`.includes(q.replace(/\s+/g, ''))
                 );
-                suggestionsList.innerHTML = matches.slice(0, 5).map(p => `
-                    <div onclick="openProductModal('${p.id}'); document.getElementById('search-suggestions').classList.add('hidden');" class="flex items-center justify-between p-2 rounded-xl hover:bg-oak-200/50 cursor-pointer">
-                        <div class="flex items-center gap-2.5">
-                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="w-8 h-8 rounded-lg object-cover">
-                            <div>
-                                <span class="text-xs font-bold text-charcoal-900 block">${p.name}</span>
-                                <span class="text-[10px] font-mono text-oak-700">${p.dimP}×${p.dimL}×${p.dimT} cm</span>
+                suggestionsList.innerHTML = matches.length ? matches.slice(0, 5).map(p => `
+                    <div onclick="openProductModal('${p.id}'); document.getElementById('search-suggestions').classList.add('hidden');" class="flex items-center justify-between gap-3 p-2 rounded-xl hover:bg-oak-200/50 cursor-pointer">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="w-9 h-9 rounded-lg object-cover shrink-0">
+                            <div class="min-w-0">
+                                <span class="text-xs font-bold text-charcoal-900 block truncate">${p.name}</span>
+                                <span class="text-[10px] font-mono text-oak-700 block truncate">${p.dimP}×${p.dimL}×${p.dimT} cm</span>
                             </div>
                         </div>
-                        <span class="font-mono text-xs font-bold text-charcoal-900">${formatIDR(p.price)}</span>
+                        <span class="font-mono text-xs font-bold text-charcoal-900 shrink-0">${formatIDR(p.price)}</span>
                     </div>
-                `).join('');
+                `).join('') : '<div class="p-3 text-xs text-oak-700">Tidak ada produk yang cocok.</div>';
             }
 
             if (searchInput && suggestionsBox && suggestionsList && clearSearchBtn) {
