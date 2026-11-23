@@ -236,3 +236,11 @@
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ===== v3: tanpa backdrop-filter di semua ukuran layar (sumber lag di PC) ===== */
+.glass-nav, .glass-card, .glass-pill, .glass-dark {
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+}
+.glass-nav  { background: rgba(253, 251, 247, 0.96); }
+.glass-card { background: rgba(255, 252, 247, 0.92); }
+.glass-pill { background: rgba(255, 252, 247, 0.92); }
