@@ -67,7 +67,7 @@ body {
   --water-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Warm Frosted Glassmorphism System (Original Crisp Readability) */
+/* Warm Frosted Glassmorphism System */
 .glass-nav {
   background: rgba(253, 251, 247, 0.74);
   backdrop-filter: blur(24px) saturate(170%);
@@ -133,16 +133,22 @@ body {
   transition: all 0.45s var(--fluid-ease);
 }
 
-/* Navbar Mobile Wrap (Anti-Bentrok dengan Bootstrap .order-*) */
+/* Navbar Mobile Wrap (Menang atas Tailwind CDN .flex-1 di layar HP) */
 @media (max-width: 767.98px) {
   .nav-center-wrap {
-    order: 3;
-    flex-basis: 100%;
-    width: 100%;
+    order: 3 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .nav-search-box {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
 
-/* Punchier Product Image Rendering (Pertahankan Kontras Katalog) */
+/* Punchier Product Image Rendering */
 .apple-tile-img {
   filter: contrast(1.06) saturate(1.06);
   transition: transform 0.85s var(--water-spring), filter 0.4s var(--fluid-ease);

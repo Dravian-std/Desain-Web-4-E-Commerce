@@ -16,7 +16,7 @@
                     <span class="text-lg sm:text-xl font-extrabold tracking-tight text-charcoal-900">Livora</span>
                 </button>
 
-                <!-- Tengah (Desktop) / Baris 2 (HP): Menu Navigasi + Kolom Pencarian -->
+                <!-- Tengah (Desktop) / Baris 2 Penuh (HP): Menu Navigasi + Kolom Pencarian -->
                 <div class="nav-center-wrap flex-1 flex items-center justify-center gap-2 lg:gap-3 min-w-0">
                     <nav class="hidden md:flex items-center gap-0.5 p-1 rounded-full glass-pill shrink-0">
                         <button type="button" onclick="switchPage('home')" id="nav-home" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all whitespace-nowrap">
@@ -37,7 +37,7 @@
                         </button>
                     </nav>
 
-                    <div class="relative flex-1 w-full md:min-w-[140px] md:max-w-[260px]">
+                    <div class="nav-search-box relative flex-1 w-full md:min-w-[140px] md:max-w-[260px]">
                         <div class="relative flex items-center">
                             <i class="fa-solid fa-magnifying-glass text-oak-600 text-xs absolute left-3.5 pointer-events-none"></i>
                             <input 
@@ -49,7 +49,7 @@
                             <button id="clear-search-btn" type="button" class="hidden absolute right-2.5 text-xs text-oak-600 hover:text-charcoal-900">✕</button>
                         </div>
 
-                        <div id="search-suggestions" class="hidden absolute left-0 right-0 md:left-auto md:right-0 mt-2 md:w-[360px] glass-card bg-cream-50/95 rounded-2xl p-2.5 z-50 shadow-xl border border-oak-200/70">
+                        <div id="search-suggestions" class="hidden absolute left-0 right-0 md:left-auto md:right-0 mt-2 w-full md:w-[360px] glass-card modal-panel bg-cream-50/95 rounded-2xl p-2.5 z-50 shadow-xl border border-oak-200/70">
                             <div class="flex items-center justify-between px-2 pb-1.5 mb-1 border-b border-oak-200/60">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-oak-600">Pencarian Cepat</span>
                                 <button type="button" onclick="switchPage('katalog')" class="text-[11px] font-bold text-oak-700 hover:underline">Semua (16) ›</button>
@@ -101,7 +101,7 @@
 
             </div>
 
-            <!-- Baris 3 Mobile: Menu Tab Anti-Terpotong -->
+            <!-- Baris 3 Mobile: Menu Tab -->
             <div class="flex md:hidden items-center justify-start sm:justify-center gap-1.5 py-2 border-t border-white/50 text-xs overflow-x-auto no-scrollbar">
                 <button type="button" onclick="switchPage('home')" id="mob-nav-home" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap shrink-0">Beranda</button>
                 <button type="button" onclick="switchPage('katalog')" id="mob-nav-katalog" class="px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap shrink-0">Katalog (16)</button>
