@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Livora 3D Studio — Vela Timber Study Chair (62 × 60 × 98 cm)</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6.5.1 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Three.js r128 & OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        oak: {
+                            50: '#FAF7F2',
+                            100: '#F4E8D6',
+                            200: '#E6CFAF',
+                            300: '#D8B892',
+                            400: '#C49A6C',
+                            500: '#A97B4B',
+                            600: '#8C6239',
+                            700: '#6E4B2A',
+                            800: '#52371F',
+                        },
+                        charcoal: {
+                            800: '#26211D',
+                            900: '#171412',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* =====================================================================
+           DUAL-THEME FROSTED GLASSMORPHISM SYSTEM
+           Dark Studio Tokens (Studio Hangat, Senja, Malam LED)
+           + body.light-studio (DEFAULT: Gallery Terang matching Livora #F5EFE6)
+           ===================================================================== */
+        :root {
+            --fluid-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --water-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+            --bg-body: #171615;
+            --panel-bg: rgba(20, 19, 18, 0.78);
+            --panel-border: rgba(213, 186, 148, 0.22);
+            --panel-shadow: 0 22px 50px -12px rgba(0, 0, 0, 0.48), inset 0 1px 0 0 rgba(255, 248, 235, 0.10);
+            --pill-bg: rgba(34, 31, 28, 0.78);
+            --pill-hover-bg: rgba(54, 48, 42, 0.94);
+            --pill-border: rgba(255, 248, 235, 0.14);
+            --pill-active-bg: linear-gradient(135deg, rgba(213, 186, 148, 0.34), rgba(180, 131, 78, 0.24));
+            --pill-active-border: #D5BA94;
+            --pill-active-text: #FAF7F2;
+            --text-primary: #F3ECE0;
+            --text-secondary: #D4C5B2;
+            --text-muted: #A29484;
+            --accent-text: #D5BA94;
+            --accent-icon: #D5BA94;
+            --divider: rgba(255, 248, 235, 0.12);
+            --badge-bg: rgba(213, 186, 148, 0.16);
+            --badge-border: rgba(213, 186, 148, 0.32);
+            --badge-text: #E6CFAF;
+            --fps-bg: rgba(16, 185, 129, 0.15);
+            --fps-border: rgba(52, 211, 153, 0.35);
+            --fps-text: #6EE7B7;
+            --slider-track: rgba(255, 255, 255, 0.16);
+            --slider-thumb: #D5BA94;
+            --slider-thumb-ring: #171615;
+            --swatch-idle-border: rgba(255, 255, 255, 0.14);
+            --swatch-active-bg: rgba(213, 186, 148, 0.18);
+            --swatch-active-border: #D5BA94;
+            --cta-bg: linear-gradient(135deg, #E6CFAF, #C49A6C);
+            --cta-text: #171412;
+            --scroll-thumb: rgba(213, 186, 148, 0.38);
+            --pin-bg: rgba(20, 18, 16, 0.92);
+            --pin-text: #E6CFAF;
+            --pin-border: #D5BA94;
+            --dim-bg: rgba(16, 15, 14, 0.92);
+            --dim-text: #F3ECE0;
+            --dim-border: rgba(213, 186, 148, 0.58);
+        }
+
+        body.light-studio {
+            --bg-body: #F5EFE6;
+            --panel-bg: rgba(255, 252, 247, 0.78);
+            --panel-border: rgba(255, 255, 255, 0.85);
+            --panel-shadow: 0 18px 42px -12px rgba(72, 50, 28, 0.14), inset 0 1px 0 0 rgba(255, 255, 255, 0.96);
+            --pill-bg: rgba(246, 239, 228, 0.84);
+            --pill-hover-bg: rgba(255, 253, 250, 0.98);
+            --pill-border: rgba(140, 98, 57, 0.22);
+            --pill-active-bg: linear-gradient(135deg, #171412, #382B20);
+            --pill-active-border: #171412;
+            --pill-active-text: #FDFBF7;
+            --text-primary: #171412;
+            --text-secondary: #4D3D2F;
+            --text-muted: #7B6957;
+            --accent-text: #8C6239;
+            --accent-icon: #8C6239;
+            --divider: rgba(140, 98, 57, 0.18);
+            --badge-bg: rgba(140, 98, 57, 0.12);
+            --badge-border: rgba(140, 98, 57, 0.28);
+            --badge-text: #6E4B2A;
+            --fps-bg: rgba(32, 99, 63, 0.12);
+            --fps-border: rgba(32, 99, 63, 0.30);
+            --fps-text: #1E613D;
+            --slider-track: rgba(140, 98, 57, 0.22);
+            --slider-thumb: #8C6239;
+            --slider-thumb-ring: #FDFBF7;
+            --swatch-idle-border: rgba(140, 98, 57, 0.24);
+            --swatch-active-bg: rgba(196, 154, 108, 0.22);
+            --swatch-active-border: #171412;
+            --cta-bg: linear-gradient(135deg, #171412, #3C2D20);
+            --cta-text: #FDFBF7;
+            --scroll-thumb: rgba(140, 98, 57, 0.36);
+            --pin-bg: rgba(23, 20, 18, 0.92);
+            --pin-text: #FAF7F2;
+            --pin-border: #D8B892;
+            --dim-bg: rgba(23, 20, 18, 0.90);
+            --dim-text: #FAF7F2;
+            --dim-border: rgba(216, 184, 146, 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.4s var(--fluid-ease), color 0.35s var(--fluid-ease);
+        }
+
+        #canvas-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            outline: none;
+        }
+
+        #overlay-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px) saturate(165%);
+            -webkit-backdrop-filter: blur(20px) saturate(165%);
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--panel-shadow);
+            color: var(--text-primary);
+            transition: background 0.38s var(--fluid-ease),
+                        border-color 0.32s var(--fluid-ease),
+                        box-shadow 0.38s var(--fluid-ease),
+                        opacity 0.35s var(--fluid-ease),
+                        transform 0.4s var(--water-spring);
+        }
+
+        .glass-pill {
+            background: var(--pill-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--pill-border);
+            color: var(--text-secondary);
+            transition: all 0.25s var(--water-spring);
+        }
+        .glass-pill:hover {
+            background: var(--pill-hover-bg);
+            border-color: var(--accent-icon);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .glass-pill:active {
+            transform: translateY(0) scale(0.97);
+        }
+        .glass-pill.active {
+            background: var(--pill-active-bg);
+            border-color: var(--pill-active-border);
+            color: var(--pill-active-text);
+            box-shadow: 0 8px 20px -6px rgba(23, 20, 18, 0.26);
+        }
+        .glass-pill.active .accent-icon {
+            color: #E6CFAF !important;
+        }
+
+        .t-primary { color: var(--text-primary); }
+        .t-secondary { color: var(--text-secondary); }
+        .t-muted { color: var(--text-muted); }
+        .t-accent { color: var(--accent-text); }
+        .accent-icon { color: var(--accent-icon); }
+        .t-divider { border-color: var(--divider); }
+
+        .theme-badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+        }
+
+        .fps-pill {
+            background: var(--fps-bg);
+            border: 1px solid var(--fps-border);
+            color: var(--fps-text);
+        }
+
+        .swatch-btn {
+            border: 1.5px solid var(--swatch-idle-border);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.22s var(--water-spring);
+        }
+        .swatch-btn:hover {
+            border-color: var(--accent-icon);
+            transform: translateY(-1px);
+        }
+        .swatch-btn.active {
+            border-color: var(--swatch-active-border);
+            background: var(--swatch-active-bg);
+            color: var(--text-primary);
+        }
+
+        .cta-btn {
+            background: var(--cta-bg);
+            color: var(--cta-text);
+            transition: transform 0.25s var(--water-spring), filter 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cta-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+        .cta-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Custom Thin Scrollbars */
+        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: var(--scroll-thumb);
+            border-radius: 9999px;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Custom Range Slider */
+        input[type=range].birch-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            background: var(--slider-track);
+            height: 5px;
+            border-radius: 999px;
+            outline: none;
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background: var(--slider-thumb);
+            border: 2px solid var(--slider-thumb-ring);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.18s var(--water-spring);
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* 3D Projected Hotspot Pins */
+        .hotspot-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: auto;
+            cursor: pointer;
+            background: var(--pin-bg);
+            color: var(--pin-text);
+            border: 1.5px solid var(--pin-border);
+            transition: transform 0.25s var(--water-spring), opacity 0.25s ease;
+        }
+        .hotspot-pin:hover {
+            transform: translate(-50%, -50%) scale(1.22);
+            z-index: 30;
+        }
+        .hotspot-pulse {
+            position: absolute;
+            inset: -6px;
+            border-radius: 9999px;
+            border: 1.5px solid #C49A6C;
+            animation: pingSlow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes pingSlow {
+            0% { transform: scale(0.95); opacity: 0.85; }
+            75%, 100% { transform: scale(1.85); opacity: 0; }
+        }
+
+        /* 3D Projected Dimension Labels */
+        .dim-label {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            background: var(--dim-bg);
+            border: 1px solid var(--dim-border);
+            color: var(--dim-text);
+            padding: 3.5px 9px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+            transition: opacity 0.22s ease;
+        }
+
+        /* Floating Raycast Hover Tooltip */
+        #raycast-tooltip {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            transform: translate(16px, -50%);
+            transition: opacity 0.15s ease;
+        }
+
+        /* Clean UI Hide State */
+        .hud-hidden-panel {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: scale(0.98);
+        }
+        .hud-hidden-panel * {
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body class="light-studio antialiased selection:bg-oak-300 selection:text-charcoal-900">
+
+    <!-- WebGL 3D Viewport -->
+    <div id="canvas-container"></div>
+
+    <!-- 2D Projected 3D Hotspots & Dimension Labels Layer -->
+    <div id="overlay-layer"></div>
+
+    <!-- Floating Raycast Hover Tooltip -->
+    <div id="raycast-tooltip" class="opacity-0 glass-panel px-3 py-1.5 rounded-xl text-xs font-semibold t-primary flex items-center gap-2 shadow-xl">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span id="raycast-tooltip-text">Klik untuk inspeksi</span>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ANTI-OVERLAP 3-ROW FULL-VIEWPORT FLEXBOX HUD SHELL (#hud-shell)           -->
+    <!-- ========================================================================= -->
+    <div id="hud-shell" class="fixed inset-0 pointer-events-none flex flex-col justify-between p-3 sm:p-4 gap-2.5 z-20 overflow-hidden">
+
+        <!-- ==================== ROW 1: TOP BAR (SHRINK-0) ==================== -->
+        <header class="shrink-0 flex flex-wrap items-center justify-between gap-2">
+
+            <!-- Left: Smart Back Button + Brand Identity Card -->
+            <div class="pointer-events-auto flex items-center gap-2 min-w-0">
+                <button
+                    id="btn-back-katalog"
+                    type="button"
+                    onclick="navigateBackToKatalog()"
+                    class="glass-panel rounded-2xl px-3.5 py-2.5 flex items-center gap-2 text-xs font-bold t-primary hover:scale-[1.02] active:scale-95 shrink-0 cursor-pointer group"
+                    title="Kembali ke Katalog Livora"
+                >
+                    <i class="fa-solid fa-arrow-left accent-icon group-hover:-translate-x-0.5 transition-transform"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Kembali ke Katalog</span>
+                </button>
+
+                <div class="glass-panel rounded-2xl px-3.5 py-2 flex items-center gap-3 min-w-0">
+                    <!-- Minimalist Bentwood Chair Emblem -->
+                    <div class="w-9 h-9 rounded-xl bg-charcoal-900 text-oak-200 flex items-center justify-center shadow-inner shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 28 28" fill="none">
+                            <path d="M8 6.5C8 5.5 9.5 5 14 5C18.5 5 20 5.5 20 6.5V14.5C20 15.8 18.8 16.8 17.5 16.8H10.5C9.2 16.8 8 15.8 8 14.5V6.5Z" stroke="currentColor" stroke-width="1.9"/>
+                            <path d="M6.5 11.5V16.5C6.5 17.6 7.4 18.5 8.5 18.5H19.5C20.6 18.5 21.5 17.6 21.5 16.5V11.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                            <path d="M14 18.5V23.5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8.5 24.5L14 22.8L19.5 24.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="theme-badge px-1.5 py-0.2 text-[9px] font-mono font-bold uppercase rounded">KATEGORI REMAJA &amp; KOS &bull; JAPANDI TASK SEATING</span>
+                        </div>
+                        <h1 class="font-serif text-base sm:text-xl font-bold tracking-wide t-primary leading-tight truncate">
+                            Vela Timber Study Chair
+                        </h1>
+                        <p class="text-[10px] font-mono t-muted hidden sm:block leading-tight">
+                            Bentwood Oak + Linen Cushion &bull; 62 × 60 × 98 cm
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: 4 Studio Lighting Presets + Quick Tools -->
+            <div class="pointer-events-auto flex items-center gap-1.5 flex-wrap">
+                <div class="glass-panel rounded-2xl p-1 flex items-center gap-1 overflow-x-auto max-w-full no-scrollbar">
+                    <button type="button" onclick="setStudioEnv('gallery')" id="env-gallery" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Gallery Terang Minimalis Livora">
+                        <i class="fa-solid fa-sun text-amber-400"></i>
+                        <span class="hidden lg:inline">Gallery Terang</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('studio')" id="env-studio" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Studio Hangat Kontras">
+                        <i class="fa-solid fa-circle-half-stroke accent-icon"></i>
+                        <span class="hidden lg:inline">Studio Hangat</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('sunset')" id="env-sunset" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Nuansa Senja Hangat">
+                        <i class="fa-solid fa-cloud-sun text-orange-400"></i>
+                        <span class="hidden lg:inline">Senja</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('night')" id="env-night" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Belajar Malam & Lampu Lantai LED">
+                        <i class="fa-solid fa-moon text-indigo-400"></i>
+                        <span class="hidden lg:inline">Malam LED</span>
+                    </button>
+                    <button type="button" onclick="toggleWireframeMode()" id="btn-wireframe" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Rangka Teknis Wireframe">
+                        <i class="fa-solid fa-cube text-emerald-500"></i>
+                        <span class="hidden xl:inline">Wireframe</span>
+                    </button>
+                </div>
+
+                <!-- Sound Toggle -->
+                <button type="button" onclick="toggleSound()" id="btn-sound" class="glass-panel w-9 h-9 rounded-xl text-xs flex items-center justify-center shrink-0 cursor-pointer" title="Efek Suara Interaktif">
+                    <i id="sound-icon" class="fa-solid fa-volume-high accent-icon"></i>
+                </button>
+
+                <!-- Specs Modal Trigger -->
+                <button type="button" onclick="toggleSpecsModal(true)" class="glass-panel px-3 h-9 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5 shrink-0 cursor-pointer" title="Spesifikasi Teknis Kursi">
+                    <i class="fa-solid fa-compass-drafting accent-icon"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Spesifikasi Teknis</span>
+                </button>
+
+                <!-- Clean Viewport Toggle -->
+                <button type="button" onclick="toggleCleanViewport()" id="btn-clean-ui" class="glass-panel w-9 h-9 rounded-xl text-xs t-primary flex items-center justify-center shrink-0 cursor-pointer" title="Sembunyikan/Tampilkan Panel UI">
+                    <i id="clean-ui-icon" class="fa-solid fa-expand accent-icon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ==================== ROW 2: MIDDLE FLEX ROW (ANTI-OVERLAP) ==================== -->
+        <div class="flex-1 min-h-0 flex items-start justify-between gap-3 overflow-hidden relative">
+
+            <!-- Mobile Drawer Buttons (Visible Below md) -->
+            <button
+                id="mob-toggle-left"
+                type="button"
+                onclick="toggleMobileDrawer('left')"
+                class="md:hidden pointer-events-auto absolute top-0 left-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-sliders accent-icon"></i>
+                <span>Inspeksi</span>
+            </button>
+
+            <button
+                id="mob-toggle-right"
+                type="button"
+                onclick="toggleMobileDrawer('right')"
+                class="md:hidden pointer-events-auto absolute top-0 right-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-palette accent-icon"></i>
+                <span>Material</span>
+            </button>
+
+            <!-- LEFT HUD COLUMN (Scrollable inside Row 2, includes #hotspot-card) -->
+            <aside id="left-hud" class="w-[265px] sm:w-[295px] max-h-full overflow-y-auto pointer-events-none flex-col gap-2.5 pr-1 shrink-0 hidden md:flex custom-scroll">
+
+                <!-- Interactive Inspection Card -->
+                <div class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 space-y-3">
+                    <div class="flex items-center justify-between border-b t-divider pb-2">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider t-accent flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders accent-icon"></i> Inspeksi Interaktif
+                        </span>
+                        <div class="flex items-center gap-1.5">
+                            <span id="fps-badge" class="fps-pill text-[10px] font-mono font-bold px-1.5 py-0.5 rounded">
+                                60 FPS
+                            </span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chair Mechanical Controls -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">Mekanisme Ergonomis</span>
+                            <button type="button" onclick="resetMechanisms()" class="text-[11px] font-bold t-accent hover:underline underline-offset-4 cursor-pointer">
+                                Reset Posisi
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button type="button" onclick="triggerSwivelStep()" id="part-swivel" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Putar Dudukan +90° (Swivel 360°)">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-rotate-right accent-icon text-[9px]"></i>Putar 360&deg; (Swivel)</span>
+                                <span id="swivel-deg-badge" class="font-mono text-[9px] t-accent font-bold">0&deg;</span>
+                            </button>
+                            <button type="button" onclick="toggleTilt()" id="part-tilt" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Miringkan Sandaran Rebah 18°">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-couch accent-icon text-[9px]"></i>Rebah 18&deg; (Tilt)</span>
+                                <span id="dot-tilt" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0"></span>
+                            </button>
+                            <button type="button" onclick="toggleCushionLift()" id="part-cushionLift" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Angkat Bantalan Linen untuk Melihat Cangkang Bentwood Oak">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-arrows-up-to-line accent-icon text-[9px]"></i>Angkat Bantalan</span>
+                                <span id="dot-cushionLift" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0"></span>
+                            </button>
+                            <button type="button" onclick="toggleLumbarPillow()" id="part-lumbar" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Tampilkan / Sembunyikan Bantal Pinggang">
+                                <span class="flex items-center gap-1.5 truncate"><i class="fa-solid fa-mattress-pillow accent-icon text-[9px]"></i>Bantal Pinggang</span>
+                                <span id="dot-lumbar" class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Gas-Lift Height Slider (44 cm - 54 cm) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-arrows-up-down accent-icon text-[10px]"></i>
+                                Tinggi Gas-Lift (44–54 cm)
+                            </span>
+                            <span id="gaslift-val" class="font-mono text-[11px] font-bold t-accent">49 cm</span>
+                        </div>
+                        <input type="range" min="44" max="54" step="0.5" value="49" id="gaslift-slider" oninput="setSeatHeightCm(this.value)" class="birch-slider">
+                    </div>
+
+                    <!-- Exploded View Anatomy Slider (0% - 100%) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-layer-group accent-icon text-[10px]"></i>
+                                Anatomi Konstruksi (Exploded)
+                            </span>
+                            <span id="explode-val" class="font-mono text-[11px] font-bold t-accent">0%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="0" id="explode-slider" oninput="setExplodeFactor(this.value)" class="birch-slider">
+                    </div>
+
+                    <!-- Utility Toggle Buttons -->
+                    <div class="grid grid-cols-2 gap-1.5 pt-1">
+                        <button type="button" onclick="toggleDimensions()" id="btn-dimensions" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-ruler-combined accent-icon text-[10px]"></i>
+                            <span>Garis Ukuran</span>
+                        </button>
+                        <button type="button" onclick="toggleHotspots()" id="btn-hotspots" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-location-dot accent-icon text-[10px]"></i>
+                            <span>Titik Info (5)</span>
+                        </button>
+                        <button type="button" onclick="toggleStudyRoom()" id="btn-studyroom" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-lamp accent-icon text-[10px] fa-lightbulb"></i>
+                            <span class="truncate">Sudut Belajar</span>
+                        </button>
+                        <button type="button" onclick="toggleAutoRotate()" id="btn-autorotate" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-rotate accent-icon text-[10px]"></i>
+                            <span>Putar Kamera</span>
+                        </button>
+                    </div>
+
+                    <!-- Subtle Gesture Hint -->
+                    <div class="pt-1.5 border-t t-divider flex items-center justify-between text-[10px] t-muted">
+                        <span><i class="fa-solid fa-computer-mouse mr-1 accent-icon"></i>Drag: Putar &bull; Scroll: Zoom</span>
+                        <span>Klik 3D: Uji</span>
+                    </div>
+                </div>
+
+                <!-- Dynamic Hotspot Detail Card (INSIDE #left-hud so it NEVER overlaps #bottom-hud!) -->
+                <div id="hotspot-card" class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 border-l-4 border-l-oak-500 hidden">
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <span id="hs-number" class="w-5 h-5 rounded-full bg-oak-600 text-white font-mono text-[11px] font-bold flex items-center justify-center shrink-0">1</span>
+                            <h3 id="hs-title" class="text-xs font-extrabold t-primary leading-snug">Cangkang Bentwood Oak</h3>
+                        </div>
+                        <button type="button" onclick="closeHotspotCard()" class="t-muted hover:t-primary text-xs p-0.5 shrink-0 cursor-pointer" aria-label="Tutup Info">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <p id="hs-desc" class="text-[11px] t-secondary mt-2 leading-relaxed"></p>
+                    <div id="hs-tag" class="theme-badge mt-2 inline-block px-2 py-0.5 rounded font-mono text-[10px] font-semibold"></div>
+                </div>
+            </aside>
+
+            <!-- RIGHT HUD COLUMN: Material Customizer (Scrollable inside Row 2) -->
+            <aside id="right-hud" class="w-[275px] sm:w-[310px] max-h-full overflow-y-auto pointer-events-none pl-1 shrink-0 hidden md:flex flex-col gap-2.5 custom-scroll">
+
+                <div class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 sm:p-4 space-y-3.5">
+                    <div class="flex items-center justify-between border-b t-divider pb-2.5">
+                        <div>
+                            <h2 class="text-[11px] font-extrabold uppercase tracking-wider t-accent">Kustomisasi Material</h2>
+                            <p class="text-[10px] t-muted">Bentwood 9-Ply Oak &bull; 12 kg</p>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="theme-badge font-mono text-[10px] font-bold px-2 py-0.5 rounded">PBR 4K</span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 1. Finishing Kayu Bentwood Oak (4 Finishes) -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">1. Finishing Bentwood Oak</span>
+                            <span id="label-wood" class="t-accent font-bold truncate ml-2">Natural White Oak</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setWoodFinish('whiteoak')" id="wood-whiteoak" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #f2e2ca, #c8a67a);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">White Oak</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('honeyoak')" id="wood-honeyoak" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #e4b67c, #ab7338);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Honey</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('walnut')" id="wood-walnut" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #9b6c4a, #5c3a22);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Walnut</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('ebonized')" id="wood-ebonized" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #443d38, #1b1816);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Ebonized</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Tipe Kaki & Roda (3 Switchable Base Structures) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">2. Tipe Kaki &amp; Roda</span>
+                            <span id="label-base" class="t-accent font-bold">5-Star Roda PU</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="setBaseType('casters')" id="base-casters" class="glass-pill active p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-asterisk accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">5-Star Roda PU</span>
+                                <span class="text-[9px] opacity-75">Roda Silent</span>
+                            </button>
+                            <button type="button" onclick="setBaseType('woodstar')" id="base-woodstar" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-arrows-up-down-left-right accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Putar Kaki Kayu</span>
+                                <span class="text-[9px] opacity-75">4-Star Oak</span>
+                            </button>
+                            <button type="button" onclick="setBaseType('static4')" id="base-static4" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-chair accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Statis 4 Kaki</span>
+                                <span class="text-[9px] opacity-75">A-Frame Oak</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Warna Bantalan Linen Organik (4 Fabric Colors) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">3. Bantalan Linen Tenun</span>
+                            <span id="label-linen" class="t-accent font-bold">Oatmeal Cream</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setLinenColor('oatmeal')" id="linen-oatmeal" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: radial-gradient(circle at 30% 30%, #f5efe3, #d8cbb6);"></span>
+                                <span class="text-[10px] font-semibold">Oatmeal</span>
+                            </button>
+                            <button type="button" onclick="setLinenColor('sage')" id="linen-sage" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: radial-gradient(circle at 30% 30%, #a9bda5, #768f73);"></span>
+                                <span class="text-[10px] font-semibold">Sage</span>
+                            </button>
+                            <button type="button" onclick="setLinenColor('terracotta')" id="linen-terracotta" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: radial-gradient(circle at 30% 30%, #de9a80, #b86c51);"></span>
+                                <span class="text-[10px] font-semibold">Terra</span>
+                            </button>
+                            <button type="button" onclick="setLinenColor('charcoal')" id="linen-charcoal" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: radial-gradient(circle at 30% 30%, #52565c, #292c30);"></span>
+                                <span class="text-[10px] font-semibold">Slate</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 4. Aksen Logam & Mekanisme (3 Hardware Options) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">4. Aksen Logam &amp; Baut</span>
+                            <span id="label-hardware" class="t-accent font-bold">Brushed Brass</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="setHardwareFinish('brass')" id="hw-brass" class="glass-pill active px-2 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                                <span class="w-3 h-3 rounded-full border border-white/30 shrink-0" style="background: linear-gradient(135deg, #f5d77f, #aa8232);"></span>
+                                <span>Brass</span>
+                            </button>
+                            <button type="button" onclick="setHardwareFinish('black')" id="hw-black" class="glass-pill px-2 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                                <span class="w-3 h-3 rounded-full border border-white/30 shrink-0" style="background: linear-gradient(135deg, #3c3c3c, #111111);"></span>
+                                <span>Black</span>
+                            </button>
+                            <button type="button" onclick="setHardwareFinish('chrome')" id="hw-chrome" class="glass-pill px-2 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                                <span class="w-3 h-3 rounded-full border border-white/30 shrink-0" style="background: linear-gradient(135deg, #eef0f3, #8f96a3);"></span>
+                                <span>Chrome</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Price Footer + Unduh Foto PNG -->
+                    <div class="pt-3 border-t t-divider flex items-center justify-between gap-2">
+                        <div class="min-w-0">
+                            <span class="text-[9px] uppercase font-bold tracking-wider t-muted block">Estimasi Investasi</span>
+                            <span id="price-display" class="font-mono text-base sm:text-lg font-extrabold t-primary block truncate">Rp 1.350.000</span>
+                        </div>
+                        <button
+                            type="button"
+                            onclick="downloadSnapshot()"
+                            class="cta-btn px-3.5 py-2.5 rounded-xl font-bold text-xs shadow-lg flex items-center gap-1.5 shrink-0 cursor-pointer"
+                            title="Unduh Tangkapan Layar 3D PNG"
+                        >
+                            <i class="fa-solid fa-camera"></i>
+                            <span>Unduh Foto</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- ==================== ROW 3: BOTTOM CAMERA DOCK (NO OVERLAP) ==================== -->
+        <nav id="bottom-hud" class="shrink-0 flex justify-center w-full">
+            <div class="pointer-events-auto glass-panel rounded-2xl p-1.5 flex items-center gap-2 max-w-full w-fit">
+                <!-- Fixed shrink-0 label protected from overflow collision -->
+                <div class="hidden xl:flex items-center gap-1.5 pl-2.5 pr-3 py-1 border-r t-divider shrink-0 whitespace-nowrap">
+                    <i class="fa-solid fa-video accent-icon text-xs"></i>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider t-primary">SUDUT PANDANG</span>
+                </div>
+
+                <!-- Scrollable preset strip: STRICTLY justify-start so item 1 never overlaps label -->
+                <div class="flex-1 min-w-0 overflow-x-auto flex items-center justify-start gap-1.5 no-scrollbar">
+                    <button type="button" onclick="flyToCamera('hero')" id="cam-hero" class="glass-pill active px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-star accent-icon text-[10px]"></i>
+                        <span>Sudut Utama (3/4)</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('front')" id="cam-front" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-regular fa-square accent-icon text-[10px]"></i>
+                        <span>Tampak Depan</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('side')" id="cam-side" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-align-left accent-icon text-[10px]"></i>
+                        <span>Tampak Samping</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('back')" id="cam-back" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-shield-halved accent-icon text-[10px]"></i>
+                        <span>Tampak Belakang</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('top')" id="cam-top" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-arrows-to-dot accent-icon text-[10px]"></i>
+                        <span>Tampak Atas</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('mechanism')" id="cam-mechanism" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-gears accent-icon text-[10px]"></i>
+                        <span>Detail Mekanisme</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('recline')" id="cam-recline" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-couch accent-icon text-[10px]"></i>
+                        <span>Mode Rebah</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ==================== TECHNICAL SPECIFICATIONS MODAL ==================== -->
+    <div id="specs-modal" onclick="if(event.target === this) toggleSpecsModal(false)" class="fixed inset-0 z-50 bg-black/55 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-7 space-y-5 max-h-[90vh] overflow-y-auto custom-scroll">
+            <div class="flex items-start justify-between border-b t-divider pb-4">
+                <div>
+                    <span class="text-[10px] font-mono font-bold uppercase tracking-[0.22em] t-accent">Lembar Data Ergonomi Livora</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold t-primary mt-0.5">Vela Timber Study Chair</h2>
+                </div>
+                <button type="button" onclick="toggleSpecsModal(false)" class="glass-pill w-8 h-8 rounded-full flex items-center justify-center text-xs cursor-pointer" aria-label="Tutup">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Dimensi Presisi (P × L × T)</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Lebar Total (Arm-to-Arm)</span><span class="font-mono font-bold t-primary">62.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Kedalaman Total (Depth)</span><span class="font-mono font-bold t-primary">60.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Tinggi Total (Adjustable)</span><span class="font-mono font-bold t-primary">88.0 – 98.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Tinggi Dudukan (Gas-Lift)</span><span class="font-mono font-bold t-primary">44.0 – 54.0 cm</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Berat Bersih Kargo</span><span class="font-mono font-bold t-primary">12.0 kg</span></div>
+                </div>
+
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Konstruksi &amp; Sertifikasi</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Cangkang Kayu</span><span class="font-semibold t-primary">Bentwood 9-Ply Molded Oak</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Silinder Pneumatik</span><span class="font-semibold t-primary">BIFMA Class-3 Gas Lift</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Kapasitas Beban</span><span class="font-mono font-bold t-primary">120 kg (Statis &amp; Dinamis)</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Mekanisme Rebah</span><span class="font-semibold t-primary">Sync Tilt 18&deg; + Tension Knob</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Pelapis Bantalan</span><span class="font-semibold t-primary">Organic Woven Linen + High-Density Foam</span></div>
+                </div>
+            </div>
+
+            <p class="text-xs t-secondary leading-relaxed">
+                <strong>Vela Timber Study Chair</strong> menghadirkan estetika hangat <em>Japandi</em> ke ruang belajar mahasiswa maupun ruang kerja di rumah. Cangkang kayu <strong>9-Ply Molded Bentwood Oak</strong> melengkung mengikuti kontur punggung secara ergonomis, dilengkapi bantalan tenun linen bernapas, sandaran tangan ramping yang masuk sempurna di bawah meja kerja setinggi 75 cm, serta silinder <strong>BIFMA Class-3 Gas-Lift</strong> dengan mekanisme rebah 18&deg;.
+            </p>
+
+            <div class="flex justify-end pt-1">
+                <button type="button" onclick="toggleSpecsModal(false)" class="cta-btn px-5 py-2.5 rounded-xl font-bold text-xs cursor-pointer">
+                    Kembali ke Studio 3D
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FLOATING TOAST NOTIFICATION ==================== -->
+    <div id="toast-msg" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 glass-panel px-4 py-2 rounded-xl text-xs font-semibold t-primary shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-circle-check text-emerald-500"></i>
+        <span id="toast-text">Konfigurasi diperbarui</span>
+    </div>
+
+    <script>
+        // ============================================================================
+        // 0. SMART BACK NAVIGATION (SUPPORTS LOCAL FILE:// & VITE / GITHUB PAGES)
+        // ============================================================================
+        function navigateBackToKatalog() {
+            playTactileSound('click');
+            const targetUrl = (window.location.protocol === 'file:' || window.location.pathname.includes('/public/'))
+                ? '../../pages/katalog.html'
+                : '../pages/katalog.html';
+            window.location.href = targetUrl;
+        }
+
+        // ============================================================================
+        // 1. PROCEDURAL WEBAUDIO ENGINE (PNEUMATIC HISS, SWIVEL, TILT CLICK, CUSHION)
+        // ============================================================================
+        let soundEnabled = true;
+        let audioCtx = null;
+        let lastPneumaticTime = 0;
+
+        function ensureAudio() {
+            try {
+                if (!audioCtx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) audioCtx = new AudioContextClass();
+                }
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch (err) {}
+        }
+
+        function playTactileSound(type = 'click') {
+            if (!soundEnabled) return;
+            try {
+                ensureAudio();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'pneumatic') {
+                    // Throttle rapid slider drag audio
+                    if (now - lastPneumaticTime < 0.14) return;
+                    lastPneumaticTime = now;
+
+                    // Soft pneumatic gas-lift air hiss
+                    const dur = 0.18;
+                    const bufLen = Math.floor(audioCtx.sampleRate * dur);
+                    const buf = audioCtx.createBuffer(1, bufLen, audioCtx.sampleRate);
+                    const out = buf.getChannelData(0);
+                    for (let i = 0; i < bufLen; i++) {
+                        out[i] = (Math.random() * 2 - 1) * Math.sin((i / bufLen) * Math.PI);
+                    }
+                    const src = audioCtx.createBufferSource();
+                    src.buffer = buf;
+
+                    const filter = audioCtx.createBiquadFilter();
+                    filter.type = 'bandpass';
+                    filter.frequency.setValueAtTime(1600, now);
+                    filter.frequency.exponentialRampToValueAtTime(900, now + dur);
+                    filter.Q.value = 1.6;
+
+                    const gain = audioCtx.createGain();
+                    gain.gain.setValueAtTime(0.06, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+                    src.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    src.start(now);
+                } else if (type === 'tilt') {
+                    // Mechanical spring-recline lock click
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(240, now);
+                    osc.frequency.exponentialRampToValueAtTime(92, now + 0.14);
+                    gain.gain.setValueAtTime(0.11, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.16);
+                } else if (type === 'swivel') {
+                    // Smooth ball-bearing rotation hum
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(175, now);
+                    osc.frequency.exponentialRampToValueAtTime(125, now + 0.18);
+                    gain.gain.setValueAtTime(0.075, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.19);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.20);
+                } else if (type === 'cushion') {
+                    // Airy linen fabric lift sound
+                    const dur = 0.20;
+                    const bufLen = Math.floor(audioCtx.sampleRate * dur);
+                    const buf = audioCtx.createBuffer(1, bufLen, audioCtx.sampleRate);
+                    const out = buf.getChannelData(0);
+                    for (let i = 0; i < bufLen; i++) {
+                        out[i] = (Math.random() * 2 - 1) * Math.sin((i / bufLen) * Math.PI);
+                    }
+                    const src = audioCtx.createBufferSource();
+                    src.buffer = buf;
+
+                    const filter = audioCtx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.setValueAtTime(460, now);
+                    filter.frequency.exponentialRampToValueAtTime(980, now + 0.10);
+                    filter.frequency.exponentialRampToValueAtTime(320, now + dur);
+
+                    const gain = audioCtx.createGain();
+                    gain.gain.setValueAtTime(0.085, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+                    src.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    src.start(now);
+                } else {
+                    // Crisp UI click
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(550, now);
+                    osc.frequency.exponentialRampToValueAtTime(240, now + 0.045);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.055);
+                }
+            } catch (err) {}
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            icon.className = soundEnabled
+                ? 'fa-solid fa-volume-high accent-icon'
+                : 'fa-solid fa-volume-xmark t-muted';
+            showToast(soundEnabled ? 'Efek suara interaktif diaktifkan' : 'Efek suara dinonaktifkan');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-msg');
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100', 'translate-y-1');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-1');
+                toast.classList.add('opacity-0');
+            }, 2400);
+        }
+
+        // ============================================================================
+        // 2. PROCEDURAL PBR CANVAS TEXTURES (OAK BENTWOOD, WOVEN LINEN, RUG)
+        // ============================================================================
+        const WOOD_PALETTES = {
+            whiteoak: {
+                name: 'Natural White Oak',
+                base: [232, 211, 180],
+                grainDark: [192, 160, 118],
+                roughness: 0.34,
+                price: 'Rp 1.350.000'
+            },
+            honeyoak: {
+                name: 'Warm Honey Oak',
+                base: [218, 169, 112],
+                grainDark: [164, 112, 58],
+                roughness: 0.33,
+                price: 'Rp 1.390.000'
+            },
+            walnut: {
+                name: 'Smoked Walnut',
+                base: [136, 92, 60],
+                grainDark: [82, 50, 28],
+                roughness: 0.37,
+                price: 'Rp 1.450.000'
+            },
+            ebonized: {
+                name: 'Ebonized Ash',
+                base: [48, 42, 38],
+                grainDark: [22, 19, 17],
+                roughness: 0.43,
+                price: 'Rp 1.490.000'
+            }
+        };
+
+        const LINEN_PALETTES = {
+            oatmeal: { name: 'Oatmeal Cream', hex: 0xEAE1D2, pipingHex: 0xD2C3AC, lumbarHex: 0xDFD4C2 },
+            sage: { name: 'Matcha Sage', hex: 0x8BA087, pipingHex: 0x6F846B, lumbarHex: 0xA2B59E },
+            terracotta: { name: 'Warm Terracotta', hex: 0xCF876B, pipingHex: 0xAE684E, lumbarHex: 0xDF9E84 },
+            charcoal: { name: 'Charcoal Slate', hex: 0x45494F, pipingHex: 0x2F3237, lumbarHex: 0x585D65 }
+        };
+
+        const HARDWARE_SPECS = {
+            brass: { name: 'Brushed Brass', color: 0xD8B262, rough: 0.25, metal: 0.88 },
+            black: { name: 'Matte Black', color: 0x242528, rough: 0.46, metal: 0.62 },
+            chrome: { name: 'Satin Chrome', color: 0xD3D8DF, rough: 0.22, metal: 0.92 }
+        };
+
+        const woodTexCache = {};
+        let sharedWoodBump = null;
+        let sharedLinenMap = null;
+        let sharedLinenBump = null;
+        let sharedRugTex = null;
+
+        function getWoodTexture(paletteKey, verticalGrain = false) {
+            const key = `${paletteKey}_${verticalGrain ? 'v' : 'h'}`;
+            if (woodTexCache[key]) return woodTexCache[key];
+
+            const pal = WOOD_PALETTES[paletteKey] || WOOD_PALETTES.whiteoak;
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 1024;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(1024, 1024);
+            const data = imgData.data;
+
+            for (let y = 0; y < 1024; y++) {
+                for (let x = 0; x < 1024; x++) {
+                    const u = verticalGrain ? y / 1024 : x / 1024;
+                    const v = verticalGrain ? x / 1024 : y / 1024;
+
+                    // Authentic molded bentwood oak cathedral waves + fine wood fibers
+                    const wave1 = Math.sin(v * 25.0 + Math.sin(u * 5.8) * 2.4);
+                    const wave2 = Math.sin(v * 68.0 + u * 4.4 + Math.cos(u * 11.0) * 1.1) * 0.44;
+                    const fineFiber = Math.sin(v * 340.0 + Math.sin(u * 32.0) * 2.8) * 0.14;
+                    const pore = ((Math.sin(u * 912.0 + v * 517.0) * 43758.5453) % 1) * 0.05;
+                    const gFactor = (wave1 + wave2 + fineFiber) * 0.5 + 0.5;
+
+                    const idx = (y * 1024 + x) * 4;
+                    data[idx] = Math.min(255, Math.max(0, pal.base[0] * (1 - gFactor * 0.28) + pal.grainDark[0] * (gFactor * 0.28) + pore * 14));
+                    data[idx + 1] = Math.min(255, Math.max(0, pal.base[1] * (1 - gFactor * 0.28) + pal.grainDark[1] * (gFactor * 0.28) + pore * 12));
+                    data[idx + 2] = Math.min(255, Math.max(0, pal.base[2] * (1 - gFactor * 0.28) + pal.grainDark[2] * (gFactor * 0.28) + pore * 10));
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+
+            const tex = new THREE.CanvasTexture(canvas);
+            tex.wrapS = THREE.RepeatWrapping;
+            tex.wrapT = THREE.RepeatWrapping;
+            tex.anisotropy = 8;
+            woodTexCache[key] = tex;
+            return tex;
+        }
+
+        function getWoodBumpTexture() {
+            if (sharedWoodBump) return sharedWoodBump;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(512, 512);
+            const data = imgData.data;
+
+            for (let y = 0; y < 512; y++) {
+                for (let x = 0; x < 512; x++) {
+                    const u = x / 512;
+                    const v = y / 512;
+                    const fiber = Math.sin(v * 270.0 + Math.sin(u * 24.0) * 2.0) * 0.5 + 0.5;
+                    const val = 112 + fiber * 46;
+                    const idx = (y * 512 + x) * 4;
+                    data[idx] = data[idx + 1] = data[idx + 2] = val;
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+            sharedWoodBump = new THREE.CanvasTexture(canvas);
+            sharedWoodBump.wrapS = THREE.RepeatWrapping;
+            sharedWoodBump.wrapT = THREE.RepeatWrapping;
+            return sharedWoodBump;
+        }
+
+        function getWovenLinenTextures() {
+            if (sharedLinenMap) return { map: sharedLinenMap, bump: sharedLinenBump };
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Organic cross-hatch woven linen threads
+            for (let y = 0; y < 512; y += 4) {
+                ctx.fillStyle = (y % 8 === 0) ? 'rgba(135, 122, 108, 0.16)' : 'rgba(220, 212, 200, 0.09)';
+                ctx.fillRect(0, y, 512, 2);
+            }
+            for (let x = 0; x < 512; x += 4) {
+                ctx.fillStyle = (x % 8 === 0) ? 'rgba(120, 108, 95, 0.15)' : 'rgba(235, 228, 218, 0.11)';
+                ctx.fillRect(x, 0, 2, 512);
+            }
+            // Subtle organic slubs for authentic linen feel
+            for (let i = 0; i < 480; i++) {
+                ctx.fillStyle = 'rgba(110, 96, 82, 0.11)';
+                ctx.fillRect(Math.random() * 512, Math.random() * 512, 6 + Math.random() * 18, 1.5);
+            }
+
+            sharedLinenMap = new THREE.CanvasTexture(canvas);
+            sharedLinenMap.wrapS = THREE.RepeatWrapping;
+            sharedLinenMap.wrapT = THREE.RepeatWrapping;
+            sharedLinenMap.repeat.set(3.5, 3.5);
+            sharedLinenBump = sharedLinenMap;
+            return { map: sharedLinenMap, bump: sharedLinenBump };
+        }
+
+        function getStudyRugTexture() {
+            if (sharedRugTex) return sharedRugTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 1024;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#EFE9DD';
+            ctx.fillRect(0, 0, 1024, 1024);
+
+            const cx = 512, cy = 512;
+            for (let r = 20; r < 498; r += 14) {
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                if (r > 410 && r < 452) ctx.strokeStyle = '#D5C9B6';
+                else if (r % 28 === 0) ctx.strokeStyle = '#E2D8C7';
+                else ctx.strokeStyle = '#F6F1E8';
+                ctx.lineWidth = 10;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                ctx.setLineDash([4, 8]);
+                ctx.strokeStyle = 'rgba(120, 105, 88, 0.15)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            sharedRugTex = new THREE.CanvasTexture(canvas);
+            sharedRugTex.anisotropy = 8;
+            return sharedRugTex;
+        }
+
+        // ============================================================================
+        // 3. THREE.JS SCENE, CAMERA, RENDERER & DEFAULT GALLERY TERANG STUDIO
+        // ============================================================================
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xF5EFE6);
+        scene.fog = new THREE.FogExp2(0xF5EFE6, 0.052);
+
+        const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.05, 50);
+        camera.position.set(1.24, 0.92, 1.48);
+
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                powerPreference: 'high-performance',
+                preserveDrawingBuffer: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.07;
+            container.appendChild(renderer.domElement);
+        } catch (err) {
+            container.innerHTML = `<div class="h-full w-full flex items-center justify-center p-6 text-center text-sm font-semibold">Browser Anda tidak mendukung WebGL untuk Studio 3D.</div>`;
+            throw err;
+        }
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 0.48, 0);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.055;
+        controls.minDistance = 0.55;
+        controls.maxDistance = 4.6;
+        controls.maxPolarAngle = Math.PI / 2 - 0.015;
+        controls.update();
+
+        // Studio Lights (Default: Gallery Terang)
+        const ambientLight = new THREE.HemisphereLight(0xFFFDF8, 0xA89680, 0.90);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xFFF7EA, 1.32);
+        keyLight.position.set(2.4, 3.8, 2.8);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 2048;
+        keyLight.shadow.mapSize.height = 2048;
+        keyLight.shadow.camera.near = 0.4;
+        keyLight.shadow.camera.far = 11;
+        const shadowBox = 1.55;
+        keyLight.shadow.camera.left = -shadowBox;
+        keyLight.shadow.camera.right = shadowBox;
+        keyLight.shadow.camera.top = shadowBox;
+        keyLight.shadow.camera.bottom = -shadowBox;
+        keyLight.shadow.bias = -0.00045;
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0xEEF5FF, 0.56);
+        fillLight.position.set(-2.8, 2.2, 1.8);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xFFE7C7, 0.46);
+        rimLight.position.set(0.0, 2.4, -2.6);
+        scene.add(rimLight);
+
+        // Light Gallery Matte Floor (#EFE7DA)
+        const floorMat = new THREE.MeshStandardMaterial({
+            color: 0xEFE7DA,
+            roughness: 0.88,
+            metalness: 0.02
+        });
+        const floorMesh = new THREE.Mesh(new THREE.CircleGeometry(10, 64), floorMat);
+        floorMesh.rotation.x = -Math.PI / 2;
+        floorMesh.receiveShadow = true;
+        scene.add(floorMesh);
+
+        // Soft Radial Contact Shadow under the Chair
+        const shadowCanvas = document.createElement('canvas');
+        shadowCanvas.width = 256;
+        shadowCanvas.height = 256;
+        const sCtx = shadowCanvas.getContext('2d');
+        const grad = sCtx.createRadialGradient(128, 128, 18, 128, 128, 122);
+        grad.addColorStop(0, 'rgba(38, 28, 18, 0.38)');
+        grad.addColorStop(0.65, 'rgba(38, 28, 18, 0.14)');
+        grad.addColorStop(1, 'rgba(38, 28, 18, 0)');
+        sCtx.fillStyle = grad;
+        sCtx.fillRect(0, 0, 256, 256);
+        const contactShadowMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(1.05, 1.05),
+            new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false })
+        );
+        contactShadowMesh.rotation.x = -Math.PI / 2;
+        contactShadowMesh.position.y = 0.002;
+        scene.add(contactShadowMesh);
+
+        // Subtle Polar Floor Grid
+        const polarGrid = new THREE.PolarGridHelper(2.2, 16, 6, 64, 0xC9BCA6, 0xD8CEBC);
+        polarGrid.position.y = 0.001;
+        polarGrid.material.transparent = true;
+        polarGrid.material.opacity = 0.40;
+        scene.add(polarGrid);
+
+        // ============================================================================
+        // 4. SHARED PBR MATERIALS
+        // ============================================================================
+        const woodBump = getWoodBumpTexture();
+        const woodMatHoriz = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('whiteoak', false),
+            bumpMap: woodBump,
+            bumpScale: 0.0024,
+            roughness: 0.34,
+            metalness: 0.03
+        });
+
+        const woodMatVert = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('whiteoak', true),
+            bumpMap: woodBump,
+            bumpScale: 0.0024,
+            roughness: 0.34,
+            metalness: 0.03
+        });
+
+        const linenTextures = getWovenLinenTextures();
+        const linenMat = new THREE.MeshStandardMaterial({
+            color: LINEN_PALETTES.oatmeal.hex,
+            map: linenTextures.map,
+            bumpMap: linenTextures.bump,
+            bumpScale: 0.006,
+            roughness: 0.88,
+            metalness: 0.0
+        });
+
+        const linenPipingMat = new THREE.MeshStandardMaterial({
+            color: LINEN_PALETTES.oatmeal.pipingHex,
+            map: linenTextures.map,
+            roughness: 0.90,
+            metalness: 0.0
+        });
+
+        const lumbarMat = new THREE.MeshStandardMaterial({
+            color: LINEN_PALETTES.oatmeal.lumbarHex,
+            map: linenTextures.map,
+            bumpMap: linenTextures.bump,
+            bumpScale: 0.0055,
+            roughness: 0.88,
+            metalness: 0.0
+        });
+
+        const hardwareMat = new THREE.MeshStandardMaterial({
+            color: HARDWARE_SPECS.brass.color,
+            roughness: HARDWARE_SPECS.brass.rough,
+            metalness: HARDWARE_SPECS.brass.metal
+        });
+
+        const mechSteelMat = new THREE.MeshStandardMaterial({
+            color: 0x24262A,
+            roughness: 0.46,
+            metalness: 0.65
+        });
+
+        const puWheelMat = new THREE.MeshStandardMaterial({
+            color: 0x1D1E21,
+            roughness: 0.72,
+            metalness: 0.08
+        });
+
+        const pistonChromeMat = new THREE.MeshStandardMaterial({
+            color: 0xE2E6EC,
+            roughness: 0.16,
+            metalness: 0.94
+        });
+
+        const allChairMeshes = [];
+        const interactivePickables = [];
+
+        function createMesh(geo, mat, castShadow = true, receiveShadow = true) {
+            const m = new THREE.Mesh(geo, mat);
+            m.castShadow = castShadow;
+            m.receiveShadow = receiveShadow;
+            allChairMeshes.push(m);
+            return m;
+        }
+
+        function registerInteractive(group, partId, label) {
+            group.traverse(child => {
+                if (child.isMesh) {
+                    child.userData.partId = partId;
+                    child.userData.label = label;
+                    interactivePickables.push(child);
+                }
+            });
+        }
+
+        // ============================================================================
+        // 5. CUSTOM PARAMETRIC CURVED BENTWOOD SHELL & CUSHION GEOMETRY GENERATOR
+        // ============================================================================
+        /**
+         * Generates a solid 3D curved C-shaped shell with ergonomic lumbar S-curve,
+         * tapered Japandi silhouette, clean UVs for continuous wood/linen grain,
+         * and properly wound outward normals on front, back, and all 4 perimeter edges.
+         */
+        function createCurvedArcShellGeometry(opts) {
+            const {
+                uSegs = 32,
+                vSegs = 16,
+                arcAngle = Math.PI * 0.62,
+                radius = 0.275,
+                thickness = 0.015,
+                yBottom = 0.10,
+                yTop = 0.515,
+                zCenter = 0.065,
+                lumbarCurve = 0.016,
+                taperTop = 0.08
+            } = opts;
+
+            const positions = [];
+            const uvs = [];
+            const indices = [];
+
+            // Sample point on front (side = -0.5) or back (side = +0.5) of curved shell
+            function evalPoint(u, v, side) {
+                // Organic top-corner tapering so the bentwood backrest looks sculpted
+                const cornerRound = Math.sin(v * Math.PI);
+                const halfArc = (arcAngle * 0.5) * (1.0 - taperTop * v * v - 0.04 * (1 - cornerRound));
+                const theta = (u - 0.5) * 2.0 * halfArc;
+
+                // Subtle ergonomic S-curve along height (pushes lumbar gently forward)
+                const sOffset = -Math.sin(v * Math.PI * 1.15) * lumbarCurve;
+                // Gentle vertical crown at top edge
+                const topCrown = Math.cos(theta * 1.35) * 0.014 * v;
+
+                const r = radius + sOffset + side * thickness;
+                const x = r * Math.sin(theta);
+                const z = zCenter - r * Math.cos(theta);
+                const y = yBottom + v * (yTop - yBottom) + topCrown;
+                return [x, y, z];
+            }
+
+            const cols = uSegs + 1;
+            const rows = vSegs + 1;
+
+            // 1. Inner face (facing +Z / user)
+            const innerOffset = 0;
+            for (let iv = 0; iv <= vSegs; iv++) {
+                const v = iv / vSegs;
+                for (let iu = 0; iu <= uSegs; iu++) {
+                    const u = iu / uSegs;
+                    const p = evalPoint(u, v, -0.5);
+                    positions.push(p[0], p[1], p[2]);
+                    uvs.push(u * 1.4, v);
+                }
+            }
+            for (let iv = 0; iv < vSegs; iv++) {
+                for (let iu = 0; iu < uSegs; iu++) {
+                    const a = innerOffset + iv * cols + iu;
+                    const b = a + 1;
+                    const d = a + cols;
+                    const c = d + 1;
+                    indices.push(a, b, d, b, c, d);
+                }
+            }
+
+            // 2. Outer face (facing -Z / rear wood showcase)
+            const outerOffset = positions.length / 3;
+            for (let iv = 0; iv <= vSegs; iv++) {
+                const v = iv / vSegs;
+                for (let iu = 0; iu <= uSegs; iu++) {
+                    const u = iu / uSegs;
+                    const p = evalPoint(u, v, 0.5);
+                    positions.push(p[0], p[1], p[2]);
+                    uvs.push(u * 1.4, v);
+                }
+            }
+            for (let iv = 0; iv < vSegs; iv++) {
+                for (let iu = 0; iu < uSegs; iu++) {
+                    const a = outerOffset + iv * cols + iu;
+                    const b = a + 1;
+                    const d = a + cols;
+                    const c = d + 1;
+                    indices.push(a, d, b, b, d, c);
+                }
+            }
+
+            // Helper to stitch a clean beveled perimeter strip
+            function addEdgeStrip(sampleCount, getPair) {
+                const start = positions.length / 3;
+                for (let i = 0; i <= sampleCount; i++) {
+                    const t = i / sampleCount;
+                    const [pIn, pOut] = getPair(t);
+                    positions.push(pIn[0], pIn[1], pIn[2]);
+                    uvs.push(t, 0);
+                    positions.push(pOut[0], pOut[1], pOut[2]);
+                    uvs.push(t, 0.08);
+                }
+                for (let i = 0; i < sampleCount; i++) {
+                    const a = start + i * 2;
+                    const b = a + 1;
+                    const c = a + 2;
+                    const d = a + 3;
+                    indices.push(a, c, b, b, c, d);
+                }
+            }
+
+            // Top rim (v = 1)
+            addEdgeStrip(uSegs, t => [evalPoint(t, 1, -0.5), evalPoint(t, 1, 0.5)]);
+            // Bottom rim (v = 0)
+            addEdgeStrip(uSegs, t => [evalPoint(t, 0, 0.5), evalPoint(t, 0, -0.5)]);
+            // Left rim (u = 0)
+            addEdgeStrip(vSegs, t => [evalPoint(0, t, 0.5), evalPoint(0, t, -0.5)]);
+            // Right rim (u = 1)
+            addEdgeStrip(vSegs, t => [evalPoint(1, t, -0.5), evalPoint(1, t, 0.5)]);
+
+            const geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+            geo.setIndex(indices);
+            geo.computeVertexNormals();
+            return geo;
+        }
+
+        // ============================================================================
+        // 6. CONSTRUCTING THE VELA TIMBER STUDY CHAIR (62 × 60 × 88–98 cm)
+        // ============================================================================
+        const chairRoot = new THREE.Group();
+        scene.add(chairRoot);
+
+        // Structural Hierarchy for Smooth Swivel, Tilt, Gas-Lift & Exploded Anatomy
+        const baseGroup = new THREE.Group();         // Switchable 3 bases
+        const baseCasters = new THREE.Group();       // 5-Star Roda PU (default)
+        const baseWoodStar = new THREE.Group();      // Putar Kaki Kayu (4-star oak)
+        const baseStatic4 = new THREE.Group();       // Statis 4 Kaki (A-frame oak)
+        baseGroup.add(baseCasters, baseWoodStar, baseStatic4);
+        chairRoot.add(baseGroup);
+
+        const pistonGroup = new THREE.Group();       // Telescopic inner gas-lift piston rod
+        chairRoot.add(pistonGroup);
+
+        const swivelGroup = new THREE.Group();       // Rotates around Y (swivel) & shifts Y (gas-lift)
+        chairRoot.add(swivelGroup);
+
+        const mechanismGroup = new THREE.Group();    // Under-seat housing, tension knob, height lever
+        swivelGroup.add(mechanismGroup);
+
+        const tiltPivot = new THREE.Group();         // Pivots backward -18° around X
+        tiltPivot.position.set(0, 0.365, -0.02);
+        swivelGroup.add(tiltPivot);
+
+        const seatShellGroup = new THREE.Group();
+        const backShellGroup = new THREE.Group();
+        const armrestsGroup = new THREE.Group();
+        const spineBracketGroup = new THREE.Group();
+        const seatCushionGroup = new THREE.Group();
+        const backCushionGroup = new THREE.Group();
+        const lumbarPillowGroup = new THREE.Group();
+
+        tiltPivot.add(
+            seatShellGroup,
+            backShellGroup,
+            armrestsGroup,
+            spineBracketGroup,
+            seatCushionGroup,
+            backCushionGroup,
+            lumbarPillowGroup
+        );
+
+        // -------------------- 6A. BASE OPTION 1: 5-STAR RODA PU (DEFAULT) --------------------
+        const hub5 = createMesh(new THREE.CylinderGeometry(0.036, 0.040, 0.072, 24), mechSteelMat);
+        hub5.position.y = 0.112;
+        const outerSleeve5 = createMesh(new THREE.CylinderGeometry(0.025, 0.025, 0.165, 24), mechSteelMat);
+        outerSleeve5.position.y = 0.195;
+        const sleeveCollar5 = createMesh(new THREE.CylinderGeometry(0.027, 0.027, 0.012, 24), hardwareMat);
+        sleeveCollar5.position.y = 0.278;
+        baseCasters.add(hub5, outerSleeve5, sleeveCollar5);
+
+        for (let i = 0; i < 5; i++) {
+            const angle = (i / 5) * Math.PI * 2 + Math.PI / 5;
+            const armG = new THREE.Group();
+            armG.rotation.y = angle;
+
+            // Sculpted tapered radial spider leg (from r=0.032,y=0.118 down to r=0.285,y=0.074)
+            const legCurve = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(0.028, 0.116, 0),
+                new THREE.Vector3(0.14, 0.104, 0),
+                new THREE.Vector3(0.285, 0.074, 0)
+            ]);
+            const legTube = createMesh(new THREE.TubeGeometry(legCurve, 14, 0.0155, 14, false), mechSteelMat);
+            // Subtle oak top inlay strip along each spider arm for warm Japandi detail
+            const inlayCurve = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(0.042, 0.128, 0),
+                new THREE.Vector3(0.15, 0.116, 0),
+                new THREE.Vector3(0.265, 0.088, 0)
+            ]);
+            const oakInlay = createMesh(new THREE.TubeGeometry(inlayCurve, 12, 0.006, 10, false), woodMatHoriz);
+            const tipCap = createMesh(new THREE.CylinderGeometry(0.016, 0.014, 0.022, 16), mechSteelMat);
+            tipCap.position.set(0.285, 0.068, 0);
+            armG.add(legTube, oakInlay, tipCap);
+
+            // Detailed Dual-Wheel Silent PU Caster at tip (x = 0.285)
+            const casterG = new THREE.Group();
+            casterG.position.set(0.285, 0, 0);
+            casterG.rotation.y = 0.35; // Slight natural swivel offset
+
+            const stem = createMesh(new THREE.CylinderGeometry(0.0055, 0.0055, 0.022, 12), hardwareMat, false);
+            stem.position.y = 0.056;
+            const hood = createMesh(new THREE.CylinderGeometry(0.018, 0.026, 0.022, 16, 1, false, 0, Math.PI * 1.4), mechSteelMat);
+            hood.rotation.z = Math.PI / 2;
+            hood.position.set(-0.006, 0.036, 0);
+            const axlePin = createMesh(new THREE.CylinderGeometry(0.005, 0.005, 0.048, 12), hardwareMat, false);
+            axlePin.rotation.x = Math.PI / 2;
+            axlePin.position.set(-0.008, 0.025, 0);
+
+            // Twin Silent PU Wheels
+            [-0.016, 0.016].forEach(wz => {
+                const wheel = createMesh(new THREE.CylinderGeometry(0.025, 0.025, 0.012, 22), puWheelMat);
+                wheel.rotation.x = Math.PI / 2;
+                wheel.position.set(-0.008, 0.025, wz);
+                const hubRing = createMesh(new THREE.CylinderGeometry(0.012, 0.012, 0.013, 16), hardwareMat, false);
+                hubRing.rotation.x = Math.PI / 2;
+                hubRing.position.set(-0.008, 0.025, wz);
+                casterG.add(wheel, hubRing);
+            });
+
+            casterG.add(stem, hood, axlePin);
+            armG.add(casterG);
+            baseCasters.add(armG);
+        }
+
+        // -------------------- 6B. BASE OPTION 2: PUTAR KAKI KAYU (4-STAR SOLID OAK) --------------------
+        baseWoodStar.visible = false;
+        const woodHub = createMesh(new THREE.CylinderGeometry(0.042, 0.046, 0.072, 24), woodMatVert);
+        woodHub.position.y = 0.145;
+        const outerSleeveWood = createMesh(new THREE.CylinderGeometry(0.025, 0.025, 0.145, 24), mechSteelMat);
+        outerSleeveWood.position.y = 0.205;
+        const sleeveCollarWood = createMesh(new THREE.CylinderGeometry(0.027, 0.027, 0.012, 24), hardwareMat);
+        sleeveCollarWood.position.y = 0.278;
+        baseWoodStar.add(woodHub, outerSleeveWood, sleeveCollarWood);
+
+        for (let i = 0; i < 4; i++) {
+            const angle = (i / 4) * Math.PI * 2 + Math.PI / 4;
+            const legG = new THREE.Group();
+            legG.rotation.y = angle;
+
+            // Splayed sculpted solid oak star leg (hub y=0.145 -> floor r=0.285, y=0.00)
+            const legPts = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(0.032, 0.146, 0),
+                new THREE.Vector3(0.155, 0.112, 0),
+                new THREE.Vector3(0.250, 0.044, 0)
+            ]);
+            const woodSpoke = createMesh(new THREE.TubeGeometry(legPts, 16, 0.019, 16, false), woodMatHoriz);
+
+            // Tapered metal ferrule foot cap at bottom 5cm
+            const ferrule = createMesh(new THREE.CylinderGeometry(0.0175, 0.0135, 0.055, 18), hardwareMat);
+            ferrule.position.set(0.268, 0.025, 0);
+            ferrule.rotation.z = 0.56;
+
+            const floorGlide = createMesh(new THREE.CylinderGeometry(0.015, 0.015, 0.006, 16), puWheelMat);
+            floorGlide.position.set(0.282, 0.003, 0);
+
+            legG.add(woodSpoke, ferrule, floorGlide);
+            baseWoodStar.add(legG);
+        }
+
+        // -------------------- 6C. BASE OPTION 3: STATIS 4 KAKI (ARCHITECTURAL A-FRAME OAK) --------------------
+        baseStatic4.visible = false;
+        const staticCorners = [
+            { x: -0.22, z: 0.22, sx: -1, sz: 1 },
+            { x: 0.22, z: 0.22, sx: 1, sz: 1 },
+            { x: -0.22, z: -0.22, sx: -1, sz: -1 },
+            { x: 0.22, z: -0.22, sx: 1, sz: -1 }
+        ];
+        staticCorners.forEach(sc => {
+            const lg = new THREE.Group();
+            lg.position.set(sc.x * 0.85, 0.168, sc.z * 0.85);
+            lg.rotation.z = sc.sx * 0.145;
+            lg.rotation.x = -sc.sz * 0.145;
+
+            const oakLeg = createMesh(new THREE.CylinderGeometry(0.019, 0.0135, 0.345, 20), woodMatVert);
+            const footCap = createMesh(new THREE.CylinderGeometry(0.014, 0.013, 0.038, 18), hardwareMat);
+            footCap.position.y = -0.152;
+            const glide = createMesh(new THREE.CylinderGeometry(0.0135, 0.0135, 0.005, 14), puWheelMat);
+            glide.position.y = -0.172;
+
+            lg.add(oakLeg, footCap, glide);
+            baseStatic4.add(lg);
+        });
+
+        // Sculpted Oak X-Cross Stretcher Apron at y = 0.32m + Mid Tie-Cross at y = 0.15m
+        [Math.PI / 4, -Math.PI / 4].forEach(rotY => {
+            const topApron = createMesh(new THREE.BoxGeometry(0.46, 0.032, 0.038), woodMatHoriz);
+            topApron.position.y = 0.322;
+            topApron.rotation.y = rotY;
+            const midTie = createMesh(new THREE.CylinderGeometry(0.010, 0.010, 0.49, 14), woodMatHoriz);
+            midTie.rotation.z = Math.PI / 2;
+            midTie.rotation.y = rotY;
+            midTie.position.y = 0.15;
+            baseStatic4.add(topApron, midTie);
+        });
+
+        // -------------------- 6D. PNEUMATIC GAS-LIFT TELESCOPIC PISTON ROD --------------------
+        const innerPistonRod = createMesh(new THREE.CylinderGeometry(0.0145, 0.0145, 0.24, 24), pistonChromeMat);
+        innerPistonRod.position.y = 0.265;
+        const pistonSealRing = createMesh(new THREE.CylinderGeometry(0.018, 0.018, 0.012, 20), hardwareMat);
+        pistonSealRing.position.y = 0.340;
+        pistonGroup.add(innerPistonRod, pistonSealRing);
+        registerInteractive(pistonGroup, 'gasLift', 'Silinder Gas-Lift (44–54 cm)');
+
+        // -------------------- 6E. UNDER-SEAT STEEL TILT MECHANISM, TENSION KNOB & HEIGHT LEVER --------------------
+        const mechHousing = createMesh(new THREE.BoxGeometry(0.155, 0.042, 0.195), mechSteelMat);
+        mechHousing.position.set(0, 0.358, -0.015);
+        const mechPlate = createMesh(new THREE.BoxGeometry(0.185, 0.008, 0.215), mechSteelMat);
+        mechPlate.position.set(0, 0.380, -0.015);
+
+        // Front Tilt Tension Adjustment Knob with Knurled Grip Rings
+        const tensionStem = createMesh(new THREE.CylinderGeometry(0.018, 0.018, 0.032, 18), mechSteelMat);
+        tensionStem.position.set(0, 0.326, 0.055);
+        const tensionKnob = createMesh(new THREE.CylinderGeometry(0.028, 0.025, 0.036, 20), mechSteelMat);
+        tensionKnob.position.set(0, 0.302, 0.055);
+        const tensionAccent = createMesh(new THREE.CylinderGeometry(0.029, 0.029, 0.006, 20), hardwareMat, false);
+        tensionAccent.position.set(0, 0.302, 0.055);
+        mechanismGroup.add(mechHousing, mechPlate, tensionStem, tensionKnob, tensionAccent);
+
+        // Right-Side Animated Pneumatic Height-Control Paddle Lever
+        const heightLeverPivot = new THREE.Group();
+        heightLeverPivot.position.set(0.075, 0.352, 0.015);
+
+        const leverRod = createMesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.125, 12), hardwareMat);
+        leverRod.rotation.z = Math.PI / 2;
+        leverRod.position.x = 0.062;
+        const leverPaddle = createMesh(new THREE.BoxGeometry(0.055, 0.010, 0.034), mechSteelMat);
+        leverPaddle.position.set(0.135, 0, 0);
+        const leverTipTrim = createMesh(new THREE.BoxGeometry(0.010, 0.012, 0.036), hardwareMat, false);
+        leverTipTrim.position.set(0.160, 0, 0);
+
+        heightLeverPivot.add(leverRod, leverPaddle, leverTipTrim);
+        mechanismGroup.add(heightLeverPivot);
+        registerInteractive(heightLeverPivot, 'gasLift', 'Tuas Gas-Lift (44–54 cm)');
+
+        // -------------------- 6F. SCULPTED MOLDED BENTWOOD OAK SEAT PAN --------------------
+        // Side-profile ExtrudeGeometry with waterfall front lip (+Z), ergonomic center dish, and rear lip (-Z)
+        const seatSideShape = new THREE.Shape();
+        // Shape X maps to World Z (-0.22 back to +0.23 front), Shape Y maps to thickness/contour
+        seatSideShape.moveTo(-0.215, 0.022);
+        seatSideShape.quadraticCurveTo(-0.18, 0.004, -0.09, 0.000);   // Rear curve down into dish
+        seatSideShape.quadraticCurveTo(0.04, -0.004, 0.165, 0.006);   // Gentle ergonomic seat dish
+        seatSideShape.quadraticCurveTo(0.225, 0.008, 0.235, -0.022);  // Waterfall front lip curving downward
+        seatSideShape.lineTo(0.220, -0.028);
+        seatSideShape.quadraticCurveTo(0.208, -0.007, 0.160, -0.009); // Underside waterfall return
+        seatSideShape.quadraticCurveTo(0.04, -0.019, -0.09, -0.015);  // Underside pan
+        seatSideShape.quadraticCurveTo(-0.185, -0.012, -0.226, 0.012);
+        seatSideShape.closePath();
+
+        const seatPanGeo = new THREE.ExtrudeGeometry(seatSideShape, {
+            depth: 0.455,
+            bevelEnabled: true,
+            bevelThickness: 0.014,
+            bevelSize: 0.008,
+            bevelSegments: 5
+        });
+        // Rotate so Shape X -> +Z, Shape Y -> +Y, Extrude Z -> X
+        seatPanGeo.rotateY(-Math.PI / 2);
+        seatPanGeo.center();
+
+        const bentwoodSeatPan = createMesh(seatPanGeo, woodMatHoriz);
+        bentwoodSeatPan.position.set(0, 0.026, 0.015);
+        seatShellGroup.add(bentwoodSeatPan);
+
+        // Recessed brass mounting fasteners visible on top of molded oak shell when seat cushion is lifted!
+        [[-0.065, -0.055], [0.065, -0.055], [-0.065, 0.065], [0.065, 0.065]].forEach(([bx, bz]) => {
+            const bolt = createMesh(new THREE.CylinderGeometry(0.007, 0.007, 0.004, 14), hardwareMat, false);
+            bolt.position.set(bx, 0.036, bz);
+            seatShellGroup.add(bolt);
+        });
+        registerInteractive(seatShellGroup, 'swivel', 'Dudukan Bentwood Oak (Putar +90°)');
+
+        // -------------------- 6G. SCULPTED CURVED C-SHAPED BENTWOOD BACKREST SHELL --------------------
+        // World top at lift=0: tiltPivot.y (0.365) + 0.515 = 0.880m; at lift=1 (+0.10): 0.980m!
+        const backShellGeo = createCurvedArcShellGeometry({
+            uSegs: 36,
+            vSegs: 16,
+            arcAngle: Math.PI * 0.68,
+            radius: 0.278,
+            thickness: 0.016,
+            yBottom: 0.115,
+            yTop: 0.502,
+            zCenter: 0.065,
+            lumbarCurve: 0.015,
+            taperTop: 0.09
+        });
+        const backShellMesh = createMesh(backShellGeo, woodMatHoriz);
+        backShellGroup.add(backShellMesh);
+
+        // 4 Subtle Recessed Joinery Bolts visible on inner oak face when back cushion is lifted
+        [[-0.085, 0.24], [0.085, 0.24], [-0.085, 0.36], [0.085, 0.36]].forEach(([bx, by]) => {
+            const bPin = createMesh(new THREE.CylinderGeometry(0.0065, 0.0065, 0.005, 14), hardwareMat, false);
+            bPin.rotation.x = Math.PI / 2;
+            bPin.position.set(bx, by, -0.188);
+            backShellGroup.add(bPin);
+        });
+        registerInteractive(backShellGroup, 'tilt', 'Sandaran Bentwood Oak (Rebah 18°)');
+
+        // -------------------- 6H. REAR ARCHITECTURAL SPINE BRACKET WITH VISIBLE HARDWARE BOLTS --------------------
+        // Twin sculpted arched spine ribs connecting seat underside cleanly to exterior backrest shell
+        [-0.058, 0.058].forEach(sx => {
+            const spineCurve = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(sx, 0.012, -0.06),
+                new THREE.Vector3(sx, 0.016, -0.185),
+                new THREE.Vector3(sx, 0.065, -0.228),
+                new THREE.Vector3(sx, 0.205, -0.220),
+                new THREE.Vector3(sx, 0.365, -0.218)
+            ]);
+            const spineRib = createMesh(new THREE.TubeGeometry(spineCurve, 24, 0.012, 12, false), woodMatVert);
+            spineBracketGroup.add(spineRib);
+        });
+
+        // Sculpted Rear Metallic Spine Plate & 4 Exposed Domed Brass/Metal Bolts
+        const rearPlate = createMesh(new THREE.BoxGeometry(0.165, 0.165, 0.009), mechSteelMat);
+        rearPlate.position.set(0, 0.290, -0.214);
+        spineBracketGroup.add(rearPlate);
+
+        [[-0.058, 0.235], [0.058, 0.235], [-0.058, 0.345], [0.058, 0.345]].forEach(([bx, by]) => {
+            const domeBolt = createMesh(new THREE.SphereGeometry(0.0085, 16, 12), hardwareMat);
+            domeBolt.scale.set(1, 1, 0.55);
+            domeBolt.position.set(bx, by, -0.221);
+            spineBracketGroup.add(domeBolt);
+        });
+
+        // -------------------- 6I. SCULPTED SWEPT BENTWOOD ARMRESTS (TOTAL WIDTH = 62 cm, DESK-CLEARANCE) --------------------
+        [-1, 1].forEach(side => {
+            const armCurve = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(side * 0.215, 0.018, 0.075),   // Anchored cleanly beneath seat shell
+                new THREE.Vector3(side * 0.292, 0.078, 0.095),   // Sweeps gracefully outward
+                new THREE.Vector3(side * 0.295, 0.225, 0.088),   // Rises to ergonomic forearm height (~60-70cm world)
+                new THREE.Vector3(side * 0.295, 0.238, -0.025),  // Flat forearm rest plateau (outer edge x = ±0.31m -> 62cm!)
+                new THREE.Vector3(side * 0.258, 0.236, -0.115)   // Curves smoothly into backrest side wing
+            ]);
+            const armMesh = createMesh(new THREE.TubeGeometry(armCurve, 32, 0.0155, 16, false), woodMatHoriz);
+
+            // Metallic spacer pin joining armrest rear end cleanly into bentwood backrest wing
+            const joinPin = createMesh(new THREE.CylinderGeometry(0.009, 0.009, 0.024, 14), hardwareMat);
+            joinPin.rotation.z = Math.PI / 2;
+            joinPin.position.set(side * 0.244, 0.236, -0.118);
+
+            // Lower mounting flange bolt under seat
+            const mountBolt = createMesh(new THREE.CylinderGeometry(0.012, 0.012, 0.014, 14), hardwareMat);
+            mountBolt.position.set(side * 0.215, 0.012, 0.075);
+
+            armrestsGroup.add(armMesh, joinPin, mountBolt);
+        });
+        registerInteractive(armrestsGroup, 'swivel', 'Armrest Bentwood Oak (Putar +90°)');
+
+        // -------------------- 6J. PLUSH WOVEN LINEN CUSHIONS (SEAT, CURVED BACK & LUMBAR PILLOW) --------------------
+        // 1. Contoured Woven Linen Seat Cushion (sits neatly atop seat pan; top at local y = +0.075m -> world 44–54cm)
+        const seatCushShape = new THREE.Shape();
+        const scW = 0.222, scD = 0.205, scR = 0.055;
+        seatCushShape.moveTo(-scW + scR, -scD);
+        seatCushShape.lineTo(scW - scR, -scD);
+        seatCushShape.quadraticCurveTo(scW, -scD, scW, -scD + scR);
+        seatCushShape.lineTo(scW, scD - scR);
+        seatCushShape.quadraticCurveTo(scW, scD, scW - scR, scD);
+        seatCushShape.lineTo(-scW + scR, scD);
+        seatCushShape.quadraticCurveTo(-scW, scD, -scW, scD - scR);
+        seatCushShape.lineTo(-scW, -scD + scR);
+        seatCushShape.quadraticCurveTo(-scW, -scD, -scW + scR, -scD);
+
+        const seatCushGeo = new THREE.ExtrudeGeometry(seatCushShape, {
+            depth: 0.024,
+            bevelEnabled: true,
+            bevelThickness: 0.016,
+            bevelSize: 0.014,
+            bevelSegments: 6
+        });
+        seatCushGeo.rotateX(Math.PI / 2);
+        seatCushGeo.center();
+
+        const seatCushionMesh = createMesh(seatCushGeo, linenMat);
+        seatCushionMesh.position.set(0, 0.050, 0.018); // Top reaches local y = +0.076m -> world 0.441m at lift=0!
+
+        // Subtle Piped Seam Trim around Seat Cushion Perimeter
+        const pipePts = seatCushShape.getPoints(36).map(pt => new THREE.Vector3(pt.x * 1.04, 0.052, pt.y * 1.04 + 0.018));
+        pipePts.push(pipePts[0].clone());
+        const pipeCurve = new THREE.CatmullRomCurve3(pipePts, true);
+        const seatPiping = createMesh(new THREE.TubeGeometry(pipeCurve, 48, 0.0042, 8, true), linenPipingMat, false);
+        seatCushionGroup.add(seatCushionMesh, seatPiping);
+        registerInteractive(seatCushionGroup, 'cushionLift', 'Bantalan Dudukan Linen (Angkat)');
+
+        // 2. Contoured Curved Linen Backrest Cushion Pad (follows exact inner C-curve of bentwood shell)
+        const backPadGeo = createCurvedArcShellGeometry({
+            uSegs: 32,
+            vSegs: 14,
+            arcAngle: Math.PI * 0.58,
+            radius: 0.252,
+            thickness: 0.032,
+            yBottom: 0.135,
+            yTop: 0.478,
+            zCenter: 0.065,
+            lumbarCurve: 0.015,
+            taperTop: 0.08
+        });
+        const backPadMesh = createMesh(backPadGeo, linenMat);
+        backCushionGroup.add(backPadMesh);
+
+        // Subtle Vertical Japandi Channel Stitch Lines on Back Cushion Face
+        [-0.10, 0.0, 0.10].forEach(ang => {
+            const stPts = [];
+            for (let k = 0; k <= 10; k++) {
+                const v = k / 10;
+                const r = 0.252 - Math.sin(v * Math.PI * 1.15) * 0.015 - 0.0165;
+                const y = 0.145 + v * 0.322;
+                stPts.push(new THREE.Vector3(r * Math.sin(ang), y, 0.065 - r * Math.cos(ang)));
+            }
+            const stCurve = new THREE.CatmullRomCurve3(stPts);
+            const stitchRib = createMesh(new THREE.TubeGeometry(stCurve, 12, 0.0022, 6, false), linenPipingMat, false);
+            backCushionGroup.add(stitchRib);
+        });
+        registerInteractive(backCushionGroup, 'cushionLift', 'Bantalan Sandaran Linen (Angkat)');
+
+        // 3. Cozy Removable Lumbar Pillow resting at Lower Back
+        const lumbarCore = createMesh(new THREE.SphereGeometry(0.16, 26, 20), lumbarMat);
+        lumbarCore.scale.set(1.12, 0.44, 0.32);
+        lumbarCore.position.set(0, 0.148, -0.118);
+        lumbarCore.rotation.x = 0.18;
+
+        // Soft piped seam around lumbar pillow equator
+        const lumbarSeam = createMesh(new THREE.TorusGeometry(0.16, 0.0035, 8, 36), linenPipingMat, false);
+        lumbarSeam.scale.set(1.12, 0.44, 1.0);
+        lumbarSeam.position.set(0, 0.148, -0.118);
+        lumbarSeam.rotation.x = 0.18;
+
+        lumbarPillowGroup.add(lumbarCore, lumbarSeam);
+        registerInteractive(lumbarPillowGroup, 'cushionLift', 'Bantal Pinggang Linen (Angkat)');
+
+        // -------------------- 6K. TOGGLEABLE STUDY ROOM CONTEXT ("Sudut Belajar & Lampu") --------------------
+        const studyRoomGroup = new THREE.Group();
+        studyRoomGroup.visible = false; // Default OFF for clean 360° chair inspection
+        scene.add(studyRoomGroup);
+
+        // 1. Round Woven Cream Nursery/Study Rug underneath chair
+        const studyRug = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.88, 0.88, 0.006, 64),
+            new THREE.MeshStandardMaterial({ map: getStudyRugTexture(), roughness: 0.94 })
+        );
+        studyRug.position.set(0, 0.003, 0.04);
+        studyRug.receiveShadow = true;
+        studyRoomGroup.add(studyRug);
+
+        // 2. Subtle L-Corner Japandi Study Backdrop Wall (Back Z = -0.82m & Left X = -1.18m)
+        const roomWallMat = new THREE.MeshStandardMaterial({ color: 0xF4EFE6, roughness: 0.92 });
+        const backStudyWall = new THREE.Mesh(new THREE.BoxGeometry(2.80, 2.35, 0.04), roomWallMat);
+        backStudyWall.position.set(0.22, 1.175, -0.82);
+        backStudyWall.receiveShadow = true;
+
+        const leftStudyWall = new THREE.Mesh(new THREE.BoxGeometry(0.04, 2.35, 2.20), roomWallMat);
+        leftStudyWall.position.set(-1.18, 1.175, 0.26);
+        leftStudyWall.receiveShadow = true;
+
+        const baseBoardB = new THREE.Mesh(new THREE.BoxGeometry(2.80, 0.08, 0.018), woodMatHoriz);
+        baseBoardB.position.set(0.22, 0.04, -0.792);
+        const baseBoardL = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.08, 2.20), woodMatHoriz);
+        baseBoardL.position.set(-1.152, 0.04, 0.26);
+
+        // Vertical Acoustic Oak Slat Wall Accent Panel behind chair
+        for (let i = 0; i < 12; i++) {
+            const slat = new THREE.Mesh(new THREE.BoxGeometry(0.032, 2.20, 0.018), woodMatVert);
+            slat.position.set(-0.98 + i * 0.068, 1.15, -0.792);
+            slat.receiveShadow = true;
+            studyRoomGroup.add(slat);
+        }
+        studyRoomGroup.add(backStudyWall, leftStudyWall, baseBoardB, baseBoardL);
+
+        // 3. Minimalist Tall Japandi Floor Lamp with Glowing Warm Linen Shade (Right Rear: x = 0.78, z = -0.45)
+        const floorLampG = new THREE.Group();
+        floorLampG.position.set(0.76, 0, -0.46);
+
+        const flBase = createMesh(new THREE.CylinderGeometry(0.14, 0.15, 0.022, 28), woodMatHoriz);
+        flBase.position.y = 0.011;
+        const flStem = createMesh(new THREE.CylinderGeometry(0.011, 0.014, 1.32, 18), woodMatVert);
+        flStem.position.y = 0.67;
+        const flNeck = createMesh(new THREE.CylinderGeometry(0.008, 0.008, 0.16, 16), hardwareMat);
+        flNeck.position.y = 1.38;
+
+        const floorLampShadeMat = new THREE.MeshStandardMaterial({
+            color: 0xFAF3E6,
+            emissive: 0xFFB866,
+            emissiveIntensity: 0.45,
+            roughness: 0.78,
+            side: THREE.DoubleSide
+        });
+        const flShade = createMesh(new THREE.CylinderGeometry(0.145, 0.195, 0.28, 32, 1, true), floorLampShadeMat);
+        flShade.position.y = 1.44;
+        const flFinial = createMesh(new THREE.SphereGeometry(0.014, 14, 14), hardwareMat);
+        flFinial.position.y = 1.59;
+
+        const floorLampLight = new THREE.PointLight(0xFFB866, 0.65, 3.2, 1.8);
+        floorLampLight.position.set(0, 1.42, 0);
+
+        floorLampG.add(flBase, flStem, flNeck, flShade, flFinial, floorLampLight);
+        studyRoomGroup.add(floorLampG);
+
+        // 4. Subtle 75 cm White Oak Desk Corner Silhouette on Front-Left to show Armrest Desk-Clearance!
+        const deskGhostG = new THREE.Group();
+        deskGhostG.position.set(-0.56, 0, 0.68);
+        const deskGhostTop = createMesh(new THREE.BoxGeometry(0.95, 0.026, 0.52), woodMatHoriz);
+        deskGhostTop.position.y = 0.737; // Exact 75.0 cm top surface!
+        const deskGhostApron = createMesh(new THREE.BoxGeometry(0.88, 0.068, 0.45), woodMatHoriz);
+        deskGhostApron.position.y = 0.690;
+        [[-0.41, -0.20], [0.41, -0.20], [-0.41, 0.20], [0.41, 0.20]].forEach(([lx, lz]) => {
+            const dLeg = createMesh(new THREE.CylinderGeometry(0.020, 0.014, 0.724, 16), woodMatVert);
+            dLeg.position.set(lx, 0.362, lz);
+            deskGhostG.add(dLeg);
+        });
+        deskGhostG.add(deskGhostTop, deskGhostApron);
+        studyRoomGroup.add(deskGhostG);
+
+        // ============================================================================
+        // 7. DYNAMIC 3D PRECISION DIMENSION LINES & 5 INTERACTIVE 3D HOTSPOTS
+        // ============================================================================
+        const dimensionGroup = new THREE.Group();
+        dimensionGroup.visible = false;
+        scene.add(dimensionGroup);
+
+        const dimLineMat = new THREE.LineBasicMaterial({ color: 0x8C6239, transparent: true, opacity: 0.92 });
+
+        function createLine(p1, p2) {
+            const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([p1, p2]), dimLineMat);
+            dimensionGroup.add(line);
+            return line;
+        }
+
+        // Static Width: 62.0 cm (Front Floor)
+        createLine(new THREE.Vector3(-0.31, 0.012, 0.44), new THREE.Vector3(0.31, 0.012, 0.44));
+        createLine(new THREE.Vector3(-0.31, 0.012, 0.32), new THREE.Vector3(-0.31, 0.012, 0.44));
+        createLine(new THREE.Vector3(0.31, 0.012, 0.32), new THREE.Vector3(0.31, 0.012, 0.44));
+
+        // Static Depth: 60.0 cm (Right Floor)
+        createLine(new THREE.Vector3(0.45, 0.012, -0.30), new THREE.Vector3(0.45, 0.012, 0.30));
+        createLine(new THREE.Vector3(0.33, 0.012, -0.30), new THREE.Vector3(0.45, 0.012, -0.30));
+        createLine(new THREE.Vector3(0.33, 0.012, 0.30), new THREE.Vector3(0.45, 0.012, 0.30));
+
+        // Dynamic Total Height Line (Left Vertical, updates live from 0.88m to 0.98m!)
+        const dynTotalHeightLine = createLine(new THREE.Vector3(-0.45, 0, -0.22), new THREE.Vector3(-0.45, 0.93, -0.22));
+        const dynTotalHeightTopExt = createLine(new THREE.Vector3(-0.24, 0.93, -0.22), new THREE.Vector3(-0.45, 0.93, -0.22));
+        createLine(new THREE.Vector3(-0.32, 0, -0.22), new THREE.Vector3(-0.45, 0, -0.22));
+
+        // Dynamic Seat Height Line (Right Vertical, updates live from 0.44m to 0.54m!)
+        const dynSeatHeightLine = createLine(new THREE.Vector3(0.45, 0, 0.22), new THREE.Vector3(0.45, 0.49, 0.22));
+        const dynSeatHeightTopExt = createLine(new THREE.Vector3(0.24, 0.49, 0.22), new THREE.Vector3(0.45, 0.49, 0.22));
+        createLine(new THREE.Vector3(0.32, 0, 0.22), new THREE.Vector3(0.45, 0, 0.22));
+
+        const dimensionLabelsData = [
+            { id: 'dim-w', text: 'Lebar: 62.0 cm', pos: new THREE.Vector3(0, 0.025, 0.48) },
+            { id: 'dim-d', text: 'Kedalaman: 60.0 cm', pos: new THREE.Vector3(0.52, 0.025, 0) },
+            { id: 'dim-th', text: 'Tinggi Total: 93.0 cm', pos: new THREE.Vector3(-0.52, 0.48, -0.22) },
+            { id: 'dim-sh', text: 'Tinggi Dudukan: 49.0 cm', pos: new THREE.Vector3(0.54, 0.26, 0.22) }
+        ];
+
+        const hotspotsData = [
+            {
+                id: 1,
+                title: 'Cangkang Bentwood Oak 9-Ply',
+                desc: 'Sandaran punggung dan dudukan dibentuk melalui teknik steam-bent 9-ply Solid Oak dengan kurva C ergonomis yang menopang punggung bawah serta menampilkan serat kayu utuh dari belakang.',
+                tag: '9-Ply Molded Bentwood • Ergonomic Curve',
+                baseLocalPos: new THREE.Vector3(0.0, 0.72, -0.24),
+                camPos: new THREE.Vector3(0.62, 0.92, -1.25),
+                camTarget: new THREE.Vector3(0.0, 0.62, -0.10)
+            },
+            {
+                id: 2,
+                title: 'Bantalan Linen Tenun & Bantal Pinggang',
+                desc: 'Dudukan busa kepadatan tinggi dan sandaran berkontur dilapisi kain tenun linen organik bernapas dengan jahitan kanal Japandi plus bantal pinggang yang bisa dilepas-pasang.',
+                tag: 'Breathable Woven Linen • High-Density Foam',
+                baseLocalPos: new THREE.Vector3(0.0, 0.56, 0.05),
+                camPos: new THREE.Vector3(0.75, 0.96, 1.05),
+                camTarget: new THREE.Vector3(0.0, 0.54, 0.0)
+            },
+            {
+                id: 3,
+                title: 'Armrest Lengkung (Desk-Clearance 75 cm)',
+                desc: 'Sandaran tangan kayu bentwood melengkung mulus menyatu dengan sayap sandaran punggung. Tinggi proporsionalnya dirancang agar masuk rapi di bawah meja belajar standar 75 cm.',
+                tag: 'Swept Bentwood Armrests • Clears 75cm Desk',
+                baseLocalPos: new THREE.Vector3(0.30, 0.63, 0.04),
+                camPos: new THREE.Vector3(1.18, 0.78, 0.78),
+                camTarget: new THREE.Vector3(0.18, 0.58, 0.04)
+            },
+            {
+                id: 4,
+                title: 'Mekanisme Rebah 18° & Gas-Lift BIFMA',
+                desc: 'Rumah mekanisme baja di bawah dudukan menghadirkan sudut rebah sinkron 18°, kenop pengatur tegangan pegas, tuas kontrol tinggi ergonomis, dan silinder pneumatik BIFMA Class-3 (44–54 cm).',
+                tag: 'BIFMA Class-3 Gas Lift • Sync Tilt 18°',
+                baseLocalPos: new THREE.Vector3(0.15, 0.37, 0.04),
+                camPos: new THREE.Vector3(0.82, 0.36, 0.76),
+                camTarget: new THREE.Vector3(0.04, 0.34, 0.0)
+            },
+            {
+                id: 5,
+                title: 'Kaki 5-Star & Roda PU Silent (3 Tipe Kaki)',
+                desc: 'Rangka kaki bintang 5 radial dengan roda ganda PU senyap anti-gores lantai kayu. Dapat dikustomisasi menjadi kaki putar 4-star kayu Oak maupun 4 kaki statis A-frame sesuai gaya ruang.',
+                tag: 'Dual-Wheel Silent PU • 3 Base Options',
+                baseLocalPos: new THREE.Vector3(0.24, 0.08, 0.16),
+                camPos: new THREE.Vector3(0.95, 0.24, 0.98),
+                camTarget: new THREE.Vector3(0.06, 0.14, 0.04)
+            }
+        ];
+
+        const overlayLayer = document.getElementById('overlay-layer');
+        const domHotspots = [];
+        const domDimLabels = [];
+        let hotspotsVisible = true;
+        let dimensionsVisible = false;
+
+        hotspotsData.forEach(hs => {
+            const el = document.createElement('div');
+            el.className = 'hotspot-pin flex items-center justify-center w-7 h-7 rounded-full font-mono text-xs font-bold shadow-lg';
+            el.innerHTML = `<span class="hotspot-pulse"></span><span>${hs.id}</span>`;
+            el.title = hs.title;
+            el.onclick = (e) => {
+                e.stopPropagation();
+                selectHotspot(hs);
+            };
+            overlayLayer.appendChild(el);
+            domHotspots.push({ el, data: hs });
+        });
+
+        dimensionLabelsData.forEach(dl => {
+            const el = document.createElement('div');
+            el.id = dl.id;
+            el.className = 'dim-label opacity-0';
+            el.textContent = dl.text;
+            overlayLayer.appendChild(el);
+            domDimLabels.push({ el, data: dl });
+        });
+
+        function selectHotspot(hs) {
+            playTactileSound('click');
+            const card = document.getElementById('hotspot-card');
+            card.classList.remove('hidden');
+            document.getElementById('hs-number').textContent = hs.id;
+            document.getElementById('hs-title').textContent = hs.title;
+            document.getElementById('hs-desc').textContent = hs.desc;
+            document.getElementById('hs-tag').textContent = hs.tag;
+
+            if (window.innerWidth < 768) {
+                toggleMobileDrawer('left', true);
+            }
+
+            const leftHud = document.getElementById('left-hud');
+            setTimeout(() => {
+                leftHud.scrollTo({ top: leftHud.scrollHeight, behavior: 'smooth' });
+            }, 55);
+
+            // Hide study room wall when viewing Rear Bentwood Shell hotspot #1
+            if (hs.id === 1 && studyRoomGroup.visible) {
+                studyRoomGroup.visible = false;
+                document.getElementById('btn-studyroom').classList.remove('active');
+            }
+            if (hs.id === 4 && !mechState.tilted) {
+                toggleTilt();
+            }
+
+            animateCameraTo(hs.camPos, hs.camTarget);
+        }
+
+        function closeHotspotCard() {
+            document.getElementById('hotspot-card').classList.add('hidden');
+        }
+
+        // ============================================================================
+        // 8. INTERACTIVE CHAIR MECHANISMS, EXPLODED ANATOMY & CAMERA PRESETS
+        // ============================================================================
+        const mechState = {
+            swivelCurrent: 0,
+            swivelTarget: 0,           // Increments by Math.PI / 2 (+90°) per click
+            tiltCurrent: 0,
+            tiltTarget: 0,             // 0 to 1 (maps to 0° -> -18°)
+            tilted: false,
+            liftCurrent: 0.5,          // 0 = 44cm, 0.5 = 49cm (default), 1 = 54cm
+            liftTarget: 0.5,
+            leverPulse: 0,             // Brief paddle animation when height changes
+            cushionLiftCurrent: 0,
+            cushionLiftTarget: 0,      // 0 to 1 (floats cushions off bentwood oak shell)
+            explodeCurrent: 0,
+            explodeTarget: 0
+        };
+
+        let currentBaseType = 'casters';
+
+        function triggerSwivelStep() {
+            mechState.swivelTarget += Math.PI / 2;
+            playTactileSound('swivel');
+            const deg = Math.round(((mechState.swivelTarget * 180) / Math.PI) % 360);
+            document.getElementById('swivel-deg-badge').textContent = `${deg}°`;
+            showToast(`Kursi diputar ke ${deg}°`);
+        }
+
+        function toggleTilt() {
+            mechState.tilted = !mechState.tilted;
+            mechState.tiltTarget = mechState.tilted ? 1 : 0;
+            playTactileSound('tilt');
+
+            document.getElementById('part-tilt').classList.toggle('active', mechState.tilted);
+            document.getElementById('dot-tilt').className = mechState.tilted
+                ? 'w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0'
+                : 'w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0';
+            showToast(mechState.tilted ? 'Mode Rebah ergonomis 18° aktif' : 'Sandaran kembali tegak 0°');
+        }
+
+        function toggleCushionLift() {
+            const willLift = mechState.cushionLiftTarget < 0.5;
+            mechState.cushionLiftTarget = willLift ? 1 : 0;
+            playTactileSound('cushion');
+
+            document.getElementById('part-cushionLift').classList.toggle('active', willLift);
+            document.getElementById('dot-cushionLift').className = willLift
+                ? 'w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0'
+                : 'w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0';
+            showToast(willLift ? 'Bantalan diangkat untuk melihat cangkang Bentwood Oak' : 'Bantalan dikembalikan ke dudukan');
+        }
+
+        function toggleLumbarPillow() {
+            playTactileSound('cushion');
+            const nextVis = !lumbarPillowGroup.visible;
+            lumbarPillowGroup.visible = nextVis;
+            document.getElementById('part-lumbar').classList.toggle('active', nextVis);
+            document.getElementById('dot-lumbar').className = nextVis
+                ? 'w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0'
+                : 'w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0';
+            showToast(nextVis ? 'Bantal pinggang dipasang' : 'Bantal pinggang dilepas');
+        }
+
+        function setSeatHeightCm(cmVal, silent = false) {
+            const cm = Math.min(54, Math.max(44, parseFloat(cmVal)));
+            mechState.liftTarget = (cm - 44) / 10;
+            mechState.leverPulse = 1.0;
+            document.getElementById('gaslift-val').textContent = `${cm.toFixed(cm % 1 === 0 ? 0 : 1)} cm`;
+            if (!silent) playTactileSound('pneumatic');
+        }
+
+        function toggleGasLiftQuick() {
+            const nextCm = mechState.liftTarget < 0.5 ? 54 : 44;
+            document.getElementById('gaslift-slider').value = nextCm;
+            setSeatHeightCm(nextCm);
+            showToast(`Tinggi Gas-Lift diatur ke ${nextCm} cm (Total ${nextCm + 44} cm)`);
+        }
+
+        function setExplodeFactor(val) {
+            mechState.explodeTarget = parseFloat(val) / 100;
+            document.getElementById('explode-val').textContent = Math.round(val) + '%';
+        }
+
+        function resetMechanisms() {
+            playTactileSound('click');
+            mechState.swivelTarget = 0;
+            document.getElementById('swivel-deg-badge').textContent = '0°';
+
+            if (mechState.tilted) toggleTilt();
+            if (mechState.cushionLiftTarget > 0.5) toggleCushionLift();
+
+            document.getElementById('gaslift-slider').value = 49;
+            setSeatHeightCm(49, true);
+
+            document.getElementById('explode-slider').value = 0;
+            setExplodeFactor(0);
+            showToast('Semua mekanisme kursi direset ke posisi awal');
+        }
+
+        // 7 Camera Presets
+        const CAMERA_PRESETS = {
+            hero: { pos: new THREE.Vector3(1.24, 0.92, 1.48), target: new THREE.Vector3(0, 0.48, 0) },
+            front: { pos: new THREE.Vector3(0.0, 0.62, 1.85), target: new THREE.Vector3(0, 0.48, 0) },
+            side: { pos: new THREE.Vector3(1.82, 0.58, 0.04), target: new THREE.Vector3(0, 0.48, 0) },
+            back: { pos: new THREE.Vector3(0.42, 0.84, -1.68), target: new THREE.Vector3(0, 0.52, -0.06) },
+            top: { pos: new THREE.Vector3(0.0, 2.22, 0.34), target: new THREE.Vector3(0, 0.48, 0) },
+            mechanism: { pos: new THREE.Vector3(0.86, 0.36, 0.80), target: new THREE.Vector3(0.02, 0.34, 0) },
+            recline: { pos: new THREE.Vector3(1.56, 0.68, 0.56), target: new THREE.Vector3(0, 0.52, -0.05) }
+        };
+
+        let camFlight = {
+            active: false,
+            startPos: new THREE.Vector3(),
+            endPos: new THREE.Vector3(),
+            startTarget: new THREE.Vector3(),
+            endTarget: new THREE.Vector3(),
+            progress: 0
+        };
+
+        function animateCameraTo(pos, target) {
+            camFlight.active = true;
+            camFlight.progress = 0;
+            camFlight.startPos.copy(camera.position);
+            camFlight.endPos.copy(pos);
+            camFlight.startTarget.copy(controls.target);
+            camFlight.endTarget.copy(target);
+        }
+
+        function flyToCamera(presetKey) {
+            playTactileSound('click');
+            const preset = CAMERA_PRESETS[presetKey];
+            if (!preset) return;
+
+            document.querySelectorAll('[id^="cam-"]').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('cam-' + presetKey);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (presetKey === 'back' && studyRoomGroup.visible) {
+                studyRoomGroup.visible = false;
+                document.getElementById('btn-studyroom').classList.remove('active');
+                showToast('Dinding ruang disembunyikan agar punggung Bentwood Oak terlihat');
+            }
+
+            if (presetKey === 'recline' && !mechState.tilted) {
+                toggleTilt();
+            }
+
+            animateCameraTo(preset.pos, preset.target);
+        }
+
+        controls.addEventListener('start', () => {
+            camFlight.active = false;
+        });
+
+        // ============================================================================
+        // 9. DIRECT 3D RAYCASTING (HOVER TOOLTIP & CLICK ON SEAT, BACK, LEVER, CUSHION)
+        // ============================================================================
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const tooltipEl = document.getElementById('raycast-tooltip');
+        const tooltipTextEl = document.getElementById('raycast-tooltip-text');
+        let pointerDownPos = { x: 0, y: 0 };
+
+        function findVisiblePickable(hits) {
+            return hits.find(h => {
+                let obj = h.object;
+                while (obj) {
+                    if (!obj.visible) return false;
+                    obj = obj.parent;
+                }
+                return Boolean(h.object.userData.partId);
+            });
+        }
+
+        renderer.domElement.addEventListener('pointermove', (e) => {
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisiblePickable(hits);
+
+            if (validHit) {
+                const { partId, label } = validHit.object.userData;
+                renderer.domElement.style.cursor = 'pointer';
+                let promptText = `Klik: ${label}`;
+                if (partId === 'tilt') promptText = `Klik: ${mechState.tilted ? 'Tegakkan Sandaran (0°)' : 'Rebahkan Sandaran (18°)'}`;
+                else if (partId === 'cushionLift') promptText = `Klik: ${mechState.cushionLiftTarget > 0.5 ? 'Pasang Kembali Bantalan' : 'Angkat Bantalan Linen'}`;
+                else if (partId === 'gasLift') promptText = `Klik: ${mechState.liftTarget < 0.5 ? 'Naikkan Gas-Lift (54 cm)' : 'Turunkan Gas-Lift (44 cm)'}`;
+                else if (partId === 'swivel') promptText = 'Klik: Putar Kursi +90° (Swivel)';
+
+                tooltipTextEl.textContent = promptText;
+                tooltipEl.style.left = `${e.clientX}px`;
+                tooltipEl.style.top = `${e.clientY}px`;
+                tooltipEl.classList.remove('opacity-0');
+                return;
+            }
+            renderer.domElement.style.cursor = 'grab';
+            tooltipEl.classList.add('opacity-0');
+        });
+
+        renderer.domElement.addEventListener('pointerdown', (e) => {
+            pointerDownPos.x = e.clientX;
+            pointerDownPos.y = e.clientY;
+        });
+
+        renderer.domElement.addEventListener('pointerup', (e) => {
+            const dist = Math.hypot(e.clientX - pointerDownPos.x, e.clientY - pointerDownPos.y);
+            if (dist > 6) return;
+
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisiblePickable(hits);
+
+            if (validHit) {
+                const { partId } = validHit.object.userData;
+                if (partId === 'swivel') triggerSwivelStep();
+                else if (partId === 'tilt') toggleTilt();
+                else if (partId === 'cushionLift') toggleCushionLift();
+                else if (partId === 'gasLift') toggleGasLiftQuick();
+            }
+        });
+
+        // ============================================================================
+        // 10. MATERIAL, BASE TYPE, LINEN, HARDWARE, DUAL-THEME STUDIO & UI CONTROLS
+        // ============================================================================
+        function setWoodFinish(finishKey) {
+            playTactileSound('click');
+            const pal = WOOD_PALETTES[finishKey];
+            if (!pal) return;
+
+            woodMatHoriz.map = getWoodTexture(finishKey, false);
+            woodMatHoriz.roughness = pal.roughness;
+            woodMatHoriz.needsUpdate = true;
+
+            woodMatVert.map = getWoodTexture(finishKey, true);
+            woodMatVert.roughness = pal.roughness;
+            woodMatVert.needsUpdate = true;
+
+            document.getElementById('label-wood').textContent = pal.name;
+            document.getElementById('price-display').textContent = pal.price;
+
+            ['whiteoak', 'honeyoak', 'walnut', 'ebonized'].forEach(k => {
+                document.getElementById('wood-' + k).classList.toggle('active', k === finishKey);
+            });
+
+            showToast(`Finishing Bentwood Oak: ${pal.name}`);
+        }
+
+        function setBaseType(baseKey) {
+            playTactileSound('tilt');
+            currentBaseType = baseKey;
+
+            const labels = {
+                casters: '5-Star Roda PU',
+                woodstar: 'Putar Kaki Kayu',
+                static4: 'Statis 4 Kaki'
+            };
+            document.getElementById('label-base').textContent = labels[baseKey] || '';
+
+            baseCasters.visible = (baseKey === 'casters');
+            baseWoodStar.visible = (baseKey === 'woodstar');
+            baseStatic4.visible = (baseKey === 'static4');
+
+            // Hide lower piston rod portion below cross apron in static 4-leg mode so it seats cleanly
+            innerPistonRod.visible = (baseKey !== 'static4');
+
+            if (baseKey === 'static4') {
+                document.getElementById('gaslift-slider').value = 45;
+                setSeatHeightCm(45, true);
+            }
+
+            ['casters', 'woodstar', 'static4'].forEach(k => {
+                document.getElementById('base-' + k).classList.toggle('active', k === baseKey);
+            });
+
+            showToast(`Tipe kaki diubah ke ${labels[baseKey]}`);
+        }
+
+        function setLinenColor(colorKey) {
+            playTactileSound('cushion');
+            const pal = LINEN_PALETTES[colorKey];
+            if (!pal) return;
+
+            linenMat.color.setHex(pal.hex);
+            linenPipingMat.color.setHex(pal.pipingHex);
+            lumbarMat.color.setHex(pal.lumbarHex);
+            document.getElementById('label-linen').textContent = pal.name;
+
+            ['oatmeal', 'sage', 'terracotta', 'charcoal'].forEach(k => {
+                document.getElementById('linen-' + k).classList.toggle('active', k === colorKey);
+            });
+
+            showToast(`Warna bantalan linen: ${pal.name}`);
+        }
+
+        function setHardwareFinish(hwKey) {
+            playTactileSound('click');
+            const spec = HARDWARE_SPECS[hwKey];
+            if (!spec) return;
+
+            hardwareMat.color.setHex(spec.color);
+            hardwareMat.roughness = spec.rough;
+            hardwareMat.metalness = spec.metal;
+            hardwareMat.needsUpdate = true;
+
+            document.getElementById('label-hardware').textContent = spec.name;
+            ['brass', 'black', 'chrome'].forEach(k => {
+                document.getElementById('hw-' + k).classList.toggle('active', k === hwKey);
+            });
+
+            showToast(`Aksen logam diubah ke ${spec.name}`);
+        }
+
+        let currentStudioEnv = 'gallery';
+        function setStudioEnv(envKey) {
+            playTactileSound('click');
+            currentStudioEnv = envKey;
+
+            ['gallery', 'studio', 'sunset', 'night'].forEach(k => {
+                document.getElementById('env-' + k).classList.toggle('active', k === envKey);
+            });
+
+            // Smooth Dual-Theme Frosted Glassmorphism Toggle via body.light-studio
+            const isLight = (envKey === 'gallery');
+            document.body.classList.toggle('light-studio', isLight);
+
+            if (envKey === 'gallery') {
+                scene.background.setHex(0xF5EFE6);
+                scene.fog.color.setHex(0xF5EFE6);
+                floorMat.color.setHex(0xEFE7DA);
+                roomWallMat.color.setHex(0xF4EFE6);
+                dimLineMat.color.setHex(0x8C6239);
+                polarGrid.material.opacity = 0.40;
+                ambientLight.intensity = 0.90;
+                keyLight.color.setHex(0xFFF7EA);
+                keyLight.intensity = 1.32;
+                fillLight.intensity = 0.56;
+                floorLampLight.intensity = 0.55;
+                floorLampShadeMat.emissiveIntensity = 0.45;
+            } else if (envKey === 'studio') {
+                scene.background.setHex(0x181715);
+                scene.fog.color.setHex(0x181715);
+                floorMat.color.setHex(0x1E1C1A);
+                roomWallMat.color.setHex(0x282522);
+                dimLineMat.color.setHex(0xD5BA94);
+                polarGrid.material.opacity = 0.24;
+                ambientLight.intensity = 0.66;
+                keyLight.color.setHex(0xFFF5E4);
+                keyLight.intensity = 1.35;
+                fillLight.intensity = 0.46;
+                floorLampLight.intensity = 0.85;
+                floorLampShadeMat.emissiveIntensity = 0.65;
+            } else if (envKey === 'sunset') {
+                scene.background.setHex(0x201612);
+                scene.fog.color.setHex(0x201612);
+                floorMat.color.setHex(0x271B16);
+                roomWallMat.color.setHex(0x36261F);
+                dimLineMat.color.setHex(0xE6C391);
+                polarGrid.material.opacity = 0.20;
+                ambientLight.intensity = 0.48;
+                keyLight.color.setHex(0xFFA963);
+                keyLight.intensity = 1.54;
+                fillLight.intensity = 0.30;
+                floorLampLight.intensity = 1.45;
+                floorLampShadeMat.emissiveIntensity = 1.05;
+            } else if (envKey === 'night') {
+                scene.background.setHex(0x0C0D11);
+                scene.fog.color.setHex(0x0C0D11);
+                floorMat.color.setHex(0x111318);
+                roomWallMat.color.setHex(0x181B22);
+                dimLineMat.color.setHex(0xD5BA94);
+                polarGrid.material.opacity = 0.16;
+                ambientLight.intensity = 0.20;
+                keyLight.color.setHex(0x9BB5FF);
+                keyLight.intensity = 0.34;
+                fillLight.intensity = 0.16;
+                floorLampLight.intensity = 2.25;
+                floorLampShadeMat.emissiveIntensity = 1.65;
+            }
+        }
+
+        let wireframeActive = false;
+        function toggleWireframeMode() {
+            playTactileSound('click');
+            wireframeActive = !wireframeActive;
+            document.getElementById('btn-wireframe').classList.toggle('active', wireframeActive);
+            allChairMeshes.forEach(m => {
+                if (m.material) m.material.wireframe = wireframeActive;
+            });
+            showToast(wireframeActive ? 'Mode Teknis Wireframe aktif' : 'Mode Render PBR aktif');
+        }
+
+        function toggleDimensions() {
+            playTactileSound('click');
+            dimensionsVisible = !dimensionsVisible;
+            dimensionGroup.visible = dimensionsVisible;
+            document.getElementById('btn-dimensions').classList.toggle('active', dimensionsVisible);
+            domDimLabels.forEach(d => {
+                d.el.style.opacity = dimensionsVisible ? '1' : '0';
+            });
+        }
+
+        function toggleHotspots() {
+            playTactileSound('click');
+            hotspotsVisible = !hotspotsVisible;
+            document.getElementById('btn-hotspots').classList.toggle('active', hotspotsVisible);
+            if (!hotspotsVisible) closeHotspotCard();
+            domHotspots.forEach(h => {
+                h.el.style.opacity = hotspotsVisible ? '1' : '0';
+                h.el.style.pointerEvents = hotspotsVisible ? 'auto' : 'none';
+            });
+        }
+
+        function toggleStudyRoom() {
+            playTactileSound('click');
+            const nextVis = !studyRoomGroup.visible;
+            studyRoomGroup.visible = nextVis;
+            document.getElementById('btn-studyroom').classList.toggle('active', nextVis);
+            showToast(nextVis ? 'Sudut belajar & lampu lantai ditampilkan' : 'Sudut belajar disembunyikan');
+        }
+
+        function toggleAutoRotate() {
+            playTactileSound('click');
+            controls.autoRotate = !controls.autoRotate;
+            controls.autoRotateSpeed = 1.45;
+            document.getElementById('btn-autorotate').classList.toggle('active', controls.autoRotate);
+        }
+
+        // Responsive Mobile Drawer Controller
+        let activeMobileDrawer = null;
+        function toggleMobileDrawer(side, forceOpen = false) {
+            const leftEl = document.getElementById('left-hud');
+            const rightEl = document.getElementById('right-hud');
+            const mobLeftBtn = document.getElementById('mob-toggle-left');
+            const mobRightBtn = document.getElementById('mob-toggle-right');
+            const mobileClasses = ['!flex', 'absolute', 'top-0', 'bottom-0', 'z-30'];
+
+            leftEl.classList.remove(...mobileClasses, 'left-0');
+            rightEl.classList.remove(...mobileClasses, 'right-0');
+
+            if (side === 'close' || (activeMobileDrawer === side && !forceOpen)) {
+                activeMobileDrawer = null;
+                mobLeftBtn.classList.remove('hidden');
+                mobRightBtn.classList.remove('hidden');
+                return;
+            }
+
+            activeMobileDrawer = side;
+            if (side === 'left') {
+                leftEl.classList.add(...mobileClasses, 'left-0');
+                mobLeftBtn.classList.add('hidden');
+                mobRightBtn.classList.remove('hidden');
+            } else if (side === 'right') {
+                rightEl.classList.add(...mobileClasses, 'right-0');
+                mobRightBtn.classList.add('hidden');
+                mobLeftBtn.classList.remove('hidden');
+            }
+        }
+
+        let uiHidden = false;
+        function toggleCleanViewport() {
+            playTactileSound('click');
+            uiHidden = !uiHidden;
+            ['left-hud', 'right-hud', 'bottom-hud', 'mob-toggle-left', 'mob-toggle-right'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.toggle('hud-hidden-panel', uiHidden);
+            });
+            document.getElementById('clean-ui-icon').className = uiHidden
+                ? 'fa-solid fa-compress accent-icon'
+                : 'fa-solid fa-expand accent-icon';
+            showToast(uiHidden ? 'Mode layar bersih aktif' : 'Panel kontrol ditampilkan');
+        }
+
+        function toggleSpecsModal(show) {
+            playTactileSound('click');
+            const modal = document.getElementById('specs-modal');
+            modal.classList.toggle('hidden', !show);
+            modal.classList.toggle('flex', show);
+        }
+
+        function downloadSnapshot() {
+            playTactileSound('click');
+            try {
+                renderer.render(scene, camera);
+                const dataURL = renderer.domElement.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'vela-timber-study-chair-livora.png';
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Foto 3D diunduh: vela-timber-study-chair-livora.png');
+            } catch (err) {
+                showToast('Gagal menyimpan tangkapan layar');
+            }
+        }
+
+        // ============================================================================
+        // 11. MAIN RENDER LOOP, REAL-TIME GAS-LIFT DIMENSION SYNC & 2D PROJECTIONS
+        // ============================================================================
+        const tempProjVec = new THREE.Vector3();
+        let frameCount = 0;
+        let lastFpsTime = performance.now();
+
+        function updateDynamicDimensionGeometry(seatH, totalH) {
+            // Update Total Height 3D vertical line vertices
+            const thAttr = dynTotalHeightLine.geometry.attributes.position;
+            thAttr.setXYZ(1, -0.45, totalH, -0.22);
+            thAttr.needsUpdate = true;
+
+            const thExtAttr = dynTotalHeightTopExt.geometry.attributes.position;
+            thExtAttr.setXYZ(0, -0.24, totalH, -0.22);
+            thExtAttr.setXYZ(1, -0.45, totalH, -0.22);
+            thExtAttr.needsUpdate = true;
+
+            // Update Seat Height 3D vertical line vertices
+            const shAttr = dynSeatHeightLine.geometry.attributes.position;
+            shAttr.setXYZ(1, 0.45, seatH, 0.22);
+            shAttr.needsUpdate = true;
+
+            const shExtAttr = dynSeatHeightTopExt.geometry.attributes.position;
+            shExtAttr.setXYZ(0, 0.24, seatH, 0.22);
+            shExtAttr.setXYZ(1, 0.45, seatH, 0.22);
+            shExtAttr.needsUpdate = true;
+
+            // Update projected 2D label positions & real-time text readouts
+            dimensionLabelsData[2].pos.set(-0.52, totalH * 0.52, -0.22);
+            dimensionLabelsData[3].pos.set(0.54, seatH * 0.52, 0.22);
+            document.getElementById('dim-th').textContent = `Tinggi Total: ${(totalH * 100).toFixed(1)} cm`;
+            document.getElementById('dim-sh').textContent = `Tinggi Dudukan: ${(seatH * 100).toFixed(1)} cm`;
+        }
+
+        function updateAnimations() {
+            const lerp = 0.095;
+            mechState.swivelCurrent += (mechState.swivelTarget - mechState.swivelCurrent) * lerp;
+            mechState.tiltCurrent += (mechState.tiltTarget - mechState.tiltCurrent) * lerp;
+            mechState.liftCurrent += (mechState.liftTarget - mechState.liftCurrent) * lerp;
+            mechState.cushionLiftCurrent += (mechState.cushionLiftTarget - mechState.cushionLiftCurrent) * lerp;
+            mechState.explodeCurrent += (mechState.explodeTarget - mechState.explodeCurrent) * 0.085;
+            mechState.leverPulse *= 0.86;
+
+            const liftMeters = mechState.liftCurrent * 0.10; // 0.00m (44cm) to 0.10m (54cm)
+            const ex = mechState.explodeCurrent;
+            const cLift = mechState.cushionLiftCurrent;
+
+            // 1. Telescopic Gas-Lift Piston & Swivel Assembly Vertical Travel
+            baseGroup.position.y = -ex * 0.14;
+            pistonGroup.position.y = liftMeters - ex * 0.04;
+            swivelGroup.position.y = liftMeters + ex * 0.04;
+            swivelGroup.rotation.y = mechState.swivelCurrent;
+
+            // 2. Pneumatic Control Lever subtle pull animation when height adjusts
+            heightLeverPivot.rotation.z = mechState.leverPulse * 0.34;
+
+            // 3. Ergonomic 18° Backwards Recline around Tilt Pivot (-0.314 rad)
+            tiltPivot.rotation.x = -mechState.tiltCurrent * (18 * Math.PI / 180);
+
+            // 4. Exploded View & Cushion Lift Separation (Cleanly separates every architectural layer!)
+            mechanismGroup.position.y = -ex * 0.05;
+            seatShellGroup.position.y = ex * 0.08;
+            backShellGroup.position.set(0, ex * 0.14, -ex * 0.14);
+            spineBracketGroup.position.set(0, ex * 0.08, -ex * 0.28);
+            armrestsGroup.position.y = ex * 0.14;
+
+            // Gently widen armrests horizontally during Exploded View
+            if (armrestsGroup.children.length >= 6) {
+                // Left armrest elements (first 3 children) & Right armrest elements (last 3 children)
+                for (let i = 0; i < 3; i++) armrestsGroup.children[i].position.x = -ex * 0.14;
+                for (let i = 3; i < 6; i++) armrestsGroup.children[i].position.x = ex * 0.14;
+            }
+
+            // Cushions float cleanly upward & forward on "Angkat Bantalan" OR Exploded View
+            seatCushionGroup.position.set(0, cLift * 0.16 + ex * 0.24, cLift * 0.06 + ex * 0.10);
+            backCushionGroup.position.set(0, cLift * 0.06 + ex * 0.20, cLift * 0.15 + ex * 0.12);
+            lumbarPillowGroup.position.set(0, cLift * 0.14 + ex * 0.28, cLift * 0.24 + ex * 0.24);
+
+            // 5. Real-Time Dynamic 3D Dimension Readouts (44–54 cm seat, 88–98 cm total)
+            updateDynamicDimensionGeometry(0.44 + liftMeters, 0.88 + liftMeters);
+
+            // 6. Smooth Ease-Out-Cubic Camera Flight
+            if (camFlight.active) {
+                camFlight.progress += 0.032;
+                if (camFlight.progress >= 1) {
+                    camFlight.progress = 1;
+                    camFlight.active = false;
+                }
+                const t = 1 - Math.pow(1 - camFlight.progress, 3);
+                camera.position.lerpVectors(camFlight.startPos, camFlight.endPos, t);
+                controls.target.lerpVectors(camFlight.startTarget, camFlight.endTarget, t);
+            }
+        }
+
+        function updateOverlayProjections() {
+            const halfW = window.innerWidth / 2;
+            const halfH = window.innerHeight / 2;
+            const liftMeters = mechState.liftCurrent * 0.10;
+
+            if (hotspotsVisible) {
+                domHotspots.forEach(item => {
+                    tempProjVec.copy(item.data.baseLocalPos);
+                    // Hotspots #1–#4 track chair gas-lift height smoothly; #5 stays on floor casters
+                    if (item.data.id !== 5) {
+                        tempProjVec.y += liftMeters;
+                    }
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'flex';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+
+            if (dimensionsVisible) {
+                domDimLabels.forEach(item => {
+                    tempProjVec.copy(item.data.pos);
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'block';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+        }
+
+        function animateLoop() {
+            requestAnimationFrame(animateLoop);
+            updateAnimations();
+            controls.update();
+            renderer.render(scene, camera);
+            updateOverlayProjections();
+
+            frameCount++;
+            const now = performance.now();
+            if (now - lastFpsTime >= 1000) {
+                const fps = Math.min(60, Math.round((frameCount * 1000) / (now - lastFpsTime)));
+                document.getElementById('fps-badge').textContent = `${fps} FPS`;
+                frameCount = 0;
+                lastFpsTime = now;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            if (window.innerWidth >= 768 && activeMobileDrawer) {
+                toggleMobileDrawer('close');
+            }
+        });
+
+        window.onload = function () {
+            animateLoop();
+        };
+    </script>
+</body>
+</html>

@@ -21,7 +21,7 @@
 <body class="font-sans antialiased selection:bg-oak-300 selection:text-charcoal-900">
 
   <div data-component="ambient"></div>
-  <div data-component="navbar"></div>
+  <div data-component="navbar" class="sticky top-0 z-40"></div>
   <main data-component="home"></main>
   <div data-component="footer"></div>
 
@@ -50,7 +50,6 @@
     const script = document.createElement('script');
     script.src = './assets/js/app.js';
     script.onload = () => {
-      
       if (typeof window.onload === 'function') window.onload();
     };
     document.body.appendChild(script);
