@@ -15,6 +15,7 @@
                 id: 'kiko-montessori-bed',
                 name: 'Kiko Montessori Low Bed',
                 ageGroup: 'Anak-anak',
+                category: 'Kamar Tidur', style: 'Scandinavian', color: 'Krem Birch',
                 styleBadge: 'Kids Safe Rounded Birch',
                 dimP: 100, dimL: 200, dimT: 35,
                 material: 'Solid Birch Sudut Tumpul Aman',
@@ -27,6 +28,7 @@
                 id: 'mori-kids-desk',
                 name: 'Mori Kids Study Desk',
                 ageGroup: 'Anak-anak',
+                category: 'Ruang Kerja', style: 'Minimalis', color: 'Maple Terang',
                 styleBadge: 'Ergonomic Kids Wood',
                 dimP: 90, dimL: 55, dimT: 65,
                 material: 'Light Maple & White Oak',
@@ -39,6 +41,7 @@
                 id: 'pino-toy-organizer',
                 name: 'Pino Montessori Toy Shelf',
                 ageGroup: 'Anak-anak',
+                category: 'Penyimpanan', style: 'Scandinavian', color: 'Krem Birch',
                 styleBadge: 'Scandinavian Kids Storage',
                 dimP: 85, dimL: 35, dimT: 70,
                 material: 'Solid Birch + 6 Kotak Linen',
@@ -51,6 +54,7 @@
                 id: 'sora-bunk-bed',
                 name: 'Sora Twin Bunk Bed',
                 ageGroup: 'Anak-anak',
+                category: 'Kamar Tidur', style: 'Minimalis', color: 'Pine',
                 styleBadge: 'Space-Saving Kids',
                 dimP: 100, dimL: 208, dimT: 165,
                 material: 'Solid Pine & Oak Anti-Slip',
@@ -65,6 +69,7 @@
                 id: 'lumina-desk',
                 name: 'Lumina Minimalist Desk',
                 ageGroup: 'Remaja & Kos',
+                category: 'Ruang Kerja', style: 'Scandinavian', color: 'Oak Natural',
                 styleBadge: 'Scandinavian Compact',
                 dimP: 120, dimL: 60, dimT: 75,
                 material: 'Solid White Oak + 2 Laci',
@@ -77,6 +82,7 @@
                 id: 'vela-study-chair',
                 name: 'Vela Timber Study Chair',
                 ageGroup: 'Remaja & Kos',
+                category: 'Ruang Kerja', style: 'Japandi', color: 'Oak Natural',
                 styleBadge: 'Japandi Task Seating',
                 dimP: 62, dimL: 60, dimT: 98,
                 material: 'Bentwood Oak + Linen Cushion',
@@ -89,6 +95,7 @@
                 id: 'nara-slim-wardrobe',
                 name: 'Nara Slim Kos Wardrobe',
                 ageGroup: 'Remaja & Kos',
+                category: 'Kamar Tidur', style: 'Minimalis', color: 'Ash Pucat',
                 styleBadge: 'Minimalist Natural Ash',
                 dimP: 90, dimL: 55, dimT: 190,
                 material: 'Kayu Ash Oven-Dried 2 Pintu',
@@ -101,6 +108,7 @@
                 id: 'kanso-bookshelf',
                 name: 'Kanso Modular Bookshelf',
                 ageGroup: 'Remaja & Kos',
+                category: 'Penyimpanan', style: 'Scandinavian', color: 'Oak Natural',
                 styleBadge: 'Scandinavian Light Wood',
                 dimP: 80, dimL: 32, dimT: 145,
                 material: 'Solid White Oak 4 Tingkat',
@@ -115,6 +123,7 @@
                 id: 'aoki-credenza',
                 name: 'Aoki Birch Credenza',
                 ageGroup: 'Dewasa & Keluarga',
+                category: 'Ruang Keluarga', style: 'Japandi', color: 'Krem Birch',
                 styleBadge: 'Flagship Japandi Miter 45°',
                 dimP: 180, dimL: 45, dimT: 75,
                 material: 'Solid Scandinavian Birch 22mm',
@@ -127,6 +136,7 @@
                 id: 'hana-japandi-sofa',
                 name: 'Hana Japandi 3-Seater Sofa',
                 ageGroup: 'Dewasa & Keluarga',
+                category: 'Ruang Keluarga', style: 'Japandi', color: 'Oak Natural',
                 styleBadge: 'Japandi Living Room',
                 dimP: 210, dimL: 85, dimT: 78,
                 material: 'Solid Oak + Cream Boucle Fabric',
@@ -139,6 +149,7 @@
                 id: 'tori-dining-table',
                 name: 'Tori Solid Oak Dining Table',
                 ageGroup: 'Dewasa & Keluarga',
+                category: 'Ruang Keluarga', style: 'Scandinavian', color: 'Oak Natural',
                 styleBadge: 'Scandinavian 6-Seater',
                 dimP: 180, dimL: 90, dimT: 75,
                 material: '100% Solid White Oak 3.2 cm',
@@ -151,6 +162,7 @@
                 id: 'kaia-queen-bed',
                 name: 'Kaia Queen Floating Bed',
                 ageGroup: 'Dewasa & Keluarga',
+                category: 'Kamar Tidur', style: 'Japandi', color: 'Krem Birch',
                 styleBadge: 'Japandi Master Bedroom',
                 dimP: 160, dimL: 200, dimT: 85,
                 material: 'Solid Birch Frame + Linen Headboard',
@@ -165,6 +177,7 @@
                 id: 'senja-senior-armchair',
                 name: 'Senja Easy-Rise Armchair',
                 ageGroup: 'Lansia / Senior',
+                category: 'Ruang Keluarga', style: 'Minimalis', color: 'Krem Birch',
                 styleBadge: 'Senior Ergonomic Support',
                 dimP: 78, dimL: 82, dimT: 96,
                 material: 'Birch Armrest Kokoh + Lumbar Support',
@@ -177,6 +190,7 @@
                 id: 'raku-senior-recliner',
                 name: 'Raku Senior Wood Recliner',
                 ageGroup: 'Lansia / Senior',
+                category: 'Ruang Keluarga', style: 'Minimalis', color: 'Krem Birch',
                 styleBadge: 'Senior Relaxation',
                 dimP: 80, dimL: 88, dimT: 102,
                 material: 'Bentwood Birch + Sandaran Leher',
@@ -189,6 +203,7 @@
                 id: 'yumi-bedside-nightstand',
                 name: 'Yumi Sensor-LED Nightstand',
                 ageGroup: 'Lansia / Senior',
+                category: 'Kamar Tidur', style: 'Minimalis', color: 'Krem Birch',
                 styleBadge: 'Safe Night Mobility',
                 dimP: 50, dimL: 42, dimT: 60,
                 material: 'Solid Birch + Sensor Gerak LED',
@@ -201,6 +216,7 @@
                 id: 'oka-mobility-bench',
                 name: 'Oka Grab-Handle Bench',
                 ageGroup: 'Lansia / Senior',
+                category: 'Ruang Keluarga', style: 'Minimalis', color: 'Oak Natural',
                 styleBadge: 'Easy Sit & Stand Bench',
                 dimP: 110, dimL: 40, dimT: 48,
                 material: 'Solid White Oak + Pegangan Samping',
@@ -341,6 +357,44 @@
         /* ----------------------------------------------------------------------
          * 1. PAGE SWITCHER
          * ---------------------------------------------------------------------- */
+        // Teks pencarian per produk: nama, kategori, gaya, warna, + padanan kata Indonesia
+        const SEARCH_SYNONYMS = {
+            bed: 'kasur ranjang tempat tidur dipan', bunk: 'tingkat susun', desk: 'meja belajar meja kerja',
+            chair: 'kursi', armchair: 'kursi sofa single', recliner: 'kursi santai sandaran', wardrobe: 'lemari pakaian baju',
+            bookshelf: 'rak buku lemari buku', shelf: 'rak lemari', credenza: 'buffet sideboard lemari rak tv', sofa: 'sofa sofa',
+            table: 'meja', dining: 'makan', nightstand: 'nakas meja samping tempat tidur', bench: 'bangku', toy: 'mainan',
+            organizer: 'penyimpanan', kids: 'anak', study: 'belajar'
+        };
+        function searchHaystack(p) {
+            const extra = p.name.toLowerCase().split(/\s+/).map(w => SEARCH_SYNONYMS[w] || '').join(' ');
+            return [p.name, p.ageGroup, p.category, p.style, p.color, extra].join(' ').toLowerCase();
+        }
+
+        // Tandai menu yang aktif sesuai halaman yang sedang dibuka
+        // (HTML tiap halaman selalu menandai "Beranda", jadi harus diatur ulang saat dimuat)
+        function detectCurrentPage() {
+            const m = window.location.pathname.toLowerCase().match(/\/pages\/([a-z0-9-]+)\.html$/);
+            return m ? m[1] : 'home';
+        }
+        function highlightActiveNav() {
+            const page = detectCurrentPage();
+            currentPage = page;
+            ['home', 'katalog', 'ongkir', 'inspirasi', 'checkout', 'riwayat'].forEach(p => {
+                const navBtn = document.getElementById('nav-' + p);
+                if (navBtn) {
+                    navBtn.className = p === page
+                        ? 'nav-tab-btn px-4 py-1.5 rounded-full bg-charcoal-900 text-cream-50 text-xs font-semibold transition-all flex items-center gap-1.5'
+                        : 'nav-tab-btn px-4 py-1.5 rounded-full text-charcoal-800 hover:text-charcoal-900 text-xs font-medium transition-all flex items-center gap-1.5';
+                }
+                const mobBtn = document.getElementById('mob-nav-' + p);
+                if (mobBtn) {
+                    mobBtn.className = p === page
+                        ? 'px-3.5 py-1 rounded-full bg-charcoal-900 text-cream-50 font-semibold whitespace-nowrap transition-all'
+                        : 'px-3.5 py-1 rounded-full glass-pill text-charcoal-800 whitespace-nowrap transition-all';
+                }
+            });
+        }
+
         function switchPage(pageKey) {
             const pageFiles = {
                 home: SITE_ROOT + 'index.html',
@@ -425,7 +479,7 @@
                 >
                     <div>
                         <div class="relative h-48 w-full rounded-2xl overflow-hidden bg-cream-200 mb-4">
-                            <img src="${p.image}" alt="${p.name}" loading="lazy" class="apple-tile-img w-full h-full object-cover">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="apple-tile-img w-full h-full object-cover">
                             <span class="absolute top-2.5 left-2.5 glass-pill px-2.5 py-0.5 rounded-full text-[10px] font-bold text-charcoal-900">
                                 ${p.ageGroup}
                             </span>
@@ -476,7 +530,7 @@
                 >
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
                         <div class="lg:col-span-3 h-36 rounded-2xl overflow-hidden bg-cream-200 relative">
-                            <img src="${p.image}" alt="${p.name}" loading="lazy" class="apple-tile-img w-full h-full object-cover">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="apple-tile-img w-full h-full object-cover">
                             <span class="absolute bottom-2 right-2 glass-dark text-cream-50 px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
                                 <i class="fa-solid fa-cube text-oak-300 mr-1"></i>3D Interaktif
                             </span>
@@ -503,16 +557,28 @@
         function renderFullCatalogPage() {
             const container = document.getElementById('full-catalog-container');
             if (!container) return;
+            const q = catalogSearchText.toLowerCase().trim();
             const filtered = PRODUCTS.filter(p => {
                 const matchAge = selectedAgeFilter === 'all' || p.ageGroup === selectedAgeFilter;
-                const q = catalogSearchText.toLowerCase().trim();
+                const matchCat = catFilter === 'all' || p.category === catFilter;
+                const matchStyle = styleFilter === 'all' || p.style === styleFilter;
+                const matchColor = colorFilter === 'all' || p.color === colorFilter;
+                const matchPrice = !maxPriceFilter || p.price <= maxPriceFilter;
+                const matchLength = !maxLengthFilter || p.dimP <= maxLengthFilter;
                 const matchSearch = !q ||
-                    p.name.toLowerCase().includes(q) ||
-                    p.ageGroup.toLowerCase().includes(q) ||
-                    `${p.dimP}x${p.dimL}x${p.dimT}`.includes(q);
-                return matchAge && matchSearch;
+                    searchHaystack(p).includes(q) ||
+                    `${p.dimP}x${p.dimL}x${p.dimT}`.includes(q.replace(/\s+/g, ''));
+                return matchAge && matchCat && matchStyle && matchColor && matchPrice && matchLength && matchSearch;
             });
 
+            const countEl = document.getElementById('catalog-result-count');
+            if (countEl) countEl.textContent = `Menampilkan ${filtered.length} dari ${PRODUCTS.length} produk`;
+
+            if (!filtered.length) {
+                container.className = 'grid grid-cols-1 gap-6';
+                container.innerHTML = '<div class="glass-card rounded-2xl p-8 text-center text-sm text-oak-700">Tidak ada produk yang cocok dengan filter. Coba longgarkan ukuran atau harga, atau tekan Reset filter.</div>';
+                return;
+            }
             if (catalogViewMode === 'grid') {
                 container.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6';
                 container.innerHTML = filtered.map((p, i) => createCatalogGridCardHTML(p, i)).join('');
@@ -521,6 +587,38 @@
                 container.innerHTML = filtered.map((p, i) => createCatalogRowCardHTML(p, i)).join('');
             }
             setTimeout(observeFluidElements, 20);
+        }
+
+        function initCatalogFilters() {
+            if (!document.getElementById('catalog-adv-filters')) return;
+            const fill = (id, key, label) => {
+                const el = document.getElementById(id); if (!el) return;
+                const vals = [...new Set(PRODUCTS.map(p => p[key]))].sort();
+                el.innerHTML = `<option value="all">${label}</option>` + vals.map(v => `<option value="${v}">${v} (${PRODUCTS.filter(p => p[key] === v).length})</option>`).join('');
+            };
+            fill('flt-cat', 'category', 'Semua kategori');
+            fill('flt-style', 'style', 'Semua gaya');
+            fill('flt-color', 'color', 'Semua warna');
+        }
+
+        function onCatalogAdvFilter() {
+            const v = id => { const el = document.getElementById(id); return el ? el.value : 'all'; };
+            catFilter = v('flt-cat');
+            styleFilter = v('flt-style');
+            colorFilter = v('flt-color');
+            maxPriceFilter = Number(v('flt-price')) || 0;
+            maxLengthFilter = Number(v('flt-length')) || 0;
+            renderFullCatalogPage();
+        }
+
+        function resetCatalogFilters() {
+            ['flt-cat', 'flt-style', 'flt-color'].forEach(id => { const el = document.getElementById(id); if (el) el.value = 'all'; });
+            ['flt-price', 'flt-length'].forEach(id => { const el = document.getElementById(id); if (el) el.value = '0'; });
+            const s = document.querySelector('#page-katalog input[type="text"], input[oninput^="onCatalogSearchInput"]');
+            if (s) s.value = '';
+            catalogSearchText = '';
+            onCatalogAdvFilter();
+            filterCatalogByAge('all');
         }
 
         function filterCatalogByAge(ageKey) {
@@ -563,7 +661,7 @@
             const html = BUYER_REVIEWS.map((r, idx) => `
                 <div style="transition-delay: ${Math.min(idx * 55, 140)}ms" class="fluid-reveal apple-tile relative h-80 rounded-[28px] overflow-hidden glass-card p-2 group">
                     <div class="relative w-full h-full rounded-[22px] overflow-hidden">
-                        <img src="${r.photo}" alt="${r.productName}" loading="lazy" class="apple-tile-img w-full h-full object-cover">
+                        <img src="${r.photo}" alt="${r.productName}" loading="lazy" decoding="async" class="apple-tile-img w-full h-full object-cover">
                         <span class="absolute top-3 left-3 glass-pill px-3 py-1 rounded-full font-mono text-[10px] font-bold text-charcoal-900">
                             ${r.roomTag}
                         </span>
@@ -619,10 +717,110 @@
             }, 380);
         }
 
+        let activeModalProduct = null;
+
+        function renderDimDiagram(p) {
+            const el = document.getElementById('modal-dim-diagram');
+            if (!el) return;
+            const fs = Math.min(150 / p.dimP, 80 / p.dimT);
+            const ts = Math.min(150 / p.dimP, 80 / p.dimL);
+            const fw = p.dimP * fs, fh = p.dimT * fs, tw = p.dimP * ts, th = p.dimL * ts;
+            const ox = 28, oy = 14, ox2 = 214;
+            const stroke = '#6E4B2A', fill = '#E6CFAF', txt = '#52371F';
+            el.innerHTML = `
+                <svg viewBox="0 0 380 130" class="w-full max-w-[380px]" role="img" aria-label="Diagram dimensi ${p.dimP} x ${p.dimL} x ${p.dimT} cm">
+                    <text x="${ox}" y="10" font-size="9" fill="${txt}" font-family="sans-serif" font-weight="700">TAMPAK DEPAN</text>
+                    <rect x="${ox}" y="${oy}" width="${fw}" height="${fh}" fill="${fill}" stroke="${stroke}" stroke-width="1.5" rx="3"/>
+                    <text x="${ox + fw / 2}" y="${oy + fh + 13}" font-size="10" fill="${txt}" text-anchor="middle" font-family="monospace" font-weight="700">P ${p.dimP} cm</text>
+                    <text x="${ox + fw + 6}" y="${oy + fh / 2 + 3}" font-size="10" fill="${txt}" font-family="monospace" font-weight="700">T ${p.dimT}</text>
+                    <text x="${ox2}" y="10" font-size="9" fill="${txt}" font-family="sans-serif" font-weight="700">TAMPAK ATAS</text>
+                    <rect x="${ox2}" y="${oy}" width="${tw}" height="${th}" fill="${fill}" stroke="${stroke}" stroke-width="1.5" rx="3" stroke-dasharray="4 2"/>
+                    <text x="${ox2 + tw / 2}" y="${oy + th + 13}" font-size="10" fill="${txt}" text-anchor="middle" font-family="monospace" font-weight="700">P ${p.dimP} cm</text>
+                    <text x="${ox2 + tw + 6}" y="${oy + th / 2 + 3}" font-size="10" fill="${txt}" font-family="monospace" font-weight="700">L ${p.dimL}</text>
+                </svg>`;
+            const hint = document.getElementById('modal-dim-hint');
+            if (hint) hint.textContent = `Ilustrasi (tidak skala antar-tampak). Ukur ruangan dulu: butuh area minimal ${p.dimP} × ${p.dimL} cm.`;
+        }
+
+        function updateModalPrice() {
+            const p = activeModalProduct; if (!p) return;
+            const a = document.getElementById('modal-addon-assembly');
+            const w = document.getElementById('modal-addon-woodpack');
+            const extra = (a && a.checked ? ASSEMBLY_FEE : 0) + (w && w.checked ? WOODPACK_FEE : 0);
+            document.getElementById('modal-prod-price').textContent = formatIDR(p.price + extra);
+            const note = document.getElementById('modal-price-note');
+            if (note) note.textContent = extra ? `Termasuk add-on ${formatIDR(extra)}` : 'Belum termasuk ongkir';
+        }
+
+        function updateModalShipping() {
+            const p = activeModalProduct; if (!p) return;
+            const inp = document.getElementById('modal-postal-input');
+            const val = (inp && inp.value.trim()) || `${currentPostal} ${currentCity}`;
+            const rate = ZONE_RATES[detectZoneFromInput(val)] || ZONE_RATES.jateng;
+            const cost = Math.ceil((p.weightKg * rate.basePerKg) / 5000) * 5000;
+            document.getElementById('modal-ship-dest').textContent = `Tujuan: ${val} · ${p.weightKg} kg`;
+            document.getElementById('modal-ship-price').textContent = formatIDR(cost);
+            document.getElementById('modal-ship-eta').textContent = `Estimasi tiba ${rate.eta}`;
+        }
+
+        function starsText(n) { return '★'.repeat(Math.round(Number(n) || 0)); }
+
+        function renderModalReviews(p) {
+            const box = document.getElementById('modal-reviews');
+            if (!box) return;
+            const badge = '<span class="inline-block px-2 py-0.5 rounded-full bg-sage-100 text-sage-700 text-[9px] font-bold">✓ Verified Purchase</span>';
+            const seed = BUYER_REVIEWS.filter(r => r.productName.startsWith(p.name)).map(r => ({
+                buyer: r.buyer + ' • ' + r.city, rating: r.rating, photo: r.photo, text: r.roomTag
+            }));
+            const mine = getUserReviews().filter(r => r.productId === p.id).map(r => ({
+                buyer: r.buyer, rating: r.rating, photo: '', text: r.text
+            }));
+            const all = [...mine, ...seed];
+            box.innerHTML = all.length ? all.map(r => `
+                <div class="flex gap-2.5 items-start py-2 border-b border-oak-200/60 last:border-0">
+                    ${r.photo ? `<img src="${r.photo}" alt="Foto ulasan ${escapeHTML(p.name)}" loading="lazy" class="w-14 h-14 rounded-xl object-cover shrink-0">` : ''}
+                    <div class="min-w-0">
+                        <div class="text-xs font-bold text-charcoal-900">${escapeHTML(r.buyer)} <span class="text-amber-500">${starsText(r.rating)}</span></div>
+                        <div class="text-[11px] text-oak-800 break-words">${escapeHTML(r.text)}</div>
+                        <div class="mt-1">${badge}</div>
+                    </div>
+                </div>`).join('') : '<p class="text-[11px] text-oak-700">Belum ada ulasan untuk produk ini.</p>';
+
+            const formBox = document.getElementById('modal-review-form');
+            if (!formBox) return;
+            const bought = getOrderStore().some(o => o.items.some(i => i.productId === p.id));
+            formBox.innerHTML = bought ? `
+                <div class="mt-3 pt-3 border-t border-oak-200/70 space-y-2">
+                    <span class="block text-[11px] font-bold text-charcoal-900">Tulis ulasan (kamu pernah membeli produk ini)</span>
+                    <select id="review-rating" class="w-full px-3 py-2 rounded-full bg-white/80 border border-oak-200 text-xs">
+                        <option value="5">★★★★★ — Sangat puas</option><option value="4">★★★★ — Puas</option>
+                        <option value="3">★★★ — Cukup</option><option value="2">★★ — Kurang</option><option value="1">★ — Kecewa</option>
+                    </select>
+                    <textarea id="review-text" rows="2" maxlength="200" placeholder="Ceritakan kondisi barang saat tiba, warna, dan ukurannya" class="w-full px-3 py-2 rounded-2xl bg-white/80 border border-oak-200 text-xs"></textarea>
+                    <button type="button" onclick="submitProductReview()" class="px-4 py-2 rounded-full bg-charcoal-900 text-cream-50 text-xs font-bold">Kirim ulasan</button>
+                </div>` : '<p class="mt-2 text-[10px] text-oak-700">Ulasan hanya bisa ditulis pembeli produk ini (pesanan tercatat di Riwayat).</p>';
+        }
+
+        const REVIEW_KEY = 'livora_reviews';
+        function getUserReviews() { try { return JSON.parse(localStorage.getItem(REVIEW_KEY) || '[]'); } catch (e) { return []; } }
+        function submitProductReview() {
+            const p = activeModalProduct; if (!p) return;
+            const text = (document.getElementById('review-text').value || '').trim();
+            if (!text) { showToast('Tulis dulu isi ulasannya'); return; }
+            const order = getOrderStore().slice().reverse().find(o => o.items.some(i => i.productId === p.id));
+            if (!order) return;
+            const list = getUserReviews();
+            list.push({ productId: p.id, buyer: order.customer.name, rating: document.getElementById('review-rating').value, text, createdAt: new Date().toISOString() });
+            localStorage.setItem(REVIEW_KEY, JSON.stringify(list));
+            renderModalReviews(p);
+            showToast('Ulasan terkirim. Terima kasih!');
+        }
+
         function openProductModal(productId) {
             const p = PRODUCTS.find(item => item.id === productId) || PRODUCTS[0];
+            activeModalProduct = p;
             document.getElementById('modal-prod-age').textContent = p.ageGroup;
-            document.getElementById('modal-prod-cat').textContent = p.styleBadge;
+            document.getElementById('modal-prod-cat').textContent = `${p.category} · ${p.style}`;
             document.getElementById('modal-prod-title').textContent = p.name;
             document.getElementById('modal-prod-img').src = p.image;
             document.getElementById('modal-dim-p').textContent = `${p.dimP} cm`;
@@ -630,8 +828,7 @@
             document.getElementById('modal-dim-t').textContent = `${p.dimT} cm`;
             document.getElementById('modal-weight').textContent = `${p.weightKg} kg`;
             document.getElementById('modal-material').textContent = p.material;
-            document.getElementById('modal-prod-price').textContent = formatIDR(p.price);
-            document.getElementById('modal-3d-filename').textContent = p.file3D;
+            document.getElementById('modal-3d-filename').textContent = 'segera hadir';
 
             document.getElementById('modal-launch-3d-btn').onclick = () => {
                 sessionStorage.setItem('livora_return_product', p.id);
@@ -641,8 +838,21 @@
                 window.location.href = `${folder3D}${p.file3D}`;
             };
 
+            const a = document.getElementById('modal-addon-assembly');
+            const w = document.getElementById('modal-addon-woodpack');
+            if (a) a.checked = false;
+            if (w) w.checked = false;
+            const af = document.getElementById('modal-addon-assembly-fee'); if (af) af.textContent = `+${formatIDR(ASSEMBLY_FEE)}`;
+            const wf = document.getElementById('modal-addon-woodpack-fee'); if (wf) wf.textContent = `+${formatIDR(WOODPACK_FEE)}`;
+            const inp = document.getElementById('modal-postal-input'); if (inp) inp.value = `${currentPostal} - ${currentCity}`;
+
+            renderDimDiagram(p);
+            updateModalPrice();
+            updateModalShipping();
+            renderModalReviews(p);
+
             document.getElementById('modal-add-cart-btn').onclick = () => {
-                addToCart(p.id);
+                addToCart(p.id, { assembly: a && a.checked, woodPack: w && w.checked });
                 closeProductModal();
             };
 
@@ -760,8 +970,8 @@
 
         function detectZoneFromInput(text) {
             const val = text.toLowerCase();
-            if (val.startsWith('50') || val.includes('semarang')) return 'jateng';
             if (val.startsWith('55') || val.includes('jogja') || val.includes('yogyakarta')) return 'jogja';
+            if (/^5[0-9]/.test(val) || ['semarang', 'solo', 'surakarta', 'klaten', 'sukoharjo', 'karanganyar', 'magelang', 'salatiga'].some(k => val.includes(k))) return 'jateng';
             if (val.startsWith('40') || val.includes('bandung')) return 'jabar';
             if (val.startsWith('1') || val.includes('jakarta')) return 'jabodetabek';
             if (val.startsWith('6') || val.includes('surabaya')) return 'jatim';
@@ -802,24 +1012,35 @@
             window._toastTimer = setTimeout(() => toast.classList.add('hidden'), 2600);
         }
 
-        function addToCart(productId) {
-            const existing = cart.find(item => item.productId === productId);
-            if (existing) existing.qty += 1;
-            else cart.push({ productId, qty: 1 });
+        function addToCart(productId, opts) {
+            opts = opts || {};
+            const item = { productId, qty: 1, assembly: !!opts.assembly, woodPack: !!opts.woodPack };
+            const existing = cart.find(i => lineKey(i) === lineKey(item));
+            if (existing) existing.qty += 1; else cart.push(item);
             const prod = PRODUCTS.find(p => p.id === productId);
-            localStorage.setItem('livora_cart', JSON.stringify(cart));
+            saveCart();
             renderCartDrawer();
-            showToast(`${prod.name} ditambahkan ke keranjang`);
+            const extra = [item.assembly ? 'rakit' : '', item.woodPack ? 'packing kayu' : ''].filter(Boolean).join(' + ');
+            showToast(`${prod.name}${extra ? ' (' + extra + ')' : ''} ditambahkan ke keranjang`);
         }
 
-        function updateCartQty(productId, delta) {
-            const idx = cart.findIndex(i => i.productId === productId);
+        function updateCartQty(key, delta) {
+            const idx = cart.findIndex(i => lineKey(i) === key);
             if (idx > -1) {
                 cart[idx].qty += delta;
                 if (cart[idx].qty <= 0) cart.splice(idx, 1);
-                localStorage.setItem('livora_cart', JSON.stringify(cart));
+                saveCart();
                 renderCartDrawer();
             }
+        }
+
+        function toggleCartAddon(key, which) {
+            const it = cart.find(i => lineKey(i) === key);
+            if (!it) return;
+            it[which] = !it[which];
+            cart = normalizeCart(cart);
+            saveCart();
+            renderCartDrawer();
         }
 
         function renderCartDrawer() {
@@ -847,34 +1068,46 @@
                 return;
             }
 
-            let subtotal = 0;
-            let totalWeight = 0;
             container.innerHTML = cart.map(item => {
                 const p = PRODUCTS.find(prod => prod.id === item.productId);
-                subtotal += p.price * item.qty;
-                totalWeight += p.weightKg * item.qty;
+                const k = lineKey(item);
                 return `
-                    <div class="p-3 rounded-2xl glass-pill flex items-center justify-between gap-3">
-                        <img src="${p.image}" alt="${p.name}" class="w-12 h-12 rounded-xl object-cover shrink-0">
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-xs font-extrabold text-charcoal-900 truncate">${p.name}</h4>
-                            <span class="block font-mono text-[10px] text-oak-700">${p.dimP}×${p.dimL}×${p.dimT} cm</span>
-                            <span class="block font-mono text-xs font-bold text-charcoal-900">${formatIDR(p.price)}</span>
+                    <div class="p-3 rounded-2xl glass-pill">
+                        <div class="flex items-center justify-between gap-3">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="w-12 h-12 rounded-xl object-cover shrink-0">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-xs font-extrabold text-charcoal-900 truncate">${p.name}</h4>
+                                <span class="block font-mono text-[10px] text-oak-700">${p.dimP}×${p.dimL}×${p.dimT} cm</span>
+                                <span class="block font-mono text-xs font-bold text-charcoal-900">${formatIDR(p.price)}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="updateCartQty('${k}', -1)" class="w-6 h-6 rounded-full bg-cream-200 font-bold text-xs" aria-label="Kurangi jumlah">-</button>
+                                <span class="font-mono text-xs font-bold w-4 text-center">${item.qty}</span>
+                                <button onclick="updateCartQty('${k}', 1)" class="w-6 h-6 rounded-full bg-cream-200 font-bold text-xs" aria-label="Tambah jumlah">+</button>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-1.5">
-                            <button onclick="updateCartQty('${p.id}', -1)" class="w-6 h-6 rounded-full bg-cream-200 font-bold text-xs">-</button>
-                            <span class="font-mono text-xs font-bold w-4 text-center">${item.qty}</span>
-                            <button onclick="updateCartQty('${p.id}', 1)" class="w-6 h-6 rounded-full bg-cream-200 font-bold text-xs">+</button>
+                        <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[10px] text-oak-800">
+                            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                                <input type="checkbox" ${item.assembly ? 'checked' : ''} onchange="toggleCartAddon('${k}', 'assembly')">
+                                Rakit di lokasi (+${formatIDR(ASSEMBLY_FEE)}/unit)
+                            </label>
+                            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                                <input type="checkbox" ${item.woodPack ? 'checked' : ''} onchange="toggleCartAddon('${k}', 'woodPack')">
+                                Packing kayu (+${formatIDR(WOODPACK_FEE)}/unit)
+                            </label>
                         </div>
                     </div>
                 `;
             }).join('');
 
-            const rateInfo = ZONE_RATES[currentZone] || ZONE_RATES.jateng;
-            const shippingCost = Math.ceil((totalWeight * rateInfo.basePerKg) / 5000) * 5000;
-            document.getElementById('cart-subtotal').textContent = formatIDR(subtotal);
-            document.getElementById('cart-shipping').textContent = formatIDR(shippingCost);
-            document.getElementById('cart-grand-total').textContent = formatIDR(subtotal + shippingCost);
+            const t = getCartTotals();
+            document.getElementById('cart-subtotal').textContent = formatIDR(t.subtotal);
+            if (addonsRow) {
+                addonsRow.classList.toggle('hidden', !t.addons);
+                const ad = document.getElementById('cart-addons'); if (ad) ad.textContent = formatIDR(t.addons);
+            }
+            document.getElementById('cart-shipping').textContent = formatIDR(t.shipping);
+            document.getElementById('cart-grand-total').textContent = formatIDR(t.total);
         }
 
         /* CHECKOUT + ORDER HISTORY (prototype tanpa backend/API) */
@@ -980,6 +1213,15 @@
         /* ----------------------------------------------------------------------
          * 6. INITIALIZATION
          * ---------------------------------------------------------------------- */
+        // Gambar gagal dimuat (mis. ID Unsplash salah) -> tampilkan placeholder
+        document.addEventListener('error', function (e) {
+            const t = e.target;
+            if (t && t.tagName === 'IMG' && !t.dataset.fb) {
+                t.dataset.fb = '1';
+                t.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><rect width="100%" height="100%" fill="#F1E9DA"/><text x="50%" y="50%" fill="#8C6239" font-family="sans-serif" font-size="30" text-anchor="middle">Gambar tidak tersedia</text></svg>');
+            }
+        }, true);
+
         window.onload = function () {
             if (window.__livoraInitialized) return;
             window.__livoraInitialized = true;
@@ -987,7 +1229,9 @@
             syncActiveNavTab();
             saveLocationState();
             renderHomeMinimalShowcase();
+            initCatalogFilters();
             renderFullCatalogPage();
+            renderCartDrawer();
             renderTestimonials();
             renderOrderHistory();
             populateOngkirProductSelect();
@@ -1025,9 +1269,8 @@
                 const q = query.toLowerCase().trim();
                 const matches = PRODUCTS.filter(p =>
                     !q ||
-                    p.name.toLowerCase().includes(q) ||
-                    p.ageGroup.toLowerCase().includes(q) ||
-                    `${p.dimP}x${p.dimL}x${p.dimT}`.includes(q)
+                    searchHaystack(p).includes(q) ||
+                    `${p.dimP}x${p.dimL}x${p.dimT}`.includes(q.replace(/\s+/g, ''))
                 );
                 if (!matches.length) {
                     suggestionsList.innerHTML = `<div class="p-3 text-center text-xs text-oak-700">Produk tidak ditemukan.</div>`;
@@ -1044,7 +1287,7 @@
                         </div>
                         <span class="font-mono text-xs font-bold text-charcoal-900 shrink-0">${formatIDR(p.price)}</span>
                     </div>
-                `).join('');
+                `).join('') : '<div class="p-3 text-xs text-oak-700">Tidak ada produk yang cocok.</div>';
             }
 
             if (searchInput && suggestionsBox && suggestionsList && clearSearchBtn) {
