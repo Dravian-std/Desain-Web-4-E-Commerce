@@ -1,0 +1,2776 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Livora 3D Studio — Pino Montessori Toy Shelf (85 × 35 × 70 cm)</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6.5.1 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Three.js r128 & OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        birch: {
+                            50: '#FAF7F2',
+                            100: '#F3ECE0',
+                            200: '#E6D6BE',
+                            300: '#D5BA94',
+                            400: '#C39C6B',
+                            500: '#B4834E',
+                            600: '#9B6A40',
+                            700: '#7F5336',
+                            800: '#694531',
+                            900: '#573A2B',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* =====================================================================
+           DUAL-THEME GLASSMORPHISM SYSTEM (LIGHT GALLERY DEFAULT + DARK STUDIO)
+           ===================================================================== */
+        :root {
+            --fluid-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --water-spring: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body.theme-light {
+            --bg-body: #F4EFE6;
+            --panel-bg: rgba(255, 252, 247, 0.82);
+            --panel-border: rgba(169, 123, 75, 0.24);
+            --panel-shadow: 0 18px 42px -12px rgba(72, 50, 28, 0.14), inset 0 1px 0 0 rgba(255, 255, 255, 0.94);
+            --pill-bg: rgba(246, 239, 228, 0.84);
+            --pill-hover-bg: rgba(255, 253, 250, 0.98);
+            --pill-border: rgba(169, 123, 75, 0.22);
+            --pill-active-bg: linear-gradient(135deg, #171412, #382B20);
+            --pill-active-border: #171412;
+            --pill-active-text: #FDFBF7;
+            --text-primary: #171412;
+            --text-secondary: #4D3D2F;
+            --text-muted: #7C6A58;
+            --accent-text: #8C6239;
+            --accent-icon: #9B6A40;
+            --divider: rgba(155, 106, 64, 0.18);
+            --badge-bg: rgba(155, 106, 64, 0.12);
+            --badge-border: rgba(155, 106, 64, 0.28);
+            --badge-text: #6E4B2A;
+            --fps-bg: rgba(32, 99, 63, 0.11);
+            --fps-border: rgba(32, 99, 63, 0.30);
+            --fps-text: #1E613D;
+            --slider-track: rgba(140, 98, 57, 0.22);
+            --slider-thumb: #8C6239;
+            --slider-thumb-ring: #FDFBF7;
+            --swatch-idle-border: rgba(155, 106, 64, 0.24);
+            --swatch-active-bg: rgba(195, 156, 107, 0.22);
+            --swatch-active-border: #171412;
+            --cta-bg: linear-gradient(135deg, #171412, #3C2D20);
+            --cta-text: #FDFBF7;
+            --scroll-thumb: rgba(140, 98, 57, 0.36);
+            --pin-bg: rgba(23, 20, 18, 0.92);
+            --pin-text: #FAF7F2;
+            --pin-border: #D5BA94;
+            --dim-bg: rgba(23, 20, 18, 0.90);
+            --dim-text: #FAF7F2;
+            --dim-border: rgba(213, 186, 148, 0.65);
+        }
+
+        body.theme-dark {
+            --bg-body: #161514;
+            --panel-bg: rgba(20, 20, 19, 0.80);
+            --panel-border: rgba(213, 186, 148, 0.22);
+            --panel-shadow: 0 22px 50px -12px rgba(0, 0, 0, 0.50), inset 0 1px 0 0 rgba(255, 248, 235, 0.10);
+            --pill-bg: rgba(34, 31, 28, 0.78);
+            --pill-hover-bg: rgba(54, 48, 42, 0.94);
+            --pill-border: rgba(255, 248, 235, 0.14);
+            --pill-active-bg: linear-gradient(135deg, rgba(213, 186, 148, 0.34), rgba(180, 131, 78, 0.24));
+            --pill-active-border: #D5BA94;
+            --pill-active-text: #FAF7F2;
+            --text-primary: #F8F4EC;
+            --text-secondary: #D4C5B2;
+            --text-muted: #9E9080;
+            --accent-text: #E6D6BE;
+            --accent-icon: #D5BA94;
+            --divider: rgba(255, 248, 235, 0.12);
+            --badge-bg: rgba(213, 186, 148, 0.16);
+            --badge-border: rgba(213, 186, 148, 0.34);
+            --badge-text: #E6D6BE;
+            --fps-bg: rgba(16, 185, 129, 0.15);
+            --fps-border: rgba(52, 211, 153, 0.35);
+            --fps-text: #6EE7B7;
+            --slider-track: rgba(255, 255, 255, 0.16);
+            --slider-thumb: #D5BA94;
+            --slider-thumb-ring: #161514;
+            --swatch-idle-border: rgba(255, 255, 255, 0.14);
+            --swatch-active-bg: rgba(213, 186, 148, 0.16);
+            --swatch-active-border: #D5BA94;
+            --cta-bg: linear-gradient(135deg, #E6D6BE, #C39C6B);
+            --cta-text: #171412;
+            --scroll-thumb: rgba(213, 186, 148, 0.36);
+            --pin-bg: rgba(20, 18, 16, 0.92);
+            --pin-text: #E6D6BE;
+            --pin-border: #D5BA94;
+            --dim-bg: rgba(16, 15, 14, 0.92);
+            --dim-text: #F3ECE0;
+            --dim-border: rgba(213, 186, 148, 0.58);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.4s var(--fluid-ease), color 0.35s var(--fluid-ease);
+        }
+
+        #canvas-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            outline: none;
+        }
+
+        #overlay-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px) saturate(165%);
+            -webkit-backdrop-filter: blur(20px) saturate(165%);
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--panel-shadow);
+            color: var(--text-primary);
+            transition: background 0.38s var(--fluid-ease),
+                        border-color 0.32s var(--fluid-ease),
+                        box-shadow 0.38s var(--fluid-ease),
+                        opacity 0.35s var(--fluid-ease),
+                        transform 0.4s var(--water-spring);
+        }
+
+        .glass-pill {
+            background: var(--pill-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--pill-border);
+            color: var(--text-secondary);
+            transition: all 0.25s var(--water-spring);
+        }
+        .glass-pill:hover {
+            background: var(--pill-hover-bg);
+            border-color: var(--accent-icon);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .glass-pill:active {
+            transform: translateY(0) scale(0.97);
+        }
+        .glass-pill.active {
+            background: var(--pill-active-bg);
+            border-color: var(--pill-active-border);
+            color: var(--pill-active-text);
+            box-shadow: 0 8px 20px -6px rgba(23, 20, 18, 0.26);
+        }
+        .glass-pill.active .accent-icon {
+            color: #E6D6BE !important;
+        }
+
+        .t-primary { color: var(--text-primary); }
+        .t-secondary { color: var(--text-secondary); }
+        .t-muted { color: var(--text-muted); }
+        .t-accent { color: var(--accent-text); }
+        .accent-icon { color: var(--accent-icon); }
+        .t-divider { border-color: var(--divider); }
+
+        .theme-badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+        }
+
+        .fps-pill {
+            background: var(--fps-bg);
+            border: 1px solid var(--fps-border);
+            color: var(--fps-text);
+        }
+
+        .swatch-btn {
+            border: 1.5px solid var(--swatch-idle-border);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.22s var(--water-spring);
+        }
+        .swatch-btn:hover {
+            border-color: var(--accent-icon);
+            transform: translateY(-1px);
+        }
+        .swatch-btn.active {
+            border-color: var(--swatch-active-border);
+            background: var(--swatch-active-bg);
+            color: var(--text-primary);
+        }
+
+        .cta-btn {
+            background: var(--cta-bg);
+            color: var(--cta-text);
+            transition: transform 0.25s var(--water-spring), filter 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cta-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+        .cta-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Custom Scrollbar for HUD Side Columns */
+        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: var(--scroll-thumb);
+            border-radius: 9999px;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Custom Range Slider */
+        input[type=range].birch-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            background: var(--slider-track);
+            height: 5px;
+            border-radius: 999px;
+            outline: none;
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background: var(--slider-thumb);
+            border: 2px solid var(--slider-thumb-ring);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.18s var(--water-spring);
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* 3D Projected Hotspot Pins */
+        .hotspot-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: auto;
+            cursor: pointer;
+            background: var(--pin-bg);
+            color: var(--pin-text);
+            border: 1.5px solid var(--pin-border);
+            transition: transform 0.25s var(--water-spring), opacity 0.25s ease;
+        }
+        .hotspot-pin:hover {
+            transform: translate(-50%, -50%) scale(1.22);
+            z-index: 30;
+        }
+        .hotspot-pulse {
+            position: absolute;
+            inset: -6px;
+            border-radius: 9999px;
+            border: 1.5px solid #C39C6B;
+            animation: pingSlow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes pingSlow {
+            0% { transform: scale(0.95); opacity: 0.85; }
+            75%, 100% { transform: scale(1.85); opacity: 0; }
+        }
+
+        /* 3D Projected Dimension Badges */
+        .dim-label {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            background: var(--dim-bg);
+            border: 1px solid var(--dim-border);
+            color: var(--dim-text);
+            padding: 3.5px 9px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+            transition: opacity 0.22s ease;
+        }
+
+        /* Floating Raycast Hover Tooltip */
+        #raycast-tooltip {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            transform: translate(16px, -50%);
+            transition: opacity 0.15s ease;
+        }
+
+        /* Clean UI Fullscreen Hide State */
+        .hud-hidden-panel {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: scale(0.98);
+        }
+        .hud-hidden-panel * {
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body class="theme-light antialiased selection:bg-birch-300 selection:text-stone-950">
+
+    <!-- WebGL 3D Viewport -->
+    <div id="canvas-container"></div>
+
+    <!-- 2D Projected 3D Markers & Dimension Layer -->
+    <div id="overlay-layer"></div>
+
+    <!-- Interactive Raycast Hover Tooltip -->
+    <div id="raycast-tooltip" class="opacity-0 glass-panel px-3 py-1.5 rounded-xl text-xs font-semibold t-primary flex items-center gap-2 shadow-xl">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span id="raycast-tooltip-text">Klik untuk menarik kotak linen</span>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ANTI-OVERLAP 3-ROW FULL-VIEWPORT FLEXBOX HUD SHELL                        -->
+    <!-- ========================================================================= -->
+    <div id="hud-shell" class="fixed inset-0 z-20 flex flex-col justify-between pointer-events-none p-3 sm:p-4 gap-2 overflow-hidden">
+
+        <!-- ==================== ROW 1: TOP HEADER (SHRINK-0) ==================== -->
+        <header class="shrink-0 flex flex-wrap items-center justify-between gap-2">
+
+            <!-- Left Group: Smart Back Button + Brand & Product Card -->
+            <div class="pointer-events-auto flex items-center gap-2 min-w-0">
+                <button
+                    id="btn-back-katalog"
+                    type="button"
+                    onclick="navigateBackToKatalog()"
+                    class="glass-panel rounded-2xl px-3.5 py-2.5 flex items-center gap-2 text-xs font-bold t-primary hover:scale-[1.02] active:scale-95 shrink-0 cursor-pointer group"
+                    title="Kembali ke Katalog Livora"
+                >
+                    <i class="fa-solid fa-arrow-left accent-icon group-hover:-translate-x-0.5 transition-transform"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Kembali ke Katalog</span>
+                </button>
+
+                <div class="glass-panel rounded-2xl px-3.5 py-2 flex items-center gap-3 min-w-0">
+                    <!-- Livora Minimalist Cubby Shelf Mark -->
+                    <div class="w-9 h-9 rounded-xl bg-stone-900 text-birch-200 flex items-center justify-center shadow-inner shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 28 28" fill="none">
+                            <rect x="4" y="6" width="20" height="15" rx="2.5" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4" y1="13.5" x2="24" y2="13.5" stroke="currentColor" stroke-width="1.6"/>
+                            <line x1="10.7" y1="6" x2="10.7" y2="21" stroke="currentColor" stroke-width="1.6"/>
+                            <line x1="17.3" y1="6" x2="17.3" y2="21" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M7 21L5.8 24.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M21 21L22.2 24.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="theme-badge px-1.5 py-0.2 text-[9px] font-mono font-bold uppercase rounded">Katalog Anak-anak &bull; Montessori</span>
+                        </div>
+                        <h1 class="font-serif text-base sm:text-xl font-bold tracking-wide t-primary leading-tight truncate">
+                            Pino Montessori Toy Shelf
+                        </h1>
+                        <p class="text-[10px] font-mono t-muted hidden sm:block leading-tight">
+                            Solid Birch + 6 Kotak Linen &bull; 85 × 35 × 70 cm
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Group: 4 Studio Lighting Presets + Utility Controls -->
+            <div class="pointer-events-auto flex items-center gap-1.5 flex-wrap">
+                <div class="glass-panel rounded-2xl p-1 flex items-center gap-1 overflow-x-auto max-w-full no-scrollbar">
+                    <button type="button" onclick="setStudioEnv('gallery')" id="env-gallery" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Gallery Terang Minimalis Livora">
+                        <i class="fa-solid fa-sun text-amber-400"></i>
+                        <span class="hidden lg:inline">Gallery Terang</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('studio')" id="env-studio" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Studio Hangat Kontras">
+                        <i class="fa-solid fa-circle-half-stroke accent-icon"></i>
+                        <span class="hidden lg:inline">Studio Hangat</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('sunset')" id="env-sunset" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Nuansa Senja Hangat">
+                        <i class="fa-solid fa-cloud-sun text-orange-400"></i>
+                        <span class="hidden lg:inline">Senja</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('night')" id="env-night" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Malam & Mikro-LED Rak">
+                        <i class="fa-solid fa-moon text-indigo-400"></i>
+                        <span class="hidden lg:inline">Malam LED</span>
+                    </button>
+                    <button type="button" onclick="toggleWireframeMode()" id="btn-wireframe" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Teknis Wireframe">
+                        <i class="fa-solid fa-cube text-emerald-500"></i>
+                        <span class="hidden xl:inline">Wireframe</span>
+                    </button>
+                </div>
+
+                <!-- Sound Toggle -->
+                <button type="button" onclick="toggleSound()" id="btn-sound" class="glass-panel w-9 h-9 rounded-xl text-xs flex items-center justify-center shrink-0 cursor-pointer" title="Efek Suara Interaktif">
+                    <i id="sound-icon" class="fa-solid fa-volume-high accent-icon"></i>
+                </button>
+
+                <!-- Specs Modal Trigger -->
+                <button type="button" onclick="toggleSpecsModal(true)" class="glass-panel px-3 h-9 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5 shrink-0 cursor-pointer" title="Spesifikasi Teknis & Keamanan">
+                    <i class="fa-solid fa-compass-drafting accent-icon"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Spesifikasi</span>
+                </button>
+
+                <!-- Clean Fullscreen UI Toggle -->
+                <button type="button" onclick="toggleCleanViewport()" id="btn-clean-ui" class="glass-panel w-9 h-9 rounded-xl text-xs t-primary flex items-center justify-center shrink-0 cursor-pointer" title="Sembunyikan/Tampilkan Panel UI">
+                    <i id="clean-ui-icon" class="fa-solid fa-expand"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ==================== ROW 2: MIDDLE WORKSPACE (ANTI-OVERLAP) ==================== -->
+        <div class="flex-1 min-h-0 flex items-start justify-between gap-3 overflow-hidden relative">
+
+            <!-- Mobile Drawer Buttons (Visible Below md) -->
+            <button
+                id="mob-toggle-left"
+                type="button"
+                onclick="toggleMobileDrawer('left')"
+                class="md:hidden pointer-events-auto absolute top-0 left-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-sliders accent-icon"></i>
+                <span>Inspeksi</span>
+            </button>
+
+            <button
+                id="mob-toggle-right"
+                type="button"
+                onclick="toggleMobileDrawer('right')"
+                class="md:hidden pointer-events-auto absolute top-0 right-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-palette accent-icon"></i>
+                <span>Material</span>
+            </button>
+
+            <!-- LEFT HUD COLUMN (Scrolls cleanly inside row 2, includes #hotspot-card) -->
+            <aside id="left-hud" class="pointer-events-none flex-col gap-2.5 w-[272px] sm:w-[295px] max-h-full overflow-y-auto pr-1 shrink-0 hidden md:flex custom-scroll">
+
+                <!-- Interactive Inspection Panel -->
+                <div class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 space-y-3">
+                    <div class="flex items-center justify-between border-b t-divider pb-2">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider t-accent flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders accent-icon"></i> Inspeksi Interaktif
+                        </span>
+                        <div class="flex items-center gap-1.5">
+                            <span id="fps-badge" class="fps-pill text-[10px] font-mono font-bold px-1.5 py-0.5 rounded">
+                                60 FPS
+                            </span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 6 Interactive Linen Bins Control Grid -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">6 Kotak Linen Kanvas</span>
+                            <button type="button" onclick="toggleAllBins()" id="btn-toggle-all" class="text-[11px] font-bold t-accent hover:underline underline-offset-4 cursor-pointer">
+                                Tarik Semua
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="toggleBin('binTL')" id="part-binTL" class="glass-pill py-1.5 px-1.5 rounded-xl text-[10px] font-semibold text-center cursor-pointer" title="Kotak Atas Kiri (Balok Kayu)">
+                                Atas Kiri
+                            </button>
+                            <button type="button" onclick="toggleBin('binTM')" id="part-binTM" class="glass-pill py-1.5 px-1.5 rounded-xl text-[10px] font-semibold text-center cursor-pointer" title="Kotak Atas Tengah (Peg Dolls & Cincin)">
+                                Atas Tengah
+                            </button>
+                            <button type="button" onclick="toggleBin('binTR')" id="part-binTR" class="glass-pill py-1.5 px-1.5 rounded-xl text-[10px] font-semibold text-center cursor-pointer" title="Kotak Atas Kanan (Kereta Kayu)">
+                                Atas Kanan
+                            </button>
+                            <button type="button" onclick="toggleBin('binBL')" id="part-binBL" class="glass-pill py-1.5 px-1.5 rounded-xl text-[10px] font-semibold text-center cursor-pointer" title="Kotak Bawah Kiri (Bola Sensorik & Boneka)">
+                                Bawah Kiri
+                            </button>
+                            <button type="button" onclick="toggleBin('binBM')" id="part-binBM" class="glass-pill py-1.5 px-1.5 rounded-xl text-[10px] font-semibold text-center cursor-pointer" title="Kotak Bawah Tengah (Sempoa & Shape Sorter)">
+                                Bawah Tengah
+                            </button>
+                            <button type="button" onclick="toggleBin('binBR')" id="part-binBR" class="glass-pill py-1.5 px-1.5 rounded-xl text-[10px] font-semibold text-center cursor-pointer" title="Kotak Bawah Kanan (Buku Cerita & Kertas Gambar)">
+                                Bawah Kanan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exploded View Anatomy Slider (0 - 100%) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-layer-group accent-icon text-[10px]"></i>
+                                Anatomi Konstruksi (Exploded)
+                            </span>
+                            <span id="explode-val" class="font-mono text-[11px] font-bold t-accent">0%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="0" id="explode-slider" oninput="setExplodeFactor(this.value)" class="birch-slider">
+                    </div>
+
+                    <!-- 2x2 Utility Toggles + Putar 360° -->
+                    <div class="space-y-1.5 pt-1">
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button type="button" onclick="toggleDimensions()" id="btn-dimensions" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-ruler-combined accent-icon text-[10px]"></i>
+                                <span>Garis Ukuran</span>
+                            </button>
+                            <button type="button" onclick="toggleHotspots()" id="btn-hotspots" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-location-dot accent-icon text-[10px]"></i>
+                                <span>Titik Info (5)</span>
+                            </button>
+                            <button type="button" onclick="toggleDecor()" id="btn-decor" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-shapes accent-icon text-[10px]"></i>
+                                <span>Mainan &amp; Karpet</span>
+                            </button>
+                            <button type="button" onclick="toggleRoomWall()" id="btn-roomwall" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-solid fa-border-all accent-icon text-[10px]"></i>
+                                <span>Dinding Kamar</span>
+                            </button>
+                        </div>
+
+                        <button type="button" onclick="toggleAutoRotate()" id="btn-autorotate" class="glass-pill w-full px-3 py-1.5 rounded-xl text-[11px] font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-rotate accent-icon text-[10px]"></i>
+                            <span>Putar 360&deg; Otomatis</span>
+                        </button>
+                    </div>
+
+                    <!-- Subtle Mouse Hint -->
+                    <div class="pt-1.5 border-t t-divider flex items-center justify-between text-[10px] t-muted">
+                        <span><i class="fa-solid fa-computer-mouse mr-1 accent-icon"></i>Drag: Putar &bull; Scroll: Zoom</span>
+                        <span>Klik Kotak: Tarik</span>
+                    </div>
+                </div>
+
+                <!-- Active Hotspot Detail Card (INSIDE #left-hud so it NEVER overlaps #bottom-hud!) -->
+                <div id="hotspot-card" class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 border-l-4 border-l-birch-500 hidden">
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <span id="hs-number" class="w-5 h-5 rounded-full bg-birch-600 text-white font-mono text-[11px] font-bold flex items-center justify-center shrink-0">1</span>
+                            <h3 id="hs-title" class="text-xs font-extrabold t-primary leading-snug">Sudut Bullnose R18mm</h3>
+                        </div>
+                        <button type="button" onclick="closeHotspotCard()" class="t-muted hover:t-primary text-xs p-0.5 shrink-0 cursor-pointer" aria-label="Tutup Info">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <p id="hs-desc" class="text-[11px] t-secondary mt-2 leading-relaxed"></p>
+                    <div id="hs-tag" class="theme-badge mt-2 inline-block px-2 py-0.5 rounded font-mono text-[10px] font-semibold"></div>
+                </div>
+            </aside>
+
+            <!-- RIGHT HUD COLUMN: Material Customizer (Scrolls cleanly inside row 2) -->
+            <aside id="right-hud" class="pointer-events-none w-[275px] sm:w-[305px] max-h-full overflow-y-auto pl-1 shrink-0 hidden md:flex flex-col gap-2.5 custom-scroll">
+
+                <div class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 sm:p-4 space-y-3.5">
+                    <div class="flex items-center justify-between border-b t-divider pb-2.5">
+                        <div>
+                            <h2 class="text-[11px] font-extrabold uppercase tracking-wider t-accent">Kustomisasi Material</h2>
+                            <p class="text-[10px] t-muted">Solid Birch Zero-VOC &bull; 14 kg</p>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="theme-badge font-mono text-[10px] font-bold px-2 py-0.5 rounded">PBR 4K</span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 1. Finishing Kayu Zero-VOC (4 Options) -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">1. Finishing Kayu Zero-VOC</span>
+                            <span id="label-wood" class="t-accent font-bold truncate ml-2">Natural Blonde Birch</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setWoodFinish('blonde')" id="wood-blonde" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #f5e5cd, #caa77b);"></span>
+                                <span class="text-[10px] font-semibold">Blonde</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('honey')" id="wood-honey" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #e5b57c, #ae753a);"></span>
+                                <span class="text-[10px] font-semibold">Honey</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('milk')" id="wood-milk" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #faf7f0, #dcd2c4);"></span>
+                                <span class="text-[10px] font-semibold">Milk Oak</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('sage')" id="wood-sage" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #cdd8c9, #8d9f89);"></span>
+                                <span class="text-[10px] font-semibold">Sage Pine</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Konfigurasi Rak (3 Options) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">2. Konfigurasi Rak</span>
+                            <span id="label-shelfmode" class="t-accent font-bold">6 Kotak Linen</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="setShelfMode('full')" id="mode-full" class="glass-pill active p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-boxes-stacked accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">6 Kotak Linen</span>
+                                <span class="text-[9px] opacity-75">Tertutup Rapi</span>
+                            </button>
+                            <button type="button" onclick="setShelfMode('hybrid')" id="mode-hybrid" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-table-cells accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Hybrid (3+3)</span>
+                                <span class="text-[9px] opacity-75">3 Bawah + Display</span>
+                            </button>
+                            <button type="button" onclick="setShelfMode('open')" id="mode-open" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-regular fa-window-maximize accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Rak Terbuka</span>
+                                <span class="text-[9px] opacity-75">Display Montessori</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Warna 6 Kotak Linen (4 Fabric Swatches) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">3. Warna 6 Kotak Linen</span>
+                            <span id="label-linen" class="t-accent font-bold">Oat Cream</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setLinenColor('oat')" id="linen-oat" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #f5efe3, #d8cab3);"></span>
+                                <span class="text-[10px] font-semibold">Oat</span>
+                            </button>
+                            <button type="button" onclick="setLinenColor('sage')" id="linen-sage" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #b5c6b0, #839a7f);"></span>
+                                <span class="text-[10px] font-semibold">Matcha</span>
+                            </button>
+                            <button type="button" onclick="setLinenColor('terracotta')" id="linen-terracotta" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #e1a38a, #c2785c);"></span>
+                                <span class="text-[10px] font-semibold">Clay</span>
+                            </button>
+                            <button type="button" onclick="setLinenColor('sky')" id="linen-sky" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #aec7d8, #779ab2);"></span>
+                                <span class="text-[10px] font-semibold">Sky</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Estimasi Investasi & Unduh Foto PNG -->
+                    <div class="pt-3 border-t t-divider flex items-center justify-between gap-2">
+                        <div class="min-w-0">
+                            <span class="text-[9px] uppercase font-bold tracking-wider t-muted block">Estimasi Investasi</span>
+                            <span id="price-display" class="font-mono text-base sm:text-lg font-extrabold t-primary block truncate">Rp 1.190.000</span>
+                        </div>
+                        <button
+                            type="button"
+                            onclick="downloadSnapshot()"
+                            class="cta-btn px-3.5 py-2.5 rounded-xl font-bold text-xs shadow-lg flex items-center gap-1.5 shrink-0 cursor-pointer"
+                            title="Unduh Tangkapan Layar 3D PNG"
+                        >
+                            <i class="fa-solid fa-camera"></i>
+                            <span>Unduh Foto</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- ==================== ROW 3: BOTTOM CAMERA DOCK (NO OVERLAP) ==================== -->
+        <nav id="bottom-hud" class="shrink-0 flex justify-center pointer-events-none w-full">
+            <div class="pointer-events-auto glass-panel rounded-2xl p-1.5 flex items-center gap-2 max-w-full w-fit">
+                <!-- Non-shrinking Left Label separated by vertical border -->
+                <div class="hidden xl:flex items-center gap-1.5 pl-2.5 pr-3 py-1 border-r t-divider shrink-0 whitespace-nowrap">
+                    <i class="fa-solid fa-video accent-icon text-xs"></i>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider t-primary">SUDUT PANDANG</span>
+                </div>
+
+                <!-- Scrollable Camera Preset Row (STRICTLY justify-start so items never collide with label) -->
+                <div class="flex items-center justify-start gap-1.5 overflow-x-auto min-w-0 no-scrollbar">
+                    <button type="button" onclick="flyToCamera('hero')" id="cam-hero" class="glass-pill active px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-star accent-icon text-[10px]"></i>
+                        <span>Sudut Utama (3/4)</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('front')" id="cam-front" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-regular fa-square accent-icon text-[10px]"></i>
+                        <span>Tampak Depan</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('side')" id="cam-side" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-align-left accent-icon text-[10px]"></i>
+                        <span>Tampak Samping</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('top')" id="cam-top" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-arrows-to-dot accent-icon text-[10px]"></i>
+                        <span>Tampak Atas</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('back')" id="cam-back" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-shield-halved accent-icon text-[10px]"></i>
+                        <span>Belakang &amp; Anti-Tip</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('binDetail')" id="cam-binDetail" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-box-open accent-icon text-[10px]"></i>
+                        <span>Detail Kotak Linen</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('kidEye')" id="cam-kidEye" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-child accent-icon text-[10px]"></i>
+                        <span>Sudut Mata Anak</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ==================== TECHNICAL SPECIFICATIONS MODAL ==================== -->
+    <div id="specs-modal" onclick="if(event.target === this) toggleSpecsModal(false)" class="fixed inset-0 z-50 bg-black/55 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-7 space-y-5 max-h-[90vh] overflow-y-auto custom-scroll">
+            <div class="flex items-start justify-between border-b t-divider pb-4">
+                <div>
+                    <span class="text-[10px] font-mono font-bold uppercase tracking-[0.22em] t-accent">Blueprint &amp; Keamanan Anak Livora</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold t-primary mt-0.5">Pino Montessori Toy Shelf</h2>
+                </div>
+                <button type="button" onclick="toggleSpecsModal(false)" class="glass-pill w-8 h-8 rounded-full flex items-center justify-center text-xs cursor-pointer" aria-label="Tutup">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Dimensi Presisi (P × L × T)</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Panjang Total (Width)</span><span class="font-mono font-bold t-primary">85.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Kedalaman (Depth)</span><span class="font-mono font-bold t-primary">35.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Tinggi Total (Height)</span><span class="font-mono font-bold t-primary">70.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Ruang Sapu Bawah</span><span class="font-mono font-bold t-primary">8.0 cm</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Berat Bersih Kargo</span><span class="font-mono font-bold t-primary">14.0 kg</span></div>
+                </div>
+
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Material &amp; Fitur Keamanan</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Rangka Utama</span><span class="font-semibold t-primary">Solid Birch 20mm Zero-VOC</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Profil Tepi Depan</span><span class="font-semibold t-primary">R18mm Bullnose Tumpul</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Kotak Penyimpanan</span><span class="font-semibold t-primary">6 Kotak Linen Kanvas Organik</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Pengaman Dinding</span><span class="font-semibold t-primary">Sabuk Anti-Tip + Braket L-Metal</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Pencahayaan Rak</span><span class="font-semibold t-primary">Mikro-LED Warm 2700K</span></div>
+                </div>
+            </div>
+
+            <p class="text-xs t-secondary leading-relaxed">
+                <strong>Pino Montessori Toy Shelf</strong> dirancang pada ketinggian ramah anak 70 cm agar balita hingga usia sekolah dapat mengambil dan merapikan mainan maupun buku secara mandiri sesuai prinsip Montessori. Dilengkapi 6 kotak linen kanvas berpegangan kayu tumpul yang dapat dilepas untuk mode <em>Hybrid</em> maupun <em>Rak Terbuka</em>, bibir pengaman rak atas, serta sabuk pengaman <em>Anti-Tip</em> di bagian belakang.
+            </p>
+
+            <div class="flex justify-end pt-1">
+                <button type="button" onclick="toggleSpecsModal(false)" class="cta-btn px-5 py-2.5 rounded-xl font-bold text-xs cursor-pointer">
+                    Kembali ke Studio 3D
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FLOATING TOAST NOTIFICATION ==================== -->
+    <div id="toast-msg" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 glass-panel px-4 py-2 rounded-xl text-xs font-semibold t-primary shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-circle-check text-emerald-500"></i>
+        <span id="toast-text">Konfigurasi diperbarui</span>
+    </div>
+
+    <script>
+        // ============================================================================
+        // 0. SMART BACK NAVIGATION (LOCAL FILE:// vs VITE / GITHUB PAGES)
+        // ============================================================================
+        function navigateBackToKatalog() {
+            playTactileSound('tap');
+            const targetUrl = (window.location.protocol === 'file:' || window.location.pathname.includes('/public/'))
+                ? '../../pages/katalog.html'
+                : '../pages/katalog.html';
+            window.location.href = targetUrl;
+        }
+
+        // ============================================================================
+        // 1. PROCEDURAL WEBAUDIO SOUND SYNTHESIZER (FABRIC BIN SLIDE & WOODEN TAP)
+        // ============================================================================
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function ensureAudio() {
+            try {
+                if (!audioCtx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) audioCtx = new AudioContextClass();
+                }
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch (err) {}
+        }
+
+        function playTactileSound(type = 'tap') {
+            if (!soundEnabled) return;
+            try {
+                ensureAudio();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'bin') {
+                    // Soft woven linen fabric glide on solid birch shelf
+                    const duration = 0.21;
+                    const bufferSize = Math.floor(audioCtx.sampleRate * duration);
+                    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                    const out = noiseBuffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        out[i] = (Math.random() * 2 - 1) * Math.sin((i / bufferSize) * Math.PI);
+                    }
+                    const src = audioCtx.createBufferSource();
+                    src.buffer = noiseBuffer;
+
+                    const filter = audioCtx.createBiquadFilter();
+                    filter.type = 'bandpass';
+                    filter.frequency.setValueAtTime(520, now);
+                    filter.frequency.exponentialRampToValueAtTime(880, now + 0.10);
+                    filter.frequency.exponentialRampToValueAtTime(360, now + duration);
+                    filter.Q.value = 1.4;
+
+                    const gain = audioCtx.createGain();
+                    gain.gain.setValueAtTime(0.085, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+                    src.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    src.start(now);
+
+                    // Subtle low birch resonance click
+                    const osc = audioCtx.createOscillator();
+                    const oGain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(175, now);
+                    osc.frequency.exponentialRampToValueAtTime(82, now + 0.11);
+                    oGain.gain.setValueAtTime(0.065, now);
+                    oGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+                    osc.connect(oGain);
+                    oGain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.13);
+                } else {
+                    // Crisp soft UI tap
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(550, now);
+                    osc.frequency.exponentialRampToValueAtTime(240, now + 0.045);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.055);
+                }
+            } catch (err) {}
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            icon.className = soundEnabled
+                ? 'fa-solid fa-volume-high accent-icon'
+                : 'fa-solid fa-volume-xmark t-muted';
+            showToast(soundEnabled ? 'Efek suara interaktif aktif' : 'Efek suara dinonaktifkan');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-msg');
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100', 'translate-y-1');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-1');
+                toast.classList.add('opacity-0');
+            }, 2400);
+        }
+
+        // ============================================================================
+        // 2. PROCEDURAL PBR TEXTURES (BIRCH WOOD, ORGANIC LINEN, RUG, WALL PRINTS)
+        // ============================================================================
+        const WOOD_PALETTES = {
+            blonde: {
+                name: 'Natural Blonde Birch',
+                base: [238, 219, 190],
+                grainDark: [200, 168, 126],
+                roughness: 0.35,
+                price: 'Rp 1.190.000'
+            },
+            honey: {
+                name: 'Warm Honey Birch',
+                base: [220, 170, 114],
+                grainDark: [168, 114, 60],
+                roughness: 0.34,
+                price: 'Rp 1.240.000'
+            },
+            milk: {
+                name: 'Milk White Oak',
+                base: [244, 239, 230],
+                grainDark: [214, 203, 189],
+                roughness: 0.39,
+                price: 'Rp 1.290.000'
+            },
+            sage: {
+                name: 'Soft Sage Pine',
+                base: [196, 210, 192],
+                grainDark: [148, 166, 144],
+                roughness: 0.38,
+                price: 'Rp 1.250.000'
+            }
+        };
+
+        const LINEN_PALETTES = {
+            oat: { name: 'Oat Cream', hex: 0xEDE4D5, trimHex: 0xD5C6AE },
+            sage: { name: 'Matcha Sage', hex: 0x9BB097, trimHex: 0x7D9379 },
+            terracotta: { name: 'Terracotta Clay', hex: 0xD48F74, trimHex: 0xB56E54 },
+            sky: { name: 'Nordic Sky', hex: 0x90AEC2, trimHex: 0x7090A6 }
+        };
+
+        const woodTexCache = {};
+        let sharedWoodBump = null;
+        let sharedLinenMap = null;
+        let sharedLinenBump = null;
+        let sharedRugTex = null;
+
+        function getBirchWoodTexture(paletteKey, verticalGrain = false) {
+            const key = `${paletteKey}_${verticalGrain ? 'v' : 'h'}`;
+            if (woodTexCache[key]) return woodTexCache[key];
+
+            const pal = WOOD_PALETTES[paletteKey] || WOOD_PALETTES.blonde;
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 1024;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(1024, 1024);
+            const data = imgData.data;
+
+            for (let y = 0; y < 1024; y++) {
+                for (let x = 0; x < 1024; x++) {
+                    const u = verticalGrain ? y / 1024 : x / 1024;
+                    const v = verticalGrain ? x / 1024 : y / 1024;
+
+                    const wave1 = Math.sin(v * 24.0 + Math.sin(u * 5.8) * 2.2);
+                    const wave2 = Math.sin(v * 66.0 + u * 4.2 + Math.cos(u * 11.0) * 1.1) * 0.42;
+                    const fiber = Math.sin(v * 330.0 + Math.sin(u * 30.0) * 2.4) * 0.14;
+                    const pore = ((Math.sin(u * 880.0 + v * 490.0) * 43758.5453) % 1) * 0.04;
+                    const gFactor = (wave1 + wave2 + fiber) * 0.5 + 0.5;
+
+                    const idx = (y * 1024 + x) * 4;
+                    data[idx] = Math.min(255, Math.max(0, pal.base[0] * (1 - gFactor * 0.25) + pal.grainDark[0] * (gFactor * 0.25) + pore * 12));
+                    data[idx + 1] = Math.min(255, Math.max(0, pal.base[1] * (1 - gFactor * 0.25) + pal.grainDark[1] * (gFactor * 0.25) + pore * 10));
+                    data[idx + 2] = Math.min(255, Math.max(0, pal.base[2] * (1 - gFactor * 0.25) + pal.grainDark[2] * (gFactor * 0.25) + pore * 8));
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+
+            const tex = new THREE.CanvasTexture(canvas);
+            tex.wrapS = THREE.RepeatWrapping;
+            tex.wrapT = THREE.RepeatWrapping;
+            tex.anisotropy = 8;
+            woodTexCache[key] = tex;
+            return tex;
+        }
+
+        function getWoodBumpTexture() {
+            if (sharedWoodBump) return sharedWoodBump;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(512, 512);
+            const data = imgData.data;
+
+            for (let y = 0; y < 512; y++) {
+                for (let x = 0; x < 512; x++) {
+                    const u = x / 512;
+                    const v = y / 512;
+                    const fiber = Math.sin(v * 265.0 + Math.sin(u * 22.0) * 2.0) * 0.5 + 0.5;
+                    const val = 114 + fiber * 42;
+                    const idx = (y * 512 + x) * 4;
+                    data[idx] = data[idx + 1] = data[idx + 2] = val;
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+            sharedWoodBump = new THREE.CanvasTexture(canvas);
+            sharedWoodBump.wrapS = THREE.RepeatWrapping;
+            sharedWoodBump.wrapT = THREE.RepeatWrapping;
+            return sharedWoodBump;
+        }
+
+        function getOrganicLinenTextures() {
+            if (sharedLinenMap) return { map: sharedLinenMap, bump: sharedLinenBump };
+
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Organic cross-hatch woven linen canvas threads
+            for (let y = 0; y < 512; y += 4) {
+                ctx.fillStyle = (y % 8 === 0) ? 'rgba(135, 122, 108, 0.16)' : 'rgba(220, 212, 200, 0.10)';
+                ctx.fillRect(0, y, 512, 2);
+            }
+            for (let x = 0; x < 512; x += 4) {
+                ctx.fillStyle = (x % 8 === 0) ? 'rgba(120, 108, 95, 0.15)' : 'rgba(235, 228, 218, 0.12)';
+                ctx.fillRect(x, 0, 2, 512);
+            }
+            // Subtle organic slub flecks
+            for (let i = 0; i < 420; i++) {
+                ctx.fillStyle = 'rgba(110, 96, 82, 0.12)';
+                ctx.fillRect(Math.random() * 512, Math.random() * 512, 8 + Math.random() * 18, 1.5);
+            }
+
+            sharedLinenMap = new THREE.CanvasTexture(canvas);
+            sharedLinenMap.wrapS = THREE.RepeatWrapping;
+            sharedLinenMap.wrapT = THREE.RepeatWrapping;
+            sharedLinenMap.repeat.set(3, 3);
+            sharedLinenBump = sharedLinenMap;
+            return { map: sharedLinenMap, bump: sharedLinenBump };
+        }
+
+        function getNurseryRugTexture() {
+            if (sharedRugTex) return sharedRugTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 1024;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#EFE9DD';
+            ctx.fillRect(0, 0, 1024, 1024);
+
+            const cx = 512, cy = 512;
+            for (let r = 20; r < 498; r += 14) {
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                if (r > 390 && r < 444) ctx.strokeStyle = '#C6D2C2';
+                else if (r % 28 === 0) ctx.strokeStyle = '#E1D6C3';
+                else ctx.strokeStyle = '#F6F1E8';
+                ctx.lineWidth = 10;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                ctx.setLineDash([4, 8]);
+                ctx.strokeStyle = 'rgba(120, 105, 88, 0.16)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            sharedRugTex = new THREE.CanvasTexture(canvas);
+            sharedRugTex.anisotropy = 8;
+            return sharedRugTex;
+        }
+
+        function createWallPrintTexture(type) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 640;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FAF5EC';
+            ctx.fillRect(0, 0, 512, 640);
+
+            if (type === 'mountains') {
+                // Warm terracotta sun
+                ctx.fillStyle = '#E2A478';
+                ctx.beginPath();
+                ctx.arc(345, 185, 68, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Soft sage peak
+                ctx.fillStyle = '#97AC93';
+                ctx.beginPath();
+                ctx.moveTo(20, 535);
+                ctx.lineTo(195, 255);
+                ctx.lineTo(365, 535);
+                ctx.closePath();
+                ctx.fill();
+
+                // Warm oak peak
+                ctx.fillStyle = '#C99B72';
+                ctx.beginPath();
+                ctx.moveTo(180, 535);
+                ctx.lineTo(348, 305);
+                ctx.lineTo(492, 535);
+                ctx.closePath();
+                ctx.fill();
+            } else {
+                // Scandinavian Sun & Crescent Moon minimalist poster
+                ctx.fillStyle = '#E7C286';
+                ctx.beginPath();
+                ctx.arc(256, 215, 92, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Crescent moon below
+                ctx.fillStyle = '#7E9BB0';
+                ctx.beginPath();
+                ctx.arc(256, 445, 76, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#FAF5EC';
+                ctx.beginPath();
+                ctx.arc(288, 430, 66, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Subtle tiny stars
+                ctx.fillStyle = '#C39C6B';
+                [[140, 360], [372, 345], [160, 520], [360, 525]].forEach(([sx, sy]) => {
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // ============================================================================
+        // 3. THREE.JS SCENE, CAMERA, RENDERER & DEFAULT GALLERY TERANG ENVIRONMENT
+        // ============================================================================
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xF4EFE6);
+        scene.fog = new THREE.FogExp2(0xF4EFE6, 0.05);
+
+        const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.05, 50);
+        camera.position.set(1.26, 0.94, 1.54);
+
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                powerPreference: 'high-performance',
+                preserveDrawingBuffer: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.06;
+            container.appendChild(renderer.domElement);
+        } catch (err) {
+            container.innerHTML = `<div class="h-full w-full flex items-center justify-center p-6 text-center text-sm font-semibold">Browser Anda tidak mendukung WebGL untuk Studio 3D.</div>`;
+            throw err;
+        }
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 0.40, 0.02);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.055;
+        controls.minDistance = 0.52;
+        controls.maxDistance = 4.6;
+        controls.maxPolarAngle = Math.PI / 2 - 0.015;
+        controls.update();
+
+        // Studio Lights (Default: Gallery Terang)
+        const ambientLight = new THREE.HemisphereLight(0xFFFDF8, 0xA89680, 0.92);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xFFF7EA, 1.32);
+        keyLight.position.set(2.4, 3.6, 2.8);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 2048;
+        keyLight.shadow.mapSize.height = 2048;
+        keyLight.shadow.camera.near = 0.4;
+        keyLight.shadow.camera.far = 10;
+        const shadowBox = 1.45;
+        keyLight.shadow.camera.left = -shadowBox;
+        keyLight.shadow.camera.right = shadowBox;
+        keyLight.shadow.camera.top = shadowBox;
+        keyLight.shadow.camera.bottom = -shadowBox;
+        keyLight.shadow.bias = -0.00045;
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0xEEF5FF, 0.56);
+        fillLight.position.set(-2.8, 2.1, 1.8);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xFFE7C7, 0.46);
+        rimLight.position.set(0.0, 2.2, -2.6);
+        scene.add(rimLight);
+
+        // Warm Gallery Floor
+        const floorMat = new THREE.MeshStandardMaterial({
+            color: 0xECE5D8,
+            roughness: 0.88,
+            metalness: 0.02
+        });
+        const floorMesh = new THREE.Mesh(new THREE.CircleGeometry(10, 64), floorMat);
+        floorMesh.rotation.x = -Math.PI / 2;
+        floorMesh.receiveShadow = true;
+        scene.add(floorMesh);
+
+        // Soft Contact Shadow Plinth
+        const shadowCanvas = document.createElement('canvas');
+        shadowCanvas.width = 256;
+        shadowCanvas.height = 128;
+        const sCtx = shadowCanvas.getContext('2d');
+        const grad = sCtx.createRadialGradient(128, 64, 15, 128, 64, 120);
+        grad.addColorStop(0, 'rgba(42, 30, 18, 0.36)');
+        grad.addColorStop(0.65, 'rgba(42, 30, 18, 0.14)');
+        grad.addColorStop(1, 'rgba(42, 30, 18, 0)');
+        sCtx.fillStyle = grad;
+        sCtx.fillRect(0, 0, 256, 128);
+        const contactShadowMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(1.25, 0.72),
+            new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false })
+        );
+        contactShadowMesh.rotation.x = -Math.PI / 2;
+        contactShadowMesh.position.y = 0.002;
+        scene.add(contactShadowMesh);
+
+        // Subtle Polar Floor Grid
+        const polarGrid = new THREE.PolarGridHelper(2.4, 16, 6, 64, 0xC9BCA6, 0xD8CEBC);
+        polarGrid.position.y = 0.001;
+        polarGrid.material.transparent = true;
+        polarGrid.material.opacity = 0.40;
+        scene.add(polarGrid);
+
+        // ============================================================================
+        // 4. SHARED PBR MATERIALS
+        // ============================================================================
+        const woodBump = getWoodBumpTexture();
+        const woodMatHoriz = new THREE.MeshStandardMaterial({
+            map: getBirchWoodTexture('blonde', false),
+            bumpMap: woodBump,
+            bumpScale: 0.0022,
+            roughness: 0.35,
+            metalness: 0.03
+        });
+
+        const woodMatVert = new THREE.MeshStandardMaterial({
+            map: getBirchWoodTexture('blonde', true),
+            bumpMap: woodBump,
+            bumpScale: 0.0022,
+            roughness: 0.35,
+            metalness: 0.03
+        });
+
+        const linenTextures = getOrganicLinenTextures();
+        const linenMat = new THREE.MeshStandardMaterial({
+            color: LINEN_PALETTES.oat.hex,
+            map: linenTextures.map,
+            bumpMap: linenTextures.bump,
+            bumpScale: 0.0055,
+            roughness: 0.88,
+            metalness: 0.0,
+            side: THREE.DoubleSide
+        });
+
+        const linenTrimMat = new THREE.MeshStandardMaterial({
+            color: LINEN_PALETTES.oat.trimHex,
+            map: linenTextures.map,
+            roughness: 0.90,
+            metalness: 0.0
+        });
+
+        const brassMat = new THREE.MeshStandardMaterial({
+            color: 0xD8B262,
+            roughness: 0.25,
+            metalness: 0.88
+        });
+
+        const steelMat = new THREE.MeshStandardMaterial({
+            color: 0xB8C0C8,
+            roughness: 0.28,
+            metalness: 0.86
+        });
+
+        const strapMat = new THREE.MeshStandardMaterial({
+            color: 0x35312D,
+            roughness: 0.85,
+            metalness: 0.05
+        });
+
+        const padMat = new THREE.MeshStandardMaterial({
+            color: 0x2E2A26,
+            roughness: 0.92
+        });
+
+        const ledStripMat = new THREE.MeshBasicMaterial({ color: 0xFFE3AA });
+
+        // Montessori Toy Pastel Materials
+        const toyTerra = new THREE.MeshStandardMaterial({ color: 0xD48269, roughness: 0.44 });
+        const toyMustard = new THREE.MeshStandardMaterial({ color: 0xE7C06B, roughness: 0.44 });
+        const toySage = new THREE.MeshStandardMaterial({ color: 0x8CA689, roughness: 0.44 });
+        const toySky = new THREE.MeshStandardMaterial({ color: 0x7EA4BB, roughness: 0.44 });
+        const toyLavender = new THREE.MeshStandardMaterial({ color: 0xB69FB8, roughness: 0.44 });
+        const toyCream = new THREE.MeshStandardMaterial({ color: 0xF7F2E7, roughness: 0.55 });
+        const plushMat = new THREE.MeshStandardMaterial({ color: 0xDFD0BC, roughness: 0.92 });
+        const pageWhite = new THREE.MeshStandardMaterial({ color: 0xFAF7F2, roughness: 0.85 });
+
+        const allShelfMeshes = [];
+        const interactivePickables = [];
+
+        function createMesh(geo, mat, castShadow = true, receiveShadow = true) {
+            const m = new THREE.Mesh(geo, mat);
+            m.castShadow = castShadow;
+            m.receiveShadow = receiveShadow;
+            allShelfMeshes.push(m);
+            return m;
+        }
+
+        // ============================================================================
+        // 5. CONSTRUCTING PINO MONTESSORI TOY SHELF (0.85m W × 0.35m D × 0.70m H)
+        // ============================================================================
+        const shelfRoot = new THREE.Group();
+        scene.add(shelfRoot);
+
+        const explodedGroups = {
+            baseLegs: new THREE.Group(),
+            bottomShelf: new THREE.Group(),
+            middleShelf: new THREE.Group(),
+            topShelf: new THREE.Group(),
+            leftSide: new THREE.Group(),
+            rightSide: new THREE.Group(),
+            dividers: new THREE.Group(),
+            backPanel: new THREE.Group(),
+            topDecor: new THREE.Group(),
+            nurseryRug: new THREE.Group(),
+            roomWall: new THREE.Group(),
+            // 6 cubby moving containers
+            binTL: new THREE.Group(),
+            binTM: new THREE.Group(),
+            binTR: new THREE.Group(),
+            binBL: new THREE.Group(),
+            binBM: new THREE.Group(),
+            binBR: new THREE.Group()
+        };
+
+        Object.values(explodedGroups).forEach(g => shelfRoot.add(g));
+
+        // -------------------- 5A. SCULPTED SPLAYED BIRCH BASE & LEGS (y = 0.00 to 0.085m) --------------------
+        const legSpecs = [
+            { x: -0.355, z: 0.115, sx: -1, sz: 1 },
+            { x: 0.355, z: 0.115, sx: 1, sz: 1 },
+            { x: -0.355, z: -0.115, sx: -1, sz: -1 },
+            { x: 0.355, z: -0.115, sx: 1, sz: -1 }
+        ];
+
+        legSpecs.forEach(ls => {
+            const holder = new THREE.Group();
+            holder.position.set(ls.x, 0.044, ls.z);
+            holder.rotation.z = ls.sx * 0.14;
+            holder.rotation.x = -ls.sz * 0.10;
+
+            const legWood = createMesh(new THREE.CylinderGeometry(0.019, 0.013, 0.084, 22), woodMatVert);
+            const feltPad = createMesh(new THREE.CylinderGeometry(0.0132, 0.0132, 0.004, 16), padMat);
+            feltPad.position.y = -0.042;
+            holder.add(legWood, feltPad);
+            explodedGroups.baseLegs.add(holder);
+        });
+
+        // Recessed Perimeter Apron Rails & Center Support Bar
+        const frontApron = createMesh(new THREE.BoxGeometry(0.71, 0.024, 0.018), woodMatHoriz);
+        frontApron.position.set(0, 0.072, 0.118);
+        const backApron = createMesh(new THREE.BoxGeometry(0.71, 0.024, 0.018), woodMatHoriz);
+        backApron.position.set(0, 0.072, -0.118);
+        const leftApron = createMesh(new THREE.BoxGeometry(0.018, 0.024, 0.23), woodMatHoriz);
+        leftApron.position.set(-0.352, 0.072, 0);
+        const rightApron = createMesh(new THREE.BoxGeometry(0.018, 0.024, 0.23), woodMatHoriz);
+        rightApron.position.set(0.352, 0.072, 0);
+        const centerSupportBar = createMesh(new THREE.BoxGeometry(0.022, 0.024, 0.23), woodMatHoriz);
+        centerSupportBar.position.set(0, 0.072, 0);
+        explodedGroups.baseLegs.add(frontApron, backApron, leftApron, rightApron, centerSupportBar);
+
+        // -------------------- 5B. MAIN SOLID BIRCH CARCASS (W 0.85m × D 0.35m × H 0.70m, T 0.020m) --------------------
+        const panelT = 0.020;
+        const innerW = 0.85 - panelT * 2; // 0.810m
+
+        // Helper for outer side panels with R18mm bullnose rounded front edge & smooth curved top safety rail profile
+        function buildOuterSidePanel(isLeft) {
+            const group = isLeft ? explodedGroups.leftSide : explodedGroups.rightSide;
+            const px = isLeft ? (-0.425 + panelT / 2) : (0.425 - panelT / 2);
+
+            // Extruded side profile shape in YZ plane (z from -0.175 to +0.175, y from 0.085 to 0.700)
+            // Smoothly slopes down near the front top (from y=0.700 at back to y=0.665 at front) with R18mm rounded front bullnose!
+            const sideShape = new THREE.Shape();
+            // Shape coords: X maps to Z, Y maps to Y
+            sideShape.moveTo(-0.175, 0.085);
+            sideShape.lineTo(0.157, 0.085);
+            sideShape.quadraticCurveTo(0.175, 0.085, 0.175, 0.103); // R18mm bottom front curve
+            sideShape.lineTo(0.175, 0.648);
+            sideShape.quadraticCurveTo(0.175, 0.666, 0.157, 0.668); // Smooth front top R18mm curve
+            sideShape.bezierCurveTo(0.115, 0.672, 0.095, 0.700, 0.045, 0.700); // Elegant Montessori curved side gallery lip!
+            sideShape.lineTo(-0.157, 0.700);
+            sideShape.quadraticCurveTo(-0.175, 0.700, -0.175, 0.682);
+            sideShape.closePath();
+
+            const extrudeGeo = new THREE.ExtrudeGeometry(sideShape, {
+                depth: panelT - 0.004,
+                bevelEnabled: true,
+                bevelThickness: 0.002,
+                bevelSize: 0.002,
+                bevelSegments: 4
+            });
+            // Rotate so Shape X -> World Z, Shape Y -> World Y, Extrude Z -> World X
+            extrudeGeo.rotateY(-Math.PI / 2);
+            extrudeGeo.center();
+
+            const panelMesh = createMesh(extrudeGeo, woodMatVert);
+            // Center of shape Y is (0.085 + 0.700)/2 = 0.3925m
+            panelMesh.position.set(px, 0.3925, 0);
+
+            // Cylindrical R10mm bullnose reinforcement trim along front vertical edge for crisp specular highlight
+            const frontBullnose = createMesh(new THREE.CylinderGeometry(0.010, 0.010, 0.562, 18), woodMatVert);
+            frontBullnose.position.set(px, 0.376, 0.165);
+
+            // Subtle flush wooden dowel joinery pins visible on outer face
+            const outerX = isLeft ? -0.4255 : 0.4255;
+            [0.095, 0.375, 0.655].forEach(sy => {
+                [-0.085, 0.085].forEach(sz => {
+                    const dowel = createMesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.003, 12), brassMat, false);
+                    dowel.rotation.z = Math.PI / 2;
+                    dowel.position.set(outerX, sy, sz);
+                    group.add(dowel);
+                });
+            });
+
+            group.add(panelMesh, frontBullnose);
+        }
+
+        buildOuterSidePanel(true);
+        buildOuterSidePanel(false);
+
+        // Helper for horizontal shelf with smooth front bullnose edge
+        function buildHorizontalShelf(yCenter, targetGroup, includeRearLip = false) {
+            const shelfMain = createMesh(new THREE.BoxGeometry(innerW, panelT, 0.332), woodMatHoriz);
+            shelfMain.position.set(0, yCenter, -0.004);
+            const frontRound = createMesh(new THREE.CylinderGeometry(panelT / 2, panelT / 2, innerW, 18), woodMatHoriz);
+            frontRound.rotation.z = Math.PI / 2;
+            frontRound.position.set(0, yCenter, 0.162);
+            targetGroup.add(shelfMain, frontRound);
+
+            if (includeRearLip) {
+                // Raised Back Safety Gallery Rail (y = 0.655 to 0.700m) so toys on top don't fall off!
+                const rearGallery = createMesh(new THREE.BoxGeometry(innerW, 0.044, 0.018), woodMatHoriz);
+                rearGallery.position.set(0, 0.678, -0.162);
+                const rearGalleryCap = createMesh(new THREE.CylinderGeometry(0.009, 0.009, innerW, 16), woodMatHoriz);
+                rearGalleryCap.rotation.z = Math.PI / 2;
+                rearGalleryCap.position.set(0, 0.696, -0.162);
+                targetGroup.add(rearGallery, rearGalleryCap);
+            }
+        }
+
+        // 3 Horizontal Shelves: Bottom (0.095m), Middle (0.375m), Top Display (0.655m + rear safety lip)
+        buildHorizontalShelf(0.095, explodedGroups.bottomShelf, false);
+        buildHorizontalShelf(0.375, explodedGroups.middleShelf, false);
+        buildHorizontalShelf(0.655, explodedGroups.topShelf, true);
+
+        // Warm Micro-LED Strips & PointLights recessed under Top & Middle Shelves (Glow in Malam LED)
+        const topLedStrip = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.003, 0.010), ledStripMat);
+        topLedStrip.position.set(0, 0.644, 0.08);
+        explodedGroups.topShelf.add(topLedStrip);
+
+        const midLedStrip = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.003, 0.010), ledStripMat);
+        midLedStrip.position.set(0, 0.364, 0.08);
+        explodedGroups.middleShelf.add(midLedStrip);
+
+        const shelfMicroLightTop = new THREE.PointLight(0xFFC278, 0.10, 0.95, 2);
+        shelfMicroLightTop.position.set(0, 0.60, 0.08);
+        explodedGroups.topShelf.add(shelfMicroLightTop);
+
+        const shelfMicroLightMid = new THREE.PointLight(0xFFC278, 0.10, 0.95, 2);
+        shelfMicroLightMid.position.set(0, 0.32, 0.08);
+        explodedGroups.middleShelf.add(shelfMicroLightMid);
+
+        // 2 Vertical Inner Dividers (x = -0.138m and +0.138m, thickness 0.018m -> 3 equal 25.8cm cubbies per row!)
+        [-0.138, 0.138].forEach(dx => {
+            const divBot = createMesh(new THREE.BoxGeometry(0.018, 0.260, 0.318), woodMatVert);
+            divBot.position.set(dx, 0.235, -0.002);
+            const divTop = createMesh(new THREE.BoxGeometry(0.018, 0.260, 0.318), woodMatVert);
+            divTop.position.set(dx, 0.515, -0.002);
+
+            // Smooth front bullnose on dividers
+            const divRoundB = createMesh(new THREE.CylinderGeometry(0.009, 0.009, 0.260, 14), woodMatVert);
+            divRoundB.position.set(dx, 0.235, 0.157);
+            const divRoundT = createMesh(new THREE.CylinderGeometry(0.009, 0.009, 0.260, 14), woodMatVert);
+            divRoundT.position.set(dx, 0.515, 0.157);
+
+            explodedGroups.dividers.add(divBot, divTop, divRoundB, divRoundT);
+        });
+
+        // Recessed Solid Birch Back Panel + Rear Anti-Tip Safety Wall Anchor Strap
+        const backWood = createMesh(new THREE.BoxGeometry(innerW, 0.562, 0.012), woodMatHoriz);
+        backWood.position.set(0, 0.375, -0.164);
+        explodedGroups.backPanel.add(backWood);
+
+        // Detailed Anti-Tip Safety Wall Anchor Assembly at Top Center Back (y = 0.61m, z = -0.172m)
+        const antiTipGroup = new THREE.Group();
+        antiTipGroup.position.set(0, 0.615, -0.171);
+
+        // Brushed Metal L-Bracket mounted to back top rail
+        const bracketVert = createMesh(new THREE.BoxGeometry(0.032, 0.044, 0.004), steelMat);
+        const bracketFlange = createMesh(new THREE.BoxGeometry(0.032, 0.004, 0.026), steelMat);
+        bracketFlange.position.set(0, 0.020, -0.013);
+        // 2 Screws on bracket
+        [-0.010, 0.010].forEach(sy => {
+            const screw = createMesh(new THREE.CylinderGeometry(0.004, 0.004, 0.006, 12), brassMat, false);
+            screw.rotation.x = Math.PI / 2;
+            screw.position.set(0, sy - 0.006, -0.003);
+            antiTipGroup.add(screw);
+        });
+        // Heavy-duty Woven Nylon Safety Anchor Strap looped through bracket toward wall
+        const strapUpper = createMesh(new THREE.BoxGeometry(0.022, 0.004, 0.072), strapMat);
+        strapUpper.position.set(0, 0.023, -0.045);
+        strapUpper.rotation.x = 0.12;
+        // Wall anchor plate at end of strap
+        const wallPlate = createMesh(new THREE.BoxGeometry(0.036, 0.046, 0.005), steelMat);
+        wallPlate.position.set(0, 0.028, -0.078);
+        const wallScrew = createMesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.007, 12), brassMat, false);
+        wallScrew.rotation.x = Math.PI / 2;
+        wallScrew.position.set(0, 0.028, -0.080);
+
+        antiTipGroup.add(bracketVert, bracketFlange, strapUpper, wallPlate, wallScrew);
+        explodedGroups.backPanel.add(antiTipGroup);
+
+        // -------------------- 5C. 6 INTERACTIVE REMOVABLE LINEN STORAGE BINS + MONTESSORI TOYS --------------------
+        const cubbyDefs = [
+            { id: 'binTL', label: 'Kotak Atas Kiri (Balok Kayu)', row: 'top', x: -0.276, y: 0.386, exX: -0.14, exY: 0.06, exZ: 0.34 },
+            { id: 'binTM', label: 'Kotak Atas Tengah (Peg Dolls)', row: 'top', x: 0.000, y: 0.386, exX: 0.00, exY: 0.08, exZ: 0.42 },
+            { id: 'binTR', label: 'Kotak Atas Kanan (Kereta Kayu)', row: 'top', x: 0.276, y: 0.386, exX: 0.14, exY: 0.06, exZ: 0.34 },
+            { id: 'binBL', label: 'Kotak Bawah Kiri (Sensorik & Boneka)', row: 'bottom', x: -0.276, y: 0.106, exX: -0.14, exY: -0.04, exZ: 0.24 },
+            { id: 'binBM', label: 'Kotak Bawah Tengah (Sempoa & Sorter)', row: 'bottom', x: 0.000, y: 0.106, exX: 0.00, exY: -0.04, exZ: 0.30 },
+            { id: 'binBR', label: 'Kotak Bawah Kanan (Buku & Kertas)', row: 'bottom', x: 0.276, y: 0.106, exX: 0.14, exY: -0.04, exZ: 0.24 }
+        ];
+
+        const binRegistry = {}; // Stores { root, shellGroup, toysGroup, def }
+
+        function buildMontessoriToysForCubby(binId) {
+            const g = new THREE.Group();
+
+            if (binId === 'binTL') {
+                // Pastel wooden geometric building blocks (cubes, cylinders, triangular prisms)
+                const c1 = createMesh(new THREE.BoxGeometry(0.052, 0.052, 0.052), toyTerra);
+                c1.position.set(-0.052, 0.026, 0.042); c1.rotation.y = 0.22;
+
+                const c2 = createMesh(new THREE.BoxGeometry(0.048, 0.048, 0.048), toySage);
+                c2.position.set(0.028, 0.024, 0.045); c2.rotation.y = -0.18;
+
+                const c3 = createMesh(new THREE.BoxGeometry(0.046, 0.046, 0.046), toySky);
+                c3.position.set(-0.012, 0.072, 0.044); c3.rotation.y = 0.12;
+
+                const cyl1 = createMesh(new THREE.CylinderGeometry(0.022, 0.022, 0.088, 18), toyMustard);
+                cyl1.position.set(0.068, 0.044, -0.025);
+
+                const cyl2 = createMesh(new THREE.CylinderGeometry(0.020, 0.020, 0.075, 18), woodMatVert);
+                cyl2.position.set(-0.065, 0.0375, -0.045);
+
+                // Triangular prism roofs
+                const prism1 = createMesh(new THREE.CylinderGeometry(0.032, 0.032, 0.052, 3), toyTerra);
+                prism1.rotation.z = Math.PI / 2;
+                prism1.position.set(-0.012, 0.112, 0.044);
+
+                const prism2 = createMesh(new THREE.CylinderGeometry(0.028, 0.028, 0.055, 3), toyLavender);
+                prism2.rotation.x = Math.PI / 2;
+                prism2.position.set(0.008, 0.026, -0.055);
+
+                g.add(c1, c2, c3, cyl1, cyl2, prism1, prism2);
+            } else if (binId === 'binTM') {
+                // Wooden Montessori peg dolls & colorful stacking rings
+                const dollSpecs = [
+                    { x: -0.062, z: 0.042, h: 0.072, mat: toyTerra },
+                    { x: -0.015, z: 0.052, h: 0.082, mat: toySage },
+                    { x: 0.032, z: 0.040, h: 0.068, mat: toySky },
+                    { x: -0.042, z: -0.038, h: 0.076, mat: toyMustard },
+                    { x: 0.015, z: -0.045, h: 0.070, mat: toyLavender }
+                ];
+                dollSpecs.forEach(d => {
+                    const body = createMesh(new THREE.CylinderGeometry(0.013, 0.018, d.h * 0.68, 16), d.mat);
+                    body.position.set(d.x, (d.h * 0.68) / 2, d.z);
+                    const head = createMesh(new THREE.SphereGeometry(0.015, 16, 14), woodMatVert);
+                    head.position.set(d.x, d.h * 0.68 + 0.013, d.z);
+                    g.add(body, head);
+                });
+
+                // Colorful wooden rings stack on the right
+                [toyTerra, toyMustard, toySage, toySky].forEach((rmat, idx) => {
+                    const ring = createMesh(new THREE.TorusGeometry(0.026 - idx * 0.0025, 0.0085, 12, 22), rmat);
+                    ring.rotation.x = Math.PI / 2;
+                    ring.position.set(0.068, 0.009 + idx * 0.0165, -0.015);
+                    g.add(ring);
+                });
+            } else if (binId === 'binTR') {
+                // Wooden toy train engine + cargo car
+                const trainG = new THREE.Group();
+                trainG.position.set(0, 0, 0.01);
+                trainG.rotation.y = 0.25;
+
+                // Engine
+                const engBase = createMesh(new THREE.BoxGeometry(0.095, 0.022, 0.054), toySky);
+                engBase.position.set(-0.045, 0.024, 0);
+                const engBoiler = createMesh(new THREE.CylinderGeometry(0.020, 0.020, 0.052, 16), woodMatHoriz);
+                engBoiler.rotation.z = Math.PI / 2;
+                engBoiler.position.set(-0.065, 0.050, 0);
+                const engCab = createMesh(new THREE.BoxGeometry(0.040, 0.052, 0.050), toyTerra);
+                engCab.position.set(-0.022, 0.058, 0);
+                const engRoof = createMesh(new THREE.BoxGeometry(0.046, 0.008, 0.056), toyMustard);
+                engRoof.position.set(-0.022, 0.086, 0);
+                const funnel = createMesh(new THREE.CylinderGeometry(0.009, 0.006, 0.024, 12), toyMustard);
+                funnel.position.set(-0.080, 0.072, 0);
+                trainG.add(engBase, engBoiler, engCab, engRoof, funnel);
+
+                // Coupling rod
+                const link = createMesh(new THREE.CylinderGeometry(0.003, 0.003, 0.024, 8), brassMat);
+                link.rotation.z = Math.PI / 2;
+                link.position.set(0.012, 0.022, 0);
+                trainG.add(link);
+
+                // Cargo car carrying wooden cubes
+                const carBase = createMesh(new THREE.BoxGeometry(0.082, 0.020, 0.052), toySage);
+                carBase.position.set(0.062, 0.022, 0);
+                const cargo1 = createMesh(new THREE.BoxGeometry(0.032, 0.032, 0.036), toyMustard);
+                cargo1.position.set(0.044, 0.048, 0);
+                const cargo2 = createMesh(new THREE.CylinderGeometry(0.015, 0.015, 0.036, 14), toyLavender);
+                cargo2.position.set(0.082, 0.050, 0);
+                trainG.add(carBase, cargo1, cargo2);
+
+                // 8 Wheels
+                [-0.075, -0.022, 0.036, 0.086].forEach(wx => {
+                    [-0.030, 0.030].forEach(wz => {
+                        const wh = createMesh(new THREE.CylinderGeometry(0.014, 0.014, 0.008, 16), woodMatHoriz);
+                        wh.rotation.x = Math.PI / 2;
+                        wh.position.set(wx, 0.014, wz);
+                        trainG.add(wh);
+                    });
+                });
+                g.add(trainG);
+            } else if (binId === 'binBL') {
+                // Soft sensory fabric balls + cute mini plush bunny/bear silhouette
+                const ball1 = createMesh(new THREE.SphereGeometry(0.038, 20, 18), toySage);
+                ball1.position.set(-0.052, 0.038, 0.052);
+                const ball2 = createMesh(new THREE.SphereGeometry(0.034, 20, 18), toyTerra);
+                ball2.position.set(0.052, 0.034, 0.055);
+                const ball3 = createMesh(new THREE.SphereGeometry(0.030, 20, 18), toySky);
+                ball3.position.set(-0.058, 0.030, -0.038);
+
+                // Mini plush bunny sitting neatly
+                const bunnyG = new THREE.Group();
+                bunnyG.position.set(0.015, 0, -0.018);
+                bunnyG.rotation.y = -0.25;
+                const bBody = createMesh(new THREE.SphereGeometry(0.044, 20, 18), plushMat);
+                bBody.scale.set(0.95, 1.15, 0.90);
+                bBody.position.y = 0.048;
+                const bHead = createMesh(new THREE.SphereGeometry(0.036, 20, 18), plushMat);
+                bHead.position.set(0, 0.106, 0.008);
+                // Long soft bunny ears
+                [-0.016, 0.016].forEach((ex, i) => {
+                    const ear = createMesh(new THREE.SphereGeometry(0.012, 14, 14), plushMat);
+                    ear.scale.set(0.75, 2.7, 0.55);
+                    ear.position.set(ex, 0.156, 0.004);
+                    ear.rotation.z = i === 0 ? 0.18 : -0.18;
+                    bunnyG.add(ear);
+                });
+                // Cute button eyes & nose
+                [-0.012, 0.012].forEach(ex => {
+                    const eye = createMesh(new THREE.SphereGeometry(0.0038, 10, 10), padMat, false);
+                    eye.position.set(ex, 0.110, 0.041);
+                    bunnyG.add(eye);
+                });
+                const nose = createMesh(new THREE.SphereGeometry(0.0042, 10, 10), toyTerra, false);
+                nose.position.set(0, 0.102, 0.043);
+                bunnyG.add(bBody, bHead, nose);
+
+                g.add(ball1, ball2, ball3, bunnyG);
+            } else if (binId === 'binBM') {
+                // Wooden bead abacus frame + shape sorter cube
+                const abacusG = new THREE.Group();
+                abacusG.position.set(-0.038, 0, -0.02);
+                abacusG.rotation.y = 0.22;
+
+                const abBase = createMesh(new THREE.BoxGeometry(0.115, 0.014, 0.042), woodMatHoriz);
+                abBase.position.y = 0.007;
+                const abPostL = createMesh(new THREE.BoxGeometry(0.012, 0.125, 0.018), woodMatVert);
+                abPostL.position.set(-0.050, 0.068, 0);
+                const abPostR = createMesh(new THREE.BoxGeometry(0.012, 0.125, 0.018), woodMatVert);
+                abPostR.position.set(0.050, 0.068, 0);
+                const abTop = createMesh(new THREE.BoxGeometry(0.115, 0.012, 0.018), woodMatHoriz);
+                abTop.position.y = 0.130;
+                abacusG.add(abBase, abPostL, abPostR, abTop);
+
+                const beadMats = [toyTerra, toyMustard, toySage, toySky];
+                beadMats.forEach((bMat, rowIdx) => {
+                    const ry = 0.032 + rowIdx * 0.026;
+                    const wire = createMesh(new THREE.CylinderGeometry(0.0018, 0.0018, 0.095, 8), steelMat, false);
+                    wire.rotation.z = Math.PI / 2;
+                    wire.position.set(0, ry, 0);
+                    abacusG.add(wire);
+
+                    for (let b = 0; b < 5; b++) {
+                        const offset = b < (2 + (rowIdx % 2)) ? -0.032 + b * 0.013 : 0.012 + (b - 2) * 0.012;
+                        const bead = createMesh(new THREE.SphereGeometry(0.0072, 12, 10), bMat, false);
+                        bead.scale.set(0.85, 1.05, 1.05);
+                        bead.position.set(offset, ry, 0);
+                        abacusG.add(bead);
+                    }
+                });
+
+                // Wooden Shape Sorter Cube
+                const sorter = createMesh(new THREE.BoxGeometry(0.082, 0.082, 0.082), woodMatHoriz);
+                sorter.position.set(0.058, 0.041, 0.044);
+                sorter.rotation.y = -0.25;
+                const holeCircle = createMesh(new THREE.CylinderGeometry(0.014, 0.014, 0.004, 16), padMat, false);
+                holeCircle.position.set(0.045, 0.082, 0.036);
+                const holeStar = createMesh(new THREE.BoxGeometry(0.022, 0.004, 0.022), padMat, false);
+                holeStar.position.set(0.070, 0.082, 0.056);
+                holeStar.rotation.y = 0.4;
+
+                g.add(abacusG, sorter, holeCircle, holeStar);
+            } else if (binId === 'binBR') {
+                // Stacked colorful kids' hardcover picture books + rolled drawing papers
+                const bk1 = createMesh(new THREE.BoxGeometry(0.155, 0.022, 0.195), toySky);
+                bk1.position.set(-0.022, 0.011, 0.01);
+                const bk1p = createMesh(new THREE.BoxGeometry(0.148, 0.016, 0.188), pageWhite, false);
+                bk1p.position.set(-0.020, 0.011, 0.012);
+
+                const bk2 = createMesh(new THREE.BoxGeometry(0.145, 0.020, 0.182), toyTerra);
+                bk2.position.set(-0.020, 0.032, 0.01); bk2.rotation.y = 0.06;
+
+                const bk3 = createMesh(new THREE.BoxGeometry(0.135, 0.018, 0.168), toyMustard);
+                bk3.position.set(-0.022, 0.051, 0.01); bk3.rotation.y = -0.05;
+
+                // 2 Rolled Drawing Paper Tubes tied with sage ribbon
+                [0.068, 0.092].forEach((rx, idx) => {
+                    const roll = createMesh(new THREE.CylinderGeometry(0.012, 0.012, 0.21, 16), toyCream);
+                    roll.rotation.x = Math.PI / 2;
+                    roll.position.set(rx, 0.013 + idx * 0.014, 0.01);
+                    const ribbon = createMesh(new THREE.CylinderGeometry(0.0126, 0.0126, 0.012, 16), toySage, false);
+                    ribbon.rotation.x = Math.PI / 2;
+                    ribbon.position.set(rx, 0.013 + idx * 0.014, 0.01);
+                    g.add(roll, ribbon);
+                });
+
+                g.add(bk1, bk1p, bk2, bk3);
+            }
+
+            return g;
+        }
+
+        cubbyDefs.forEach(def => {
+            const cubbyGroup = explodedGroups[def.id];
+            cubbyGroup.position.set(def.x, def.y, 0.002);
+
+            // 1. Hollow Linen Bin Shell (0.242m W × 0.242m H × 0.305m D)
+            const shellGroup = new THREE.Group();
+            const bW = 0.242, bH = 0.240, bD = 0.304, wallT = 0.008;
+
+            const binBottom = createMesh(new THREE.BoxGeometry(bW, wallT, bD), linenMat);
+            binBottom.position.set(0, wallT / 2, 0);
+
+            const binFront = createMesh(new THREE.BoxGeometry(bW, bH, wallT), linenMat);
+            binFront.position.set(0, bH / 2, bD / 2 - wallT / 2);
+
+            const binBack = createMesh(new THREE.BoxGeometry(bW, bH, wallT), linenMat);
+            binBack.position.set(0, bH / 2, -bD / 2 + wallT / 2);
+
+            const binLeft = createMesh(new THREE.BoxGeometry(wallT, bH, bD - wallT * 2), linenMat);
+            binLeft.position.set(-bW / 2 + wallT / 2, bH / 2, 0);
+
+            const binRight = createMesh(new THREE.BoxGeometry(wallT, bH, bD - wallT * 2), linenMat);
+            binRight.position.set(bW / 2 - wallT / 2, bH / 2, 0);
+
+            // Folded Top Stitched Rim Trim around all 4 edges
+            const rimF = createMesh(new THREE.BoxGeometry(bW + 0.004, 0.016, 0.012), linenTrimMat);
+            rimF.position.set(0, bH - 0.006, bD / 2 - 0.004);
+            const rimB = createMesh(new THREE.BoxGeometry(bW + 0.004, 0.016, 0.012), linenTrimMat);
+            rimB.position.set(0, bH - 0.006, -bD / 2 + 0.004);
+            const rimL = createMesh(new THREE.BoxGeometry(0.012, 0.016, bD), linenTrimMat);
+            rimL.position.set(-bW / 2 + 0.004, bH - 0.006, 0);
+            const rimR = createMesh(new THREE.BoxGeometry(0.012, 0.016, bD), linenTrimMat);
+            rimR.position.set(bW / 2 - 0.004, bH - 0.006, 0);
+
+            // Carved Solid Birch Grip Handle + Woven Pull Tab with Brass Rivet on Front Face
+            const gripBar = createMesh(new THREE.CylinderGeometry(0.0065, 0.0065, 0.088, 16), woodMatHoriz);
+            gripBar.rotation.z = Math.PI / 2;
+            gripBar.position.set(0, bH * 0.56, bD / 2 + 0.011);
+
+            [-0.032, 0.032].forEach(gx => {
+                const post = createMesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.012, 12), woodMatHoriz);
+                post.rotation.x = Math.PI / 2;
+                post.position.set(gx, bH * 0.56, bD / 2 + 0.005);
+                shellGroup.add(post);
+            });
+
+            // Woven Pull Tab & Brass Rivet below grip
+            const pullTab = createMesh(new THREE.BoxGeometry(0.022, 0.044, 0.005), linenTrimMat);
+            pullTab.position.set(0, bH * 0.43, bD / 2 + 0.0025);
+            const rivet = createMesh(new THREE.CylinderGeometry(0.0042, 0.0042, 0.007, 14), brassMat, false);
+            rivet.rotation.x = Math.PI / 2;
+            rivet.position.set(0, bH * 0.47, bD / 2 + 0.004);
+
+            // Minimalist Wooden Label Tag (Top Right Corner of Front Face)
+            const labelTag = createMesh(new THREE.BoxGeometry(0.044, 0.018, 0.004), woodMatHoriz, false);
+            labelTag.position.set(0.072, bH - 0.034, bD / 2 + 0.002);
+
+            shellGroup.add(binBottom, binFront, binBack, binLeft, binRight, rimF, rimB, rimL, rimR, gripBar, pullTab, rivet, labelTag);
+
+            // Register bin shell meshes for Raycaster direct click & hover
+            shellGroup.traverse(child => {
+                if (child.isMesh) {
+                    child.userData.binId = def.id;
+                    child.userData.label = def.label;
+                    interactivePickables.push(child);
+                }
+            });
+
+            // 2. Curated Montessori Wooden Toys inside the bin (rests at y = 0.008 inside bin, drops to y = 0.000 on shelf when open!)
+            const toysGroup = buildMontessoriToysForCubby(def.id);
+            toysGroup.position.y = 0.009;
+
+            cubbyGroup.add(shellGroup, toysGroup);
+            binRegistry[def.id] = { root: cubbyGroup, shellGroup, toysGroup, def };
+        });
+
+        // -------------------- 5D. TOP DISPLAY SHELF STYLING & NURSERY RUG ("Mainan & Karpet") --------------------
+        const topDecor = explodedGroups.topDecor;
+        topDecor.position.set(0, 0.665, 0);
+
+        // 1. Iconic 5-Arch Pastel Wooden Rainbow Stacker (Left side, x = -0.27m)
+        const rainbowGroup = new THREE.Group();
+        rainbowGroup.position.set(-0.27, 0.002, 0.01);
+        rainbowGroup.rotation.y = 0.14;
+        const rainbowMats = [toyTerra, toyMustard, toySage, toySky, toyLavender];
+        rainbowMats.forEach((rmat, idx) => {
+            const radius = 0.088 - idx * 0.0145;
+            const arch = createMesh(new THREE.TorusGeometry(radius, 0.0072, 14, 34, Math.PI), rmat);
+            arch.scale.set(1, 1, 2.2); // Thick wooden blocks
+            rainbowGroup.add(arch);
+        });
+        topDecor.add(rainbowGroup);
+
+        // 2. Wooden Conical Stacking Ring Tower (Center-left, x = -0.08m)
+        const towerG = new THREE.Group();
+        towerG.position.set(-0.08, 0, -0.02);
+        const towerBase = createMesh(new THREE.CylinderGeometry(0.044, 0.046, 0.012, 24), woodMatHoriz);
+        towerBase.position.y = 0.006;
+        const towerRod = createMesh(new THREE.CylinderGeometry(0.006, 0.006, 0.135, 14), woodMatVert);
+        towerRod.position.y = 0.072;
+        const towerTopKnob = createMesh(new THREE.SphereGeometry(0.014, 16, 16), woodMatVert);
+        towerTopKnob.position.y = 0.145;
+        towerG.add(towerBase, towerRod, towerTopKnob);
+
+        [toySky, toySage, toyMustard, toyTerra, toyCream].forEach((m, idx) => {
+            const ring = createMesh(new THREE.TorusGeometry(0.034 - idx * 0.0045, 0.0105, 14, 24), m);
+            ring.rotation.x = Math.PI / 2;
+            ring.position.y = 0.022 + idx * 0.022;
+            towerG.add(ring);
+        });
+        topDecor.add(towerG);
+
+        // 3. 3 Leaning Children's Picture Books + Wooden Bear Bookend (Center-right, x = +0.10m)
+        const booksGroup = new THREE.Group();
+        booksGroup.position.set(0.085, 0, -0.01);
+        [
+            { x: -0.036, h: 0.145, t: 0.018, mat: toySage, rz: 0.02 },
+            { x: -0.016, h: 0.158, t: 0.020, mat: toyTerra, rz: 0.01 },
+            { x: 0.008, h: 0.138, t: 0.018, mat: toySky, rz: -0.06 }
+        ].forEach(bk => {
+            const bookMesh = createMesh(new THREE.BoxGeometry(bk.t, bk.h, 0.125), bk.mat);
+            bookMesh.position.set(bk.x, bk.h / 2, 0);
+            bookMesh.rotation.z = bk.rz;
+            booksGroup.add(bookMesh);
+        });
+
+        // Cute Solid Birch Bear Bookend
+        const bearG = new THREE.Group();
+        bearG.position.set(0.052, 0, 0);
+        const bearBase = createMesh(new THREE.BoxGeometry(0.055, 0.010, 0.085), woodMatHoriz);
+        bearBase.position.y = 0.005;
+        const bearHead = createMesh(new THREE.CylinderGeometry(0.036, 0.036, 0.018, 22), woodMatVert);
+        bearHead.rotation.x = Math.PI / 2;
+        bearHead.position.set(0, 0.052, 0);
+        [-0.026, 0.026].forEach(ex => {
+            const ear = createMesh(new THREE.CylinderGeometry(0.013, 0.013, 0.018, 16), woodMatVert);
+            ear.rotation.x = Math.PI / 2;
+            ear.position.set(ex, 0.082, 0);
+            bearG.add(ear);
+        });
+        bearG.add(bearBase, bearHead);
+        booksGroup.add(bearG);
+        topDecor.add(booksGroup);
+
+        // 4. Warm Glowing Cloud / Dome Night Light (Right side, x = +0.295m)
+        const nightLampG = new THREE.Group();
+        nightLampG.position.set(0.295, 0, -0.01);
+
+        const nlBase = createMesh(new THREE.CylinderGeometry(0.048, 0.054, 0.020, 26), woodMatVert);
+        nlBase.position.y = 0.010;
+
+        const nightLampMat = new THREE.MeshStandardMaterial({
+            color: 0xFFFBF2,
+            emissive: 0xFFB866,
+            emissiveIntensity: 0.45,
+            roughness: 0.35
+        });
+
+        // Sculpted Cloud Glow Silhouette atop Birch Base
+        [
+            { x: 0, y: 0.068, r: 0.042 },
+            { x: -0.034, y: 0.052, r: 0.030 },
+            { x: 0.034, y: 0.052, r: 0.032 }
+        ].forEach(p => {
+            const puff = createMesh(new THREE.SphereGeometry(p.r, 20, 18), nightLampMat);
+            puff.scale.set(1, 0.95, 0.72);
+            puff.position.set(p.x, p.y, 0);
+            nightLampG.add(puff);
+        });
+
+        const nightLampLight = new THREE.PointLight(0xFFB866, 0.50, 1.8, 1.9);
+        nightLampLight.position.set(0, 0.11, 0.02);
+        nightLampG.add(nlBase, nightLampLight);
+        topDecor.add(nightLampG);
+
+        // Soft Woven Circular Scandinavian Nursery Rug (radius 0.85m)
+        const rugMesh = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.85, 0.85, 0.006, 64),
+            new THREE.MeshStandardMaterial({ map: getNurseryRugTexture(), roughness: 0.95 })
+        );
+        rugMesh.position.set(0, 0.003, 0.12);
+        rugMesh.receiveShadow = true;
+        explodedGroups.nurseryRug.add(rugMesh);
+
+        // -------------------- 5E. TOGGLEABLE NURSERY WALL BACKDROP ("Dinding Kamar") --------------------
+        const roomWallGroup = explodedGroups.roomWall;
+        roomWallGroup.visible = false; // Default OFF so Belakang & Anti-Tip is unobstructed
+
+        const wallMat = new THREE.MeshStandardMaterial({ color: 0xF7F2E8, roughness: 0.92 });
+        const wallBackdrop = new THREE.Mesh(new THREE.BoxGeometry(3.2, 2.2, 0.04), wallMat);
+        wallBackdrop.position.set(0, 1.1, -0.26);
+        wallBackdrop.receiveShadow = true;
+
+        // Horizontal Wooden Baseboard Molding
+        const baseboard = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.075, 0.018), woodMatHoriz);
+        baseboard.position.set(0, 0.038, -0.232);
+        baseboard.receiveShadow = true;
+
+        // Wooden Wall Peg Rail with 3 Round Birch Knobs (y = 0.98m)
+        const pegRailBar = new THREE.Mesh(new THREE.BoxGeometry(0.66, 0.045, 0.018), woodMatHoriz);
+        pegRailBar.position.set(0, 0.96, -0.232);
+        [-0.22, 0, 0.22].forEach(kx => {
+            const knobStem = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.025, 14), woodMatVert);
+            knobStem.rotation.x = Math.PI / 2;
+            knobStem.position.set(kx, 0.96, -0.214);
+            const knobHead = new THREE.Mesh(new THREE.CylinderGeometry(0.020, 0.018, 0.014, 20), woodMatVert);
+            knobHead.rotation.x = Math.PI / 2;
+            knobHead.position.set(kx, 0.96, -0.198);
+            roomWallGroup.add(knobStem, knobHead);
+        });
+
+        // 2 Framed Minimalist Scandinavian Wall Prints (Mountains + Sun & Moon)
+        const print1Tex = createWallPrintTexture('mountains');
+        const print2Tex = createWallPrintTexture('sunmoon');
+        [
+            { x: -0.26, tex: print1Tex },
+            { x: 0.26, tex: print2Tex }
+        ].forEach(pr => {
+            const frame = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.52, 0.020), woodMatHoriz);
+            frame.position.set(pr.x, 1.38, -0.232);
+            const canvasArt = new THREE.Mesh(
+                new THREE.BoxGeometry(0.37, 0.47, 0.024),
+                new THREE.MeshStandardMaterial({ map: pr.tex, roughness: 0.85 })
+            );
+            canvasArt.position.set(pr.x, 1.38, -0.229);
+            roomWallGroup.add(frame, canvasArt);
+        });
+
+        roomWallGroup.add(wallBackdrop, baseboard, pegRailBar);
+
+        // ============================================================================
+        // 6. 3D PRECISION DIMENSION LINES & 5 INTERACTIVE HOTSPOTS
+        // ============================================================================
+        const dimensionGroup = new THREE.Group();
+        dimensionGroup.visible = false;
+        scene.add(dimensionGroup);
+
+        const dimLineMat = new THREE.LineBasicMaterial({ color: 0x8C6239, transparent: true, opacity: 0.92 });
+
+        function addDimensionLine(p1, p2, ext1, ext2) {
+            dimensionGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([p1, p2]), dimLineMat));
+            if (ext1 && ext2) {
+                dimensionGroup.add(
+                    new THREE.Line(new THREE.BufferGeometry().setFromPoints([ext1, p1]), dimLineMat),
+                    new THREE.Line(new THREE.BufferGeometry().setFromPoints([ext2, p2]), dimLineMat)
+                );
+            }
+        }
+
+        // 1. Panjang: 85.0 cm (Front Floor)
+        addDimensionLine(
+            new THREE.Vector3(-0.425, 0.015, 0.30),
+            new THREE.Vector3(0.425, 0.015, 0.30),
+            new THREE.Vector3(-0.425, 0.015, 0.19),
+            new THREE.Vector3(0.425, 0.015, 0.19)
+        );
+        // 2. Lebar: 35.0 cm (Right Floor)
+        addDimensionLine(
+            new THREE.Vector3(0.55, 0.015, -0.175),
+            new THREE.Vector3(0.55, 0.015, 0.175),
+            new THREE.Vector3(0.44, 0.015, -0.175),
+            new THREE.Vector3(0.44, 0.015, 0.175)
+        );
+        // 3. Tinggi Total: 70.0 cm (Left Vertical)
+        addDimensionLine(
+            new THREE.Vector3(-0.55, 0.0, 0.175),
+            new THREE.Vector3(-0.55, 0.70, 0.175),
+            new THREE.Vector3(-0.44, 0.0, 0.175),
+            new THREE.Vector3(-0.44, 0.70, 0.175)
+        );
+        // 4. Ruang Kaki: 8.0 cm (Right Vertical Base)
+        addDimensionLine(
+            new THREE.Vector3(0.55, 0.0, 0.175),
+            new THREE.Vector3(0.55, 0.085, 0.175),
+            new THREE.Vector3(0.44, 0.085, 0.175),
+            new THREE.Vector3(0.55, 0.085, 0.175)
+        );
+
+        const dimensionLabelsData = [
+            { text: 'Panjang: 85.0 cm', pos: new THREE.Vector3(0, 0.025, 0.34) },
+            { text: 'Lebar: 35.0 cm', pos: new THREE.Vector3(0.62, 0.025, 0) },
+            { text: 'Tinggi Total: 70.0 cm', pos: new THREE.Vector3(-0.62, 0.36, 0.175) },
+            { text: 'Ruang Kaki: 8.0 cm', pos: new THREE.Vector3(0.62, 0.055, 0.175) }
+        ];
+
+        const hotspotsData = [
+            {
+                id: 1,
+                title: 'Sudut Bullnose R18mm & Rail Atas',
+                desc: 'Seluruh tepi depan panel kayu Solid Birch 20mm dibulatkan dengan profil R18mm bullnose tumpul dan dilengkapi bibir pengaman rak atas agar mainan pajangan tidak mudah jatuh.',
+                tag: 'Solid Birch 20mm • R18mm Safety Edge',
+                worldPos: new THREE.Vector3(-0.415, 0.68, 0.15),
+                camPos: new THREE.Vector3(-0.98, 0.94, 0.85),
+                camTarget: new THREE.Vector3(-0.28, 0.62, 0.02)
+            },
+            {
+                id: 2,
+                title: '6 Kotak Linen Kanvas & Handle Kayu',
+                desc: 'Enam kotak linen organik dengan pegangan batang kayu Birch halus, tab tarik paku keling kuningan, dan label kayu. Mudah ditarik anak dan dapat dilepas untuk mode Hybrid atau Rak Terbuka.',
+                tag: '6 Organic Linen Bins • Removable',
+                worldPos: new THREE.Vector3(0.0, 0.52, 0.17),
+                camPos: new THREE.Vector3(0.45, 0.78, 1.05),
+                camTarget: new THREE.Vector3(0.0, 0.48, 0.12)
+            },
+            {
+                id: 3,
+                title: 'Ketinggian Montessori Ramah Anak 70 cm',
+                desc: 'Tinggi ideal 70 cm sejajar jangkauan mata dan tangan balita (usia 1–7 tahun), mendorong kebiasaan mengambil serta merapikan mainan dan buku secara mandiri setiap hari.',
+                tag: 'Child-Height 70 cm • Montessori Ready',
+                worldPos: new THREE.Vector3(0.425, 0.38, 0.04),
+                camPos: new THREE.Vector3(1.18, 0.54, 0.92),
+                camTarget: new THREE.Vector3(0.05, 0.36, 0.02)
+            },
+            {
+                id: 4,
+                title: 'Kaki Splayed Solid Birch & Ruang Sapu 8 cm',
+                desc: 'Empat kaki kayu Birch meruncing dengan sudut miring stabil, rangka apron keliling, bantalan felt pelindung lantai, serta celah kolong 8 cm yang memudahkan pembersihan debu.',
+                tag: 'Splayed Birch Legs • 8 cm Floor Clearance',
+                worldPos: new THREE.Vector3(0.36, 0.06, 0.13),
+                camPos: new THREE.Vector3(0.92, 0.24, 0.84),
+                camTarget: new THREE.Vector3(0.26, 0.08, 0.05)
+            },
+            {
+                id: 5,
+                title: 'Sabuk Pengaman Anti-Tip Belakang',
+                desc: 'Dilengkapi kit jangkar dinding Anti-Tip dengan braket L-metal brushed dan sabuk nilon kuat di belakang rak agar furnitur tetap kokoh dan tidak terguling saat anak bersandar.',
+                tag: 'Wall Anchor Kit • Brushed Metal L-Bracket',
+                worldPos: new THREE.Vector3(0.0, 0.62, -0.18),
+                camPos: new THREE.Vector3(0.42, 0.78, -0.96),
+                camTarget: new THREE.Vector3(0.0, 0.54, -0.14)
+            }
+        ];
+
+        const overlayLayer = document.getElementById('overlay-layer');
+        const domHotspots = [];
+        const domDimLabels = [];
+        let hotspotsVisible = true;
+        let dimensionsVisible = false;
+
+        hotspotsData.forEach(hs => {
+            const el = document.createElement('div');
+            el.className = 'hotspot-pin flex items-center justify-center w-7 h-7 rounded-full font-mono text-xs font-bold shadow-lg';
+            el.innerHTML = `<span class="hotspot-pulse"></span><span>${hs.id}</span>`;
+            el.title = hs.title;
+            el.onclick = (e) => {
+                e.stopPropagation();
+                selectHotspot(hs);
+            };
+            overlayLayer.appendChild(el);
+            domHotspots.push({ el, data: hs });
+        });
+
+        dimensionLabelsData.forEach(dl => {
+            const el = document.createElement('div');
+            el.className = 'dim-label opacity-0';
+            el.textContent = dl.text;
+            overlayLayer.appendChild(el);
+            domDimLabels.push({ el, pos: dl.pos });
+        });
+
+        function selectHotspot(hs) {
+            playTactileSound('tap');
+            const card = document.getElementById('hotspot-card');
+            card.classList.remove('hidden');
+            document.getElementById('hs-number').textContent = hs.id;
+            document.getElementById('hs-title').textContent = hs.title;
+            document.getElementById('hs-desc').textContent = hs.desc;
+            document.getElementById('hs-tag').textContent = hs.tag;
+
+            if (window.innerWidth < 768) {
+                toggleMobileDrawer('left', true);
+            }
+
+            const leftHud = document.getElementById('left-hud');
+            setTimeout(() => {
+                leftHud.scrollTo({ top: leftHud.scrollHeight, behavior: 'smooth' });
+            }, 60);
+
+            // Hotspot 2: Automatically slide out top-center linen bin!
+            if (hs.id === 2) {
+                if (currentShelfMode !== 'full') setShelfMode('full');
+                if (binState.binTM.target < 0.5) toggleBin('binTM');
+            }
+            // Hotspot 5: Hide nursery wall so Anti-Tip strap is completely visible!
+            if (hs.id === 5 && roomWallGroup.visible) {
+                roomWallGroup.visible = false;
+                document.getElementById('btn-roomwall').classList.remove('active');
+                showToast('Dinding disembunyikan agar sabuk Anti-Tip terlihat');
+            }
+
+            animateCameraTo(hs.camPos, hs.camTarget);
+        }
+
+        function closeHotspotCard() {
+            document.getElementById('hotspot-card').classList.add('hidden');
+        }
+
+        // ============================================================================
+        // 7. ANIMATION STATE: 6 BINS, EXPLODED VIEW & 7 CAMERA PRESETS
+        // ============================================================================
+        const binState = {
+            binTL: { current: 0, target: 0 },
+            binTM: { current: 0, target: 0 },
+            binTR: { current: 0, target: 0 },
+            binBL: { current: 0, target: 0 },
+            binBM: { current: 0, target: 0 },
+            binBR: { current: 0, target: 0 }
+        };
+
+        let explodeState = { current: 0, target: 0 };
+        let currentShelfMode = 'full'; // 'full' | 'hybrid' | 'open'
+
+        function isBinShellVisible(binId) {
+            if (currentShelfMode === 'full') return true;
+            if (currentShelfMode === 'hybrid') return binId.startsWith('binB');
+            return false;
+        }
+
+        function toggleBin(binId) {
+            if (!binState[binId]) return;
+
+            // If user clicks a top bin button while in Hybrid/Open mode, switch to 'full' smoothly
+            if (!isBinShellVisible(binId)) {
+                setShelfMode('full');
+            }
+
+            const willPull = binState[binId].target < 0.5;
+            binState[binId].target = willPull ? 1 : 0;
+            playTactileSound('bin');
+
+            const btn = document.getElementById('part-' + binId);
+            if (btn) btn.classList.toggle('active', willPull);
+            updateToggleAllLabel();
+        }
+
+        function toggleAllBins() {
+            // Only affect visible bins; if in 'open' mode, switch to 'full' first
+            if (currentShelfMode === 'open') {
+                setShelfMode('full');
+            }
+
+            const activeIds = Object.keys(binState).filter(id => isBinShellVisible(id));
+            const anyClosed = activeIds.some(id => binState[id].target < 0.5);
+            const nextVal = anyClosed ? 1 : 0;
+            playTactileSound('bin');
+
+            activeIds.forEach(id => {
+                binState[id].target = nextVal;
+                const btn = document.getElementById('part-' + id);
+                if (btn) btn.classList.toggle('active', nextVal === 1);
+            });
+            updateToggleAllLabel();
+        }
+
+        function updateToggleAllLabel() {
+            const activeIds = Object.keys(binState).filter(id => isBinShellVisible(id));
+            const allOpen = activeIds.length > 0 && activeIds.every(id => binState[id].target > 0.5);
+            document.getElementById('btn-toggle-all').textContent = allOpen ? 'Masukkan Semua' : 'Tarik Semua';
+        }
+
+        function setExplodeFactor(val) {
+            explodeState.target = parseFloat(val) / 100;
+            document.getElementById('explode-val').textContent = Math.round(val) + '%';
+        }
+
+        const CAMERA_PRESETS = {
+            hero: { pos: new THREE.Vector3(1.26, 0.94, 1.54), target: new THREE.Vector3(0, 0.40, 0.02) },
+            front: { pos: new THREE.Vector3(0.0, 0.44, 1.85), target: new THREE.Vector3(0, 0.40, 0) },
+            side: { pos: new THREE.Vector3(1.75, 0.46, 0.02), target: new THREE.Vector3(0, 0.40, 0) },
+            top: { pos: new THREE.Vector3(0.0, 2.08, 0.36), target: new THREE.Vector3(0, 0.42, 0) },
+            back: { pos: new THREE.Vector3(0.68, 0.78, -1.42), target: new THREE.Vector3(0, 0.46, -0.08) },
+            binDetail: { pos: new THREE.Vector3(0.52, 0.72, 1.04), target: new THREE.Vector3(0.0, 0.48, 0.14) },
+            kidEye: { pos: new THREE.Vector3(0.68, 0.48, 1.18), target: new THREE.Vector3(0, 0.38, 0.04) }
+        };
+
+        let camFlight = {
+            active: false,
+            startPos: new THREE.Vector3(),
+            endPos: new THREE.Vector3(),
+            startTarget: new THREE.Vector3(),
+            endTarget: new THREE.Vector3(),
+            progress: 0
+        };
+
+        function animateCameraTo(pos, target) {
+            camFlight.active = true;
+            camFlight.progress = 0;
+            camFlight.startPos.copy(camera.position);
+            camFlight.endPos.copy(pos);
+            camFlight.startTarget.copy(controls.target);
+            camFlight.endTarget.copy(target);
+        }
+
+        function flyToCamera(presetKey) {
+            playTactileSound('tap');
+            const preset = CAMERA_PRESETS[presetKey];
+            if (!preset) return;
+
+            document.querySelectorAll('[id^="cam-"]').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('cam-' + presetKey);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (presetKey === 'back' && roomWallGroup.visible) {
+                roomWallGroup.visible = false;
+                document.getElementById('btn-roomwall').classList.remove('active');
+                showToast('Dinding disembunyikan agar sabuk Anti-Tip terlihat');
+            }
+
+            if (presetKey === 'binDetail') {
+                if (currentShelfMode !== 'full') setShelfMode('full');
+                if (binState.binTM.target < 0.5) toggleBin('binTM');
+            }
+
+            animateCameraTo(preset.pos, preset.target);
+        }
+
+        controls.addEventListener('start', () => {
+            camFlight.active = false;
+        });
+
+        // ============================================================================
+        // 8. DIRECT 3D RAYCASTING (HOVER TOOLTIP & CLICK TO SLIDE ANY LINEN BIN)
+        // ============================================================================
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const tooltipEl = document.getElementById('raycast-tooltip');
+        const tooltipTextEl = document.getElementById('raycast-tooltip-text');
+        let pointerDownPos = { x: 0, y: 0 };
+
+        function findVisibleBinHit(hits) {
+            return hits.find(h => {
+                let obj = h.object;
+                while (obj) {
+                    if (!obj.visible) return false;
+                    obj = obj.parent;
+                }
+                return Boolean(h.object.userData.binId);
+            });
+        }
+
+        renderer.domElement.addEventListener('pointermove', (e) => {
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisibleBinHit(hits);
+
+            if (validHit) {
+                const { binId, label } = validHit.object.userData;
+                renderer.domElement.style.cursor = 'pointer';
+                const isPulled = binState[binId].target > 0.5;
+                tooltipTextEl.textContent = `Klik: ${isPulled ? 'Masukkan' : 'Tarik'} ${label}`;
+                tooltipEl.style.left = `${e.clientX}px`;
+                tooltipEl.style.top = `${e.clientY}px`;
+                tooltipEl.classList.remove('opacity-0');
+                return;
+            }
+            renderer.domElement.style.cursor = 'grab';
+            tooltipEl.classList.add('opacity-0');
+        });
+
+        renderer.domElement.addEventListener('pointerdown', (e) => {
+            pointerDownPos.x = e.clientX;
+            pointerDownPos.y = e.clientY;
+        });
+
+        renderer.domElement.addEventListener('pointerup', (e) => {
+            const dist = Math.hypot(e.clientX - pointerDownPos.x, e.clientY - pointerDownPos.y);
+            if (dist > 6) return;
+
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisibleBinHit(hits);
+
+            if (validHit) {
+                const { binId, label } = validHit.object.userData;
+                toggleBin(binId);
+                const nowPulled = binState[binId].target > 0.5;
+                showToast(`${label} ${nowPulled ? 'ditarik keluar' : 'dimasukkan'}`);
+            }
+        });
+
+        // ============================================================================
+        // 9. MATERIAL, SHELF MODE, LINEN COLOR, DUAL-THEME LIGHTING & UI CONTROLS
+        // ============================================================================
+        function setWoodFinish(finishKey) {
+            playTactileSound('tap');
+            const pal = WOOD_PALETTES[finishKey];
+            if (!pal) return;
+
+            woodMatHoriz.map = getBirchWoodTexture(finishKey, false);
+            woodMatHoriz.roughness = pal.roughness;
+            woodMatHoriz.needsUpdate = true;
+
+            woodMatVert.map = getBirchWoodTexture(finishKey, true);
+            woodMatVert.roughness = pal.roughness;
+            woodMatVert.needsUpdate = true;
+
+            document.getElementById('label-wood').textContent = pal.name;
+            document.getElementById('price-display').textContent = pal.price;
+
+            ['blonde', 'honey', 'milk', 'sage'].forEach(k => {
+                document.getElementById('wood-' + k).classList.toggle('active', k === finishKey);
+            });
+
+            showToast(`Finishing kayu diubah ke ${pal.name}`);
+        }
+
+        function setShelfMode(modeKey) {
+            playTactileSound('bin');
+            currentShelfMode = modeKey;
+
+            const labels = {
+                full: '6 Kotak Linen',
+                hybrid: 'Hybrid (3+3)',
+                open: 'Rak Terbuka'
+            };
+            document.getElementById('label-shelfmode').textContent = labels[modeKey] || '';
+
+            Object.keys(binRegistry).forEach(binId => {
+                const entry = binRegistry[binId];
+                const showShell = isBinShellVisible(binId);
+                entry.shellGroup.visible = showShell;
+
+                // Lower wooden toys neatly onto solid birch shelf when bin shell is hidden!
+                entry.toysGroup.position.y = showShell ? 0.009 : 0.0;
+
+                if (!showShell) {
+                    binState[binId].target = 0;
+                    const btn = document.getElementById('part-' + binId);
+                    if (btn) btn.classList.remove('active');
+                }
+            });
+
+            ['full', 'hybrid', 'open'].forEach(k => {
+                document.getElementById('mode-' + k).classList.toggle('active', k === modeKey);
+            });
+
+            updateToggleAllLabel();
+            showToast(`Konfigurasi rak: ${labels[modeKey]}`);
+        }
+
+        function setLinenColor(colorKey) {
+            playTactileSound('tap');
+            const pal = LINEN_PALETTES[colorKey];
+            if (!pal) return;
+
+            linenMat.color.setHex(pal.hex);
+            linenTrimMat.color.setHex(pal.trimHex);
+            document.getElementById('label-linen').textContent = pal.name;
+
+            ['oat', 'sage', 'terracotta', 'sky'].forEach(k => {
+                document.getElementById('linen-' + k).classList.toggle('active', k === colorKey);
+            });
+
+            showToast(`Warna kotak linen diubah ke ${pal.name}`);
+        }
+
+        let currentStudioEnv = 'gallery';
+        function setStudioEnv(envKey) {
+            playTactileSound('tap');
+            currentStudioEnv = envKey;
+
+            ['gallery', 'studio', 'sunset', 'night'].forEach(k => {
+                document.getElementById('env-' + k).classList.toggle('active', k === envKey);
+            });
+
+            // Smooth Dual-Theme Glassmorphism Switch
+            const isLight = (envKey === 'gallery');
+            document.body.classList.toggle('theme-light', isLight);
+            document.body.classList.toggle('theme-dark', !isLight);
+
+            if (envKey === 'gallery') {
+                scene.background.setHex(0xF4EFE6);
+                scene.fog.color.setHex(0xF4EFE6);
+                floorMat.color.setHex(0xECE5D8);
+                wallMat.color.setHex(0xF7F2E8);
+                dimLineMat.color.setHex(0x8C6239);
+                polarGrid.material.opacity = 0.40;
+                ambientLight.intensity = 0.92;
+                keyLight.color.setHex(0xFFF7EA);
+                keyLight.intensity = 1.32;
+                fillLight.intensity = 0.56;
+                nightLampLight.intensity = 0.45;
+                nightLampMat.emissiveIntensity = 0.42;
+                shelfMicroLightTop.intensity = 0.08;
+                shelfMicroLightMid.intensity = 0.08;
+            } else if (envKey === 'studio') {
+                scene.background.setHex(0x181715);
+                scene.fog.color.setHex(0x181715);
+                floorMat.color.setHex(0x1E1C1A);
+                wallMat.color.setHex(0x282522);
+                dimLineMat.color.setHex(0xD5BA94);
+                polarGrid.material.opacity = 0.24;
+                ambientLight.intensity = 0.68;
+                keyLight.color.setHex(0xFFF6E8);
+                keyLight.intensity = 1.36;
+                fillLight.intensity = 0.46;
+                nightLampLight.intensity = 0.72;
+                nightLampMat.emissiveIntensity = 0.65;
+                shelfMicroLightTop.intensity = 0.22;
+                shelfMicroLightMid.intensity = 0.22;
+            } else if (envKey === 'sunset') {
+                scene.background.setHex(0x221712);
+                scene.fog.color.setHex(0x221712);
+                floorMat.color.setHex(0x2A1D16);
+                wallMat.color.setHex(0x38271E);
+                dimLineMat.color.setHex(0xE6C391);
+                polarGrid.material.opacity = 0.20;
+                ambientLight.intensity = 0.48;
+                keyLight.color.setHex(0xFFA963);
+                keyLight.intensity = 1.52;
+                fillLight.intensity = 0.30;
+                nightLampLight.intensity = 1.20;
+                nightLampMat.emissiveIntensity = 0.95;
+                shelfMicroLightTop.intensity = 0.42;
+                shelfMicroLightMid.intensity = 0.42;
+            } else if (envKey === 'night') {
+                scene.background.setHex(0x0C0E13);
+                scene.fog.color.setHex(0x0C0E13);
+                floorMat.color.setHex(0x11141B);
+                wallMat.color.setHex(0x181C26);
+                dimLineMat.color.setHex(0xD5BA94);
+                polarGrid.material.opacity = 0.16;
+                ambientLight.intensity = 0.22;
+                keyLight.color.setHex(0x9BB5FF);
+                keyLight.intensity = 0.34;
+                fillLight.intensity = 0.16;
+                nightLampLight.intensity = 1.95;
+                nightLampMat.emissiveIntensity = 1.50;
+                shelfMicroLightTop.intensity = 0.95;
+                shelfMicroLightMid.intensity = 0.95;
+            }
+        }
+
+        let wireframeActive = false;
+        function toggleWireframeMode() {
+            playTactileSound('tap');
+            wireframeActive = !wireframeActive;
+            document.getElementById('btn-wireframe').classList.toggle('active', wireframeActive);
+            allShelfMeshes.forEach(m => {
+                if (m.material) m.material.wireframe = wireframeActive;
+            });
+            showToast(wireframeActive ? 'Mode Teknis Wireframe aktif' : 'Mode Render PBR aktif');
+        }
+
+        function toggleDimensions() {
+            playTactileSound('tap');
+            dimensionsVisible = !dimensionsVisible;
+            dimensionGroup.visible = dimensionsVisible;
+            document.getElementById('btn-dimensions').classList.toggle('active', dimensionsVisible);
+            domDimLabels.forEach(d => {
+                d.el.style.opacity = dimensionsVisible ? '1' : '0';
+            });
+        }
+
+        function toggleHotspots() {
+            playTactileSound('tap');
+            hotspotsVisible = !hotspotsVisible;
+            document.getElementById('btn-hotspots').classList.toggle('active', hotspotsVisible);
+            if (!hotspotsVisible) closeHotspotCard();
+            domHotspots.forEach(h => {
+                h.el.style.opacity = hotspotsVisible ? '1' : '0';
+                h.el.style.pointerEvents = hotspotsVisible ? 'auto' : 'none';
+            });
+        }
+
+        function toggleDecor() {
+            playTactileSound('tap');
+            const nextVis = !explodedGroups.topDecor.visible;
+            explodedGroups.topDecor.visible = nextVis;
+            explodedGroups.nurseryRug.visible = nextVis;
+            document.getElementById('btn-decor').classList.toggle('active', nextVis);
+            showToast(nextVis ? 'Mainan atas & karpet ditampilkan' : 'Mainan atas & karpet disembunyikan');
+        }
+
+        function toggleRoomWall() {
+            playTactileSound('tap');
+            const nextVis = !roomWallGroup.visible;
+            roomWallGroup.visible = nextVis;
+            document.getElementById('btn-roomwall').classList.toggle('active', nextVis);
+            showToast(nextVis ? 'Dinding kamar anak ditampilkan' : 'Dinding kamar disembunyikan');
+        }
+
+        function toggleAutoRotate() {
+            playTactileSound('tap');
+            controls.autoRotate = !controls.autoRotate;
+            controls.autoRotateSpeed = 1.5;
+            document.getElementById('btn-autorotate').classList.toggle('active', controls.autoRotate);
+        }
+
+        // Responsive Mobile Drawer Controller
+        let activeMobileDrawer = null;
+        function toggleMobileDrawer(side, forceOpen = false) {
+            const leftEl = document.getElementById('left-hud');
+            const rightEl = document.getElementById('right-hud');
+            const mobLeftBtn = document.getElementById('mob-toggle-left');
+            const mobRightBtn = document.getElementById('mob-toggle-right');
+            const mobileClasses = ['!flex', 'absolute', 'top-0', 'bottom-0', 'z-30'];
+
+            leftEl.classList.remove(...mobileClasses, 'left-0');
+            rightEl.classList.remove(...mobileClasses, 'right-0');
+
+            if (side === 'close' || (activeMobileDrawer === side && !forceOpen)) {
+                activeMobileDrawer = null;
+                mobLeftBtn.classList.remove('hidden');
+                mobRightBtn.classList.remove('hidden');
+                return;
+            }
+
+            activeMobileDrawer = side;
+            if (side === 'left') {
+                leftEl.classList.add(...mobileClasses, 'left-0');
+                mobLeftBtn.classList.add('hidden');
+                mobRightBtn.classList.remove('hidden');
+            } else if (side === 'right') {
+                rightEl.classList.add(...mobileClasses, 'right-0');
+                mobRightBtn.classList.add('hidden');
+                mobLeftBtn.classList.remove('hidden');
+            }
+        }
+
+        let uiHidden = false;
+        function toggleCleanViewport() {
+            playTactileSound('tap');
+            uiHidden = !uiHidden;
+            ['left-hud', 'right-hud', 'bottom-hud', 'mob-toggle-left', 'mob-toggle-right'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.toggle('hud-hidden-panel', uiHidden);
+            });
+            document.getElementById('clean-ui-icon').className = uiHidden
+                ? 'fa-solid fa-compress accent-icon'
+                : 'fa-solid fa-expand';
+            showToast(uiHidden ? 'Mode layar bersih aktif' : 'Panel kontrol ditampilkan');
+        }
+
+        function toggleSpecsModal(show) {
+            playTactileSound('tap');
+            const modal = document.getElementById('specs-modal');
+            modal.classList.toggle('hidden', !show);
+            modal.classList.toggle('flex', show);
+        }
+
+        function downloadSnapshot() {
+            playTactileSound('tap');
+            try {
+                renderer.render(scene, camera);
+                const dataURL = renderer.domElement.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'pino-montessori-toy-shelf-livora.png';
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Foto 3D disimpan: pino-montessori-toy-shelf-livora.png');
+            } catch (err) {
+                showToast('Gagal mengunduh tangkapan layar');
+            }
+        }
+
+        // ============================================================================
+        // 10. MAIN RENDER LOOP, DAMPED INTERPOLATION & 2D OVERLAY PROJECTIONS
+        // ============================================================================
+        const tempProjVec = new THREE.Vector3();
+        let frameCount = 0;
+        let lastFpsTime = performance.now();
+
+        function updateAnimations() {
+            const lerp = 0.095;
+            Object.keys(binState).forEach(k => {
+                binState[k].current += (binState[k].target - binState[k].current) * lerp;
+            });
+
+            explodeState.current += (explodeState.target - explodeState.current) * 0.085;
+            const ex = explodeState.current;
+
+            // 1. Structural Exploded Anatomy Offsets
+            explodedGroups.baseLegs.position.y = -ex * 0.16;
+            explodedGroups.bottomShelf.position.y = -ex * 0.06;
+            explodedGroups.middleShelf.position.y = ex * 0.02;
+            explodedGroups.topShelf.position.y = ex * 0.18;
+            explodedGroups.topDecor.position.y = 0.665 + ex * 0.34;
+            explodedGroups.leftSide.position.x = -ex * 0.24;
+            explodedGroups.rightSide.position.x = ex * 0.24;
+            explodedGroups.dividers.position.z = ex * 0.06;
+            explodedGroups.backPanel.position.z = -ex * 0.26;
+
+            // 2. Staggered 6 Linen Bins Slide (+0.23m along Z) + Exploded Offset
+            cubbyDefs.forEach(def => {
+                const st = binState[def.id].current;
+                const grp = explodedGroups[def.id];
+                grp.position.set(
+                    def.x + ex * def.exX,
+                    def.y + ex * def.exY,
+                    0.002 + st * 0.23 + ex * def.exZ
+                );
+            });
+
+            // 3. Smooth Ease-Out-Cubic Camera Flight
+            if (camFlight.active) {
+                camFlight.progress += 0.032;
+                if (camFlight.progress >= 1) {
+                    camFlight.progress = 1;
+                    camFlight.active = false;
+                }
+                const t = 1 - Math.pow(1 - camFlight.progress, 3);
+                camera.position.lerpVectors(camFlight.startPos, camFlight.endPos, t);
+                controls.target.lerpVectors(camFlight.startTarget, camFlight.endTarget, t);
+            }
+        }
+
+        function updateOverlayProjections() {
+            const halfW = window.innerWidth / 2;
+            const halfH = window.innerHeight / 2;
+
+            if (hotspotsVisible) {
+                domHotspots.forEach(item => {
+                    tempProjVec.copy(item.data.worldPos);
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'flex';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+
+            if (dimensionsVisible) {
+                domDimLabels.forEach(item => {
+                    tempProjVec.copy(item.pos);
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'block';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+        }
+
+        function animateLoop() {
+            requestAnimationFrame(animateLoop);
+            updateAnimations();
+            controls.update();
+            renderer.render(scene, camera);
+            updateOverlayProjections();
+
+            frameCount++;
+            const now = performance.now();
+            if (now - lastFpsTime >= 1000) {
+                const fps = Math.min(60, Math.round((frameCount * 1000) / (now - lastFpsTime)));
+                document.getElementById('fps-badge').textContent = `${fps} FPS`;
+                frameCount = 0;
+                lastFpsTime = now;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            if (window.innerWidth >= 768 && activeMobileDrawer) {
+                toggleMobileDrawer('close');
+            }
+        });
+
+        window.onload = function () {
+            animateLoop();
+        };
+    </script>
+</body>
+</html>

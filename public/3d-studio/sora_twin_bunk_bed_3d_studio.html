@@ -1,0 +1,3004 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Livora 3D Studio — Sora Twin Bunk Bed (100 × 208 × 165 cm)</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6.5.1 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Three.js r128 & OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        oak: {
+                            50: '#FAF7F2',
+                            100: '#F4E8D6',
+                            200: '#E6CFAF',
+                            300: '#D8B892',
+                            400: '#C49A6C',
+                            500: '#A97B4B',
+                            600: '#8C6239',
+                            700: '#6E4B2A',
+                            800: '#52371F',
+                        },
+                        charcoal: {
+                            800: '#26211D',
+                            900: '#171412',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* =====================================================================
+           DUAL-THEME FROSTED GLASSMORPHISM TOKENS
+           Default Dark Base + body.light-studio Active by Default (Gallery Terang)
+           ===================================================================== */
+        :root {
+            --fluid-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --water-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+            /* Warm Dark Frosted Glass (Studio Hangat, Senja, Malam LED) */
+            --bg-body: #171615;
+            --panel-bg: rgba(20, 20, 19, 0.78);
+            --panel-border: rgba(213, 186, 148, 0.22);
+            --panel-shadow: 0 22px 50px -12px rgba(0, 0, 0, 0.48), inset 0 1px 0 0 rgba(255, 248, 235, 0.10);
+            --pill-bg: rgba(34, 31, 28, 0.78);
+            --pill-hover-bg: rgba(54, 48, 42, 0.94);
+            --pill-border: rgba(255, 248, 235, 0.14);
+            --pill-active-bg: linear-gradient(135deg, rgba(213, 186, 148, 0.34), rgba(180, 131, 78, 0.24));
+            --pill-active-border: #D5BA94;
+            --pill-active-text: #FAF7F2;
+            --text-primary: #F8F4EC;
+            --text-secondary: #D4C5B2;
+            --text-muted: #A29484;
+            --accent-text: #D5BA94;
+            --accent-icon: #D5BA94;
+            --divider: rgba(255, 248, 235, 0.12);
+            --badge-bg: rgba(213, 186, 148, 0.16);
+            --badge-border: rgba(213, 186, 148, 0.32);
+            --badge-text: #E6CFAF;
+            --fps-bg: rgba(16, 185, 129, 0.15);
+            --fps-border: rgba(52, 211, 153, 0.35);
+            --fps-text: #6EE7B7;
+            --slider-track: rgba(255, 255, 255, 0.16);
+            --slider-thumb: #D5BA94;
+            --slider-thumb-ring: #171615;
+            --swatch-idle-border: rgba(255, 255, 255, 0.14);
+            --swatch-active-bg: rgba(213, 186, 148, 0.18);
+            --swatch-active-border: #D5BA94;
+            --cta-bg: linear-gradient(135deg, #E6CFAF, #C49A6C);
+            --cta-text: #171412;
+            --scroll-thumb: rgba(213, 186, 148, 0.38);
+            --pin-bg: rgba(20, 18, 16, 0.92);
+            --pin-text: #E6CFAF;
+            --pin-border: #D5BA94;
+            --dim-bg: rgba(16, 15, 14, 0.92);
+            --dim-text: #F4E8D6;
+            --dim-border: rgba(213, 186, 148, 0.58);
+        }
+
+        /* Light Studio Frosted Glass (DEFAULT: Gallery Terang matching Livora #F9F5EC) */
+        body.light-studio {
+            --bg-body: #F9F5EC;
+            --panel-bg: rgba(255, 252, 247, 0.78);
+            --panel-border: rgba(140, 98, 57, 0.22);
+            --panel-shadow: 0 18px 42px -12px rgba(72, 50, 28, 0.14), inset 0 1px 0 0 rgba(255, 255, 255, 0.94);
+            --pill-bg: rgba(246, 239, 228, 0.84);
+            --pill-hover-bg: rgba(255, 253, 250, 0.98);
+            --pill-border: rgba(140, 98, 57, 0.22);
+            --pill-active-bg: linear-gradient(135deg, #171412, #382B20);
+            --pill-active-border: #171412;
+            --pill-active-text: #FDFBF7;
+            --text-primary: #171412;
+            --text-secondary: #4D3D2F;
+            --text-muted: #7B6957;
+            --accent-text: #8C6239;
+            --accent-icon: #8C6239;
+            --divider: rgba(140, 98, 57, 0.18);
+            --badge-bg: rgba(140, 98, 57, 0.12);
+            --badge-border: rgba(140, 98, 57, 0.28);
+            --badge-text: #6E4B2A;
+            --fps-bg: rgba(32, 99, 63, 0.12);
+            --fps-border: rgba(32, 99, 63, 0.30);
+            --fps-text: #1E613D;
+            --slider-track: rgba(140, 98, 57, 0.22);
+            --slider-thumb: #8C6239;
+            --slider-thumb-ring: #FDFBF7;
+            --swatch-idle-border: rgba(140, 98, 57, 0.24);
+            --swatch-active-bg: rgba(196, 154, 108, 0.22);
+            --swatch-active-border: #171412;
+            --cta-bg: linear-gradient(135deg, #171412, #3C2D20);
+            --cta-text: #FDFBF7;
+            --scroll-thumb: rgba(140, 98, 57, 0.36);
+            --pin-bg: rgba(23, 20, 18, 0.92);
+            --pin-text: #FAF7F2;
+            --pin-border: #D8B892;
+            --dim-bg: rgba(23, 20, 18, 0.90);
+            --dim-text: #FAF7F2;
+            --dim-border: rgba(216, 184, 146, 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.4s var(--fluid-ease), color 0.35s var(--fluid-ease);
+        }
+
+        #canvas-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            outline: none;
+        }
+
+        #overlay-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(18px) saturate(165%);
+            -webkit-backdrop-filter: blur(18px) saturate(165%);
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--panel-shadow);
+            color: var(--text-primary);
+            transition: background 0.38s var(--fluid-ease),
+                        border-color 0.32s var(--fluid-ease),
+                        box-shadow 0.38s var(--fluid-ease),
+                        opacity 0.35s var(--fluid-ease),
+                        transform 0.4s var(--water-spring);
+        }
+
+        .glass-pill {
+            background: var(--pill-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--pill-border);
+            color: var(--text-secondary);
+            transition: all 0.25s var(--water-spring);
+        }
+        .glass-pill:hover {
+            background: var(--pill-hover-bg);
+            border-color: var(--accent-icon);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .glass-pill:active {
+            transform: translateY(0) scale(0.97);
+        }
+        .glass-pill.active {
+            background: var(--pill-active-bg);
+            border-color: var(--pill-active-border);
+            color: var(--pill-active-text);
+            box-shadow: 0 8px 20px -6px rgba(23, 20, 18, 0.26);
+        }
+        .glass-pill.active .accent-icon {
+            color: #E6CFAF !important;
+        }
+
+        .t-primary { color: var(--text-primary); }
+        .t-secondary { color: var(--text-secondary); }
+        .t-muted { color: var(--text-muted); }
+        .t-accent { color: var(--accent-text); }
+        .accent-icon { color: var(--accent-icon); }
+        .t-divider { border-color: var(--divider); }
+
+        .theme-badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+        }
+
+        .fps-pill {
+            background: var(--fps-bg);
+            border: 1px solid var(--fps-border);
+            color: var(--fps-text);
+        }
+
+        .swatch-btn {
+            border: 1.5px solid var(--swatch-idle-border);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.22s var(--water-spring);
+        }
+        .swatch-btn:hover {
+            border-color: var(--accent-icon);
+            transform: translateY(-1px);
+        }
+        .swatch-btn.active {
+            border-color: var(--swatch-active-border);
+            background: var(--swatch-active-bg);
+            color: var(--text-primary);
+        }
+
+        .cta-btn {
+            background: var(--cta-bg);
+            color: var(--cta-text);
+            transition: transform 0.25s var(--water-spring), filter 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cta-btn:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+        .cta-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Custom Thin Scrollbars for HUD Columns */
+        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: var(--scroll-thumb);
+            border-radius: 9999px;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Range Slider */
+        input[type=range].birch-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            background: var(--slider-track);
+            height: 5px;
+            border-radius: 999px;
+            outline: none;
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background: var(--slider-thumb);
+            border: 2px solid var(--slider-thumb-ring);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.18s var(--water-spring);
+        }
+        input[type=range].birch-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* 3D Projected Hotspot Pins */
+        .hotspot-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: auto;
+            cursor: pointer;
+            background: var(--pin-bg);
+            color: var(--pin-text);
+            border: 1.5px solid var(--pin-border);
+            transition: transform 0.25s var(--water-spring), opacity 0.25s ease;
+        }
+        .hotspot-pin:hover {
+            transform: translate(-50%, -50%) scale(1.22);
+            z-index: 30;
+        }
+        .hotspot-pulse {
+            position: absolute;
+            inset: -6px;
+            border-radius: 9999px;
+            border: 1.5px solid #C49A6C;
+            animation: pingSlow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes pingSlow {
+            0% { transform: scale(0.95); opacity: 0.85; }
+            75%, 100% { transform: scale(1.85); opacity: 0; }
+        }
+
+        /* 3D Projected Dimension Badges */
+        .dim-label {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            background: var(--dim-bg);
+            border: 1px solid var(--dim-border);
+            color: var(--dim-text);
+            padding: 3.5px 9px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+            transition: opacity 0.22s ease;
+        }
+
+        /* Floating Raycast Hover Tooltip */
+        #raycast-tooltip {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            transform: translate(16px, -50%);
+            transition: opacity 0.15s ease;
+        }
+
+        /* Clean Fullscreen Hide State */
+        .hud-hidden-panel {
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transform: scale(0.98);
+        }
+        .hud-hidden-panel * {
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body class="light-studio antialiased selection:bg-oak-300 selection:text-charcoal-900">
+
+    <!-- WebGL 3D Viewport -->
+    <div id="canvas-container"></div>
+
+    <!-- 2D Projected 3D Hotspots & Dimension Labels Layer -->
+    <div id="overlay-layer"></div>
+
+    <!-- Floating Raycast Hover Tooltip -->
+    <div id="raycast-tooltip" class="opacity-0 glass-panel px-3 py-1.5 rounded-xl text-xs font-semibold t-primary flex items-center gap-2 shadow-xl">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span id="raycast-tooltip-text">Klik untuk inspeksi</span>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ANTI-OVERLAP 3-ROW FULL-VIEWPORT FLEXBOX HUD SHELL                        -->
+    <!-- ========================================================================= -->
+    <div id="hud-shell" class="fixed inset-0 z-20 pointer-events-none flex flex-col justify-between p-2.5 sm:p-4 gap-2.5 overflow-hidden">
+
+        <!-- ==================== ROW 1: TOP HEADER (SHRINK-0) ==================== -->
+        <header class="shrink-0 flex flex-wrap items-center justify-between gap-2">
+
+            <!-- Left Group: Smart Back Button + Livora Emblem + Product Title -->
+            <div class="pointer-events-auto flex items-center gap-2 min-w-0">
+                <button
+                    id="btn-back-katalog"
+                    type="button"
+                    onclick="navigateBackToKatalog()"
+                    class="glass-panel rounded-2xl px-3.5 py-2.5 flex items-center gap-2 text-xs font-bold t-primary hover:scale-[1.02] active:scale-95 shrink-0 cursor-pointer group"
+                    title="Kembali ke Katalog Livora"
+                >
+                    <i class="fa-solid fa-arrow-left accent-icon group-hover:-translate-x-0.5 transition-transform"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Kembali ke Katalog</span>
+                </button>
+
+                <div class="glass-panel rounded-2xl px-3.5 py-2 flex items-center gap-3 min-w-0">
+                    <!-- Livora Bunk Bed Wood Emblem Badge -->
+                    <div class="w-9 h-9 rounded-xl bg-charcoal-900 text-oak-200 flex items-center justify-center shadow-inner shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 28 28" fill="none">
+                            <path d="M5 4V24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M23 4V24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M5 10H23" stroke="currentColor" stroke-width="2"/>
+                            <path d="M5 19H23" stroke="currentColor" stroke-width="2"/>
+                            <path d="M5 6.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                            <path d="M18.5 10V24" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M18.5 14H23" stroke="currentColor" stroke-width="1.4"/>
+                            <path d="M18.5 21.5H23" stroke="currentColor" stroke-width="1.4"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="theme-badge px-1.5 py-0.2 text-[9px] font-mono font-bold uppercase rounded">Katalog Anak-anak &bull; Space-Saving</span>
+                        </div>
+                        <h1 class="font-serif text-base sm:text-xl font-bold tracking-wide t-primary leading-tight truncate">
+                            Sora Twin Bunk Bed
+                        </h1>
+                        <p class="text-[10px] font-mono t-muted hidden sm:block leading-tight">
+                            Solid Pine &amp; Oak Anti-Slip &bull; 100 × 208 × 165 cm
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Group: 4 Studio Lighting Presets + Utility Toolbar -->
+            <div class="pointer-events-auto flex items-center gap-1.5 flex-wrap">
+                <div class="glass-panel rounded-2xl p-1 flex items-center gap-1 overflow-x-auto max-w-full no-scrollbar">
+                    <button type="button" onclick="setStudioEnv('gallery')" id="env-gallery" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Gallery Terang Minimalis Livora">
+                        <i class="fa-solid fa-sun text-amber-400"></i>
+                        <span class="hidden lg:inline">Gallery Terang</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('studio')" id="env-studio" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Studio Hangat Kontras">
+                        <i class="fa-solid fa-circle-half-stroke accent-icon"></i>
+                        <span class="hidden lg:inline">Studio Hangat</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('sunset')" id="env-sunset" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Nuansa Senja Hangat">
+                        <i class="fa-solid fa-cloud-sun text-orange-400"></i>
+                        <span class="hidden lg:inline">Senja</span>
+                    </button>
+                    <button type="button" onclick="setStudioEnv('night')" id="env-night" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Malam & Lampu Baca LED">
+                        <i class="fa-solid fa-moon text-indigo-400"></i>
+                        <span class="hidden lg:inline">Malam LED</span>
+                    </button>
+                    <button type="button" onclick="toggleWireframeMode()" id="btn-wireframe" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer" title="Mode Rangka Teknis Wireframe">
+                        <i class="fa-solid fa-cube text-emerald-500"></i>
+                        <span class="hidden xl:inline">Wireframe</span>
+                    </button>
+                </div>
+
+                <!-- Sound Toggle -->
+                <button type="button" onclick="toggleSound()" id="btn-sound" class="glass-panel w-9 h-9 rounded-xl text-xs flex items-center justify-center shrink-0 cursor-pointer" title="Efek Suara Kayu Interaktif">
+                    <i id="sound-icon" class="fa-solid fa-volume-high accent-icon"></i>
+                </button>
+
+                <!-- Spesifikasi Modal Button -->
+                <button type="button" onclick="toggleSpecsModal(true)" class="glass-panel px-3 h-9 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5 shrink-0 cursor-pointer" title="Spesifikasi Teknis Sora Twin Bunk Bed">
+                    <i class="fa-solid fa-compass-drafting accent-icon"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">Spesifikasi</span>
+                </button>
+
+                <!-- Layar Penuh / Clean Viewport Toggle -->
+                <button type="button" onclick="toggleCleanViewport()" id="btn-clean-ui" class="glass-panel px-2.5 h-9 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5 shrink-0 cursor-pointer" title="Layar Penuh (Sembunyikan/Tampilkan UI)">
+                    <i id="clean-ui-icon" class="fa-solid fa-expand accent-icon"></i>
+                    <span class="hidden xl:inline whitespace-nowrap">Layar Penuh</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ==================== ROW 2: MIDDLE WORKSPACE (ANTI-OVERLAP) ==================== -->
+        <div class="flex-1 min-h-0 flex items-start justify-between gap-3 overflow-hidden relative">
+
+            <!-- Mobile Drawer Buttons (Visible Below md) -->
+            <button
+                id="mob-toggle-left"
+                type="button"
+                onclick="toggleMobileDrawer('left')"
+                class="md:hidden pointer-events-auto absolute top-0 left-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-sliders accent-icon"></i>
+                <span>Inspeksi</span>
+            </button>
+
+            <button
+                id="mob-toggle-right"
+                type="button"
+                onclick="toggleMobileDrawer('right')"
+                class="md:hidden pointer-events-auto absolute top-0 right-0 z-30 glass-panel px-3 py-2 rounded-xl text-xs font-bold t-primary flex items-center gap-1.5"
+            >
+                <i class="fa-solid fa-palette accent-icon"></i>
+                <span>Material</span>
+            </button>
+
+            <!-- LEFT HUD COLUMN (Scrolls independently inside row 2, includes #hotspot-card) -->
+            <aside id="left-hud" class="w-[265px] sm:w-[285px] max-h-full overflow-y-auto pointer-events-none flex-col gap-2.5 pr-1 shrink-0 hidden md:flex custom-scroll">
+
+                <!-- Inspeksi Interaktif Glass Card -->
+                <div class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 space-y-3">
+                    <div class="flex items-center justify-between border-b t-divider pb-2">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider t-accent flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders accent-icon"></i> Inspeksi Interaktif
+                        </span>
+                        <div class="flex items-center gap-1.5">
+                            <span id="fps-badge" class="fps-pill text-[10px] font-mono font-bold px-1.5 py-0.5 rounded">
+                                60 FPS
+                            </span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 5 Interactive Part Buttons + Master Toggle -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">Bagian Interaktif</span>
+                            <button type="button" onclick="toggleAllParts()" id="btn-toggle-all" class="text-[11px] font-bold t-accent hover:underline underline-offset-4 cursor-pointer">
+                                Buka Semua
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button type="button" onclick="togglePart('leftOrTrundle')" id="part-leftOrTrundle" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Tarik Laci Kiri atau Kasur Sorong Trundle">
+                                <span id="label-btn-leftOrTrundle" class="truncate">Laci Kiri / Trundle</span>
+                                <span id="dot-leftOrTrundle" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0 ml-1"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('rightDrawer')" id="part-rightDrawer" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Tarik Laci Roda Kanan">
+                                <span class="truncate">Laci Kanan</span>
+                                <span id="dot-rightDrawer" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0 ml-1"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('upperMattress')" id="part-upperMattress" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Angkat Kasur Atas (+24 cm) untuk melihat 14 Slat">
+                                <span class="truncate">Kasur Atas</span>
+                                <span id="dot-upperMattress" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0 ml-1"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('lowerMattress')" id="part-lowerMattress" class="glass-pill px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Angkat Kasur Bawah (+24 cm) untuk melihat 14 Slat">
+                                <span class="truncate">Kasur Bawah</span>
+                                <span id="dot-lowerMattress" class="w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0 ml-1"></span>
+                            </button>
+                            <button type="button" onclick="togglePart('readingLamps')" id="part-readingLamps" class="glass-pill active col-span-2 px-2.5 py-1.5 rounded-xl text-[10px] font-semibold flex items-center justify-between cursor-pointer" title="Nyalakan / Matikan Dual Lampu Baca LED 2700K">
+                                <span class="flex items-center gap-1.5"><i class="fa-regular fa-lightbulb accent-icon"></i>Lampu Baca LED (Atas &amp; Bawah)</span>
+                                <span id="dot-readingLamps" class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#fbbf24] shrink-0"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exploded View Anatomy Slider (0 - 100%) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-layer-group accent-icon text-[10px]"></i>
+                                Anatomi Konstruksi
+                            </span>
+                            <span id="explode-val" class="font-mono text-[11px] font-bold t-accent">0%</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="0" id="explode-slider" oninput="setExplodeFactor(this.value)" class="birch-slider">
+                    </div>
+
+                    <!-- 4 Toggle Pills -->
+                    <div class="grid grid-cols-2 gap-1.5 pt-1">
+                        <button type="button" onclick="toggleDimensions()" id="btn-dimensions" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-ruler-combined accent-icon text-[10px]"></i>
+                            <span>Garis Ukuran</span>
+                        </button>
+                        <button type="button" onclick="toggleHotspots()" id="btn-hotspots" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-location-dot accent-icon text-[10px]"></i>
+                            <span>Titik Info (5)</span>
+                        </button>
+                        <button type="button" onclick="toggleBedroomDecor()" id="btn-decor" class="glass-pill active px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-house-chimney accent-icon text-[10px]"></i>
+                            <span>Kamar &amp; Dekor</span>
+                        </button>
+                        <button type="button" onclick="toggleAutoRotate()" id="btn-autorotate" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-rotate accent-icon text-[10px]"></i>
+                            <span>Putar 360&deg;</span>
+                        </button>
+                    </div>
+
+                    <!-- Mouse & Click Hint -->
+                    <div class="pt-1.5 border-t t-divider flex items-center justify-between text-[10px] t-muted">
+                        <span><i class="fa-solid fa-computer-mouse mr-1 accent-icon"></i>Drag: Putar &bull; Scroll: Zoom</span>
+                        <span>Klik 3D: Uji</span>
+                    </div>
+                </div>
+
+                <!-- Hotspot Detail Card (INSIDE #left-hud so it NEVER overlaps #bottom-hud!) -->
+                <div id="hotspot-card" class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 border-l-4 border-l-oak-500 hidden">
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <span id="hs-number" class="w-5 h-5 rounded-full bg-oak-600 text-white font-mono text-[11px] font-bold flex items-center justify-center shrink-0">1</span>
+                            <h3 id="hs-title" class="text-xs font-extrabold t-primary leading-snug">Pagar Pengaman 34 cm</h3>
+                        </div>
+                        <button type="button" onclick="closeHotspotCard()" class="t-muted hover:t-primary text-xs p-0.5 shrink-0 cursor-pointer" aria-label="Tutup Info">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <p id="hs-desc" class="text-[11px] t-secondary mt-2 leading-relaxed"></p>
+                    <div id="hs-tag" class="theme-badge mt-2 inline-block px-2 py-0.5 rounded font-mono text-[10px] font-semibold"></div>
+                </div>
+            </aside>
+
+            <!-- RIGHT HUD COLUMN: Kustomisasi Material (Scrolls cleanly inside row 2) -->
+            <aside id="right-hud" class="w-[270px] sm:w-[300px] max-h-full overflow-y-auto pointer-events-none pl-1 shrink-0 hidden md:flex flex-col gap-2.5 custom-scroll">
+
+                <div class="pointer-events-auto shrink-0 glass-panel rounded-2xl p-3.5 sm:p-4 space-y-3.5">
+                    <div class="flex items-center justify-between border-b t-divider pb-2.5">
+                        <div>
+                            <h2 class="text-[11px] font-extrabold uppercase tracking-wider t-accent">Kustomisasi Material</h2>
+                            <p class="text-[10px] t-muted">Solid Pine &amp; Oak &bull; 58 kg</p>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="theme-badge font-mono text-[10px] font-bold px-2 py-0.5 rounded">EN-71 PBR</span>
+                            <button type="button" onclick="toggleMobileDrawer('close')" class="md:hidden t-muted hover:t-primary text-xs px-1" aria-label="Tutup Panel">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 1. Finishing Kayu Zero-VOC (4 Swatches) -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">1. Finishing Kayu Zero-VOC</span>
+                            <span id="label-wood" class="t-accent font-bold truncate ml-2">Nordic Pine</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setWoodFinish('pine')" id="wood-pine" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #f5e5cb, #cfa97c);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Pine</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('oak')" id="wood-oak" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #e7d1b2, #b89162);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Oak</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('birch')" id="wood-birch" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #e4b57b, #ac7238);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Honey</span>
+                            </button>
+                            <button type="button" onclick="setWoodFinish('snow')" id="wood-snow" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-8 h-8 rounded-full shadow-inner border border-black/15" style="background: radial-gradient(circle at 30% 30%, #faf8f3, #ded6c7);"></span>
+                                <span class="text-[10px] font-semibold leading-tight">Snow</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Konfigurasi Kolong Bawah (3 Mode Pills) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">2. Konfigurasi Kolong Bawah</span>
+                            <span id="label-underbed" class="t-accent font-bold">2 Laci Roda</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="setUnderBedMode('drawers')" id="under-drawers" class="glass-pill active p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-box-archive accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">2 Laci Roda</span>
+                                <span class="text-[9px] opacity-75">Simpan Mainan</span>
+                            </button>
+                            <button type="button" onclick="setUnderBedMode('trundle')" id="under-trundle" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-solid fa-bed accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Kasur Sorong</span>
+                                <span class="text-[9px] opacity-75">Trundle 3 Anak</span>
+                            </button>
+                            <button type="button" onclick="setUnderBedMode('open')" id="under-open" class="glass-pill p-2 rounded-xl text-left flex flex-col gap-0.5 cursor-pointer">
+                                <i class="fa-regular fa-square accent-icon text-[11px]"></i>
+                                <span class="text-[10px] font-bold leading-tight mt-0.5">Kolong Terbuka</span>
+                                <span class="text-[9px] opacity-75">Sirkulasi Penuh</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Warna Sprei Katun Organik (4 Swatches) -->
+                    <div class="space-y-1.5 pt-2 border-t t-divider">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="t-secondary font-semibold">3. Warna Sprei Katun Organik</span>
+                            <span id="label-bedding" class="t-accent font-bold">Matcha Sage</span>
+                        </div>
+                        <div class="grid grid-cols-4 gap-1.5 pt-0.5">
+                            <button type="button" onclick="setBeddingTheme('sage')" id="bed-sage" class="swatch-btn active flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: linear-gradient(135deg, #f8f4ec 42%, #879e84 58%);"></span>
+                                <span class="text-[10px] font-semibold">Matcha</span>
+                            </button>
+                            <button type="button" onclick="setBeddingTheme('oat')" id="bed-oat" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: linear-gradient(135deg, #fbf9f4 42%, #cfb99c 58%);"></span>
+                                <span class="text-[10px] font-semibold">Oat</span>
+                            </button>
+                            <button type="button" onclick="setBeddingTheme('terracotta')" id="bed-terracotta" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: linear-gradient(135deg, #fbf4ee 42%, #d28669 58%);"></span>
+                                <span class="text-[10px] font-semibold">Terra</span>
+                            </button>
+                            <button type="button" onclick="setBeddingTheme('sky')" id="bed-sky" class="swatch-btn flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer">
+                                <span class="w-7 h-7 rounded-full border border-black/15 shadow-inner" style="background: linear-gradient(135deg, #f4f8fb 42%, #7d9fb5 58%);"></span>
+                                <span class="text-[10px] font-semibold">Sky</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Price Footer + Unduh Foto PNG -->
+                    <div class="pt-3 border-t t-divider flex items-center justify-between gap-2">
+                        <div class="min-w-0">
+                            <span class="text-[9px] uppercase font-bold tracking-wider t-muted block">Estimasi Investasi</span>
+                            <span id="price-display" class="font-mono text-base sm:text-lg font-extrabold t-primary block truncate">Rp 5.450.000</span>
+                        </div>
+                        <button
+                            type="button"
+                            onclick="downloadSnapshot()"
+                            class="cta-btn px-3.5 py-2.5 rounded-xl font-bold text-xs shadow-lg flex items-center gap-1.5 shrink-0 cursor-pointer"
+                            title="Unduh Tangkapan Layar 3D PNG"
+                        >
+                            <i class="fa-solid fa-camera"></i>
+                            <span>Unduh Foto</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- ==================== ROW 3: BOTTOM CAMERA DOCK (NO OVERLAP) ==================== -->
+        <nav id="bottom-hud" class="shrink-0 flex justify-center w-full">
+            <div class="pointer-events-auto glass-panel rounded-2xl p-1.5 flex items-center gap-2 max-w-full sm:max-w-4xl w-fit">
+                <!-- Non-shrinking Left Label protected from overflow collision -->
+                <div class="hidden xl:flex items-center gap-1.5 pl-2.5 pr-3 py-1 border-r t-divider shrink-0 whitespace-nowrap">
+                    <i class="fa-solid fa-video accent-icon text-xs"></i>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider t-primary">SUDUT PANDANG</span>
+                </div>
+
+                <!-- Scrollable Preset Strip: STRICTLY justify-start flex-1 min-w-0 -->
+                <div class="flex items-center gap-1.5 overflow-x-auto justify-start flex-1 min-w-0 no-scrollbar">
+                    <button type="button" onclick="flyToCamera('hero')" id="cam-hero" class="glass-pill active px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-star accent-icon text-[10px]"></i>
+                        <span>Sudut Utama (3/4)</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('front')" id="cam-front" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-regular fa-square accent-icon text-[10px]"></i>
+                        <span>Tampak Depan</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('ladder')" id="cam-ladder" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-stairs accent-icon text-[10px]"></i>
+                        <span>Tangga Anti-Slip</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('guardrail')" id="cam-guardrail" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-shield-halved accent-icon text-[10px]"></i>
+                        <span>Pagar Atas</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('underbed')" id="cam-underbed" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-box-open accent-icon text-[10px]"></i>
+                        <span>Kolong &amp; Laci</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('side')" id="cam-side" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-align-left accent-icon text-[10px]"></i>
+                        <span>Tampak Samping</span>
+                    </button>
+                    <button type="button" onclick="flyToCamera('top')" id="cam-top" class="glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold shrink-0 whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-arrows-to-dot accent-icon text-[10px]"></i>
+                        <span>Tampak Atas</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ==================== TECHNICAL SPECIFICATIONS MODAL ==================== -->
+    <div id="specs-modal" onclick="if(event.target === this) toggleSpecsModal(false)" class="fixed inset-0 z-50 bg-black/55 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-7 space-y-5 max-h-[90vh] overflow-y-auto custom-scroll">
+            <div class="flex items-start justify-between border-b t-divider pb-4">
+                <div>
+                    <span class="text-[10px] font-mono font-bold uppercase tracking-[0.22em] t-accent">Lembar Data Arsitektural Livora</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold t-primary mt-0.5">Sora Twin Bunk Bed</h2>
+                </div>
+                <button type="button" onclick="toggleSpecsModal(false)" class="glass-pill w-8 h-8 rounded-full flex items-center justify-center text-xs cursor-pointer" aria-label="Tutup">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Dimensi Presisi (P × L × T)</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Lebar Total (Depth)</span><span class="font-mono font-bold t-primary">100.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Panjang Total (Length)</span><span class="font-mono font-bold t-primary">208.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Tinggi Total (Height)</span><span class="font-mono font-bold t-primary">165.0 cm</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Ruang Duduk Bawah</span><span class="font-mono font-bold t-primary">70.0 cm</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Tinggi Pagar Pengaman</span><span class="font-mono font-bold t-primary">34.0 cm</span></div>
+                </div>
+
+                <div class="p-4 rounded-2xl border t-divider space-y-2" style="background: var(--pill-bg);">
+                    <h4 class="font-bold t-accent uppercase tracking-wider">Konstruksi &amp; Keamanan</h4>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Material Kayu</span><span class="font-semibold t-primary">Solid Pine &amp; Oak Anti-Slip</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Kapasitas Beban</span><span class="font-mono font-bold t-primary">100 kg / tingkat</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Sertifikasi Cat</span><span class="font-semibold t-primary">Cat Zero-VOC EN-71</span></div>
+                    <div class="flex justify-between py-1 border-b t-divider"><span class="t-muted">Berat Kargo</span><span class="font-mono font-bold t-primary">58 kg</span></div>
+                    <div class="flex justify-between py-1"><span class="t-muted">Harga Mulai</span><span class="font-mono font-bold t-accent">Rp 5.450.000</span></div>
+                </div>
+            </div>
+
+            <p class="text-xs t-secondary leading-relaxed">
+                <strong>Sora Twin Bunk Bed</strong> menggabungkan efisiensi ruang vertikal untuk kamar anak bersama keamanan konstruksi kayu solid Skandinavia. Empat pilar sudut masif `6.5 × 6.5 cm` berprofil tumpul `R18mm`, pagar atas setinggi `34 cm`, tangga miring ergonomis dengan 4 anak tangga Oak datar beralur anti-selip, serta 28 bilah slat Solid Pine (14 per tingkat) menjadikan ranjang tingkat ini kokoh untuk anak hingga remaja.
+            </p>
+
+            <div class="flex justify-end pt-1">
+                <button type="button" onclick="toggleSpecsModal(false)" class="cta-btn px-5 py-2.5 rounded-xl font-bold text-xs cursor-pointer">
+                    Kembali ke Studio 3D
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div id="toast-msg" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 glass-panel px-4 py-2 rounded-xl text-xs font-semibold t-primary shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2 whitespace-nowrap">
+        <i class="fa-solid fa-circle-check text-emerald-500"></i>
+        <span id="toast-text">Konfigurasi diperbarui</span>
+    </div>
+
+    <script>
+        // ============================================================================
+        // 0. SMART NAVIGATION BACK TO LIVORA KATALOG (FILE:// & VITE/GH PAGES)
+        // ============================================================================
+        function navigateBackToKatalog() {
+            playTactileSound('click');
+            const targetUrl = (window.location.protocol === 'file:' || window.location.pathname.includes('/public/'))
+                ? '../../pages/katalog.html'
+                : '../pages/katalog.html';
+            window.location.href = targetUrl;
+        }
+
+        // ============================================================================
+        // 1. PROCEDURAL WEBAUDIO ENGINE (WOOD ROLL, MATTRESS WHOOSH, LAMP SWITCH)
+        // ============================================================================
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function ensureAudio() {
+            try {
+                if (!audioCtx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) audioCtx = new AudioContextClass();
+                }
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            } catch (err) {}
+        }
+
+        function playTactileSound(type = 'click') {
+            if (!soundEnabled) return;
+            try {
+                ensureAudio();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'slide') {
+                    // Rolling caster wooden drawer / trundle glide
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(165, now);
+                    osc.frequency.exponentialRampToValueAtTime(68, now + 0.22);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.23);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.24);
+                } else if (type === 'mattress') {
+                    // Airy fabric mattress lift whoosh
+                    const dur = 0.22;
+                    const bufLen = Math.floor(audioCtx.sampleRate * dur);
+                    const buf = audioCtx.createBuffer(1, bufLen, audioCtx.sampleRate);
+                    const ch = buf.getChannelData(0);
+                    for (let i = 0; i < bufLen; i++) {
+                        ch[i] = (Math.random() * 2 - 1) * Math.sin((i / bufLen) * Math.PI);
+                    }
+                    const src = audioCtx.createBufferSource();
+                    src.buffer = buf;
+                    const filt = audioCtx.createBiquadFilter();
+                    filt.type = 'lowpass';
+                    filt.frequency.setValueAtTime(420, now);
+                    filt.frequency.exponentialRampToValueAtTime(1050, now + 0.11);
+                    filt.frequency.exponentialRampToValueAtTime(300, now + dur);
+                    const gain = audioCtx.createGain();
+                    gain.gain.setValueAtTime(0.09, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+                    src.connect(filt);
+                    filt.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    src.start(now);
+                } else if (type === 'lamp') {
+                    // Crisp brass reading lamp toggle click
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(760, now);
+                    osc.frequency.exponentialRampToValueAtTime(310, now + 0.032);
+                    gain.gain.setValueAtTime(0.045, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.038);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.042);
+                } else {
+                    // Soft UI click
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(550, now);
+                    osc.frequency.exponentialRampToValueAtTime(240, now + 0.045);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.055);
+                }
+            } catch (err) {}
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            icon.className = soundEnabled
+                ? 'fa-solid fa-volume-high accent-icon'
+                : 'fa-solid fa-volume-xmark t-muted';
+            showToast(soundEnabled ? 'Efek suara interaktif diaktifkan' : 'Efek suara dinonaktifkan');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-msg');
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100', 'translate-y-1');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-1');
+                toast.classList.add('opacity-0');
+            }, 2400);
+        }
+
+        // ============================================================================
+        // 2. PROCEDURAL PBR CANVAS TEXTURES (PINE/OAK/BIRCH, COTTON, ANTI-SLIP, RUG)
+        // ============================================================================
+        const WOOD_PALETTES = {
+            pine: {
+                name: 'Nordic Pine',
+                base: [239, 220, 190],
+                grainDark: [204, 170, 126],
+                roughness: 0.36,
+                price: 'Rp 5.450.000'
+            },
+            oak: {
+                name: 'White Oak',
+                base: [222, 196, 160],
+                grainDark: [180, 144, 100],
+                roughness: 0.37,
+                price: 'Rp 5.850.000'
+            },
+            birch: {
+                name: 'Honey Birch',
+                base: [219, 170, 114],
+                grainDark: [168, 114, 60],
+                roughness: 0.34,
+                price: 'Rp 5.650.000'
+            },
+            snow: {
+                name: 'Snow Pine',
+                base: [245, 241, 233],
+                grainDark: [215, 206, 192],
+                roughness: 0.39,
+                price: 'Rp 5.750.000'
+            }
+        };
+
+        const BEDDING_THEMES = {
+            sage: {
+                name: 'Matcha Sage',
+                sheetHex: 0xF7F3EB,
+                blanketHex: 0x879E84,
+                pillowHex: 0xF5EFE4,
+                starHex: 0xD8B892,
+                cloudHex: 0xFAF7F2
+            },
+            oat: {
+                name: 'Cream Oat',
+                sheetHex: 0xFBF9F4,
+                blanketHex: 0xCBB599,
+                pillowHex: 0xF4EDE2,
+                starHex: 0xB89C7C,
+                cloudHex: 0xFDFBF7
+            },
+            terracotta: {
+                name: 'Terracotta',
+                sheetHex: 0xFAF4EE,
+                blanketHex: 0xD28669,
+                pillowHex: 0xF6EDE5,
+                starHex: 0xE2B896,
+                cloudHex: 0xFCF8F3
+            },
+            sky: {
+                name: 'Nordic Sky',
+                sheetHex: 0xF4F8FB,
+                blanketHex: 0x7D9FB5,
+                pillowHex: 0xEFF4F8,
+                starHex: 0xD5C09A,
+                cloudHex: 0xFAFBFD
+            }
+        };
+
+        const woodTexCache = {};
+        let sharedWoodBump = null;
+        let sharedCottonTex = null;
+        let sharedAntiSlipTex = null;
+        let sharedRugTex = null;
+
+        function getWoodTexture(paletteKey, verticalGrain = false) {
+            const key = `${paletteKey}_${verticalGrain ? 'v' : 'h'}`;
+            if (woodTexCache[key]) return woodTexCache[key];
+
+            const pal = WOOD_PALETTES[paletteKey] || WOOD_PALETTES.pine;
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 1024;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(1024, 1024);
+            const data = imgData.data;
+
+            for (let y = 0; y < 1024; y++) {
+                for (let x = 0; x < 1024; x++) {
+                    const u = verticalGrain ? y / 1024 : x / 1024;
+                    const v = verticalGrain ? x / 1024 : y / 1024;
+
+                    const wave1 = Math.sin(v * 24.0 + Math.sin(u * 5.8) * 2.3);
+                    const wave2 = Math.sin(v * 64.0 + u * 4.2 + Math.cos(u * 10.5) * 1.1) * 0.42;
+                    const fiber = Math.sin(v * 320.0 + Math.sin(u * 28.0) * 2.5) * 0.14;
+                    const pore = ((Math.sin(u * 890.0 + v * 503.0) * 43758.5453) % 1) * 0.045;
+                    const gFactor = (wave1 + wave2 + fiber) * 0.5 + 0.5;
+
+                    const idx = (y * 1024 + x) * 4;
+                    data[idx] = Math.min(255, Math.max(0, pal.base[0] * (1 - gFactor * 0.25) + pal.grainDark[0] * (gFactor * 0.25) + pore * 12));
+                    data[idx + 1] = Math.min(255, Math.max(0, pal.base[1] * (1 - gFactor * 0.25) + pal.grainDark[1] * (gFactor * 0.25) + pore * 10));
+                    data[idx + 2] = Math.min(255, Math.max(0, pal.base[2] * (1 - gFactor * 0.25) + pal.grainDark[2] * (gFactor * 0.25) + pore * 8));
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+
+            const tex = new THREE.CanvasTexture(canvas);
+            tex.wrapS = THREE.RepeatWrapping;
+            tex.wrapT = THREE.RepeatWrapping;
+            tex.anisotropy = 8;
+            woodTexCache[key] = tex;
+            return tex;
+        }
+
+        function getWoodBumpTexture() {
+            if (sharedWoodBump) return sharedWoodBump;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.createImageData(512, 512);
+            const data = imgData.data;
+
+            for (let y = 0; y < 512; y++) {
+                for (let x = 0; x < 512; x++) {
+                    const u = x / 512;
+                    const v = y / 512;
+                    const fiber = Math.sin(v * 265.0 + Math.sin(u * 22.0) * 2.0) * 0.5 + 0.5;
+                    const val = 114 + fiber * 44;
+                    const idx = (y * 512 + x) * 4;
+                    data[idx] = data[idx + 1] = data[idx + 2] = val;
+                    data[idx + 3] = 255;
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+            sharedWoodBump = new THREE.CanvasTexture(canvas);
+            sharedWoodBump.wrapS = THREE.RepeatWrapping;
+            sharedWoodBump.wrapT = THREE.RepeatWrapping;
+            return sharedWoodBump;
+        }
+
+        function getCottonFabricTexture() {
+            if (sharedCottonTex) return sharedCottonTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#f4f2ee';
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Fine woven organic cotton grid
+            ctx.strokeStyle = 'rgba(175, 166, 155, 0.22)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < 512; i += 6) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 512); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(512, i); ctx.stroke();
+            }
+
+            // Soft quilted diamond stitching
+            ctx.strokeStyle = 'rgba(140, 132, 122, 0.30)';
+            ctx.lineWidth = 2.4;
+            for (let i = -512; i < 1024; i += 64) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i + 512, 512); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(i + 512, 0); ctx.lineTo(i, 512); ctx.stroke();
+            }
+
+            sharedCottonTex = new THREE.CanvasTexture(canvas);
+            sharedCottonTex.wrapS = THREE.RepeatWrapping;
+            sharedCottonTex.wrapT = THREE.RepeatWrapping;
+            sharedCottonTex.repeat.set(5, 3);
+            return sharedCottonTex;
+        }
+
+        function getAntiSlipGrooveTexture() {
+            if (sharedAntiSlipTex) return sharedAntiSlipTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#2B241E';
+            ctx.fillRect(0, 0, 256, 128);
+
+            // Parallel micro-ribbed anti-slip friction grooves
+            for (let y = 0; y < 128; y += 8) {
+                ctx.fillStyle = '#473B32';
+                ctx.fillRect(0, y, 256, 3);
+                ctx.fillStyle = '#181310';
+                ctx.fillRect(0, y + 4, 256, 3);
+            }
+            sharedAntiSlipTex = new THREE.CanvasTexture(canvas);
+            sharedAntiSlipTex.wrapS = THREE.RepeatWrapping;
+            sharedAntiSlipTex.wrapT = THREE.RepeatWrapping;
+            sharedAntiSlipTex.repeat.set(4, 2);
+            return sharedAntiSlipTex;
+        }
+
+        function getBedroomRugTexture() {
+            if (sharedRugTex) return sharedRugTex;
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 640;
+            const ctx = canvas.getContext('2d');
+
+            // Warm woven cream & oat base
+            ctx.fillStyle = '#ECE4D7';
+            ctx.fillRect(0, 0, 1024, 640);
+
+            // Horizontal woven wool threads
+            for (let y = 0; y < 640; y += 6) {
+                ctx.fillStyle = y % 12 === 0 ? 'rgba(182, 165, 142, 0.22)' : 'rgba(255, 252, 246, 0.28)';
+                ctx.fillRect(0, y, 1024, 3);
+            }
+
+            // Minimalist Scandinavian oat border bands & subtle diamond motifs
+            ctx.strokeStyle = '#C9BBA6';
+            ctx.lineWidth = 14;
+            ctx.strokeRect(36, 36, 952, 568);
+
+            ctx.strokeStyle = 'rgba(155, 138, 114, 0.35)';
+            ctx.lineWidth = 5;
+            for (let x = 110; x <= 914; x += 134) {
+                for (let y = 115; y <= 525; y += 135) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, y - 34);
+                    ctx.lineTo(x + 42, y);
+                    ctx.lineTo(x, y + 34);
+                    ctx.lineTo(x - 42, y);
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+            }
+
+            sharedRugTex = new THREE.CanvasTexture(canvas);
+            sharedRugTex.anisotropy = 8;
+            return sharedRugTex;
+        }
+
+        function createWallArtTexture(type) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 640;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FAF6EE';
+            ctx.fillRect(0, 0, 512, 640);
+
+            if (type === 'mountain') {
+                ctx.fillStyle = '#E4A876';
+                ctx.beginPath();
+                ctx.arc(345, 185, 68, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#92A890';
+                ctx.beginPath();
+                ctx.moveTo(24, 535);
+                ctx.lineTo(195, 255);
+                ctx.lineTo(368, 535);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.fillStyle = '#C89870';
+                ctx.beginPath();
+                ctx.moveTo(178, 535);
+                ctx.lineTo(348, 305);
+                ctx.lineTo(488, 535);
+                ctx.closePath();
+                ctx.fill();
+            } else {
+                // Crescent Moon & Stars Scandinavian Print
+                ctx.fillStyle = '#7E9BB0';
+                ctx.beginPath();
+                ctx.arc(248, 295, 108, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#FAF6EE';
+                ctx.beginPath();
+                ctx.arc(294, 272, 95, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#D4A56A';
+                [[145, 165, 9], [360, 195, 7], [375, 425, 10], [160, 455, 8], [265, 485, 6]].forEach(([sx, sy, sr]) => {
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // ============================================================================
+        // 3. THREE.JS SCENE, CAMERA, RENDERER & DEFAULT GALLERY TERANG STUDIO
+        // ============================================================================
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xF9F5EC);
+        scene.fog = new THREE.FogExp2(0xF9F5EC, 0.042);
+
+        const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.05, 60);
+        camera.position.set(2.58, 1.56, 2.86);
+
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                powerPreference: 'high-performance',
+                preserveDrawingBuffer: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.07;
+            container.appendChild(renderer.domElement);
+        } catch (err) {
+            container.innerHTML = `<div class="h-full w-full flex items-center justify-center p-6 text-center text-sm font-semibold">Browser Anda tidak mendukung WebGL untuk Studio 3D.</div>`;
+            throw err;
+        }
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 0.82, 0.02);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.055;
+        controls.minDistance = 0.85;
+        controls.maxDistance = 7.2;
+        controls.maxPolarAngle = Math.PI / 2 - 0.014;
+        controls.update();
+
+        // Studio Lights (Default: Gallery Terang)
+        const ambientLight = new THREE.HemisphereLight(0xFFFDF8, 0xA89680, 0.90);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xFFF7EA, 1.32);
+        keyLight.position.set(3.2, 4.8, 3.6);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 2048;
+        keyLight.shadow.mapSize.height = 2048;
+        keyLight.shadow.camera.near = 0.5;
+        keyLight.shadow.camera.far = 14;
+        const shadowBox = 2.45;
+        keyLight.shadow.camera.left = -shadowBox;
+        keyLight.shadow.camera.right = shadowBox;
+        keyLight.shadow.camera.top = shadowBox;
+        keyLight.shadow.camera.bottom = -shadowBox;
+        keyLight.shadow.bias = -0.00045;
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0xEEF5FF, 0.56);
+        fillLight.position.set(-3.4, 2.8, 2.4);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xFFE7C7, 0.45);
+        rimLight.position.set(0.2, 3.2, -3.5);
+        scene.add(rimLight);
+
+        // Soft Light Studio Cyclorama Floor (#EFE9DE)
+        const floorMat = new THREE.MeshStandardMaterial({
+            color: 0xEFE9DE,
+            roughness: 0.88,
+            metalness: 0.02
+        });
+        const floorMesh = new THREE.Mesh(new THREE.CircleGeometry(12, 64), floorMat);
+        floorMesh.rotation.x = -Math.PI / 2;
+        floorMesh.receiveShadow = true;
+        scene.add(floorMesh);
+
+        // Soft Contact Shadow Plinth
+        const shadowCanvas = document.createElement('canvas');
+        shadowCanvas.width = 256;
+        shadowCanvas.height = 128;
+        const sCtx = shadowCanvas.getContext('2d');
+        const grad = sCtx.createRadialGradient(128, 64, 18, 128, 64, 122);
+        grad.addColorStop(0, 'rgba(38, 26, 16, 0.36)');
+        grad.addColorStop(0.65, 'rgba(38, 26, 16, 0.14)');
+        grad.addColorStop(1, 'rgba(38, 26, 16, 0)');
+        sCtx.fillStyle = grad;
+        sCtx.fillRect(0, 0, 256, 128);
+        const contactShadowMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(2.65, 1.55),
+            new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false })
+        );
+        contactShadowMesh.rotation.x = -Math.PI / 2;
+        contactShadowMesh.position.y = 0.0015;
+        scene.add(contactShadowMesh);
+
+        // ============================================================================
+        // 4. SHARED PBR MATERIALS
+        // ============================================================================
+        const woodBump = getWoodBumpTexture();
+        const woodMatHoriz = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('pine', false),
+            bumpMap: woodBump,
+            bumpScale: 0.0024,
+            roughness: 0.36,
+            metalness: 0.03
+        });
+
+        const woodMatVert = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('pine', true),
+            bumpMap: woodBump,
+            bumpScale: 0.0024,
+            roughness: 0.36,
+            metalness: 0.03
+        });
+
+        // Contrast Solid Oak Material for Flat Anti-Slip Ladder Steps & Accents
+        const oakStepMat = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('oak', false),
+            bumpMap: woodBump,
+            bumpScale: 0.0028,
+            roughness: 0.38,
+            metalness: 0.03
+        });
+
+        const slatWoodMat = new THREE.MeshStandardMaterial({
+            map: getWoodTexture('pine', false),
+            roughness: 0.48,
+            metalness: 0.02
+        });
+
+        const antiSlipTex = getAntiSlipGrooveTexture();
+        const antiSlipMat = new THREE.MeshStandardMaterial({
+            map: antiSlipTex,
+            bumpMap: antiSlipTex,
+            bumpScale: 0.006,
+            roughness: 0.85,
+            metalness: 0.04
+        });
+
+        const brassMat = new THREE.MeshStandardMaterial({
+            color: 0xD8B262,
+            roughness: 0.25,
+            metalness: 0.88
+        });
+
+        const steelMat = new THREE.MeshStandardMaterial({
+            color: 0x62666B,
+            roughness: 0.42,
+            metalness: 0.78
+        });
+
+        const feltMat = new THREE.MeshStandardMaterial({
+            color: 0x2F2A26,
+            roughness: 0.92
+        });
+
+        const cottonTex = getCottonFabricTexture();
+        const sheetMat = new THREE.MeshStandardMaterial({
+            color: BEDDING_THEMES.sage.sheetHex,
+            map: cottonTex,
+            bumpMap: cottonTex,
+            bumpScale: 0.0045,
+            roughness: 0.86
+        });
+
+        const blanketMat = new THREE.MeshStandardMaterial({
+            color: BEDDING_THEMES.sage.blanketHex,
+            bumpMap: cottonTex,
+            bumpScale: 0.007,
+            roughness: 0.90
+        });
+
+        const pillowMat = new THREE.MeshStandardMaterial({
+            color: BEDDING_THEMES.sage.pillowHex,
+            roughness: 0.84
+        });
+
+        const starPillowMat = new THREE.MeshStandardMaterial({
+            color: BEDDING_THEMES.sage.starHex,
+            roughness: 0.88
+        });
+
+        const cloudPillowMat = new THREE.MeshStandardMaterial({
+            color: BEDDING_THEMES.sage.cloudHex,
+            roughness: 0.92
+        });
+
+        // Playful Pastel Kids Toy / Prop Materials
+        const toyTerra = new THREE.MeshStandardMaterial({ color: 0xD48269, roughness: 0.46 });
+        const toyMustard = new THREE.MeshStandardMaterial({ color: 0xE6BF6B, roughness: 0.46 });
+        const toySage = new THREE.MeshStandardMaterial({ color: 0x8CA689, roughness: 0.46 });
+        const toySky = new THREE.MeshStandardMaterial({ color: 0x7EA4BB, roughness: 0.46 });
+        const creamMat = new THREE.MeshStandardMaterial({ color: 0xF7F2E8, roughness: 0.6 });
+        const plushMat = new THREE.MeshStandardMaterial({ color: 0xDFD0BC, roughness: 0.92 });
+
+        const allBunkMeshes = [];
+        const interactivePickables = [];
+
+        function createMesh(geo, mat, castShadow = true, receiveShadow = true) {
+            const m = new THREE.Mesh(geo, mat);
+            m.castShadow = castShadow;
+            m.receiveShadow = receiveShadow;
+            allBunkMeshes.push(m);
+            return m;
+        }
+
+        function registerInteractive(group, partId, label) {
+            group.traverse(child => {
+                if (child.isMesh) {
+                    child.userData.partId = partId;
+                    child.userData.label = label;
+                    interactivePickables.push(child);
+                }
+            });
+        }
+
+        // Helper: Rounded-Edge Wooden Bar
+        function createRoundedRail(w, h, d, mat) {
+            const g = new THREE.Group();
+            const core = createMesh(new THREE.BoxGeometry(w, h, d), mat);
+            g.add(core);
+            if (w >= d) {
+                const r = d / 2;
+                const capT = createMesh(new THREE.CylinderGeometry(r, r, w, 14), mat);
+                capT.rotation.z = Math.PI / 2;
+                capT.position.y = h / 2;
+                const capB = createMesh(new THREE.CylinderGeometry(r, r, w, 14), mat);
+                capB.rotation.z = Math.PI / 2;
+                capB.position.y = -h / 2;
+                g.add(capT, capB);
+            } else {
+                const r = w / 2;
+                const capT = createMesh(new THREE.CylinderGeometry(r, r, d, 14), mat);
+                capT.rotation.x = Math.PI / 2;
+                capT.position.y = h / 2;
+                const capB = createMesh(new THREE.CylinderGeometry(r, r, d, 14), mat);
+                capB.rotation.x = Math.PI / 2;
+                capB.position.y = -h / 2;
+                g.add(capT, capB);
+            }
+            return g;
+        }
+
+        // ============================================================================
+        // 5. CONSTRUCTING SORA TWIN BUNK BED (2.08m X × 1.00m Z × 1.65m Y)
+        // ============================================================================
+        const bunkRoot = new THREE.Group();
+        scene.add(bunkRoot);
+
+        const explodedGroups = {
+            postsGroup: new THREE.Group(),
+            lowerFrameGroup: new THREE.Group(),
+            lowerSlatsGroup: new THREE.Group(),
+            upperFrameGroup: new THREE.Group(),
+            upperSlatsGroup: new THREE.Group(),
+            guardrailsGroup: new THREE.Group(),
+            ladderGroup: new THREE.Group(),
+            lowerMattressGroup: new THREE.Group(),
+            upperMattressGroup: new THREE.Group(),
+            leftDrawerGroup: new THREE.Group(),
+            rightDrawerGroup: new THREE.Group(),
+            trundleGroup: new THREE.Group(),
+            lampsAndCaddyGroup: new THREE.Group(),
+            bedroomDecorGroup: new THREE.Group()
+        };
+
+        Object.values(explodedGroups).forEach(g => bunkRoot.add(g));
+
+        // -------------------- 5A. 4 MAIN SOLID PINE CORNER POSTS (6.5 × 6.5 cm, H = 1.65m) --------------------
+        const postW = 0.065;
+        const postR = 0.018; // R18mm rounded corner bevel radius
+        const postH = 1.622; // Leaves room for glide (0.010m) & rounded top cap (0.018m) -> exact 1.650m!
+        const postCoords = [
+            { x: -1.0075, z: -0.4675 },
+            { x: 1.0075, z: -0.4675 },
+            { x: -1.0075, z: 0.4675 },
+            { x: 1.0075, z: 0.4675 }
+        ];
+
+        function buildRoundedCornerPost(px, pz) {
+            const pg = new THREE.Group();
+            pg.position.set(px, 0, pz);
+
+            const innerCore = postW - postR * 2; // 0.029m
+            const c1 = createMesh(new THREE.BoxGeometry(postW, postH, innerCore), woodMatVert);
+            c1.position.y = 0.010 + postH / 2;
+            const c2 = createMesh(new THREE.BoxGeometry(innerCore, postH, postW), woodMatVert);
+            c2.position.y = 0.010 + postH / 2;
+            pg.add(c1, c2);
+
+            // 4 vertical corner cylinders + 4 bullnose R18mm top corner spheres
+            const off = postW / 2 - postR; // 0.0145m
+            [[-off, -off], [off, -off], [-off, off], [off, off]].forEach(([cx, cz]) => {
+                const cyl = createMesh(new THREE.CylinderGeometry(postR, postR, postH, 16), woodMatVert);
+                cyl.position.set(cx, 0.010 + postH / 2, cz);
+                const topSph = createMesh(new THREE.SphereGeometry(postR, 14, 12), woodMatVert);
+                topSph.position.set(cx, 0.010 + postH, cz);
+                pg.add(cyl, topSph);
+            });
+
+            // Smooth rounded top cap connecting spheres (total Y = 1.650m)
+            const topCapBox = createMesh(new THREE.BoxGeometry(innerCore, postR * 2, innerCore), woodMatHoriz);
+            topCapBox.position.y = 0.010 + postH;
+            const topEdgeX1 = createMesh(new THREE.CylinderGeometry(postR, postR, innerCore, 12), woodMatHoriz);
+            topEdgeX1.rotation.z = Math.PI / 2; topEdgeX1.position.set(0, 0.010 + postH, off);
+            const topEdgeX2 = createMesh(new THREE.CylinderGeometry(postR, postR, innerCore, 12), woodMatHoriz);
+            topEdgeX2.rotation.z = Math.PI / 2; topEdgeX2.position.set(0, 0.010 + postH, -off);
+            const topEdgeZ1 = createMesh(new THREE.CylinderGeometry(postR, postR, innerCore, 12), woodMatHoriz);
+            topEdgeZ1.rotation.x = Math.PI / 2; topEdgeZ1.position.set(off, 0.010 + postH, 0);
+            const topEdgeZ2 = createMesh(new THREE.CylinderGeometry(postR, postR, innerCore, 12), woodMatHoriz);
+            topEdgeZ2.rotation.x = Math.PI / 2; topEdgeZ2.position.set(-off, 0.010 + postH, 0);
+            pg.add(topCapBox, topEdgeX1, topEdgeX2, topEdgeZ1, topEdgeZ2);
+
+            // Felt Floor Glide (y = 0.000 to 0.010m)
+            const glide = createMesh(new THREE.CylinderGeometry(0.026, 0.024, 0.010, 18), feltMat);
+            glide.position.y = 0.005;
+            pg.add(glide);
+
+            // Brass Dowel Joinery Plugs at Lower Rail & Upper Rail joints
+            const outerZ = pz > 0 ? postW / 2 + 0.001 : -postW / 2 - 0.001;
+            [0.27, 0.33, 1.17, 1.23, 1.56].forEach(dy => {
+                const plug = createMesh(new THREE.CylinderGeometry(0.0055, 0.0055, 0.004, 12), brassMat, false);
+                plug.rotation.x = Math.PI / 2;
+                plug.position.set(0, dy, outerZ);
+                pg.add(plug);
+            });
+
+            explodedGroups.postsGroup.add(pg);
+        }
+
+        postCoords.forEach(c => buildRoundedCornerPost(c.x, c.z));
+
+        // -------------------- 5B. LOWER BED FRAME (y = 0.24m–0.36m) + 14 SOLID PINE SLATS --------------------
+        const innerSpanX = 1.95; // Between inner post faces (-0.975 to +0.975)
+        const innerSpanZ = 0.87; // Between inner post faces (-0.435 to +0.435)
+
+        // Lower Front & Back Side Rails (y = 0.24 to 0.36 -> height 0.12m)
+        [-0.470, 0.470].forEach(rz => {
+            const rail = createRoundedRail(innerSpanX, 0.112, 0.028, woodMatHoriz);
+            rail.position.set(0, 0.30, rz);
+            explodedGroups.lowerFrameGroup.add(rail);
+
+            // Internal slat cleat ledge
+            const cleat = createMesh(new THREE.BoxGeometry(innerSpanX, 0.024, 0.022), woodMatHoriz);
+            cleat.position.set(0, 0.262, rz > 0 ? rz - 0.025 : rz + 0.025);
+            explodedGroups.lowerFrameGroup.add(cleat);
+        });
+
+        // Lower Slatted Headboard (x = -1.0075) & Footboard (x = +1.0075) with Vertical Spindles
+        [-1.0075, 1.0075].forEach(ex => {
+            const botEndRail = createRoundedRail(0.028, 0.112, innerSpanZ, woodMatHoriz);
+            botEndRail.position.set(ex, 0.30, 0);
+            const topEndRail = createRoundedRail(0.028, 0.044, innerSpanZ, woodMatHoriz);
+            topEndRail.position.set(ex, 0.80, 0);
+            explodedGroups.lowerFrameGroup.add(botEndRail, topEndRail);
+
+            // 7 Child-Safe Vertical Rounded Spindles between lower rail & headboard cap
+            for (let s = -3; s <= 3; s++) {
+                const sp = createMesh(new THREE.CylinderGeometry(0.011, 0.011, 0.44, 14), woodMatVert);
+                sp.position.set(ex, 0.56, s * 0.112);
+                explodedGroups.lowerFrameGroup.add(sp);
+            }
+        });
+
+        // Lower Central Anti-Sag Spine Bar + 14 Individual Solid Pine Slats (y = 0.28m)
+        const lowerSpine = createMesh(new THREE.BoxGeometry(innerSpanX, 0.032, 0.038), steelMat);
+        lowerSpine.position.set(0, 0.258, 0);
+        explodedGroups.lowerSlatsGroup.add(lowerSpine);
+
+        for (let i = 0; i < 14; i++) {
+            const sx = -0.90 + i * (1.80 / 13);
+            const slat = createMesh(new THREE.BoxGeometry(0.072, 0.016, 0.916), slatWoodMat);
+            slat.position.set(sx, 0.282, 0);
+            explodedGroups.lowerSlatsGroup.add(slat);
+        }
+        // Woven webbing tapes binding the 14 lower slats
+        [-0.30, 0.30].forEach(tz => {
+            const tape = createMesh(new THREE.BoxGeometry(1.86, 0.003, 0.024), feltMat, false);
+            tape.position.set(0, 0.291, tz);
+            explodedGroups.lowerSlatsGroup.add(tape);
+        });
+
+        // -------------------- 5C. UPPER BED FRAME (y = 1.14m–1.26m) + 14 SOLID PINE SLATS --------------------
+        // Gives exact 70 cm headroom clearance (0.44m lower mattress top to 1.14m upper frame bottom!)
+        [-0.470, 0.470].forEach(rz => {
+            const rail = createRoundedRail(innerSpanX, 0.112, 0.028, woodMatHoriz);
+            rail.position.set(0, 1.20, rz);
+            explodedGroups.upperFrameGroup.add(rail);
+
+            const cleat = createMesh(new THREE.BoxGeometry(innerSpanX, 0.024, 0.022), woodMatHoriz);
+            cleat.position.set(0, 1.162, rz > 0 ? rz - 0.025 : rz + 0.025);
+            explodedGroups.upperFrameGroup.add(cleat);
+        });
+
+        [-1.0075, 1.0075].forEach(ex => {
+            const endRail = createRoundedRail(0.028, 0.112, innerSpanZ, woodMatHoriz);
+            endRail.position.set(ex, 1.20, 0);
+            explodedGroups.upperFrameGroup.add(endRail);
+        });
+
+        // Upper Central Anti-Sag Spine Bar + 14 Individual Solid Pine Slats (y = 1.18m)
+        const upperSpine = createMesh(new THREE.BoxGeometry(innerSpanX, 0.032, 0.038), steelMat);
+        upperSpine.position.set(0, 1.158, 0);
+        explodedGroups.upperSlatsGroup.add(upperSpine);
+
+        for (let i = 0; i < 14; i++) {
+            const sx = -0.90 + i * (1.80 / 13);
+            const slat = createMesh(new THREE.BoxGeometry(0.072, 0.016, 0.916), slatWoodMat);
+            slat.position.set(sx, 1.182, 0);
+            explodedGroups.upperSlatsGroup.add(slat);
+        }
+        [-0.30, 0.30].forEach(tz => {
+            const tape = createMesh(new THREE.BoxGeometry(1.86, 0.003, 0.024), feltMat, false);
+            tape.position.set(0, 1.191, tz);
+            explodedGroups.upperSlatsGroup.add(tape);
+        });
+
+        // -------------------- 5D. FULL UPPER SAFETY GUARDRAILS (y = 1.26m–1.60m, 34 cm SAFETY HEIGHT) --------------------
+        // 1. Continuous Back Guardrail (z = -0.470m)
+        const backGuardTop = createRoundedRail(innerSpanX, 0.042, 0.028, woodMatHoriz);
+        backGuardTop.position.set(0, 1.575, -0.470);
+        const backGuardMid = createRoundedRail(innerSpanX, 0.026, 0.022, woodMatHoriz);
+        backGuardMid.position.set(0, 1.415, -0.470);
+        explodedGroups.guardrailsGroup.add(backGuardTop, backGuardMid);
+
+        for (let i = -8; i <= 8; i++) {
+            const sp = createMesh(new THREE.CylinderGeometry(0.010, 0.010, 0.31, 14), woodMatVert);
+            sp.position.set(i * 0.106, 1.42, -0.470);
+            explodedGroups.guardrailsGroup.add(sp);
+        }
+
+        // 2. Left & Right End Guardrails (x = -1.0075 and +1.0075)
+        [-1.0075, 1.0075].forEach(ex => {
+            const endGuardTop = createRoundedRail(0.028, 0.042, innerSpanZ, woodMatHoriz);
+            endGuardTop.position.set(ex, 1.575, 0);
+            explodedGroups.guardrailsGroup.add(endGuardTop);
+
+            for (let s = -3; s <= 3; s++) {
+                const sp = createMesh(new THREE.CylinderGeometry(0.010, 0.010, 0.31, 14), woodMatVert);
+                sp.position.set(ex, 1.42, s * 0.112);
+                explodedGroups.guardrailsGroup.add(sp);
+            }
+        });
+
+        // 3. Front Safety Guardrail (from left post -0.975 to x = +0.520 -> leaves ~46 cm entry gap at right!)
+        const frontGuardLen = 1.495; // -0.975 to +0.520
+        const frontGuardCenterX = (-0.975 + 0.520) / 2; // -0.2275m
+
+        const frontGuardTop = createRoundedRail(frontGuardLen, 0.042, 0.028, woodMatHoriz);
+        frontGuardTop.position.set(frontGuardCenterX, 1.575, 0.470);
+        const frontGuardMid = createRoundedRail(frontGuardLen, 0.026, 0.022, woodMatHoriz);
+        frontGuardMid.position.set(frontGuardCenterX, 1.415, 0.470);
+
+        // Rounded Entry Stile Post at x = +0.520m (framing the 46 cm ladder opening safely)
+        const entryStile = createMesh(new THREE.CylinderGeometry(0.022, 0.022, 0.34, 18), woodMatVert);
+        entryStile.position.set(0.520, 1.43, 0.470);
+        const entryStileCap = createMesh(new THREE.SphereGeometry(0.022, 16, 14), woodMatVert);
+        entryStileCap.position.set(0.520, 1.60, 0.470);
+        explodedGroups.guardrailsGroup.add(frontGuardTop, frontGuardMid, entryStile, entryStileCap);
+
+        // 13 Vertical Child-Safe Spindles along Front Guardrail
+        for (let i = 0; i < 13; i++) {
+            const sx = -0.88 + i * 0.110;
+            const sp = createMesh(new THREE.CylinderGeometry(0.010, 0.010, 0.31, 14), woodMatVert);
+            sp.position.set(sx, 1.42, 0.470);
+            explodedGroups.guardrailsGroup.add(sp);
+        }
+
+        // -------------------- 5E. ERGONOMIC ANGLED ANTI-SLIP OAK LADDER (FRONT RIGHT, x = 0.74m) --------------------
+        const ladderGroup = explodedGroups.ladderGroup;
+        const ladderX = 0.74;
+        const ladderInnerW = 0.38; // 38 cm wide flat solid oak steps
+        const railOffset = ladderInnerW / 2 + 0.016; // +-0.206m -> spans x = 0.534 to 0.946 right inside 46cm gap!
+
+        // Gentle ergonomic lean angle: top z = 0.495 at y = 1.46m -> floor z = 0.660 at y = 0.00m
+        const topZ = 0.495, botZ = 0.660;
+        const ladderHeight = 1.48;
+        const leanDeltaZ = botZ - topZ; // 0.165m
+        const leanAngle = Math.atan2(leanDeltaZ, ladderHeight); // ~0.111 rad (~6.36°)
+        const railLength = Math.hypot(leanDeltaZ, ladderHeight);
+
+        const ladderAssembly = new THREE.Group();
+        ladderAssembly.position.set(ladderX, 0, 0);
+        ladderGroup.add(ladderAssembly);
+
+        // Two Angled Solid Pine Side Rails with Hand-Grip Cutouts near top & Brass Hook Brackets
+        [-railOffset, railOffset].forEach(rx => {
+            const railHolder = new THREE.Group();
+            railHolder.position.set(rx, ladderHeight / 2, (topZ + botZ) / 2);
+            railHolder.rotation.x = -leanAngle;
+
+            const railMesh = createMesh(new THREE.BoxGeometry(0.030, railLength, 0.088), woodMatVert);
+            railHolder.add(railMesh);
+
+            // Smooth rounded top bullnose cap on ladder rail
+            const topRound = createMesh(new THREE.CylinderGeometry(0.015, 0.015, 0.088, 14), woodMatVert);
+            topRound.rotation.x = Math.PI / 2;
+            topRound.position.y = railLength / 2;
+            railHolder.add(topRound);
+
+            // Dark Hand-Grip Cutout Pill near top of ladder rail (ergonomic kid grip!)
+            const gripRecess = createMesh(new THREE.BoxGeometry(0.033, 0.11, 0.026), feltMat, false);
+            gripRecess.position.set(0, railLength / 2 - 0.13, 0);
+            railHolder.add(gripRecess);
+
+            // Rubber floor foot pad
+            const footPad = createMesh(new THREE.BoxGeometry(0.032, 0.012, 0.092), feltMat, false);
+            footPad.position.y = -railLength / 2 + 0.004;
+            railHolder.add(footPad);
+
+            ladderAssembly.add(railHolder);
+
+            // Heavy-Duty Brushed Brass Hook Bracket grabbing the Upper Bed Rail (y = 1.24m, z = 0.47m)
+            const hookVert = createMesh(new THREE.BoxGeometry(0.024, 0.075, 0.008), brassMat);
+            hookVert.position.set(rx, 1.23, 0.502);
+            const hookTop = createMesh(new THREE.BoxGeometry(0.024, 0.008, 0.044), brassMat);
+            hookTop.position.set(rx, 1.268, 0.482);
+            const hookLip = createMesh(new THREE.BoxGeometry(0.024, 0.036, 0.008), brassMat);
+            hookLip.position.set(rx, 1.252, 0.460);
+            ladderAssembly.add(hookVert, hookTop, hookLip);
+        });
+
+        // 4 Wide Flat Solid Oak Steps (38 cm wide, 8.5 cm deep) + Twin Recessed Anti-Slip Grip Strips
+        [0.29, 0.58, 0.87, 1.16].forEach(sy => {
+            const t = sy / ladderHeight;
+            const sz = botZ * (1 - t) + topZ * t;
+
+            // Level flat Solid Oak tread for barefoot comfort
+            const stepWood = createMesh(new THREE.BoxGeometry(ladderInnerW, 0.024, 0.085), oakStepMat);
+            stepWood.position.set(0, sy, sz);
+
+            // Rounded bullnose front step edge
+            const stepFrontRound = createMesh(new THREE.CylinderGeometry(0.012, 0.012, ladderInnerW, 14), oakStepMat);
+            stepFrontRound.rotation.z = Math.PI / 2;
+            stepFrontRound.position.set(0, sy, sz + 0.0425);
+
+            // Twin Recessed Dark Grooved Anti-Slip Friction Strips on top of each step
+            [-0.016, 0.016].forEach(dz => {
+                const strip = createMesh(new THREE.BoxGeometry(ladderInnerW - 0.04, 0.004, 0.016), antiSlipMat, false);
+                strip.position.set(0, sy + 0.013, sz + dz);
+                ladderAssembly.add(strip);
+            });
+
+            // Brass mounting bolts on side rails
+            [-railOffset - 0.016, railOffset + 0.016].forEach(bx => {
+                const bolt = createMesh(new THREE.CylinderGeometry(0.005, 0.005, 0.004, 12), brassMat, false);
+                bolt.rotation.z = Math.PI / 2;
+                bolt.position.set(bx, sy, sz);
+                ladderAssembly.add(bolt);
+            });
+
+            ladderAssembly.add(stepWood, stepFrontRound);
+        });
+
+        // -------------------- 5F. INTERACTIVE UPPER & LOWER MATTRESSES + ORGANIC BEDDING --------------------
+        function buildBunkMattress(targetGroup, baseY, isUpper) {
+            const mW = 1.94, mD = 0.90, mH = 0.14; // 1.96 × 0.92 × 0.14m including rounded edges
+            const centerY = baseY + mH / 2;
+
+            // Rounded-edge quilted mattress core
+            const core = createMesh(new THREE.BoxGeometry(mW - 0.12, mH, mD - 0.12), sheetMat);
+            core.position.set(0, centerY, 0);
+
+            const edgeF = createMesh(new THREE.CylinderGeometry(mH / 2, mH / 2, mW - 0.12, 18), sheetMat);
+            edgeF.rotation.z = Math.PI / 2; edgeF.position.set(0, centerY, (mD - 0.12) / 2);
+            const edgeB = createMesh(new THREE.CylinderGeometry(mH / 2, mH / 2, mW - 0.12, 18), sheetMat);
+            edgeB.rotation.z = Math.PI / 2; edgeB.position.set(0, centerY, -(mD - 0.12) / 2);
+            const edgeL = createMesh(new THREE.CylinderGeometry(mH / 2, mH / 2, mD - 0.12, 18), sheetMat);
+            edgeL.rotation.x = Math.PI / 2; edgeL.position.set(-(mW - 0.12) / 2, centerY, 0);
+            const edgeR = createMesh(new THREE.CylinderGeometry(mH / 2, mH / 2, mD - 0.12, 18), sheetMat);
+            edgeR.rotation.x = Math.PI / 2; edgeR.position.set((mW - 0.12) / 2, centerY, 0);
+            targetGroup.add(core, edgeF, edgeB, edgeL, edgeR);
+
+            // Folded Textured Duvet Blanket at Foot End (+X side)
+            const blanketTop = createMesh(new THREE.BoxGeometry(0.76, 0.026, mD + 0.015), blanketMat);
+            blanketTop.position.set(0.56, baseY + mH + 0.008, 0);
+            const blanketFold = createMesh(new THREE.CylinderGeometry(0.022, 0.022, mD + 0.015, 16), blanketMat);
+            blanketFold.rotation.x = Math.PI / 2;
+            blanketFold.position.set(0.18, baseY + mH + 0.006, 0);
+            const drapeF = createMesh(new THREE.BoxGeometry(0.76, 0.10, 0.020), blanketMat);
+            drapeF.position.set(0.56, baseY + mH - 0.04, (mD + 0.015) / 2);
+            const drapeB = createMesh(new THREE.BoxGeometry(0.76, 0.10, 0.020), blanketMat);
+            drapeB.position.set(0.56, baseY + mH - 0.04, -(mD + 0.015) / 2);
+            targetGroup.add(blanketTop, blanketFold, drapeF, drapeB);
+
+            // Main Plush Pillow at Headboard (-X side)
+            const pillow = createMesh(new THREE.SphereGeometry(0.24, 22, 18), pillowMat);
+            pillow.scale.set(0.75, 0.34, 1.46);
+            pillow.position.set(-0.72, baseY + mH + 0.042, 0);
+            pillow.rotation.z = -0.15;
+            targetGroup.add(pillow);
+
+            if (isUpper) {
+                // Cute 5-Pointed Plush Star Pillow on Upper Bunk
+                const starShape = new THREE.Shape();
+                for (let i = 0; i < 10; i++) {
+                    const r = i % 2 === 0 ? 0.105 : 0.048;
+                    const ang = (i * Math.PI) / 5 - Math.PI / 2;
+                    const sx = Math.cos(ang) * r;
+                    const sy = Math.sin(ang) * r;
+                    if (i === 0) starShape.moveTo(sx, sy);
+                    else starShape.lineTo(sx, sy);
+                }
+                starShape.closePath();
+                const starGeo = new THREE.ExtrudeGeometry(starShape, {
+                    depth: 0.028,
+                    bevelEnabled: true,
+                    bevelSegments: 4,
+                    bevelSize: 0.015,
+                    bevelThickness: 0.015
+                });
+                starGeo.center();
+                const starMesh = createMesh(starGeo, starPillowMat);
+                starMesh.position.set(-0.48, baseY + mH + 0.068, 0.12);
+                starMesh.rotation.set(0.32, -0.42, 0.22);
+                targetGroup.add(starMesh);
+            } else {
+                // Cute Sculpted Cloud Cushion on Lower Bunk
+                const cloudG = new THREE.Group();
+                cloudG.position.set(-0.48, baseY + mH + 0.072, -0.12);
+                cloudG.rotation.y = 0.35;
+                cloudG.rotation.z = -0.18;
+                [
+                    { x: 0, y: 0.022, r: 0.072 },
+                    { x: -0.058, y: 0.004, r: 0.054 },
+                    { x: 0.058, y: 0.004, r: 0.056 },
+                    { x: -0.098, y: -0.014, r: 0.040 },
+                    { x: 0.098, y: -0.014, r: 0.042 }
+                ].forEach(p => {
+                    const puff = createMesh(new THREE.SphereGeometry(p.r, 16, 14), cloudPillowMat);
+                    puff.scale.set(1, 0.94, 0.56);
+                    puff.position.set(p.x, p.y, 0);
+                    cloudG.add(puff);
+                });
+                targetGroup.add(cloudG);
+            }
+        }
+
+        buildBunkMattress(explodedGroups.lowerMattressGroup, 0.296, false);
+        buildBunkMattress(explodedGroups.upperMattressGroup, 1.196, true);
+
+        registerInteractive(explodedGroups.lowerMattressGroup, 'lowerMattress', 'Kasur Bawah (Inspeksi 14 Slat)');
+        registerInteractive(explodedGroups.upperMattressGroup, 'upperMattress', 'Kasur Atas (Inspeksi 14 Slat)');
+
+        // -------------------- 5G. 3 SWITCHABLE UNDER-BED CONFIGURATIONS (y = 0.01m–0.23m) --------------------
+        // MODE 1 (DEFAULT): 2 ROLLING UNDER-BED DRAWERS (Left & Right, 0.94m × 0.84m × 0.21m each)
+        function buildRollingUnderDrawer(targetGroup, cx, isLeft) {
+            targetGroup.position.set(cx, 0, 0.02);
+
+            const dW = 0.935, dD = 0.84, dH = 0.205, sideT = 0.018;
+            const baseY = 0.024; // Clearance for visible recessed castor wheels!
+
+            // Bottom base panel
+            const bot = createMesh(new THREE.BoxGeometry(dW, 0.012, dD), woodMatHoriz);
+            bot.position.set(0, baseY + 0.006, 0);
+
+            // Front fascia with soft-rounded smile-cutout handle
+            const frontZ = dD / 2 - sideT / 2;
+            const frontLower = createMesh(new THREE.BoxGeometry(dW, dH - 0.042, sideT), woodMatHoriz);
+            frontLower.position.set(0, baseY + (dH - 0.042) / 2, frontZ);
+            const wingW = (dW - 0.18) / 2;
+            const wingL = createMesh(new THREE.BoxGeometry(wingW, 0.042, sideT), woodMatHoriz);
+            wingL.position.set(-dW / 2 + wingW / 2, baseY + dH - 0.021, frontZ);
+            const wingR = createMesh(new THREE.BoxGeometry(wingW, 0.042, sideT), woodMatHoriz);
+            wingR.position.set(dW / 2 - wingW / 2, baseY + dH - 0.021, frontZ);
+            const cutoutBacking = createMesh(new THREE.BoxGeometry(0.18, 0.036, 0.005), feltMat, false);
+            cutoutBacking.position.set(0, baseY + dH - 0.022, frontZ - 0.010);
+
+            // Back, Left, Right walls & Central Wooden Divider
+            const back = createMesh(new THREE.BoxGeometry(dW, dH - 0.02, sideT), woodMatHoriz);
+            back.position.set(0, baseY + (dH - 0.02) / 2, -dD / 2 + sideT / 2);
+            const left = createMesh(new THREE.BoxGeometry(sideT, dH - 0.02, dD - sideT * 2), woodMatHoriz);
+            left.position.set(-dW / 2 + sideT / 2, baseY + (dH - 0.02) / 2, 0);
+            const right = createMesh(new THREE.BoxGeometry(sideT, dH - 0.02, dD - sideT * 2), woodMatHoriz);
+            right.position.set(dW / 2 - sideT / 2, baseY + (dH - 0.02) / 2, 0);
+            const divider = createMesh(new THREE.BoxGeometry(0.014, dH - 0.05, dD - sideT * 2), woodMatHoriz);
+            divider.position.set(0, baseY + (dH - 0.05) / 2, 0);
+
+            targetGroup.add(bot, frontLower, wingL, wingR, cutoutBacking, back, left, right, divider);
+
+            // 4 Visible Recessed Castor Wheels under drawer
+            [[-0.36, 0.34], [0.36, 0.34], [-0.36, -0.34], [0.36, -0.34]].forEach(([wx, wz]) => {
+                const wheel = createMesh(new THREE.CylinderGeometry(0.015, 0.015, 0.014, 16), feltMat, false);
+                wheel.rotation.z = Math.PI / 2;
+                wheel.position.set(wx, 0.015, wz);
+                const yoke = createMesh(new THREE.BoxGeometry(0.020, 0.014, 0.022), steelMat, false);
+                yoke.position.set(wx, 0.022, wz);
+                targetGroup.add(wheel, yoke);
+            });
+
+            // Curated Interior Props
+            if (isLeft) {
+                // Left compartment: Folded Extra Blankets (Cream & Sage)
+                const fold1 = createMesh(new THREE.BoxGeometry(0.36, 0.052, 0.52), creamMat);
+                fold1.position.set(-0.22, baseY + 0.038, 0.04);
+                const fold2 = createMesh(new THREE.BoxGeometry(0.34, 0.046, 0.48), blanketMat);
+                fold2.position.set(-0.22, baseY + 0.088, 0.04);
+                fold2.rotation.y = 0.05;
+
+                // Right compartment: Cute Plush Bunny Toy + Small Linen Cushion
+                const bunnyG = new THREE.Group();
+                bunnyG.position.set(0.22, baseY + 0.015, 0.14);
+                bunnyG.rotation.y = -0.32;
+                const bBody = createMesh(new THREE.SphereGeometry(0.062, 18, 16), plushMat);
+                bBody.scale.set(0.95, 1.15, 0.90); bBody.position.y = 0.065;
+                const bHead = createMesh(new THREE.SphereGeometry(0.048, 18, 16), plushMat);
+                bHead.position.set(0, 0.140, 0.01);
+                [-0.020, 0.020].forEach((ex, idx) => {
+                    const ear = createMesh(new THREE.SphereGeometry(0.015, 14, 12), plushMat);
+                    ear.scale.set(0.75, 2.8, 0.55);
+                    ear.position.set(ex, 0.205, 0.005);
+                    ear.rotation.z = idx === 0 ? 0.20 : -0.20;
+                    bunnyG.add(ear);
+                });
+                bunnyG.add(bBody, bHead);
+
+                const extraFold = createMesh(new THREE.BoxGeometry(0.34, 0.055, 0.30), pillowMat);
+                extraFold.position.set(0.22, baseY + 0.040, -0.18);
+                targetGroup.add(fold1, fold2, bunnyG, extraFold);
+            } else {
+                // Left compartment: Colorful Montessori Wooden Building Blocks
+                const blockSpecs = [
+                    { geo: new THREE.BoxGeometry(0.085, 0.085, 0.085), mat: toyTerra, x: -0.28, y: 0.055, z: 0.16, ry: 0.24 },
+                    { geo: new THREE.BoxGeometry(0.075, 0.075, 0.075), mat: toySage, x: -0.16, y: 0.050, z: 0.14, ry: -0.18 },
+                    { geo: new THREE.CylinderGeometry(0.036, 0.036, 0.11, 18), mat: toyMustard, x: -0.24, y: 0.068, z: -0.06, ry: 0 },
+                    { geo: new THREE.ConeGeometry(0.052, 0.088, 4), mat: toySky, x: -0.28, y: 0.135, z: 0.16, ry: 0.35 },
+                    { geo: new THREE.BoxGeometry(0.11, 0.052, 0.065), mat: oakStepMat, x: -0.15, y: 0.038, z: -0.14, ry: 0.15 }
+                ];
+                blockSpecs.forEach(b => {
+                    const m = createMesh(b.geo, b.mat);
+                    m.position.set(b.x, baseY + b.y, b.z);
+                    m.rotation.y = b.ry;
+                    targetGroup.add(m);
+                });
+
+                // Right compartment: 3 Illustrated Hardcover Kids Books
+                const bk1 = createMesh(new THREE.BoxGeometry(0.24, 0.026, 0.32), toySky);
+                bk1.position.set(0.22, baseY + 0.025, 0.08);
+                const bk2 = createMesh(new THREE.BoxGeometry(0.22, 0.024, 0.30), toyTerra);
+                bk2.position.set(0.22, baseY + 0.050, 0.07); bk2.rotation.y = 0.08;
+                const bk3 = createMesh(new THREE.BoxGeometry(0.21, 0.022, 0.28), toyMustard);
+                bk3.position.set(0.21, baseY + 0.074, 0.07); bk3.rotation.y = -0.07;
+                targetGroup.add(bk1, bk2, bk3);
+            }
+        }
+
+        buildRollingUnderDrawer(explodedGroups.leftDrawerGroup, -0.48, true);
+        buildRollingUnderDrawer(explodedGroups.rightDrawerGroup, 0.48, false);
+        registerInteractive(explodedGroups.leftDrawerGroup, 'leftOrTrundle', 'Laci Roda Kiri (Selimut & Boneka)');
+        registerInteractive(explodedGroups.rightDrawerGroup, 'rightDrawer', 'Laci Roda Kanan (Balok & Buku)');
+
+        // MODE 2: PULL-OUT TRUNDLE BED (1.92m × 0.92m × 0.20m) on 4 Castor Wheels + 12 Slats + 3rd Twin Mattress
+        const trundleGroup = explodedGroups.trundleGroup;
+        trundleGroup.visible = false;
+
+        const trW = 1.92, trD = 0.92, trBaseY = 0.026;
+        // Front recessed fascia with twin smooth cutouts
+        const trFront = createMesh(new THREE.BoxGeometry(trW, 0.185, 0.022), woodMatHoriz);
+        trFront.position.set(0, trBaseY + 0.092, trD / 2 - 0.011);
+        [-0.45, 0.45].forEach(cx => {
+            const trCut = createMesh(new THREE.BoxGeometry(0.14, 0.028, 0.025), feltMat, false);
+            trCut.position.set(cx, trBaseY + 0.145, trD / 2 - 0.010);
+            trundleGroup.add(trCut);
+        });
+        const trBack = createMesh(new THREE.BoxGeometry(trW, 0.14, 0.020), woodMatHoriz);
+        trBack.position.set(0, trBaseY + 0.070, -trD / 2 + 0.010);
+        const trLeft = createMesh(new THREE.BoxGeometry(0.020, 0.14, trD - 0.04), woodMatHoriz);
+        trLeft.position.set(-trW / 2 + 0.010, trBaseY + 0.070, 0);
+        const trRight = createMesh(new THREE.BoxGeometry(0.020, 0.14, trD - 0.04), woodMatHoriz);
+        trRight.position.set(trW / 2 - 0.010, trBaseY + 0.070, 0);
+        trundleGroup.add(trFront, trBack, trLeft, trRight);
+
+        // 4 Heavy-Duty Castor Wheels
+        [[-0.82, 0.36], [0.82, 0.36], [-0.82, -0.36], [0.82, -0.36]].forEach(([wx, wz]) => {
+            const wh = createMesh(new THREE.CylinderGeometry(0.018, 0.018, 0.016, 16), feltMat, false);
+            wh.rotation.z = Math.PI / 2;
+            wh.position.set(wx, 0.018, wz);
+            trundleGroup.add(wh);
+        });
+
+        // 12 Individual Solid Pine Slats inside Trundle
+        for (let i = 0; i < 12; i++) {
+            const sx = -0.84 + i * (1.68 / 11);
+            const tSlat = createMesh(new THREE.BoxGeometry(0.068, 0.014, 0.86), slatWoodMat);
+            tSlat.position.set(sx, trBaseY + 0.048, 0);
+            trundleGroup.add(tSlat);
+        }
+
+        // 3rd Twin Mattress (10 cm thick) + Pillow + Folded Throw Blanket
+        const trMatCore = createMesh(new THREE.BoxGeometry(1.86, 0.10, 0.85), sheetMat);
+        trMatCore.position.set(0, trBaseY + 0.108, 0);
+        const trThrow = createMesh(new THREE.BoxGeometry(0.68, 0.022, 0.86), blanketMat);
+        trThrow.position.set(0.54, trBaseY + 0.165, 0);
+        const trPillow = createMesh(new THREE.SphereGeometry(0.20, 20, 16), pillowMat);
+        trPillow.scale.set(0.72, 0.28, 1.38);
+        trPillow.position.set(-0.68, trBaseY + 0.178, 0);
+        trundleGroup.add(trMatCore, trThrow, trPillow);
+
+        registerInteractive(trundleGroup, 'leftOrTrundle', 'Kasur Sorong Tamu (Trundle)');
+
+        // -------------------- 5H. DUAL WARM LED READING LAMPS + UPPER HANGING BEDSIDE CADDY --------------------
+        const lampsGroup = explodedGroups.lampsAndCaddyGroup;
+        const readingLampLights = [];
+        const readingBulbMats = [];
+
+        function buildClipReadingLamp(yPos) {
+            const lg = new THREE.Group();
+            lg.position.set(-0.985, yPos, -0.18);
+
+            // Wooden clamp grabbing headboard rail
+            const clamp = createMesh(new THREE.BoxGeometry(0.052, 0.048, 0.056), oakStepMat);
+            // Brass gooseneck arm
+            const arm1 = createMesh(new THREE.CylinderGeometry(0.005, 0.005, 0.11, 12), brassMat);
+            arm1.rotation.z = -Math.PI / 3;
+            arm1.position.set(0.055, 0.032, 0.02);
+            const joint = createMesh(new THREE.SphereGeometry(0.010, 12, 12), brassMat);
+            joint.position.set(0.102, 0.058, 0.032);
+
+            // Japandi wood & cream conical lamp shade
+            const shadeHolder = new THREE.Group();
+            shadeHolder.position.set(0.125, 0.035, 0.042);
+            shadeHolder.rotation.z = 0.45;
+
+            const shadeCone = createMesh(new THREE.ConeGeometry(0.054, 0.078, 24, 1, true), creamMat.clone());
+            shadeCone.material.side = THREE.DoubleSide;
+            const shadeWoodCap = createMesh(new THREE.CylinderGeometry(0.016, 0.024, 0.026, 20), oakStepMat);
+            shadeWoodCap.position.y = 0.042;
+
+            const bulbMat = new THREE.MeshStandardMaterial({
+                color: 0xFFF9EC,
+                emissive: 0xFFB866,
+                emissiveIntensity: 1.5,
+                roughness: 0.2
+            });
+            readingBulbMats.push(bulbMat);
+            const bulb = createMesh(new THREE.SphereGeometry(0.018, 14, 14), bulbMat, false);
+            bulb.position.y = -0.010;
+
+            const ptLight = new THREE.PointLight(0xFFBC6B, 0.65, 1.55, 2);
+            ptLight.position.set(0.04, -0.06, 0.04);
+            readingLampLights.push(ptLight);
+
+            shadeHolder.add(shadeCone, shadeWoodCap, bulb, ptLight);
+            lg.add(clamp, arm1, joint, shadeHolder);
+            return lg;
+        }
+
+        const upperLamp = buildClipReadingLamp(1.48);
+        const lowerLamp = buildClipReadingLamp(0.72);
+        lampsGroup.add(upperLamp, lowerLamp);
+        registerInteractive(upperLamp, 'readingLamps', 'Lampu Baca LED Atas');
+        registerInteractive(lowerLamp, 'readingLamps', 'Lampu Baca LED Bawah');
+
+        // Upper Clip-On Wooden Bedside Caddy Tray (mounted on upper front rail at x = -0.58m, y = 1.40m, z = 0.56m)
+        const caddyGroup = new THREE.Group();
+        caddyGroup.position.set(-0.58, 1.40, 0.555);
+
+        const caddyTray = createMesh(new THREE.BoxGeometry(0.32, 0.016, 0.145), oakStepMat);
+        const caddyLipF = createMesh(new THREE.BoxGeometry(0.32, 0.042, 0.012), oakStepMat);
+        caddyLipF.position.set(0, 0.020, 0.066);
+        const caddyLipL = createMesh(new THREE.BoxGeometry(0.012, 0.042, 0.145), oakStepMat);
+        caddyLipL.position.set(-0.154, 0.020, 0);
+        const caddyLipR = createMesh(new THREE.BoxGeometry(0.012, 0.042, 0.145), oakStepMat);
+        caddyLipR.position.set(0.154, 0.020, 0);
+        // Twin brass hook clips over front guardrail
+        [-0.11, 0.11].forEach(hx => {
+            const clip = createMesh(new THREE.BoxGeometry(0.018, 0.18, 0.008), brassMat);
+            clip.position.set(hx, 0.095, -0.070);
+            const clipTop = createMesh(new THREE.BoxGeometry(0.018, 0.008, 0.044), brassMat);
+            clipTop.position.set(hx, 0.185, -0.088);
+            caddyGroup.add(clip, clipTop);
+        });
+
+        // Props on Caddy: Mini Alarm Clock, Bedtime Storybook & Water Tumbler
+        const clockBody = createMesh(new THREE.CylinderGeometry(0.026, 0.026, 0.022, 20), toyMustard);
+        clockBody.rotation.x = Math.PI / 2;
+        clockBody.position.set(-0.095, 0.036, 0);
+        const clockFace = createMesh(new THREE.CylinderGeometry(0.021, 0.021, 0.024, 20), creamMat, false);
+        clockFace.rotation.x = Math.PI / 2;
+        clockFace.position.set(-0.095, 0.036, 0);
+
+        const bedtimeBook = createMesh(new THREE.BoxGeometry(0.115, 0.018, 0.092), toyTerra);
+        bedtimeBook.position.set(0.012, 0.017, 0.004);
+        bedtimeBook.rotation.y = 0.08;
+
+        const tumbler = createMesh(new THREE.CylinderGeometry(0.024, 0.021, 0.095, 18), toySky);
+        tumbler.position.set(0.105, 0.056, -0.006);
+        const tumblerLid = createMesh(new THREE.CylinderGeometry(0.025, 0.025, 0.010, 18), oakStepMat);
+        tumblerLid.position.set(0.105, 0.106, -0.006);
+
+        caddyGroup.add(caddyTray, caddyLipF, caddyLipL, caddyLipR, clockBody, clockFace, bedtimeBook, tumbler, tumblerLid);
+        lampsGroup.add(caddyGroup);
+
+        // -------------------- 5I. TOGGLEABLE BEDROOM DECOR & L-CORNER SCANDI WALL ("Kamar & Dekor") --------------------
+        const decorGroup = explodedGroups.bedroomDecorGroup;
+
+        // 1. Soft Woven Cream-and-Oat Bedroom Rug (2.80m × 1.80m)
+        const rugMesh = new THREE.Mesh(
+            new THREE.BoxGeometry(2.80, 0.008, 1.80),
+            new THREE.MeshStandardMaterial({ map: getBedroomRugTexture(), roughness: 0.95 })
+        );
+        rugMesh.position.set(0.05, 0.004, 0.22);
+        rugMesh.receiveShadow = true;
+        decorGroup.add(rugMesh);
+
+        // 2. Round Knitted Floor Pouf near Left Front Corner (x = -1.25m, z = 0.72m)
+        const poufGroup = new THREE.Group();
+        poufGroup.position.set(-1.26, 0, 0.72);
+        const poufBody = createMesh(new THREE.SphereGeometry(0.24, 24, 18), new THREE.MeshStandardMaterial({ color: 0xDFD5C5, bumpMap: cottonTex, bumpScale: 0.012, roughness: 0.94 }));
+        poufBody.scale.set(1.05, 0.68, 1.05);
+        poufBody.position.y = 0.155;
+        poufGroup.add(poufBody);
+        decorGroup.add(poufGroup);
+
+        // 3. Small Wooden Step Stool near the Ladder (x = 1.30m, z = 0.56m)
+        const stoolGroup = new THREE.Group();
+        stoolGroup.position.set(1.30, 0, 0.54);
+        stoolGroup.rotation.y = -0.22;
+        const stoolTop = createMesh(new THREE.CylinderGeometry(0.145, 0.145, 0.022, 24), oakStepMat);
+        stoolTop.position.y = 0.24;
+        stoolGroup.add(stoolTop);
+        [[-0.085, -0.075], [0.085, -0.075], [0, 0.095]].forEach(([lx, lz]) => {
+            const sLeg = createMesh(new THREE.CylinderGeometry(0.014, 0.011, 0.24, 14), woodMatVert);
+            sLeg.position.set(lx, 0.12, lz);
+            sLeg.rotation.z = lx > 0 ? -0.10 : (lx < 0 ? 0.10 : 0);
+            sLeg.rotation.x = lz > 0 ? 0.10 : -0.08;
+            stoolGroup.add(sLeg);
+        });
+        decorGroup.add(stoolGroup);
+
+        // 4. Subtle L-Corner Scandinavian Kids Bedroom Walls (Back Z = -0.78m & Left X = -1.48m)
+        const roomWallMat = new THREE.MeshStandardMaterial({ color: 0xF5F0E6, roughness: 0.92 });
+        const backWall = new THREE.Mesh(new THREE.BoxGeometry(3.80, 2.35, 0.04), roomWallMat);
+        backWall.position.set(0.42, 1.175, -0.78);
+        backWall.receiveShadow = true;
+
+        const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.04, 2.35, 2.40), roomWallMat);
+        leftWall.position.set(-1.48, 1.175, 0.40);
+        leftWall.receiveShadow = true;
+
+        // Light Wood Wainscoting Trim Strip + Baseboards along L-Corner
+        const backWainscot = new THREE.Mesh(new THREE.BoxGeometry(3.80, 0.032, 0.022), oakStepMat);
+        backWainscot.position.set(0.42, 0.96, -0.752);
+        const backBaseboard = new THREE.Mesh(new THREE.BoxGeometry(3.80, 0.085, 0.018), oakStepMat);
+        backBaseboard.position.set(0.42, 0.042, -0.752);
+
+        const leftWainscot = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.032, 2.40), oakStepMat);
+        leftWainscot.position.set(-1.452, 0.96, 0.40);
+        const leftBaseboard = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.085, 2.40), oakStepMat);
+        leftBaseboard.position.set(-1.452, 0.042, 0.40);
+
+        // 2 Framed Minimalist Kids Art Prints (Mountain & Moon) on Back Wall
+        const artMountainTex = createWallArtTexture('mountain');
+        const artMoonTex = createWallArtTexture('moon');
+        [
+            { x: -0.38, tex: artMountainTex },
+            { x: 0.24, tex: artMoonTex }
+        ].forEach(art => {
+            const frame = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.56, 0.020), oakStepMat);
+            frame.position.set(art.x, 1.88, -0.752);
+            const print = new THREE.Mesh(
+                new THREE.BoxGeometry(0.41, 0.51, 0.024),
+                new THREE.MeshStandardMaterial({ map: art.tex, roughness: 0.84 })
+            );
+            print.position.set(art.x, 1.88, -0.749);
+            decorGroup.add(frame, print);
+        });
+
+        // 3 Wooden Wall Pegs + Hanging Canvas Tote Bag on Left Wall (z = 0.72..1.04)
+        const pegBar = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.050, 0.46), oakStepMat);
+        pegBar.position.set(-1.452, 1.28, 0.88);
+        decorGroup.add(pegBar);
+
+        [0.72, 0.88, 1.04].forEach(pz => {
+            const peg = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.014, 0.034, 16), oakStepMat);
+            peg.rotation.z = Math.PI / 2;
+            peg.position.set(-1.430, 1.28, pz);
+            decorGroup.add(peg);
+        });
+
+        // Hanging Canvas Tote on Center Peg (z = 0.88)
+        const toteBody = createMesh(new THREE.BoxGeometry(0.035, 0.26, 0.22), creamMat);
+        toteBody.position.set(-1.425, 1.06, 0.88);
+        const toteStrap = createMesh(new THREE.TorusGeometry(0.068, 0.007, 8, 20, Math.PI), blanketMat);
+        toteStrap.rotation.y = Math.PI / 2;
+        toteStrap.position.set(-1.425, 1.19, 0.88);
+        decorGroup.add(toteBody, toteStrap);
+
+        decorGroup.add(backWall, leftWall, backWainscot, backBaseboard, leftWainscot, leftBaseboard);
+
+        // ============================================================================
+        // 6. 3D PRECISION DIMENSION LINES & 5 INTERACTIVE 3D HOTSPOTS
+        // ============================================================================
+        const dimensionGroup = new THREE.Group();
+        dimensionGroup.visible = false;
+        scene.add(dimensionGroup);
+
+        const dimLineMat = new THREE.LineBasicMaterial({ color: 0x8C6239, transparent: true, opacity: 0.92 });
+
+        function addDimensionLine(p1, p2, ext1, ext2) {
+            dimensionGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([p1, p2]), dimLineMat));
+            if (ext1 && ext2) {
+                dimensionGroup.add(
+                    new THREE.Line(new THREE.BufferGeometry().setFromPoints([ext1, p1]), dimLineMat),
+                    new THREE.Line(new THREE.BufferGeometry().setFromPoints([ext2, p2]), dimLineMat)
+                );
+            }
+        }
+
+        // 1. Panjang: 208.0 cm (Front Floor)
+        addDimensionLine(
+            new THREE.Vector3(-1.04, 0.018, 0.78),
+            new THREE.Vector3(1.04, 0.018, 0.78),
+            new THREE.Vector3(-1.04, 0.018, 0.54),
+            new THREE.Vector3(1.04, 0.018, 0.54)
+        );
+        // 2. Lebar: 100.0 cm (Right Floor)
+        addDimensionLine(
+            new THREE.Vector3(1.22, 0.018, -0.50),
+            new THREE.Vector3(1.22, 0.018, 0.50),
+            new THREE.Vector3(1.06, 0.018, -0.50),
+            new THREE.Vector3(1.06, 0.018, 0.50)
+        );
+        // 3. Tinggi Total: 165.0 cm (Right Vertical)
+        addDimensionLine(
+            new THREE.Vector3(1.22, 0.0, -0.50),
+            new THREE.Vector3(1.22, 1.65, -0.50),
+            new THREE.Vector3(1.06, 0.0, -0.50),
+            new THREE.Vector3(1.06, 1.65, -0.50)
+        );
+        // 4. Ruang Duduk Bawah: 70.0 cm (y = 0.44m lower mattress top to y = 1.14m upper frame bottom)
+        addDimensionLine(
+            new THREE.Vector3(-1.18, 0.44, 0.50),
+            new THREE.Vector3(-1.18, 1.14, 0.50),
+            new THREE.Vector3(-1.05, 0.44, 0.50),
+            new THREE.Vector3(-1.05, 1.14, 0.50)
+        );
+
+        const dimensionLabelsData = [
+            { text: 'Panjang: 208.0 cm', pos: new THREE.Vector3(0, 0.03, 0.82) },
+            { text: 'Lebar: 100.0 cm', pos: new THREE.Vector3(1.30, 0.03, 0) },
+            { text: 'Tinggi Total: 165.0 cm', pos: new THREE.Vector3(1.30, 0.86, -0.50) },
+            { text: 'Ruang Duduk Bawah: 70.0 cm', pos: new THREE.Vector3(-1.26, 0.79, 0.50) }
+        ];
+
+        const hotspotsData = [
+            {
+                id: 1,
+                title: 'Pagar Pengaman 34 cm & Sudut R18',
+                desc: 'Pagar keliling tingkat atas setinggi 34 cm melebihi standar keamanan anak internasional, dipadukan pilar sudut 6.5×6.5 cm berprofil bullnose tumpul R18mm dan celah akses 46 cm sejajar tangga.',
+                tag: 'Guardrail 34 cm • Bullnose R18mm',
+                worldPos: new THREE.Vector3(-0.10, 1.58, 0.48),
+                camPos: new THREE.Vector3(0.42, 1.72, 1.92),
+                camTarget: new THREE.Vector3(-0.08, 1.44, 0.25)
+            },
+            {
+                id: 2,
+                title: 'Tangga Miring Anti-Slip Oak',
+                desc: 'Tangga sudut miring ergonomis dengan 4 anak tangga datar kayu Oak selebar 38 cm (kedalaman 8.5 cm), dilengkapi alur karet anti-selip ganda, pegangan tangan terukir, dan kait kuningan kokoh.',
+                tag: 'Solid Oak Flat Steps • Dual Grip Strips',
+                worldPos: new THREE.Vector3(0.74, 0.88, 0.58),
+                camPos: new THREE.Vector3(1.62, 0.96, 1.72),
+                camTarget: new THREE.Vector3(0.72, 0.74, 0.45)
+            },
+            {
+                id: 3,
+                title: '28 Bilah Slat Solid Pine (100 kg/Tingkat)',
+                desc: 'Masing-masing ranjang atas dan bawah ditopang 14 bilah kayu Solid Pine serta balok tulang punggung anti-melengkung yang menjaga sirkulasi udara kasur dan mampu menahan beban hingga 100 kg per tingkat.',
+                tag: '28 Solid Pine Slats • 100 kg / Tingkat',
+                worldPos: new THREE.Vector3(0.0, 1.22, 0.0),
+                camPos: new THREE.Vector3(1.75, 1.78, 1.85),
+                camTarget: new THREE.Vector3(0.0, 1.26, 0.0)
+            },
+            {
+                id: 4,
+                title: 'Kolong Modular: 2 Laci / Kasur Trundle',
+                desc: 'Area kolong 23 cm fleksibel dengan 3 konfigurasi: 2 laci beroda dengan smile-cutout tanpa handle tajam untuk mainan & selimut, kasur sorong (trundle) untuk 3 anak, atau kolong terbuka.',
+                tag: '3-in-1 Under-Bed • Smooth Castor Wheels',
+                worldPos: new THREE.Vector3(-0.48, 0.14, 0.46),
+                camPos: new THREE.Vector3(-0.25, 0.58, 2.05),
+                camTarget: new THREE.Vector3(-0.28, 0.18, 0.35)
+            },
+            {
+                id: 5,
+                title: 'Lampu Baca LED 2700K & Rak Gantung',
+                desc: 'Dilengkapi sepasang lampu baca jepit kayu & kuningan 2700K (atas & bawah) yang ramah mata anak sebelum tidur, serta rak gantung samping (caddy) untuk jam weker, buku cerita, dan botol minum.',
+                tag: 'Dual 2700K LED Lamps • Clip-On Caddy',
+                worldPos: new THREE.Vector3(-0.78, 1.48, 0.35),
+                camPos: new THREE.Vector3(-0.35, 1.66, 1.68),
+                camTarget: new THREE.Vector3(-0.72, 1.42, 0.25)
+            }
+        ];
+
+        const overlayLayer = document.getElementById('overlay-layer');
+        const domHotspots = [];
+        const domDimLabels = [];
+        let hotspotsVisible = true;
+        let dimensionsVisible = false;
+
+        hotspotsData.forEach(hs => {
+            const el = document.createElement('div');
+            el.className = 'hotspot-pin flex items-center justify-center w-7 h-7 rounded-full font-mono text-xs font-bold shadow-lg';
+            el.innerHTML = `<span class="hotspot-pulse"></span><span>${hs.id}</span>`;
+            el.title = hs.title;
+            el.onclick = (e) => {
+                e.stopPropagation();
+                selectHotspot(hs);
+            };
+            overlayLayer.appendChild(el);
+            domHotspots.push({ el, data: hs });
+        });
+
+        dimensionLabelsData.forEach(dl => {
+            const el = document.createElement('div');
+            el.className = 'dim-label opacity-0';
+            el.textContent = dl.text;
+            overlayLayer.appendChild(el);
+            domDimLabels.push({ el, pos: dl.pos });
+        });
+
+        function selectHotspot(hs) {
+            playTactileSound('click');
+            const card = document.getElementById('hotspot-card');
+            card.classList.remove('hidden');
+            document.getElementById('hs-number').textContent = hs.id;
+            document.getElementById('hs-title').textContent = hs.title;
+            document.getElementById('hs-desc').textContent = hs.desc;
+            document.getElementById('hs-tag').textContent = hs.tag;
+
+            if (window.innerWidth < 768) {
+                toggleMobileDrawer('left', true);
+            }
+
+            const leftHud = document.getElementById('left-hud');
+            setTimeout(() => {
+                leftHud.scrollTo({ top: leftHud.scrollHeight, behavior: 'smooth' });
+            }, 55);
+
+            // Auto-demonstrate key features when clicking specific hotspots
+            if (hs.id === 3 && partState.upperMattress.target < 0.5) {
+                togglePart('upperMattress');
+            }
+            if (hs.id === 4) {
+                if (currentUnderBedMode === 'open') setUnderBedMode('drawers');
+                if (partState.leftOrTrundle.target < 0.5) togglePart('leftOrTrundle');
+            }
+
+            animateCameraTo(hs.camPos, hs.camTarget);
+        }
+
+        function closeHotspotCard() {
+            document.getElementById('hotspot-card').classList.add('hidden');
+        }
+
+        // ============================================================================
+        // 7. ANIMATION STATE: DRAWERS, TRUNDLE, MATTRESSES, LAMPS, EXPLODE & CAMERAS
+        // ============================================================================
+        const partState = {
+            leftOrTrundle: { current: 0, target: 0 }, // Left drawer (+0.52m) OR Trundle (+0.88m)
+            rightDrawer: { current: 0, target: 0 },   // Right drawer (+0.52m)
+            upperMattress: { current: 0, target: 0 }, // Lifts +0.24m upward
+            lowerMattress: { current: 0, target: 0 }, // Lifts +0.24m upward
+            readingLamps: { current: 1, target: 1 }   // 1 = ON default, 0 = OFF
+        };
+
+        let explodeState = { current: 0, target: 0 };
+        let currentUnderBedMode = 'drawers'; // 'drawers' | 'trundle' | 'open'
+
+        function syncPartButtonUI(partId) {
+            const isOn = partState[partId].target > 0.5;
+            const btn = document.getElementById('part-' + partId);
+            const dot = document.getElementById('dot-' + partId);
+            if (btn) btn.classList.toggle('active', isOn);
+            if (dot) {
+                if (partId === 'readingLamps') {
+                    dot.className = isOn
+                        ? 'w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_#fbbf24] shrink-0'
+                        : 'w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0';
+                } else {
+                    dot.className = isOn
+                        ? 'w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0 ml-1'
+                        : 'w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0 ml-1';
+                }
+            }
+        }
+
+        function togglePart(partId) {
+            if (!partState[partId]) return;
+
+            // Ensure appropriate under-bed configuration is visible when clicking drawer buttons
+            if (partId === 'leftOrTrundle' && currentUnderBedMode === 'open') {
+                setUnderBedMode('drawers');
+            }
+            if (partId === 'rightDrawer' && currentUnderBedMode !== 'drawers') {
+                setUnderBedMode('drawers');
+            }
+
+            const willOpen = partState[partId].target < 0.5;
+            partState[partId].target = willOpen ? 1 : 0;
+
+            if (partId === 'leftOrTrundle' || partId === 'rightDrawer') playTactileSound('slide');
+            else if (partId === 'upperMattress' || partId === 'lowerMattress') playTactileSound('mattress');
+            else playTactileSound('lamp');
+
+            syncPartButtonUI(partId);
+            updateToggleAllLabel();
+        }
+
+        function toggleAllParts() {
+            const keys = ['leftOrTrundle', 'rightDrawer', 'upperMattress', 'lowerMattress', 'readingLamps'];
+            const anyOff = keys.some(k => partState[k].target < 0.5);
+            const nextVal = anyOff ? 1 : 0;
+
+            if (nextVal === 1 && currentUnderBedMode === 'open') {
+                setUnderBedMode('drawers');
+            }
+            playTactileSound(nextVal === 1 ? 'slide' : 'mattress');
+
+            keys.forEach(k => {
+                if (k === 'rightDrawer' && currentUnderBedMode !== 'drawers') {
+                    partState[k].target = 0;
+                } else {
+                    partState[k].target = nextVal;
+                }
+                syncPartButtonUI(k);
+            });
+            updateToggleAllLabel();
+        }
+
+        function updateToggleAllLabel() {
+            const relevant = currentUnderBedMode === 'drawers'
+                ? ['leftOrTrundle', 'rightDrawer', 'upperMattress', 'lowerMattress', 'readingLamps']
+                : ['leftOrTrundle', 'upperMattress', 'lowerMattress', 'readingLamps'];
+            const allOn = relevant.every(k => partState[k].target > 0.5);
+            document.getElementById('btn-toggle-all').textContent = allOn ? 'Tutup Semua' : 'Buka Semua';
+        }
+
+        function setExplodeFactor(val) {
+            explodeState.target = parseFloat(val) / 100;
+            document.getElementById('explode-val').textContent = Math.round(val) + '%';
+        }
+
+        // 7 Camera Presets
+        const CAMERA_PRESETS = {
+            hero: { pos: new THREE.Vector3(2.58, 1.56, 2.86), target: new THREE.Vector3(0, 0.82, 0.02) },
+            front: { pos: new THREE.Vector3(0.0, 0.96, 3.45), target: new THREE.Vector3(0, 0.84, 0) },
+            ladder: { pos: new THREE.Vector3(1.62, 0.96, 1.72), target: new THREE.Vector3(0.72, 0.74, 0.45) },
+            guardrail: { pos: new THREE.Vector3(0.45, 1.72, 1.98), target: new THREE.Vector3(-0.08, 1.44, 0.20) },
+            underbed: { pos: new THREE.Vector3(0.35, 0.62, 2.35), target: new THREE.Vector3(0.0, 0.22, 0.35) },
+            side: { pos: new THREE.Vector3(3.25, 0.96, 0.08), target: new THREE.Vector3(0, 0.82, 0) },
+            top: { pos: new THREE.Vector3(0.0, 3.85, 0.65), target: new THREE.Vector3(0, 0.85, 0) }
+        };
+
+        let camFlight = {
+            active: false,
+            startPos: new THREE.Vector3(),
+            endPos: new THREE.Vector3(),
+            startTarget: new THREE.Vector3(),
+            endTarget: new THREE.Vector3(),
+            progress: 0
+        };
+
+        function animateCameraTo(pos, target) {
+            camFlight.active = true;
+            camFlight.progress = 0;
+            camFlight.startPos.copy(camera.position);
+            camFlight.endPos.copy(pos);
+            camFlight.startTarget.copy(controls.target);
+            camFlight.endTarget.copy(target);
+        }
+
+        function flyToCamera(presetKey) {
+            playTactileSound('click');
+            const preset = CAMERA_PRESETS[presetKey];
+            if (!preset) return;
+
+            document.querySelectorAll('[id^="cam-"]').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('cam-' + presetKey);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (presetKey === 'underbed' && currentUnderBedMode !== 'open' && partState.leftOrTrundle.target < 0.5) {
+                togglePart('leftOrTrundle');
+            }
+
+            animateCameraTo(preset.pos, preset.target);
+        }
+
+        controls.addEventListener('start', () => {
+            camFlight.active = false;
+        });
+
+        // ============================================================================
+        // 8. DIRECT 3D RAYCASTING (DRAWERS, TRUNDLE, MATTRESSES & READING LAMPS)
+        // ============================================================================
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const tooltipEl = document.getElementById('raycast-tooltip');
+        const tooltipTextEl = document.getElementById('raycast-tooltip-text');
+        let pointerDownPos = { x: 0, y: 0 };
+
+        function findVisiblePickable(hits) {
+            return hits.find(h => {
+                let obj = h.object;
+                while (obj) {
+                    if (!obj.visible) return false;
+                    obj = obj.parent;
+                }
+                return Boolean(h.object.userData.partId);
+            });
+        }
+
+        renderer.domElement.addEventListener('pointermove', (e) => {
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisiblePickable(hits);
+
+            if (validHit) {
+                const { partId, label } = validHit.object.userData;
+                renderer.domElement.style.cursor = 'pointer';
+                const isOn = partState[partId].target > 0.5;
+                let verb = isOn ? 'Tutup' : 'Buka';
+                if (partId === 'upperMattress' || partId === 'lowerMattress') verb = isOn ? 'Turunkan' : 'Angkat';
+                else if (partId === 'readingLamps') verb = isOn ? 'Matikan' : 'Nyalakan';
+                else if (partId === 'leftOrTrundle' && currentUnderBedMode === 'trundle') verb = isOn ? 'Masukkan' : 'Sorong Keluar';
+
+                tooltipTextEl.textContent = `Klik: ${verb} ${label}`;
+                tooltipEl.style.left = `${e.clientX}px`;
+                tooltipEl.style.top = `${e.clientY}px`;
+                tooltipEl.classList.remove('opacity-0');
+                return;
+            }
+            renderer.domElement.style.cursor = 'grab';
+            tooltipEl.classList.add('opacity-0');
+        });
+
+        renderer.domElement.addEventListener('pointerdown', (e) => {
+            pointerDownPos.x = e.clientX;
+            pointerDownPos.y = e.clientY;
+        });
+
+        renderer.domElement.addEventListener('pointerup', (e) => {
+            const dist = Math.hypot(e.clientX - pointerDownPos.x, e.clientY - pointerDownPos.y);
+            if (dist > 6) return;
+
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(interactivePickables, false);
+            const validHit = findVisiblePickable(hits);
+
+            if (validHit) {
+                const { partId, label } = validHit.object.userData;
+                togglePart(partId);
+                const nowOn = partState[partId].target > 0.5;
+                if (partId === 'readingLamps') {
+                    showToast(nowOn ? 'Dual Lampu Baca LED dinyalakan' : 'Dual Lampu Baca LED dimatikan');
+                } else {
+                    showToast(`${label} ${nowOn ? 'dibuka / diangkat' : 'dikembalikan'}`);
+                }
+            }
+        });
+
+        // ============================================================================
+        // 9. MATERIAL, UNDER-BED MODE, BEDDING, DUAL-THEME LIGHTING & UI HANDLERS
+        // ============================================================================
+        function setWoodFinish(finishKey) {
+            playTactileSound('click');
+            const pal = WOOD_PALETTES[finishKey];
+            if (!pal) return;
+
+            const texH = getWoodTexture(finishKey, false);
+            const texV = getWoodTexture(finishKey, true);
+
+            woodMatHoriz.map = texH;
+            woodMatHoriz.roughness = pal.roughness;
+            woodMatHoriz.needsUpdate = true;
+
+            woodMatVert.map = texV;
+            woodMatVert.roughness = pal.roughness;
+            woodMatVert.needsUpdate = true;
+
+            slatWoodMat.map = texH;
+            slatWoodMat.needsUpdate = true;
+
+            document.getElementById('label-wood').textContent = pal.name;
+            document.getElementById('price-display').textContent = pal.price;
+
+            ['pine', 'oak', 'birch', 'snow'].forEach(k => {
+                document.getElementById('wood-' + k).classList.toggle('active', k === finishKey);
+            });
+
+            showToast(`Finishing kayu diubah ke ${pal.name}`);
+        }
+
+        function setUnderBedMode(modeKey) {
+            playTactileSound('slide');
+            currentUnderBedMode = modeKey;
+
+            const labels = {
+                drawers: '2 Laci Roda',
+                trundle: 'Kasur Sorong (Trundle)',
+                open: 'Kolong Terbuka'
+            };
+            document.getElementById('label-underbed').textContent = labels[modeKey] || '';
+
+            const showDrawers = modeKey === 'drawers';
+            const showTrundle = modeKey === 'trundle';
+
+            explodedGroups.leftDrawerGroup.visible = showDrawers;
+            explodedGroups.rightDrawerGroup.visible = showDrawers;
+            explodedGroups.trundleGroup.visible = showTrundle;
+
+            // Update left HUD button label cleanly
+            document.getElementById('label-btn-leftOrTrundle').textContent = showTrundle ? 'Kasur Trundle' : 'Laci Kiri / Trundle';
+
+            // Reset drawer states smoothly on switch
+            if (modeKey === 'open') {
+                partState.leftOrTrundle.target = 0;
+                partState.rightDrawer.target = 0;
+            } else if (modeKey === 'trundle') {
+                partState.rightDrawer.target = 0;
+                partState.leftOrTrundle.target = 1; // Showcase rolling out the trundle immediately!
+            }
+            syncPartButtonUI('leftOrTrundle');
+            syncPartButtonUI('rightDrawer');
+            updateToggleAllLabel();
+
+            ['drawers', 'trundle', 'open'].forEach(k => {
+                document.getElementById('under-' + k).classList.toggle('active', k === modeKey);
+            });
+
+            showToast(`Konfigurasi kolong: ${labels[modeKey]}`);
+        }
+
+        function setBeddingTheme(themeKey) {
+            playTactileSound('mattress');
+            const th = BEDDING_THEMES[themeKey];
+            if (!th) return;
+
+            sheetMat.color.setHex(th.sheetHex);
+            blanketMat.color.setHex(th.blanketHex);
+            pillowMat.color.setHex(th.pillowHex);
+            starPillowMat.color.setHex(th.starHex);
+            cloudPillowMat.color.setHex(th.cloudHex);
+
+            document.getElementById('label-bedding').textContent = th.name;
+            ['sage', 'oat', 'terracotta', 'sky'].forEach(k => {
+                document.getElementById('bed-' + k).classList.toggle('active', k === themeKey);
+            });
+
+            showToast(`Sprei katun organik diubah ke ${th.name}`);
+        }
+
+        let currentStudioEnv = 'gallery';
+        function setStudioEnv(envKey) {
+            playTactileSound('click');
+            currentStudioEnv = envKey;
+
+            ['gallery', 'studio', 'sunset', 'night'].forEach(k => {
+                document.getElementById('env-' + k).classList.toggle('active', k === envKey);
+            });
+
+            // Smooth Dual-Theme Frosted Glassmorphism Toggle via body.light-studio
+            const isLight = (envKey === 'gallery');
+            document.body.classList.toggle('light-studio', isLight);
+
+            if (envKey === 'gallery') {
+                scene.background.setHex(0xF9F5EC);
+                scene.fog.color.setHex(0xF9F5EC);
+                floorMat.color.setHex(0xEFE9DE);
+                roomWallMat.color.setHex(0xF5F0E6);
+                dimLineMat.color.setHex(0x8C6239);
+                ambientLight.intensity = 0.90;
+                keyLight.color.setHex(0xFFF7EA);
+                keyLight.intensity = 1.32;
+                fillLight.intensity = 0.56;
+                rimLight.intensity = 0.45;
+            } else if (envKey === 'studio') {
+                scene.background.setHex(0x171615);
+                scene.fog.color.setHex(0x171615);
+                floorMat.color.setHex(0x1E1C1A);
+                roomWallMat.color.setHex(0x282522);
+                dimLineMat.color.setHex(0xD5BA94);
+                ambientLight.intensity = 0.66;
+                keyLight.color.setHex(0xFFF5E4);
+                keyLight.intensity = 1.36;
+                fillLight.intensity = 0.46;
+                rimLight.intensity = 0.52;
+            } else if (envKey === 'sunset') {
+                scene.background.setHex(0x1C1411);
+                scene.fog.color.setHex(0x1C1411);
+                floorMat.color.setHex(0x241915);
+                roomWallMat.color.setHex(0x34241D);
+                dimLineMat.color.setHex(0xE6C391);
+                ambientLight.intensity = 0.48;
+                keyLight.color.setHex(0xFFA963);
+                keyLight.intensity = 1.54;
+                fillLight.intensity = 0.30;
+                rimLight.intensity = 0.62;
+            } else if (envKey === 'night') {
+                scene.background.setHex(0x0D0D0F);
+                scene.fog.color.setHex(0x0D0D0F);
+                floorMat.color.setHex(0x121216);
+                roomWallMat.color.setHex(0x191B22);
+                dimLineMat.color.setHex(0xD5BA94);
+                ambientLight.intensity = 0.20;
+                keyLight.color.setHex(0x9BB4FF);
+                keyLight.intensity = 0.34;
+                fillLight.intensity = 0.16;
+                rimLight.intensity = 0.24;
+
+                if (partState.readingLamps.target < 0.5) {
+                    togglePart('readingLamps');
+                }
+            }
+        }
+
+        let wireframeActive = false;
+        function toggleWireframeMode() {
+            playTactileSound('click');
+            wireframeActive = !wireframeActive;
+            document.getElementById('btn-wireframe').classList.toggle('active', wireframeActive);
+            allBunkMeshes.forEach(m => {
+                if (m.material) m.material.wireframe = wireframeActive;
+            });
+            showToast(wireframeActive ? 'Mode Teknis Wireframe aktif' : 'Mode Render PBR aktif');
+        }
+
+        function toggleDimensions() {
+            playTactileSound('click');
+            dimensionsVisible = !dimensionsVisible;
+            dimensionGroup.visible = dimensionsVisible;
+            document.getElementById('btn-dimensions').classList.toggle('active', dimensionsVisible);
+            domDimLabels.forEach(d => {
+                d.el.style.opacity = dimensionsVisible ? '1' : '0';
+            });
+        }
+
+        function toggleHotspots() {
+            playTactileSound('click');
+            hotspotsVisible = !hotspotsVisible;
+            document.getElementById('btn-hotspots').classList.toggle('active', hotspotsVisible);
+            if (!hotspotsVisible) closeHotspotCard();
+            domHotspots.forEach(h => {
+                h.el.style.opacity = hotspotsVisible ? '1' : '0';
+                h.el.style.pointerEvents = hotspotsVisible ? 'auto' : 'none';
+            });
+        }
+
+        function toggleBedroomDecor() {
+            playTactileSound('click');
+            const nextVis = !explodedGroups.bedroomDecorGroup.visible;
+            explodedGroups.bedroomDecorGroup.visible = nextVis;
+            document.getElementById('btn-decor').classList.toggle('active', nextVis);
+            showToast(nextVis ? 'Kamar & dekorasi ditampilkan' : 'Kamar & dekorasi disembunyikan');
+        }
+
+        function toggleAutoRotate() {
+            playTactileSound('click');
+            controls.autoRotate = !controls.autoRotate;
+            controls.autoRotateSpeed = 1.4;
+            document.getElementById('btn-autorotate').classList.toggle('active', controls.autoRotate);
+        }
+
+        // Responsive Mobile Side Drawer Controller
+        let activeMobileDrawer = null;
+        function toggleMobileDrawer(side, forceOpen = false) {
+            const leftEl = document.getElementById('left-hud');
+            const rightEl = document.getElementById('right-hud');
+            const mobLeftBtn = document.getElementById('mob-toggle-left');
+            const mobRightBtn = document.getElementById('mob-toggle-right');
+            const mobileClasses = ['!flex', 'absolute', 'top-0', 'bottom-0', 'z-30'];
+
+            leftEl.classList.remove(...mobileClasses, 'left-0');
+            rightEl.classList.remove(...mobileClasses, 'right-0');
+
+            if (side === 'close' || (activeMobileDrawer === side && !forceOpen)) {
+                activeMobileDrawer = null;
+                mobLeftBtn.classList.remove('hidden');
+                mobRightBtn.classList.remove('hidden');
+                return;
+            }
+
+            activeMobileDrawer = side;
+            if (side === 'left') {
+                leftEl.classList.add(...mobileClasses, 'left-0');
+                mobLeftBtn.classList.add('hidden');
+                mobRightBtn.classList.remove('hidden');
+            } else if (side === 'right') {
+                rightEl.classList.add(...mobileClasses, 'right-0');
+                mobRightBtn.classList.add('hidden');
+                mobLeftBtn.classList.remove('hidden');
+            }
+        }
+
+        let uiHidden = false;
+        function toggleCleanViewport() {
+            playTactileSound('click');
+            uiHidden = !uiHidden;
+            ['left-hud', 'right-hud', 'bottom-hud', 'mob-toggle-left', 'mob-toggle-right'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.toggle('hud-hidden-panel', uiHidden);
+            });
+            document.getElementById('clean-ui-icon').className = uiHidden
+                ? 'fa-solid fa-compress accent-icon'
+                : 'fa-solid fa-expand accent-icon';
+            showToast(uiHidden ? 'Mode layar penuh aktif' : 'Panel kontrol ditampilkan');
+        }
+
+        function toggleSpecsModal(show) {
+            playTactileSound('click');
+            const modal = document.getElementById('specs-modal');
+            modal.classList.toggle('hidden', !show);
+            modal.classList.toggle('flex', show);
+        }
+
+        function downloadSnapshot() {
+            playTactileSound('click');
+            try {
+                renderer.render(scene, camera);
+                const dataURL = renderer.domElement.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'sora-twin-bunk-bed-livora.png';
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Foto 3D diunduh: sora-twin-bunk-bed-livora.png');
+            } catch (err) {
+                showToast('Gagal mengunduh tangkapan layar');
+            }
+        }
+
+        // ============================================================================
+        // 10. MAIN RENDER LOOP, DAMPED INTERPOLATION & 2D OVERLAY PROJECTIONS
+        // ============================================================================
+        const tempProjVec = new THREE.Vector3();
+        let frameCount = 0;
+        let lastFpsTime = performance.now();
+
+        function updateAnimations() {
+            const lerp = 0.095;
+            Object.keys(partState).forEach(k => {
+                partState[k].current += (partState[k].target - partState[k].current) * lerp;
+            });
+
+            explodeState.current += (explodeState.target - explodeState.current) * 0.085;
+            const ex = explodeState.current;
+
+            // 1. Under-bed Drawers (+0.52m Z) & Trundle (+0.88m Z)
+            const trundleSlide = currentUnderBedMode === 'trundle' ? partState.leftOrTrundle.current : 0;
+            const leftDrwSlide = currentUnderBedMode === 'drawers' ? partState.leftOrTrundle.current : 0;
+            const rightDrwSlide = currentUnderBedMode === 'drawers' ? partState.rightDrawer.current : 0;
+
+            explodedGroups.leftDrawerGroup.position.set(-0.48 - ex * 0.16, -ex * 0.04, 0.02 + leftDrwSlide * 0.52 + ex * 0.36);
+            explodedGroups.rightDrawerGroup.position.set(0.48 + ex * 0.16, -ex * 0.04, 0.02 + rightDrwSlide * 0.52 + ex * 0.36);
+            explodedGroups.trundleGroup.position.set(0, -ex * 0.04, trundleSlide * 0.88 + ex * 0.48);
+
+            // Smart Anti-Clip: When trundle rolls out or right drawer slides out, hook-on ladder gracefully shifts rightwards (+0.40m) to clear the path!
+            const ladderClearance = Math.max(trundleSlide, rightDrwSlide * 0.85);
+            explodedGroups.ladderGroup.position.set(
+                ladderClearance * 0.42 + ex * 0.36,
+                ladderClearance * 0.03,
+                ex * 0.46
+            );
+
+            // 2. Liftable Upper & Lower Mattresses (+0.24m upward) + Exploded Separation
+            explodedGroups.lowerMattressGroup.position.y = partState.lowerMattress.current * 0.24 + ex * 0.20;
+            explodedGroups.upperMattressGroup.position.y = partState.upperMattress.current * 0.24 + ex * 0.54;
+
+            // 3. Structural Exploded Anatomy Offsets
+            explodedGroups.postsGroup.position.y = 0;
+            explodedGroups.lowerFrameGroup.position.y = -ex * 0.06;
+            explodedGroups.lowerSlatsGroup.position.y = ex * 0.06;
+            explodedGroups.upperFrameGroup.position.y = ex * 0.20;
+            explodedGroups.upperSlatsGroup.position.y = ex * 0.34;
+            explodedGroups.guardrailsGroup.position.y = ex * 0.44;
+            explodedGroups.lampsAndCaddyGroup.position.set(-ex * 0.12, ex * 0.32, ex * 0.10);
+
+            // 4. Dual Warm 2700K LED Reading Lamps Dynamic Intensity
+            const lampOn = partState.readingLamps.current;
+            const envBoost = currentStudioEnv === 'night' ? 1.85 : (currentStudioEnv === 'sunset' ? 1.25 : 0.62);
+            readingLampLights.forEach(l => {
+                l.intensity = lampOn * envBoost;
+            });
+            readingBulbMats.forEach(m => {
+                m.emissiveIntensity = lampOn * (currentStudioEnv === 'night' ? 2.5 : 1.45);
+            });
+
+            // 5. Smooth Ease-Out-Cubic Camera Flight
+            if (camFlight.active) {
+                camFlight.progress += 0.032;
+                if (camFlight.progress >= 1) {
+                    camFlight.progress = 1;
+                    camFlight.active = false;
+                }
+                const t = 1 - Math.pow(1 - camFlight.progress, 3);
+                camera.position.lerpVectors(camFlight.startPos, camFlight.endPos, t);
+                controls.target.lerpVectors(camFlight.startTarget, camFlight.endTarget, t);
+            }
+        }
+
+        function updateOverlayProjections() {
+            const halfW = window.innerWidth / 2;
+            const halfH = window.innerHeight / 2;
+
+            if (hotspotsVisible) {
+                domHotspots.forEach(item => {
+                    tempProjVec.copy(item.data.worldPos);
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'flex';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+
+            if (dimensionsVisible) {
+                domDimLabels.forEach(item => {
+                    tempProjVec.copy(item.pos);
+                    tempProjVec.project(camera);
+
+                    if (tempProjVec.z > 1) {
+                        item.el.style.display = 'none';
+                    } else {
+                        item.el.style.display = 'block';
+                        item.el.style.left = `${(tempProjVec.x * halfW) + halfW}px`;
+                        item.el.style.top = `${-(tempProjVec.y * halfH) + halfH}px`;
+                    }
+                });
+            }
+        }
+
+        function animateLoop() {
+            requestAnimationFrame(animateLoop);
+            updateAnimations();
+            controls.update();
+            renderer.render(scene, camera);
+            updateOverlayProjections();
+
+            frameCount++;
+            const now = performance.now();
+            if (now - lastFpsTime >= 1000) {
+                const fps = Math.min(60, Math.round((frameCount * 1000) / (now - lastFpsTime)));
+                document.getElementById('fps-badge').textContent = `${fps} FPS`;
+                frameCount = 0;
+                lastFpsTime = now;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            if (window.innerWidth >= 768 && activeMobileDrawer) {
+                toggleMobileDrawer('close');
+            }
+        });
+
+        window.onload = function () {
+            animateLoop();
+        };
+    </script>
+</body>
+</html>
